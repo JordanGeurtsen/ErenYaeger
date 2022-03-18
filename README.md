@@ -1,11 +1,5 @@
-# Yaeger tutorial: Creating Waterworld
+# Bonk The Tower TD!
 
-This repository contains a tutorial in which you will create a simple game called Waterworld. We start of with an empty
-project that does not contain any code. Only the assets and the project settings are provided. Step-by-step you will be
-guided in the creation of simple game, and in doing so, become familiar with many of the features of Yaeger.
+<h5>Bonk The Towers met je speciale superkrachtige koet-powers!</h5>
 
-![Waterworld](docs/images/game/game.png)
-
-[Dive into the tutorial](https://han-yaeger.github.io/yaeger-tutorial/)
-
-
+![Bonk The Tower](https://i.imgur.com/XJuaBbS.jpg "Bonk The Tower TD")
