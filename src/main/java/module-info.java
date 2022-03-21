@@ -8,4 +8,5 @@ module waterworld {
     opens sprites;
     exports game.scenes;
     exports game.buttons;
+    exports game.scenes.maps;
 }

@@ -1,10 +1,10 @@
-package game.scenes;
+package game.scenes.maps;
 
 import com.github.hanyaeger.api.scenes.StaticScene;
 import game.BonkTheTowerTD;
 
-public class FinalScreen extends StaticScene {
-    public FinalScreen(BonkTheTowerTD bonkTheTowerTD) {
+public class MapThree extends StaticScene {
+    public MapThree(BonkTheTowerTD bonkTheTowerTD) {
     }
 
     @Override
