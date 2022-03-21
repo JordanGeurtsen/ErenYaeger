@@ -17,6 +17,6 @@ public class MapOne extends DynamicScene {
 
     @Override
     public void setupEntities() {
- // bonkerdebonk
+
     }
 }
