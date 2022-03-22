@@ -8,9 +8,7 @@ public class MapTwo extends StaticScene {
     }
 
     @Override
-    public void setupScene() {
-
-    }
+    public void setupScene() {setBackgroundImage("backgrounds/map_2_with_shop.jpg");}
 
     @Override
     public void setupEntities() {

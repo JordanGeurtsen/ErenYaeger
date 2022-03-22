@@ -31,6 +31,6 @@ public class BonkTheTowerTD extends YaegerGame {
         addScene(2, new MapOne(this));
         addScene(3, new MapTwo(this));
         addScene(4, new MapThree(this));
-        addScene(3, new FinalScreen(this));
+        addScene(5, new FinalScreen(this));
     }
 }
