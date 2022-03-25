@@ -16,7 +16,7 @@ public class MapSelector extends StaticScene implements YaegerScene {
 
     @Override
     public void setupScene() {
-        setBackgroundImage("backgrounds/map_selection.jpg");
+        setBackgroundImage("backgrounds/base_background.jpg");
     }
 
     @Override

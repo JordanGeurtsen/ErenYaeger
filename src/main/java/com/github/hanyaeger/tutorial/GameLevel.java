@@ -44,6 +44,7 @@ public class GameLevel extends DynamicScene implements EntitySpawnerContainer {
 
     @Override
     public void setupEntitySpawners() {
+
         addEntitySpawner(new BubbleSpawner(getWidth(), getHeight()));
     }
 }
