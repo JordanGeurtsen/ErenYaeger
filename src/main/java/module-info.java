@@ -5,6 +5,7 @@ module waterworld {
 
     opens audio;
     opens backgrounds;
+    opens backgrounds.maps;
     opens sprites;
     exports game.scenes;
     exports game.entities.buttons;

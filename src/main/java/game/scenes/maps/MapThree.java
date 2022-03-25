@@ -9,7 +9,7 @@ public class MapThree extends StaticScene {
 
     @Override
     public void setupScene() {
-        setBackgroundImage("backgrounds/map_3_with_shop.jpg");
+        setBackgroundImage("backgrounds/maps/map_3_with_shop.jpg");
     }
 
     @Override

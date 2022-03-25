@@ -12,7 +12,7 @@ public class MapOne extends StaticScene {
 
     @Override
     public void setupScene() {
-        setBackgroundImage("backgrounds/map_1_with_shop.jpg");
+        setBackgroundImage("backgrounds/maps/map_1_with_shop.jpg");
     }
 
     @Override
