@@ -1,9 +1,9 @@
 package game.scenes.maps;
 
-import com.github.hanyaeger.api.scenes.DynamicScene;
+import com.github.hanyaeger.api.scenes.StaticScene;
 import game.BonkTheTowerTD;
 
-public class MapOne extends DynamicScene {
+public class MapOne extends StaticScene {
     private BonkTheTowerTD bonkTheTowerTD;
 
     public MapOne (BonkTheTowerTD bonkTheTowerTD){
@@ -17,6 +17,6 @@ public class MapOne extends DynamicScene {
 
     @Override
     public void setupEntities() {
-
     }
+
 }

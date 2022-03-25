@@ -5,7 +5,7 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.scenes.StaticScene;
 import com.github.hanyaeger.api.scenes.YaegerScene;
 import game.BonkTheTowerTD;
-import game.buttons.SceneSwitchButton;
+import game.entities.buttons.SceneSwitchButton;
 
 public class MapSelector extends StaticScene implements YaegerScene {
     private BonkTheTowerTD bonkTheTowerTD;

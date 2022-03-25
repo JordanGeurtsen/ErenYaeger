@@ -1,4 +1,4 @@
-package game.buttons;
+package game.entities.buttons;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.impl.TextEntity;
@@ -12,22 +12,19 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class SceneSwitchButton extends TextEntity implements MouseButtonPressedListener, MouseEnterListener, MouseExitListener {
+public class QuitButton extends TextEntity implements MouseButtonPressedListener, MouseEnterListener, MouseExitListener {
     private BonkTheTowerTD bonkTheTowerTD;
-    private String buttonText;
-    private int switchToScene;
 
-    public SceneSwitchButton(Coordinate2D initialLocation, BonkTheTowerTD bonkTheTowerTD, int switchToScene, String buttonText) {
-        super(initialLocation, buttonText);
+    public QuitButton(Coordinate2D initialLocation, BonkTheTowerTD bonkTheTowerTD) {
+        super(initialLocation,"Quit Game");
         setFill(Color.PAPAYAWHIP);
         setFont(Font.font("Roboto", FontWeight.BOLD, 30));
         this.bonkTheTowerTD = bonkTheTowerTD;
-        this.switchToScene = switchToScene;
     }
 
     @Override
     public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2D){
-        bonkTheTowerTD.setActiveScene(switchToScene);
+        bonkTheTowerTD.quit();
     }
 
     @Override

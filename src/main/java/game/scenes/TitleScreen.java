@@ -3,9 +3,9 @@ package game.scenes;
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.scenes.StaticScene;
-import game.buttons.QuitButton;
+import game.entities.buttons.QuitButton;
 import game.BonkTheTowerTD;
-import game.buttons.SceneSwitchButton;
+import game.entities.buttons.SceneSwitchButton;
 
 public class TitleScreen extends StaticScene {
     private BonkTheTowerTD bonkTheTowerTD;

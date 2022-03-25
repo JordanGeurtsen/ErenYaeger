@@ -7,6 +7,6 @@ module waterworld {
     opens backgrounds;
     opens sprites;
     exports game.scenes;
-    exports game.buttons;
+    exports game.entities.buttons;
     exports game.scenes.maps;
 }
