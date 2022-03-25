@@ -1,20 +1,18 @@
 package game.entities.tilemap;
 
 import com.github.hanyaeger.api.scenes.TileMap;
-import game.entities.ground.Grass;
-import game.entities.ground.Path;
+import game.entities.tilemap.ground.Grass;
+import game.entities.tilemap.ground.Path;
 import game.entities.towers.Archer;
 import game.entities.towers.Freezer;
 import game.entities.towers.Hitman;
 
-public class TDTileMap extends TileMap {
+public class TDTileMap extends TileMap{
 
     private int[][] map;
-    private String background_image;
 
-    public TDTileMap (int[][] map, String background_image){
+    public TDTileMap (int[][] map){
         this.map = map;
-        this.background_image = background_image;
     }
 
     @Override

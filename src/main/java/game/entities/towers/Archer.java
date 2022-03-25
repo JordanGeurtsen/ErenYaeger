@@ -1,9 +1,7 @@
 package game.entities.towers;
 
 import com.github.hanyaeger.api.Coordinate2D;
-import game.entities.enemies.Enemy;
 
-import java.util.ArrayList;
 
 public class Archer extends Tower {
     double price = 100.0;
