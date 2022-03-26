@@ -3,13 +3,13 @@ package game.scenes;
 import com.github.hanyaeger.api.scenes.StaticScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
 import game.BonkTheTowerTD;
-import game.entities.tilemap.LevelChooseTileMap;
+import game.entities.tilemap.LevelChooserTileMap;
 
 public class MapSelector extends StaticScene implements TileMapContainer {
     private BonkTheTowerTD bonkTheTowerTD;
-    private LevelChooseTileMap mapOne = new LevelChooseTileMap(bonkTheTowerTD, "backgrounds/maps/map_one.jpg", );
-    private LevelChooseTileMap mapTwo = new LevelChooseTileMap(bonkTheTowerTD, "backgrounds/maps/map_two.jpg");
-    private LevelChooseTileMap mapThree = new LevelChooseTileMap(bonkTheTowerTD, "backgrounds/maps/map_three.jpg");
+    private LevelChooserTileMap mapOne = new LevelChooserTileMap(bonkTheTowerTD, "backgrounds/maps/map_one.jpg", );
+    private LevelChooserTileMap mapTwo = new LevelChooserTileMap(bonkTheTowerTD, "backgrounds/maps/map_two.jpg");
+    private LevelChooserTileMap mapThree = new LevelChooserTileMap(bonkTheTowerTD, "backgrounds/maps/map_three.jpg");
 
     public MapSelector(BonkTheTowerTD bonkTheTowerTD) {
         this.bonkTheTowerTD = bonkTheTowerTD;

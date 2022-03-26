@@ -8,7 +8,7 @@ import com.github.hanyaeger.api.userinput.MouseExitListener;
 import game.BonkTheTowerTD;
 import javafx.scene.input.MouseButton;
 
-public class ImageButton extends SpriteEntity implements MouseButtonPressedListener, MouseEnterListener, MouseExitListener {
+public class ImageButton extends SpriteEntity implements MouseButtonPressedListener {
     private BonkTheTowerTD bonkTheTowerTD;
     private int newScene;
 
@@ -20,15 +20,5 @@ public class ImageButton extends SpriteEntity implements MouseButtonPressedListe
     @Override
     public void onMouseButtonPressed(MouseButton mouseButton, Coordinate2D coordinate2D) {
         bonkTheTowerTD.setActiveScene(newScene);
-    }
-
-    @Override
-    public void onMouseEntered() {
-        //
-    }
-
-    @Override
-    public void onMouseExited() {
-        //
     }
 }

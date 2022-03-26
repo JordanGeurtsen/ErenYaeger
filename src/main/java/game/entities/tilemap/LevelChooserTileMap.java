@@ -1,18 +1,17 @@
 package game.entities.tilemap;
 
 import com.github.hanyaeger.api.AnchorPoint;
-import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.scenes.TileMap;
 import game.BonkTheTowerTD;
 import game.Screen;
 import game.entities.buttons.ImageButton;
 import game.entities.buttons.SceneSwitchButton;
 
-public class LevelChooseTileMap extends TileMap {
+public class LevelChooserTileMap extends TileMap {
     private BonkTheTowerTD bonkTheTowerTD;
     private String resource;
 
-    public LevelChooseTileMap (BonkTheTowerTD bonkTheTowerTD, String resource){
+    public LevelChooserTileMap (BonkTheTowerTD bonkTheTowerTD, String resource){
         this.bonkTheTowerTD = bonkTheTowerTD;
         this.resource = resource;
     }
