@@ -14,20 +14,19 @@ import javafx.scene.text.FontWeight;
 
 public class SceneSwitchButton extends TextEntity implements MouseButtonPressedListener, MouseEnterListener, MouseExitListener {
     private BonkTheTowerTD bonkTheTowerTD;
-    private String buttonText;
-    private int switchToScene;
+    private int newScene;
 
-    public SceneSwitchButton(Coordinate2D initialLocation, BonkTheTowerTD bonkTheTowerTD, int switchToScene, String buttonText) {
+    public SceneSwitchButton(Coordinate2D initialLocation, BonkTheTowerTD bonkTheTowerTD, int newScene, String buttonText) {
         super(initialLocation, buttonText);
         setFill(Color.PAPAYAWHIP);
         setFont(Font.font("Roboto", FontWeight.BOLD, 30));
         this.bonkTheTowerTD = bonkTheTowerTD;
-        this.switchToScene = switchToScene;
+        this.newScene = newScene;
     }
 
     @Override
     public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2D){
-        bonkTheTowerTD.setActiveScene(switchToScene);
+        bonkTheTowerTD.setActiveScene(newScene);
     }
 
     @Override

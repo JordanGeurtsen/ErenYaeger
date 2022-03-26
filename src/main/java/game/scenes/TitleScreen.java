@@ -3,12 +3,14 @@ package game.scenes;
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.scenes.StaticScene;
+import game.Screen;
 import game.entities.buttons.QuitButton;
 import game.BonkTheTowerTD;
 import game.entities.buttons.SceneSwitchButton;
 
 public class TitleScreen extends StaticScene {
     private BonkTheTowerTD bonkTheTowerTD;
+
 
     public TitleScreen(BonkTheTowerTD bonkTheTowerTD) {
         this.bonkTheTowerTD = bonkTheTowerTD;
@@ -22,7 +24,7 @@ public class TitleScreen extends StaticScene {
     @Override
     public void setupEntities() {
         var startButton = new SceneSwitchButton(
-                new Coordinate2D(getWidth() / bonkTheTowerTD.buttonWidthCenter, getHeight() / bonkTheTowerTD.buttonHeightCenter), this.bonkTheTowerTD, 1, "Play Game");
+                new Coordinate2D(getWidth() / bonkTheTowerTD.buttonWidthCenter, getHeight() / bonkTheTowerTD.buttonHeightCenter), this.bonkTheTowerTD, Screen.MAP_CHOOSER, "Play Game");
         startButton.setAnchorPoint(AnchorPoint.CENTER_CENTER);
         addEntity(startButton);
 
@@ -31,4 +33,6 @@ public class TitleScreen extends StaticScene {
         bonkTheTowerQuit.setAnchorPoint(AnchorPoint.CENTER_CENTER);
         addEntity(bonkTheTowerQuit);
     }
+
+
 }

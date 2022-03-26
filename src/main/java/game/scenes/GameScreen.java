@@ -6,9 +6,16 @@ import game.entities.towers.Archer;
 import game.entities.towers.Tower;
 
 import java.util.ArrayList;
+import game.BonkTheTowerTD;
 
 public class GameScreen extends DynamicScene {
     ArrayList<Tower> towers = new ArrayList<Tower>();
+
+    private BonkTheTowerTD bonkTheTowerTD;
+
+    public GameScreen(BonkTheTowerTD bonkTheTowerTD) {
+    this.bonkTheTowerTD = bonkTheTowerTD;
+    }
 
     @Override
     public void setupScene() {
