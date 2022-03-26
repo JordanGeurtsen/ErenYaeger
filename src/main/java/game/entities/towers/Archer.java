@@ -21,7 +21,7 @@ public class Archer extends Tower {
     }
 
     @Override
-    public Arrow attackForm() {
+    public void attackForm() {
         //if(isInRange(rangeRadius, enemyList)){ dit in set up entities met if(){ attackForm();}
             for(Enemy e : enemyList){
                 if(distanceTo(e) < rangeRadius){
@@ -35,7 +35,7 @@ public class Archer extends Tower {
                 }
             }
            var arrow = new Arrow("sprites/baby_coot.png", initialLocation, target);
-            return arrow;
+
 //            addEntity(arrow);
             // dit mag niet. kan return targetCoordinates and make arrow in GameScreen
         }
