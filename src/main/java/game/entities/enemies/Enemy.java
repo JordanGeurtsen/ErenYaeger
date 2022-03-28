@@ -5,8 +5,13 @@ import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 
+import java.util.ArrayList;
+
 public class Enemy extends DynamicSpriteEntity implements Collided {
-    int health = 0;
+    int health = 20;
+    int movementSpeed, hitPoints;
+    ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
+
     protected Enemy(String resource, Coordinate2D initialLocation) {
         super(resource, initialLocation);
     }
@@ -18,5 +23,11 @@ public class Enemy extends DynamicSpriteEntity implements Collided {
 
     public int getHealth() {
         return health;
+    }
+    public int getMovementSpeed() {
+        return movementSpeed;
+    }
+    public int getHitPoints() {
+        return hitPoints;
     }
 }

@@ -7,18 +7,11 @@ import game.entities.enemies.Enemy;
 import java.util.ArrayList;
 
 public abstract class Tower extends SpriteEntity {
-    float price;
-    int rangeRadius, cooldown, damage;
-    String resource;
-    Coordinate2D initialLocation;
 
-    public abstract void attackForm();
-
+    public abstract void shoot();
 
     public Tower(String resource, Coordinate2D initialLocation){
         super(resource, initialLocation);
-        this.resource = resource;
-        this.initialLocation = initialLocation;
     }
 
     public boolean isInRange(int rangeRadius, ArrayList<Enemy> enemyList){
@@ -31,9 +24,8 @@ public abstract class Tower extends SpriteEntity {
         return inRange;
     }
 
-    public int getTowerDamage(){ return damage;}
-    public int getTowerRange(){ return rangeRadius;}
-    public int getTowerCooldown(){ return cooldown;}
-    public float getTowerPrice(){ return price;}
+    abstract public int getTowerDamage();
+    abstract public int getTowerRange();
+    abstract public double getTowerPrice();
 
 }
