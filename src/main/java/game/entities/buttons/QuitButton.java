@@ -1,10 +1,6 @@
 package game.entities.buttons;
 
 import com.github.hanyaeger.api.Coordinate2D;
-import com.github.hanyaeger.api.entities.impl.TextEntity;
-import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
-import com.github.hanyaeger.api.userinput.MouseEnterListener;
-import com.github.hanyaeger.api.userinput.MouseExitListener;
 import game.BonkTheTowerTD;
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseButton;
@@ -16,7 +12,7 @@ public class QuitButton extends Button {
     private BonkTheTowerTD bonkTheTowerTD;
 
     public QuitButton(Coordinate2D initialLocation, BonkTheTowerTD bonkTheTowerTD) {
-        super(initialLocation,"Quit Game");
+        super(initialLocation, "Quit Game");
         setFill(Color.PAPAYAWHIP);
         setFont(Font.font("Roboto", FontWeight.BOLD, 30));
         this.bonkTheTowerTD = bonkTheTowerTD;

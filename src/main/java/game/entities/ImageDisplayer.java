@@ -6,17 +6,11 @@ import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 import game.BonkTheTowerTD;
 import javafx.scene.input.MouseButton;
 
-public class ImageDisplayer extends SpriteEntity implements MouseButtonPressedListener {
+public class ImageDisplayer extends SpriteEntity {
     private BonkTheTowerTD bonkTheTowerTD;
     private int newScene;
 
-    public ImageDisplayer(String resource, Coordinate2D initialLocation, BonkTheTowerTD bonkTheTowerTD, int newScene) {
+    public ImageDisplayer(String resource, Coordinate2D initialLocation) {
         super(resource, initialLocation);
-        this.bonkTheTowerTD = bonkTheTowerTD;
-    }
-
-    @Override
-    public void onMouseButtonPressed(MouseButton mouseButton, Coordinate2D coordinate2D) {
-        bonkTheTowerTD.setActiveScene(newScene);
     }
 }

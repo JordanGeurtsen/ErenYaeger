@@ -3,23 +3,24 @@ class BonkTheTowerTD {
 
 }
 
-BonkTheTowerTD -up-|> YeagerGame
-BonkTheTowerTD <-down- TitleScreen
-BonkTheTowerTD <-down- MapSelector
-BonkTheTowerTD <-left- GameScreen
-BonkTheTowerTD <-down- FinalScreen
+BonkTheTowerTD --|> YeagerGame
+BonkTheTowerTD <-- TitleScreen
+BonkTheTowerTD <-- MapSelector
+BonkTheTowerTD <-- GameScreen
+BonkTheTowerTD <-- FinalScreen
 
 abstract class YeagerGame #EE66B1 {
 
 }
 
 class GameScreen {
-
++earnedPoints : int
++coinBalance : int
 }
 
 GameScreen <-- ShopTileMap
 GameScreen <-- LevelTileMap
-GameScreen <-right- Counter
+GameScreen <-- Counter
 
 class TitleScreen {
 
@@ -29,22 +30,9 @@ class TextEntity {
 
 }
 
-
-TitleScreen <-- MenuTileMap
-
-MenuTileMap --> IButton
-
 class MapSelector {
 
 }
-
-class LevelChooserTileMap {
-
-}
-
-MapSelector <-- LevelChooserTileMap
-LevelChooserTileMap <-left- ImageDisplayer
-LevelChooserTileMap --> IButton
 
 interface TileMapContainer #EE66B1{
 
@@ -54,22 +42,14 @@ abstract class TileMap #EE66B1 {
 
 }
 
-TileMapContainer <-down- TitleScreen
-TileMapContainer <-up- GameScreen
-TileMapContainer <-down- MapSelector
-TileMapContainer <-down- FinalScreen
+TileMapContainer <-- TitleScreen
+TileMapContainer <-- GameScreen
+TileMapContainer <-- MapSelector
+TileMapContainer <-- FinalScreen
 
-TileMap <|-- MenuTileMap
-TileMap <|-- LevelChooserTileMap
 TileMap <|-- ShopTileMap
 
 class FinalScreen {
-
-}
-
-FinalScreen <-- MenuTileMap
-
-abstract class StaticScene #EE66B1{
 
 }
 
@@ -77,25 +57,25 @@ abstract class DynamicScene #EE66B1 {
 
 }
 
-GameScreen -up-|> DynamicScene
-
-TitleScreen -down-|> StaticScene
-MapSelector -down-|> StaticScene
-FinalScreen -down-|> StaticScene
+GameScreen --|> DynamicScene
+TitleScreen --|> DynamicScene
+MapSelector --|> DynamicScene
+FinalScreen --|> DynamicScene
 
 class RoundExecutor {
 
 }
 
-RoundExecutor -up-> Enemy
-RoundExecutor -up-> GameScreen
+RoundExecutor --> Enemy
+RoundExecutor --> GameScreen
 
 class LevelTileMap {
-
++setupEntities() : void
++defineMap() : int[][]
 }
 
 LevelTileMap --|> TileMap
-LevelTileMap --> IButton
+LevelTileMap --> Button
 
 enum Screen {
     TITLE
@@ -130,20 +110,23 @@ enum Target {
     STRONGEST
 }
 
-interface IButton {
+abstract class Button {
++...() : void
++onMouseEntered() : void
++onMouseExited() : void
 
 }
 
-IButton -right-> MouseExitListener
-IButton -right-> MouseEnterListener
-IButton -right-> MouseButtonPressedListener
-IButton -right-|> TextEntity
+Button --> MouseExitListener
+Button --> MouseEnterListener
+Button --> MouseButtonPressedListener
+Button --|> TextEntity
 
-IButton <|.. QuitButton
-IButton <|.. SceneSwitchButton
-IButton <|.. BuyItem
-IButton <|.. SellItem
-IButton <|.. ChangeRoundState
+Button <|.. QuitButton
+Button <|.. SceneSwitchButton
+Button <|.. BuyItem
+Button <|.. SellItem
+Button <|.. ChangeRoundState
 
 interface MouseButtonPressedListener #EE66B1 {
 
@@ -162,80 +145,55 @@ class TextEntity #EE66B1 {
 }
 
 class SceneSwitchButton {
-
++...() : void
++onMouseEntered() : void
++onMouseExited() : void
 }
 
 class ChangeRoundState {
-
++...() : void
++onMouseEntered() : void
++onMouseExited() : void
 }
 
 class BuyItem {
-
++...() : void
++onMouseEntered() : void
++onMouseExited() : void
 }
 
 class SellItem {
-
++...() : void
++onMouseEntered() : void
++onMouseExited() : void
 }
 
 class QuitButton {
-
++...() : void
++onMouseEntered() : void
++onMouseExited() : void
 }
 
 class ImageDisplayer {
 
 }
 
-ImageDisplayer -right-|> SpriteEntity
+ImageDisplayer --|> SpriteEntity
 
-abstract class Counter {
+class Counter {
 
 }
-
-Counter <|.up. Points
-Counter <|.up. Coins
 
 Counter --|> TextEntity
 
-class Coins {
-+coinBalance : float
-}
-
-class Points {
-+earnedPoints : int
-}
-
 class ShopTileMap {
-
++setupEntities() : void
++defineMap() : int[][]
 }
 
-ShopTileMap <|-up- Hero
-ShopTileMap <|-up- Tower
-ShopTileMap -right-> IButton
+ShopTileMap <|-- Tower
+ShopTileMap --> Button
 
-abstract class Hero {
-+buyItem() : void
-
-+drawHero() : void
-}
-
-Hero <|.up. Jordan
-Hero <|.up. Maartje
-
-class Jordan {
--price : float
--attackDamage : int
--targetingState : int
-
-+drawHero() : void
-}
-
-class Maartje {
--price : float
--attackDamage : int
--targetingState : int
-
-+drawHero() : void
-}
 
 abstract class Tower {
 +getPrice() : void
@@ -280,20 +238,14 @@ Tower <|.. Hitman
 Tower <|.. Freezer
 
 Tower --|> SpriteEntity
-Hero --|> SpriteEntity
-Enemy -right-|> DynamicSpriteEntity
-Projectile -left-|> DynamicSpriteEntity
+Enemy --|> DynamicSpriteEntity
+Projectile --|> DynamicSpriteEntity
 
 abstract class SpriteEntity #EE66B1 {
 
 }
 
 abstract class DynamicSpriteEntity #EE66B1 {
-
-}
-
-
-class Targeting {
 
 }
 
@@ -305,8 +257,7 @@ interface Collider #EE66B1{
 }
 
 Projectile --> Collider
-
-Targeting <-up- Projectile
+Projectile --> Tower
 
 class Arrow {
 
@@ -320,13 +271,9 @@ class Ice {
 
 }
 
-Projectile <-up- Arrow
-Projectile <-up- Bullet
-Projectile <-up- Ice
-
-
-Targeting <-- Tower
-Targeting <-- Hero
+Projectile <-- Arrow
+Projectile <-- Bullet
+Projectile <-- Ice
 
 
 abstract class Enemy {
@@ -342,7 +289,7 @@ interface Collided #EE66B1{
 
 }
 
-Enemy -right-> Collided
+Enemy --> Collided
 
 class BabyCoot {
 +drawEnemy() : void
@@ -364,10 +311,10 @@ class ThickCoot {
 +drawEnemy() : void
 }
 
-Enemy <|.up. BabyCoot
-Enemy <|.up. DerpyCoot
-Enemy <|.up. MamaCoot
-Enemy <|.up. FastCoot
-Enemy <|.up. ThickCoot
+Enemy <|.. BabyCoot
+Enemy <|.. DerpyCoot
+Enemy <|.. MamaCoot
+Enemy <|.. FastCoot
+Enemy <|.. ThickCoot
 
 @enduml
