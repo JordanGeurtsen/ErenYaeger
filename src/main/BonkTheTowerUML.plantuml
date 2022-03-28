@@ -1,0 +1,361 @@
+@startuml BTT_TD_Diagram
+class BonkTheTowerTD {
+
+}
+
+BonkTheTowerTD -up-|> YeagerGame
+BonkTheTowerTD <-down- TitleScreen
+BonkTheTowerTD <-down- MapSelector
+BonkTheTowerTD <-left- GameScreen
+BonkTheTowerTD <-down- FinalScreen
+
+abstract class YeagerGame #EE66B1 {
+
+}
+
+class GameScreen {
+
+}
+
+GameScreen <-- ShopTileMap
+GameScreen <-- LevelTileMap
+GameScreen <-right- Counter
+
+class TitleScreen {
+
+}
+
+class TextEntity {
+
+}
+
+
+TitleScreen <-- MenuTileMap
+
+MenuTileMap --> IButton
+
+class MapSelector {
+
+}
+
+class LevelChooserTileMap {
+
+}
+
+MapSelector <-- LevelChooserTileMap
+LevelChooserTileMap <-left- ImageDisplayer
+LevelChooserTileMap --> IButton
+
+interface TileMapContainer #EE66B1{
+
+}
+
+abstract class TileMap #EE66B1 {
+
+}
+
+TileMapContainer <-down- TitleScreen
+TileMapContainer <-up- GameScreen
+TileMapContainer <-down- MapSelector
+TileMapContainer <-down- FinalScreen
+
+TileMap <|-- MenuTileMap
+TileMap <|-- LevelChooserTileMap
+TileMap <|-- ShopTileMap
+
+class FinalScreen {
+
+}
+
+FinalScreen <-- MenuTileMap
+
+abstract class StaticScene #EE66B1{
+
+}
+
+abstract class DynamicScene #EE66B1 {
+
+}
+
+GameScreen -up-|> DynamicScene
+
+TitleScreen -down-|> StaticScene
+MapSelector -down-|> StaticScene
+FinalScreen -down-|> StaticScene
+
+class RoundExecutor {
+
+}
+
+RoundExecutor -up-> Enemy
+RoundExecutor -down-> GameScreen
+
+class LevelTileMap {
+
+}
+
+LevelTileMap --|> TileMap
+LevelTileMap --> IButton
+
+enum Screen {
+    TITLE
+    MAP_CHOOSER
+    GAME
+    FINAL
+}
+
+enum CurrentMap {
+    ONE
+    TWO
+    THREE
+}
+
+enum Round {
+    ONE
+    TWO
+    THREE
+    FOUR
+    FIVE
+    SIX
+    SEVEN
+    EIGHT
+    NINE
+    TEN
+}
+
+enum Target {
+    FIRST
+    LAST
+    CLOSE
+    STRONGEST
+}
+
+interface IButton {
+
+}
+
+IButton -right-> MouseExitListener
+IButton -right-> MouseEnterListener
+IButton -right-> MouseButtonPressedListener
+IButton -right-|> TextEntity
+
+IButton <|.. QuitButton
+IButton <|.. SceneSwitchButton
+IButton <|.. BuyItem
+IButton <|.. SellItem
+IButton <|.. ChangeRoundState
+
+interface MouseButtonPressedListener #EE66B1 {
+
+}
+
+interface MouseEnterListener #EE66B1 {
+
+}
+
+interface MouseExitListener #EE66B1 {
+
+}
+
+class TextEntity #EE66B1 {
+
+}
+
+class SceneSwitchButton {
+
+}
+
+class ChangeRoundState {
+
+}
+
+class BuyItem {
+
+}
+
+class SellItem {
+
+}
+
+class QuitButton {
+
+}
+
+class ImageDisplayer {
+
+}
+
+ImageDisplayer -right-|> SpriteEntity
+
+abstract class Counter {
+
+}
+
+Counter <|.up. Points
+Counter <|.up. Coins
+
+Counter --|> TextEntity
+
+class Coins {
++coinBalance : float
+}
+
+class Points {
++earnedPoints : int
+}
+
+class ShopTileMap {
+
+}
+
+ShopTileMap <|-up- Hero
+ShopTileMap <|-up- Tower
+ShopTileMap -right-> IButton
+
+abstract class Hero {
++buyItem() : void
+
++drawItem() : void
+}
+
+Hero <|.up. Jordan
+Hero <|.up. Maartje
+
+class Jordan {
+-price : float
+-attackDamage : int
+-targetingState : int
+
++drawItem() : void
+}
+
+class Maartje {
+-price : float
+-attackDamage : int
+-targetingState : int
+
++drawItem() : void
+}
+
+abstract class Tower {
++getPrice() : void
++checkEnoughMoney() : boolean
++setPosition() : void
++getPosition() : void
++selectTarget() : void
++buyItem() : void
+
++drawItem() : void
+}
+
+class Archer {
+-price : float
+-attackSpeed : int
+-attackRange : float
+-attackDamage : int
+
++drawItem() : void
+}
+
+class Hitman {
+-price : float
+-attackSpeed : int
+-attackRange : float
+-attackDamage : int
+
++drawItem() : void
+}
+
+class Freezer {
+-price : float
+-attackSpeed : int
+-attackRange : float
+-attackDamage : int
+
++drawItem() : void
+}
+
+Tower <|.up. Archer
+Tower <|.up. Hitman
+Tower <|.right. Freezer
+
+Tower --|> SpriteEntity
+Hero --|> SpriteEntity
+Enemy -right-|> DynamicSpriteEntity
+
+abstract class SpriteEntity #EE66B1 {
+
+}
+
+abstract class DynamicSpriteEntity #EE66B1 {
+
+}
+
+
+class Targeting {
+
+}
+
+class Arrow {
+
+}
+
+class Bullet {
+
+}
+
+class Ice {
+
+}
+
+Targeting <-up- Arrow
+Targeting <-up- Bullet
+Targeting <-up- Ice
+
+
+Targeting <-up- Tower
+Targeting <-up- Hero
+
+
+abstract class Enemy {
+-movementSpeed : int
+-hitPoints : int
+
++drawEnemy() : void
++getMovement() : void
++startMovement() : void
+}
+
+interface Collided #EE66B1{
+
+}
+
+Enemy --> Collided
+
+class BabyCoot {
++drawEnemy() : void
+}
+
+class DerpyCoot {
++drawEnemy() : void
+}
+
+class MamaCoot {
++drawEnemy() : void
+}
+
+class FastCoot {
++drawEnemy() : void
+}
+
+class ThickCoot {
++drawEnemy() : void
+}
+
+Enemy <|.up. BabyCoot
+Enemy <|.up. DerpyCoot
+Enemy <|.up. MamaCoot
+Enemy <|.left. FastCoot
+Enemy <|.up. ThickCoot
+
+@enduml
