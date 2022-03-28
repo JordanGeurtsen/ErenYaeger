@@ -11,5 +11,6 @@ public class Arrow extends Targeting implements Collider{
 
     public Arrow(Coordinate2D initialLocation, Enemy target) {
         super("sprites/arrow.png", initialLocation);
+        setMotion(movementSpeed, angleTo(target));
     }
 }
