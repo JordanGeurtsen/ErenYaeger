@@ -10,5 +10,5 @@ module waterworld {
     exports game.scenes;
     exports game.entities.buttons;
     exports game.scenes.maps;
-    exports game.entities;
+//    exports game.entities;
 }

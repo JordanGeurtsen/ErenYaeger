@@ -9,8 +9,11 @@ import game.entities.buttons.QuitButton;
 import game.BonkTheTowerTD;
 import game.entities.buttons.SceneSwitchButton;
 
+import static game.Screen.MAP_CHOOSER;
+
 public class TitleScreen extends StaticScene implements TileMapContainer {
     private BonkTheTowerTD bonkTheTowerTD;
+    private int newScene = 1;
 
 
     public TitleScreen(BonkTheTowerTD bonkTheTowerTD) {
@@ -25,12 +28,12 @@ public class TitleScreen extends StaticScene implements TileMapContainer {
     @Override
     public void setupEntities() {
         var startButton = new SceneSwitchButton(
-                new Coordinate2D(getWidth() / bonkTheTowerTD.buttonWidthCenter, getHeight() / bonkTheTowerTD.buttonHeightCenter), this.bonkTheTowerTD, Screen.MAP_CHOOSER, "Play Game");
+                new Coordinate2D(getWidth() / 2, getHeight() / 2), this.bonkTheTowerTD, newScene, "Play Game");
         startButton.setAnchorPoint(AnchorPoint.CENTER_CENTER);
         addEntity(startButton);
 
         var bonkTheTowerQuit = new QuitButton(
-                new Coordinate2D(getWidth() / bonkTheTowerTD.buttonWidthCenter, getHeight() / this.bonkTheTowerTD.buttonHeightBelowCenter), this.bonkTheTowerTD);
+                new Coordinate2D(getWidth() / 2, getHeight() / 1.5), this.bonkTheTowerTD);
         bonkTheTowerQuit.setAnchorPoint(AnchorPoint.CENTER_CENTER);
         addEntity(bonkTheTowerQuit);
     }
