@@ -4,15 +4,14 @@ import com.github.hanyaeger.api.Coordinate2D;
 import game.entities.enemies.Enemy;
 import game.entities.targeting.projectile.Arrow;
 
-import java.util.ArrayList;
-
-
 public class Archer extends Tower {
     private double price = 100.0;
     private int rangeRadius = 100;
     private int cooldown = 2;
-    private int damage = 30;
-    private ArrayList<Enemy> targets = new ArrayList<>();
+    private int damage = 30; // arrow does damage, so idk if it fits here?
+    private int maxHealth = 0;
+    private Enemy target;
+
     private Coordinate2D initialLocation;
     private String resource;
 
@@ -39,20 +38,13 @@ public class Archer extends Tower {
 
     @Override
     public void shoot() {
-            for(Enemy e : enemyList){
-                if(distanceTo(e) < rangeRadius){
-                    targets.add(e);
-                }
-            }
-            maxHealth = 0;
             for(Enemy e : targets){
                 if(e.getHealth() > maxHealth){
                     maxHealth = e.getHealth();
+                    target = e;
                 }
             }
            var arrow = new Arrow(initialLocation, target);
         }
     }
 
-
-}

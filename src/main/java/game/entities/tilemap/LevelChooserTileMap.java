@@ -1,11 +1,9 @@
 package game.entities.tilemap;
 
 import com.github.hanyaeger.api.AnchorPoint;
-import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.scenes.TileMap;
 import game.BonkTheTowerTD;
 import game.Screen;
-import game.entities.ImageDisplayer;
 import game.entities.buttons.SceneSwitchButton;
 
 public class LevelChooserTileMap extends TileMap {

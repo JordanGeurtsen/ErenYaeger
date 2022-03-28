@@ -28,7 +28,7 @@ public class Hitman extends Tower {
     }
 
     @Override
-    public void attackForm() {
+    public void shoot() {
 
     }
 

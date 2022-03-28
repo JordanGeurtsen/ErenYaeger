@@ -7,11 +7,11 @@ import game.entities.towers.Archer;
 import game.entities.towers.Freezer;
 import game.entities.towers.Hitman;
 
-public class TDTileMap extends TileMap{
+public class LevelTileMap extends TileMap{
 
     private int[][] map;
 
-    public TDTileMap (int[][] map){
+    public LevelTileMap (int[][] map){
         this.map = map;
     }
 

@@ -29,7 +29,7 @@ public class Freezer extends Tower{
     }
 
     @Override
-    public void attackForm() {
+    public void shoot() {
 
     }
 }

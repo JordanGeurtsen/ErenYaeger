@@ -19,7 +19,6 @@ public class RoundExecutor {
     }
 
         public void towerTest(){
-
         Archer archer = new Archer("sprites/mama_coot.png", new Coordinate2D(100, 100));
         towers.add(archer);
 
