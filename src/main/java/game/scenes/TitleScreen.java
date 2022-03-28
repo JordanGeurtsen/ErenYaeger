@@ -3,12 +3,13 @@ package game.scenes;
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.scenes.StaticScene;
+import com.github.hanyaeger.api.scenes.TileMapContainer;
 import game.Screen;
 import game.entities.buttons.QuitButton;
 import game.BonkTheTowerTD;
 import game.entities.buttons.SceneSwitchButton;
 
-public class TitleScreen extends StaticScene {
+public class TitleScreen extends StaticScene implements TileMapContainer {
     private BonkTheTowerTD bonkTheTowerTD;
 
 
@@ -35,4 +36,8 @@ public class TitleScreen extends StaticScene {
     }
 
 
+    @Override
+    public void setupTileMaps() {
+
+    }
 }

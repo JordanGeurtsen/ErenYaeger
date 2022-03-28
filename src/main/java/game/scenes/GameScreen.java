@@ -2,13 +2,14 @@ package game.scenes;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.scenes.DynamicScene;
+import com.github.hanyaeger.api.scenes.TileMapContainer;
 import game.entities.towers.Archer;
 import game.entities.towers.Tower;
 
 import java.util.ArrayList;
 import game.BonkTheTowerTD;
 
-public class GameScreen extends DynamicScene {
+public class GameScreen extends DynamicScene implements TileMapContainer {
     ArrayList<Tower> towers = new ArrayList<Tower>();
 
     private BonkTheTowerTD bonkTheTowerTD;
@@ -34,5 +35,10 @@ public class GameScreen extends DynamicScene {
 
             }
         }
+    }
+
+    @Override
+    public void setupTileMaps() {
+
     }
 }
