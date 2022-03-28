@@ -6,6 +6,7 @@ import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 
 public class Enemy extends DynamicSpriteEntity implements Collided {
+    int health = 0;
     protected Enemy(String resource, Coordinate2D initialLocation) {
         super(resource, initialLocation);
     }
@@ -13,5 +14,9 @@ public class Enemy extends DynamicSpriteEntity implements Collided {
     @Override
     public void onCollision(Collider collider) {
 
+    }
+
+    public int getHealth() {
+        return health;
     }
 }

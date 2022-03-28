@@ -12,7 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class SceneSwitchButton extends TextEntity implements MouseButtonPressedListener, MouseEnterListener, MouseExitListener {
+public class SceneSwitchButton extends Button {
     private BonkTheTowerTD bonkTheTowerTD;
     private int newScene;
 
