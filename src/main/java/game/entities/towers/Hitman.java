@@ -1,6 +1,7 @@
 package game.entities.towers;
 
 import com.github.hanyaeger.api.Coordinate2D;
+import game.scenes.TitleScreen;
 
 public class Hitman extends Tower {
     double price = 150.0;
@@ -8,8 +9,8 @@ public class Hitman extends Tower {
     int cooldown = 5;
     int damage = 300; // of random zodat het niet altijd instant kill is
 
-    protected Hitman(String resource, Coordinate2D initialLocation) {
-        super(resource, initialLocation);
+    protected Hitman(String resource, Coordinate2D initialLocation, TitleScreen titleScreen) {
+        super(resource, initialLocation, titleScreen);
     }
 
     @Override

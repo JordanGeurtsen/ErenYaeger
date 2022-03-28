@@ -1,4 +1,4 @@
-package game.entities.targeting.projectile;
+package game.entities.targeting;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import game.entities.targeting.Targeting;

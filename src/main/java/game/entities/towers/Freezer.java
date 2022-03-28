@@ -2,6 +2,7 @@ package game.entities.towers;
 
 
 import com.github.hanyaeger.api.Coordinate2D;
+import game.scenes.TitleScreen;
 
 public class Freezer extends Tower{
     double price = 200.0;
@@ -9,8 +10,8 @@ public class Freezer extends Tower{
     int cooldown = 3;
     int damage = 20;
 
-    public Freezer(String resource, Coordinate2D initialLocation) {
-        super(resource, initialLocation);
+    public Freezer(String resource, Coordinate2D initialLocation, TitleScreen titleScreen) {
+        super(resource, initialLocation, titleScreen);
     }
 
     @Override

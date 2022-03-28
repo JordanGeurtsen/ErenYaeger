@@ -10,15 +10,13 @@ import java.util.ArrayList;
 public class Enemy extends DynamicSpriteEntity implements Collided {
     int health = 20;
     int movementSpeed, hitPoints;
-    ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
 
-    protected Enemy(String resource, Coordinate2D initialLocation) {
+    public Enemy(String resource, Coordinate2D initialLocation) {
         super(resource, initialLocation);
     }
 
     @Override
     public void onCollision(Collider collider) {
-
     }
 
     public int getHealth() {
