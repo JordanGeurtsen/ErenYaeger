@@ -1,4 +1,4 @@
-module waterworld {
+module bonkTheTowerTD {
     requires hanyaeger;
 
     exports game;
@@ -10,5 +10,5 @@ module waterworld {
     exports game.scenes;
     exports game.entities.buttons;
     exports game.scenes.maps;
-//    exports game.entities;
+    exports game.entities.tilemap.ground;
 }

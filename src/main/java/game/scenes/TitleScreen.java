@@ -20,8 +20,7 @@ import java.util.ArrayList;
 import static game.Screen.MAP_CHOOSER;
 
 public class TitleScreen extends DynamicScene implements TileMapContainer {
-    private BonkTheTowerTD bonkTheTowerTD;
-    private int newScene = 1;
+    private final BonkTheTowerTD bonkTheTowerTD;
     public ArrayList<Enemy> enemyList = new ArrayList<>();
     public ArrayList<Tower> towers = new ArrayList<>();
     public ArrayList<Arrow> arrows = new ArrayList<>();
@@ -38,8 +37,9 @@ public class TitleScreen extends DynamicScene implements TileMapContainer {
 
     @Override
     public void setupEntities() {
+        int newScene = 1;
         var startButton = new SceneSwitchButton(
-                new Coordinate2D(getWidth() / 2, getHeight() / 2), this.bonkTheTowerTD, newScene, "Play Game");
+                new Coordinate2D(getWidth() / 2, getHeight() / 1.8), this.bonkTheTowerTD, newScene, "Play Game");
         startButton.setAnchorPoint(AnchorPoint.CENTER_CENTER);
         addEntity(startButton);
 
