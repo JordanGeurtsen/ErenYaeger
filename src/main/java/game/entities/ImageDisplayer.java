@@ -1,18 +1,16 @@
-package game.entities.buttons;
+package game.entities;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.impl.SpriteEntity;
 import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
-import com.github.hanyaeger.api.userinput.MouseEnterListener;
-import com.github.hanyaeger.api.userinput.MouseExitListener;
 import game.BonkTheTowerTD;
 import javafx.scene.input.MouseButton;
 
-public class ImageButton extends SpriteEntity implements MouseButtonPressedListener {
+public class ImageDisplayer extends SpriteEntity implements MouseButtonPressedListener {
     private BonkTheTowerTD bonkTheTowerTD;
     private int newScene;
 
-    public ImageButton(String resource, Coordinate2D initialLocation, BonkTheTowerTD bonkTheTowerTD, int newScene) {
+    public ImageDisplayer(String resource, Coordinate2D initialLocation, BonkTheTowerTD bonkTheTowerTD, int newScene) {
         super(resource, initialLocation);
         this.bonkTheTowerTD = bonkTheTowerTD;
     }

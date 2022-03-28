@@ -12,7 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class QuitButton extends TextEntity implements MouseButtonPressedListener, MouseEnterListener, MouseExitListener {
+public class QuitButton extends Button {
     private BonkTheTowerTD bonkTheTowerTD;
 
     public QuitButton(Coordinate2D initialLocation, BonkTheTowerTD bonkTheTowerTD) {

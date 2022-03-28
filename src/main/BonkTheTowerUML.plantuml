@@ -88,7 +88,7 @@ class RoundExecutor {
 }
 
 RoundExecutor -up-> Enemy
-RoundExecutor -down-> GameScreen
+RoundExecutor -up-> GameScreen
 
 class LevelTileMap {
 
@@ -215,7 +215,7 @@ ShopTileMap -right-> IButton
 abstract class Hero {
 +buyItem() : void
 
-+drawItem() : void
++drawHero() : void
 }
 
 Hero <|.up. Jordan
@@ -226,7 +226,7 @@ class Jordan {
 -attackDamage : int
 -targetingState : int
 
-+drawItem() : void
++drawHero() : void
 }
 
 class Maartje {
@@ -234,7 +234,7 @@ class Maartje {
 -attackDamage : int
 -targetingState : int
 
-+drawItem() : void
++drawHero() : void
 }
 
 abstract class Tower {
@@ -245,7 +245,7 @@ abstract class Tower {
 +selectTarget() : void
 +buyItem() : void
 
-+drawItem() : void
++drawTower() : void
 }
 
 class Archer {
@@ -254,7 +254,7 @@ class Archer {
 -attackRange : float
 -attackDamage : int
 
-+drawItem() : void
++drawTower() : void
 }
 
 class Hitman {
@@ -263,7 +263,7 @@ class Hitman {
 -attackRange : float
 -attackDamage : int
 
-+drawItem() : void
++drawTower() : void
 }
 
 class Freezer {
@@ -272,16 +272,17 @@ class Freezer {
 -attackRange : float
 -attackDamage : int
 
-+drawItem() : void
++drawTower() : void
 }
 
-Tower <|.up. Archer
-Tower <|.up. Hitman
-Tower <|.right. Freezer
+Tower <|.. Archer
+Tower <|.. Hitman
+Tower <|.. Freezer
 
 Tower --|> SpriteEntity
 Hero --|> SpriteEntity
 Enemy -right-|> DynamicSpriteEntity
+Projectile -left-|> DynamicSpriteEntity
 
 abstract class SpriteEntity #EE66B1 {
 
@@ -296,6 +297,17 @@ class Targeting {
 
 }
 
+class Projectile {
+
+}
+
+interface Collider #EE66B1{
+}
+
+Projectile --> Collider
+
+Targeting <-up- Projectile
+
 class Arrow {
 
 }
@@ -308,13 +320,13 @@ class Ice {
 
 }
 
-Targeting <-up- Arrow
-Targeting <-up- Bullet
-Targeting <-up- Ice
+Projectile <-up- Arrow
+Projectile <-up- Bullet
+Projectile <-up- Ice
 
 
-Targeting <-up- Tower
-Targeting <-up- Hero
+Targeting <-- Tower
+Targeting <-- Hero
 
 
 abstract class Enemy {
@@ -330,7 +342,7 @@ interface Collided #EE66B1{
 
 }
 
-Enemy --> Collided
+Enemy -right-> Collided
 
 class BabyCoot {
 +drawEnemy() : void
@@ -355,7 +367,7 @@ class ThickCoot {
 Enemy <|.up. BabyCoot
 Enemy <|.up. DerpyCoot
 Enemy <|.up. MamaCoot
-Enemy <|.left. FastCoot
+Enemy <|.up. FastCoot
 Enemy <|.up. ThickCoot
 
 @enduml

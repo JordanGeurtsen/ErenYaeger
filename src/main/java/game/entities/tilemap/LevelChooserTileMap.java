@@ -4,7 +4,7 @@ import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.scenes.TileMap;
 import game.BonkTheTowerTD;
 import game.Screen;
-import game.entities.buttons.ImageButton;
+import game.entities.ImageDisplayer;
 import game.entities.buttons.SceneSwitchButton;
 
 public class LevelChooserTileMap extends TileMap {
@@ -19,7 +19,7 @@ public class LevelChooserTileMap extends TileMap {
     @Override
     public void setupEntities() {
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
-        addEntity(1, new ImageButton(resource,  , bonkTheTowerTD));
+        addEntity(1, new ImageDisplayer(resource,  , bonkTheTowerTD));
         addEntity(2, new SceneSwitchButton( ,bonkTheTowerTD , Screen.GAME, "Play Game"));
     }
 
