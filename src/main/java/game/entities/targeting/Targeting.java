@@ -1,4 +1,4 @@
 package game.entities.targeting;
 
-public class Targeting {
+public class Targeting{
 }
