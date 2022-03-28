@@ -3,10 +3,8 @@ package game.scenes;
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.scenes.DynamicScene;
-import com.github.hanyaeger.api.scenes.StaticScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
 import game.RoundExecutor;
-import game.Screen;
 import game.entities.buttons.QuitButton;
 import game.BonkTheTowerTD;
 import game.entities.buttons.SceneSwitchButton;
@@ -16,8 +14,6 @@ import game.entities.towers.Archer;
 import game.entities.towers.Tower;
 
 import java.util.ArrayList;
-
-import static game.Screen.MAP_CHOOSER;
 
 public class TitleScreen extends DynamicScene implements TileMapContainer {
     private final BonkTheTowerTD bonkTheTowerTD;
@@ -48,10 +44,10 @@ public class TitleScreen extends DynamicScene implements TileMapContainer {
         bonkTheTowerQuit.setAnchorPoint(AnchorPoint.CENTER_CENTER);
         addEntity(bonkTheTowerQuit);
 
-        var enemyTest = new Enemy("sprites/derpy_coot.png", new Coordinate2D(200, 500));
+        var enemyTest = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(200, 500));
         enemyTest.setAnchorPoint(AnchorPoint.CENTER_CENTER);
         enemyList.add(enemyTest);
-        Archer archer = new Archer("sprites/mama_coot.png", new Coordinate2D(800, 200), this);
+        Archer archer = new Archer("sprites/enemies/mama_coot.png", new Coordinate2D(800, 200), this);
         archer.setAnchorPoint(AnchorPoint.CENTER_CENTER);
         towers.add(archer);
         Arrow arrow = new Arrow(new Coordinate2D(800, 20), enemyTest);
