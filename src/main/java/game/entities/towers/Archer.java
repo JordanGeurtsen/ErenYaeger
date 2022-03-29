@@ -47,7 +47,9 @@ public class Archer extends Tower {
             }
         }
        // if(getTimers().equals(5000)) {
+
             Arrow arrow = new Arrow(initialLocation, target);
+
        // }
     }
 

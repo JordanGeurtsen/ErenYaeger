@@ -15,7 +15,7 @@ public abstract class CompositeButton extends CompositeEntity implements Button 
     public CompositeButton(Coordinate2D initialLocation, Size size, String details) {
         super(initialLocation);
         this.details = details;
-        setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        setAnchorPoint(AnchorPoint.CENTER_LEFT);
     }
 
     @Override
@@ -27,27 +27,27 @@ public abstract class CompositeButton extends CompositeEntity implements Button 
         addEntity(image);
 
         var titleText = new TextEntity(
-                new Coordinate2D(10, 0),
-                "Price= koet"
+                new Coordinate2D(85, 0),
+                "Archer Tower"
         );
         addEntity(titleText);
 
         var priceText = new TextEntity(
-                new Coordinate2D(10, 25),
-                "Price= koet"
+                new Coordinate2D(85, 25),
+                "Price= 100 G"
         );
 
         addEntity(priceText);
 
         var damageText = new TextEntity(
-                new Coordinate2D(10, 15),
-                "Price= koet"
+                new Coordinate2D(85, 15),
+                "Damage= 30 HP"
         );
         addEntity(damageText);
 
         var rangeText = new TextEntity(
-                new Coordinate2D(10, 35),
-                "Price= koet"
+                new Coordinate2D(85, 35),
+                "Range= 45"
         );
         addEntity(rangeText);
     }

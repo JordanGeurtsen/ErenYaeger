@@ -10,7 +10,7 @@ public class Arrow extends Targeting implements Collider{
     private int damage = 0;
 
     public Arrow(Coordinate2D initialLocation, Enemy target) {
-        super("sprites/enemies/baby_coot.png", initialLocation);
+        super("sprites/jochem.png", initialLocation);
         setMotion(movementSpeed, angleTo(target) - 90);
     }
 }
