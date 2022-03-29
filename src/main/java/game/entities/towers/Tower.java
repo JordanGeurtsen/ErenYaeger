@@ -22,7 +22,7 @@ public abstract class Tower extends SpriteEntity {
         this.initialLocation = initialLocation;
     }
 
-    public boolean isInRange(int rangeRadius, ArrayList<Enemy> enemyList) {
+    public boolean isInRange(double rangeRadius, ArrayList<Enemy> enemyList) {
         inRange = false;
         for (Enemy e : enemyList) {
             if (distanceTo(e) < rangeRadius) {
@@ -32,7 +32,7 @@ public abstract class Tower extends SpriteEntity {
         return inRange;
     }
 
-    public Enemy getTarget(int rangeRadius, ArrayList<Enemy> enemyList) {
+    public Enemy getTarget(double rangeRadius, ArrayList<Enemy> enemyList) {
         target = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(100, 100));
         maxHealth = 0;
         for (Enemy e : enemyList) {
@@ -48,9 +48,9 @@ public abstract class Tower extends SpriteEntity {
 
 
 
-    abstract public int getTowerDamage();
+    abstract public double getTowerDamage();
 
-    abstract public int getTowerRange();
+    abstract public double getTowerRange();
 
     abstract public double getTowerPrice();
 

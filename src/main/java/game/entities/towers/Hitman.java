@@ -15,12 +15,12 @@ public class Hitman extends Tower {
     }
 
     @Override
-    public int getTowerDamage() {
+    public double getTowerDamage() {
         return damage;
     }
 
     @Override
-    public int getTowerRange() {
+    public double getTowerRange() {
         return rangeRadius;
     }
 

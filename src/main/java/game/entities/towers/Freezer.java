@@ -16,12 +16,12 @@ public class Freezer extends Tower{
     }
 
     @Override
-    public int getTowerDamage() {
+    public double getTowerDamage() {
         return damage;
     }
 
     @Override
-    public int getTowerRange() {return rangeRadius; }
+    public double getTowerRange() {return rangeRadius; }
 
     @Override
     public double getTowerPrice() {

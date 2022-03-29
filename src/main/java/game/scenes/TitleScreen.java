@@ -23,8 +23,7 @@ public class TitleScreen extends DynamicScene implements TileMapContainer {
 
     @Override
     public void setupEntities() {
-        //int newScene = 1;
-        //game.Screenum newScene = new Screenum(1);
+        Screenum newScene = Screenum.GAME;
         var startButton = new SceneSwitchButton(
                 new Coordinate2D(getWidth() / 2, getHeight() / 1.8), this.bonkTheTowerTD, Screenum.GAME, "Play Game");
         startButton.setAnchorPoint(AnchorPoint.CENTER_CENTER);

@@ -10,6 +10,8 @@ import com.github.hanyaeger.api.scenes.TileMapContainer;
 import game.RoundExecutor;
 import game.entities.buttons.QuitButton;
 import game.entities.buttons.SceneSwitchButton;
+import game.entities.buttons.compositebutton.buyButton;
+import game.entities.counter.Counter;
 import game.entities.enemies.Enemy;
 import game.entities.targeting.Arrow;
 import game.entities.targeting.ProjectileSpawner;
@@ -18,6 +20,7 @@ import game.entities.towers.Archer;
 import game.entities.towers.Tower;
 
 import game.BonkTheTowerTD;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
@@ -27,6 +30,9 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     public ArrayList<Enemy> enemyList = new ArrayList<>();
     public ArrayList<Tower> towers = new ArrayList<>();
    // public ArrayList<Arrow> arrows = new ArrayList<>();
+    public double coins = 0.0;
+    public double points = 0.0;
+    public double lives = 20.0;
 
     private ProjectileSpawner projectileSpawner;
 
@@ -37,11 +43,36 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
 
     @Override
     public void setupScene() {
+        setBackgroundColor(Color.PAPAYAWHIP);
+        setBackgroundAudioVolume(0.1);
+        setBackgroundAudio("audio/relaxing_bg_music_2.mp3");
 
     }
 
     @Override
     public void setupEntities() {
+        var coinCounter = new Counter(new Coordinate2D(1055, 30), coins, "Coins");
+        addEntity(coinCounter);
+
+        var pointCounter = new Counter(new Coordinate2D(1055, 60), points, "Points");
+        addEntity(pointCounter);
+
+        var liveCounter = new Counter(new Coordinate2D(1055, 90), lives, "Lives");
+        addEntity(liveCounter);
+
+        var archerBuy = new buyButton(new Coordinate2D(1050, 175), "sprites/towers/archer_logo.png");
+        addEntity(archerBuy);
+
+        var hitmanBuy = new buyButton(new Coordinate2D(1050, 300), "sprites/towers/hitman_logo.png");
+        addEntity(hitmanBuy);
+
+        var freezerBuy = new buyButton(new Coordinate2D(1050, 425), "sprites/towers/freezer_logo.png");
+        addEntity(freezerBuy);
+
+        var enemyTest = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(200, 500));
+        enemyTest.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        enemyList.add(enemyTest);
+
         var enemyTest1 = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(200, 500));
         enemyTest1.setAnchorPoint(AnchorPoint.CENTER_CENTER);
         enemyList.add(enemyTest1);

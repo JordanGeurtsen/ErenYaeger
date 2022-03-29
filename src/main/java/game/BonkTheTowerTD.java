@@ -9,6 +9,7 @@ import game.scenes.TitleScreen;
 public class BonkTheTowerTD extends YaegerGame {
     public static void main(String[] args) {launch(args);}
 
+
     @Override
     public void setupGame() {
         setGameTitle("Bonk The Tower TD");

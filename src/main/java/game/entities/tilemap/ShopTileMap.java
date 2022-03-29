@@ -3,7 +3,7 @@ package game.entities.tilemap;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.scenes.TileMap;
-import game.entities.buttons.buyButton;
+import game.entities.buttons.compositebutton.buyButton;
 import game.entities.tilemap.shop.shopFiller;
 
 public class ShopTileMap extends TileMap {
