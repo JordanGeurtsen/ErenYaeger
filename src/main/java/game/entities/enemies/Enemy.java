@@ -6,14 +6,15 @@ import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 
-import java.util.ArrayList;
 
 public class Enemy extends DynamicSpriteEntity implements Collided {
     int health = 20;
     int movementSpeed, hitPoints;
+    Coordinate2D coordinate2D;
 
     public Enemy(String resource, Coordinate2D initialLocation) {
         super(resource, initialLocation, new Size(150));
+        this.coordinate2D = initialLocation;
     }
 
     @Override
@@ -29,4 +30,5 @@ public class Enemy extends DynamicSpriteEntity implements Collided {
     public int getHitPoints() {
         return hitPoints;
     }
+    public Coordinate2D getCoordinate2D() { return coordinate2D; }
 }

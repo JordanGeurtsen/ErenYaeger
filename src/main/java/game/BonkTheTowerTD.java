@@ -13,7 +13,7 @@ public class BonkTheTowerTD extends YaegerGame {
     public void setupGame() {
         setGameTitle("Bonk The Tower TD");
         setSize(new Size(1238, 675));
-        setBackgroundAudio("audio/relaxing_bg_music.mp3");
+        //setBackgroundAudio("audio/relaxing_bg_music.mp3");
     }
 
     @Override

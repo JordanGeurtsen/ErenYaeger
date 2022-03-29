@@ -3,21 +3,24 @@ package game.entities.towers;
 import com.github.hanyaeger.api.Coordinate2D;
 import game.entities.enemies.Enemy;
 import game.entities.targeting.Arrow;
+import game.scenes.GameScreen;
 import game.scenes.TitleScreen;
+
+import java.util.ArrayList;
 
 public class Archer extends Tower {
     private double price = 100.0;
     private int rangeRadius = 99999999;
     private int cooldown = 2;
-    private int damage = 30; // arrow does damage, so idk if it fits here?
+    private int damage = 30;
     private int maxHealth = 0;
-    private Enemy target;
+    public Arrow arrow;
 
     private Coordinate2D initialLocation;
     private String resource;
 
-    public Archer(String resource, Coordinate2D initialLocation, TitleScreen titleScreen) {
-        super(resource, initialLocation, titleScreen);
+    public Archer(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
+        super(resource, initialLocation, gameScreen);
         this.resource = resource;
         this.initialLocation = initialLocation;
     }
@@ -38,17 +41,9 @@ public class Archer extends Tower {
     }
 
     @Override
-    public void shoot() {
-        for (Enemy e : targets) {
-            if (e.getHealth() > maxHealth) {
-                maxHealth = e.getHealth();
-                target = e;
-                System.out.println(target);
-            }
-        }
-       // if(getTimers().equals(5000)) {
-            Arrow arrow = new Arrow(initialLocation, target);
-       // }
+    public Coordinate2D getInitialLocation() {
+        return initialLocation;
     }
 
+    public Arrow getArrow(){return arrow;}
 }

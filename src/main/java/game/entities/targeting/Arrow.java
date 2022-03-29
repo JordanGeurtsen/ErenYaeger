@@ -12,6 +12,8 @@ public class Arrow extends Targeting implements Collider{
 
     public Arrow(Coordinate2D initialLocation, Enemy target) {
         super("sprites/baby_coot.png", initialLocation);
-        setMotion(movementSpeed, angleTo(target) - 90);
+        setMotion(movementSpeed, angleTo(target.getCoordinate2D()) -90);
+        //System.out.println(angleTo(target.getCoordinate2D()) - 90);
+
     }
 }

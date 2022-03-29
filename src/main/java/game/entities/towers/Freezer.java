@@ -2,6 +2,7 @@ package game.entities.towers;
 
 
 import com.github.hanyaeger.api.Coordinate2D;
+import game.scenes.GameScreen;
 import game.scenes.TitleScreen;
 
 public class Freezer extends Tower{
@@ -10,8 +11,8 @@ public class Freezer extends Tower{
     int cooldown = 3;
     int damage = 20;
 
-    public Freezer(String resource, Coordinate2D initialLocation, TitleScreen titleScreen) {
-        super(resource, initialLocation, titleScreen);
+    public Freezer(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
+        super(resource, initialLocation, gameScreen);
     }
 
     @Override
@@ -30,7 +31,12 @@ public class Freezer extends Tower{
     }
 
     @Override
-    public void shoot() {
-
+    public Coordinate2D getInitialLocation() {
+        return new Coordinate2D(0,0);
     }
+
+//    @Override
+//    public void shoot() {
+//
+//    }
 }
