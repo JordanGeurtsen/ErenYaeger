@@ -31,14 +31,24 @@ public abstract class Tower extends SpriteEntity {
         return inRange;
     }
 
-    abstract public int getTowerDamage();
+    public double[] getTowerInfo(){
+        double [] towerInfo = new double[3];
 
-    abstract public int getTowerRange();
+        towerInfo[0] = getTowerDamage();
+        towerInfo[1] = getTowerPrice();
+        towerInfo[2] = getTowerRange();
+
+        return towerInfo;
+    }
+
+    abstract public double getTowerDamage();
+
+    abstract public double getTowerRange();
 
     abstract public double getTowerPrice();
 
     public void towerTest() {
-            if (isInRange(getTowerRange(), titleScreen.enemyList)) {
+            if (isInRange((int) getTowerRange(), titleScreen.enemyList)) {
                 shoot();
             }
         }

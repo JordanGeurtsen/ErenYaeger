@@ -5,6 +5,7 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
 import game.RoundExecutor;
+import game.Screenum;
 import game.entities.buttons.QuitButton;
 import game.BonkTheTowerTD;
 import game.entities.buttons.SceneSwitchButton;
@@ -29,13 +30,15 @@ public class TitleScreen extends DynamicScene implements TileMapContainer {
     @Override
     public void setupScene() {
         setBackgroundImage("backgrounds/bonk_the_tower_titlescreen.jpg");
+        setBackgroundAudio("audio/relaxing_bg_music.mp3");
+        setBackgroundAudioVolume(0.3);
     }
 
     @Override
     public void setupEntities() {
         int newScene = 1;
         var startButton = new SceneSwitchButton(
-                new Coordinate2D(getWidth() / 2, getHeight() / 1.8), this.bonkTheTowerTD, newScene, "Play Game");
+                new Coordinate2D(getWidth() / 2, getHeight() / 1.8), this.bonkTheTowerTD, Screenum.GAME, "Play Game");
         startButton.setAnchorPoint(AnchorPoint.CENTER_CENTER);
         addEntity(startButton);
 

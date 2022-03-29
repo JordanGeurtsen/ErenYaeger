@@ -7,9 +7,9 @@ import game.scenes.TitleScreen;
 
 public class Archer extends Tower {
     private double price = 100.0;
-    private int rangeRadius = 99999999;
+    private double rangeRadius = 99999999;
     private int cooldown = 2;
-    private int damage = 30; // arrow does damage, so idk if it fits here?
+    private double damage = 30; // arrow does damage, so idk if it fits here?
     private int maxHealth = 0;
     private Enemy target;
 
@@ -23,12 +23,12 @@ public class Archer extends Tower {
     }
 
     @Override
-    public int getTowerDamage() {
+    public double getTowerDamage() {
         return damage;
     }
 
     @Override
-    public int getTowerRange() {
+    public double getTowerRange() {
         return rangeRadius;
     }
 

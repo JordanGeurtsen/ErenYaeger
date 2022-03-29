@@ -10,12 +10,7 @@ import game.entities.towers.Freezer;
 import game.entities.towers.Hitman;
 
 public class LevelTileMap extends TileMap{
-
-    public LevelTileMap (){
-        super(new Coordinate2D(0,0), new Size(1050, 675));
-    }
-
-    private int[][] map = {
+    private final int[][] levelMap = {
             {1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
             {1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1},
             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1},
@@ -26,6 +21,11 @@ public class LevelTileMap extends TileMap{
             {1, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 2, 1},
             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1}
     };
+
+    public LevelTileMap (){
+        super(new Coordinate2D(0,0), new Size(1050, 675));
+    }
+
 
     @Override
     public void setupEntities() {
@@ -38,7 +38,7 @@ public class LevelTileMap extends TileMap{
 
     @Override
     public int[][] defineMap() {
-        return map;
+        return levelMap;
     }
 
 }
