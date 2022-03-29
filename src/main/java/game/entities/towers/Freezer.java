@@ -6,22 +6,22 @@ import game.scenes.GameScreen;
 import game.scenes.TitleScreen;
 
 public class Freezer extends Tower{
-    double price = 200.0;
-    int rangeRadius = 250;
-    int cooldown = 3;
-    int damage = 20;
+    private double price = 200.0;
+    private double rangeRadius = 250;
+    private int cooldown = 3;
+    private double damage = 20;
 
     public Freezer(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
         super(resource, initialLocation, gameScreen);
     }
 
     @Override
-    public int getTowerDamage() {
+    public double getTowerDamage() {
         return 0;
     }
 
     @Override
-    public int getTowerRange() {
+    public double getTowerRange() {
         return 0;
     }
 
