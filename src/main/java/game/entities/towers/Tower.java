@@ -33,7 +33,7 @@ public abstract class Tower extends SpriteEntity {
     }
 
     public Enemy getTarget(int rangeRadius, ArrayList<Enemy> enemyList) {
-        target = new Enemy("sprites/derpy_coot.png", new Coordinate2D(100, 100));
+        target = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(100, 100));
         maxHealth = 0;
         for (Enemy e : enemyList) {
             if (distanceTo(e) < rangeRadius) {

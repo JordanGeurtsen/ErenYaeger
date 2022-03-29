@@ -6,27 +6,27 @@ import game.scenes.TitleScreen;
 
 public class Hitman extends Tower {
     private double price = 150.0;
-    private double rangeRadius = 10000;
+    private int rangeRadius = 10000;
     private int cooldown = 5;
-    private double damage = 300; // of random zodat het niet altijd instant kill is
+    private int damage = 300;
 
     protected Hitman(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
         super(resource, initialLocation, gameScreen);
     }
 
     @Override
-    public double getTowerDamage() {
-        return 0;
+    public int getTowerDamage() {
+        return damage;
     }
 
     @Override
-    public double getTowerRange() {
-        return 0;
+    public int getTowerRange() {
+        return rangeRadius;
     }
 
     @Override
     public double getTowerPrice() {
-        return 0;
+        return price;
     }
 
 //    @Override

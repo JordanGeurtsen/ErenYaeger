@@ -42,10 +42,19 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
 
     @Override
     public void setupEntities() {
-        var enemyTest = new Enemy("sprites/derpy_coot.png", new Coordinate2D(200, 500));
-        enemyTest.setAnchorPoint(AnchorPoint.CENTER_CENTER);
-        enemyList.add(enemyTest);
-        Archer archer = new Archer("sprites/mama_coot.png", new Coordinate2D(800, 200), this);
+        var enemyTest1 = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(200, 500));
+        enemyTest1.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        enemyList.add(enemyTest1);
+
+        var enemyTest2 = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(70, 100));
+        enemyTest2.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        enemyList.add(enemyTest2);
+
+        var enemyTest3 = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(300, 250));
+        enemyTest3.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        enemyList.add(enemyTest3);
+
+        Archer archer = new Archer("sprites/enemies/mama_coot.png", new Coordinate2D(800, 200), this);
         archer.setAnchorPoint(AnchorPoint.CENTER_CENTER);
         towers.add(archer);
 //        Arrow arrow = new Arrow(archer.getAnchorLocation(), enemyTest);

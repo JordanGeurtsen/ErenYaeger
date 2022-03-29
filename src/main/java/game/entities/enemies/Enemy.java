@@ -19,6 +19,7 @@ public class Enemy extends DynamicSpriteEntity implements Collided {
 
     @Override
     public void onCollision(Collider collider) {
+        health -= 1;
     }
 
     public int getHealth() {
