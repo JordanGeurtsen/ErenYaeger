@@ -29,16 +29,12 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     private BonkTheTowerTD bonkTheTowerTD;
     public ArrayList<Enemy> enemyList = new ArrayList<>();
     public ArrayList<Tower> towers = new ArrayList<>();
-   // public ArrayList<Arrow> arrows = new ArrayList<>();
-    public double coins = 0.0;
+    public double coins = 100.0;
     public double points = 0.0;
     public double lives = 20.0;
 
-    private ProjectileSpawner projectileSpawner;
-
     public GameScreen(BonkTheTowerTD bonkTheTowerTD) {
         this.bonkTheTowerTD = bonkTheTowerTD;
-        this.projectileSpawner = new ProjectileSpawner((long)5000.00, towers, enemyList);
     }
 
     @Override
@@ -69,42 +65,26 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         var freezerBuy = new buyButton(new Coordinate2D(1050, 425), "sprites/towers/freezer_logo.png");
         addEntity(freezerBuy);
 
-        var enemyTest = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(200, 500));
-        enemyTest.setAnchorPoint(AnchorPoint.CENTER_CENTER);
-        enemyList.add(enemyTest);
-
-        var enemyTest1 = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(200, 500));
-        enemyTest1.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        var enemyTest1 = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(500, 500), this);
         enemyList.add(enemyTest1);
 
-        var enemyTest2 = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(70, 100));
-        enemyTest2.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        var enemyTest2 = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(800, 100), this);
         enemyList.add(enemyTest2);
 
-        var enemyTest3 = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(300, 250));
-        enemyTest3.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        var enemyTest3 = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(150, 450), this);
         enemyList.add(enemyTest3);
 
-        Archer archer = new Archer("sprites/enemies/mama_coot.png", new Coordinate2D(800, 200), this);
-        archer.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        Archer archer = new Archer("sprites/enemies/mama_coot.png", new Coordinate2D(717, 187), this);
         towers.add(archer);
-//        Arrow arrow = new Arrow(archer.getAnchorLocation(), enemyTest);
-//        arrows.add(arrow);
-        var re = new RoundExecutor(2);
+
         enemyList.forEach(this::addEntity);
         towers.forEach(this::addEntity);
     }
 
     @Override
     public void setupEntitySpawners() {
-//        addEntitySpawner(projectileSpawner);
-//
-//        ArrayList<ProjectileSpawner> projectileSpawns = new ArrayList<ProjectileSpawner>();
-//        projectileSpawns.add(new ProjectileSpawner((long)5000.00, towers, enemyList));
-//        projectileSpawns.forEach((this::addEntitySpawner));
-
-        for(Tower t : towers) {
-            addEntitySpawner(new ProjectileSpawner((long)500.00, towers, enemyList));
+        for (Tower t : towers) {
+            addEntitySpawner(new ProjectileSpawner((long) 1000.00, towers, enemyList, this));
         }
     }
 
@@ -113,4 +93,11 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         addTileMap(new LevelTileMap());
     }
 
+    public void checkAliveEnemies(ArrayList<Enemy> enemyList) {
+        for (Enemy e : enemyList) {
+            if (e.getHealth() == 0) {
+                e.remove();
+            }
+        }
+    }
 }

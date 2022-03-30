@@ -6,6 +6,6 @@ import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 
 public class Targeting extends DynamicSpriteEntity {
     protected Targeting(String resource, Coordinate2D initialLocation) {
-        super(resource, initialLocation, new Size(50));
+        super(resource, initialLocation, new Size(100));
     }
 }

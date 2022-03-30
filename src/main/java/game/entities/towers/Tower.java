@@ -1,5 +1,6 @@
 package game.entities.towers;
 
+import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.impl.SpriteEntity;
@@ -14,12 +15,14 @@ public abstract class Tower extends SpriteEntity {
     private Enemy target;
     private int maxHealth = 0;
     private boolean inRange;
-
+    double closestDistance;
 
     public Tower(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
-        super(resource, initialLocation, new Size(250));
+        super(resource, initialLocation, new Size(75));
         this.gameScreen = gameScreen;
         this.initialLocation = initialLocation;
+
+        setAnchorPoint(AnchorPoint.CENTER_CENTER);
     }
 
     public boolean isInRange(double rangeRadius, ArrayList<Enemy> enemyList) {
@@ -33,20 +36,22 @@ public abstract class Tower extends SpriteEntity {
     }
 
     public Enemy getTarget(double rangeRadius, ArrayList<Enemy> enemyList) {
-        target = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(100, 100));
         maxHealth = 0;
+        closestDistance = rangeRadius;
         for (Enemy e : enemyList) {
-            if (distanceTo(e) < rangeRadius) {
-                if (e.getHealth() > maxHealth) {
-                    maxHealth = e.getHealth();
-                    target = e;
+            if (isInRange(getTowerRange(), enemyList)) {
+                    if (e.getHealth() > maxHealth && distanceTo(e) < closestDistance) {
+                        maxHealth = e.getHealth();
+                        closestDistance = distanceTo(e);
+                        target = e;
+                        if(e.getHealth() <= 0){
+                            closestDistance = rangeRadius;
+                        }
+                    }
                 }
             }
-        }
         return target;
     }
-
-
 
     abstract public double getTowerDamage();
 
@@ -56,4 +61,4 @@ public abstract class Tower extends SpriteEntity {
 
     abstract public Coordinate2D getInitialLocation();
 
-    }
+}

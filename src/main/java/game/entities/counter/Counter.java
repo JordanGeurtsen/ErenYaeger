@@ -6,8 +6,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class Counter extends TextEntity {
+    double counterData;
     public Counter(Coordinate2D initialLocation, double counterData, String text) {
         super(initialLocation, text + ": " + (int) counterData);
         setFont(Font.font("Roboto", FontWeight.BOLD, 25));
+        this.counterData = counterData;
     }
 }
