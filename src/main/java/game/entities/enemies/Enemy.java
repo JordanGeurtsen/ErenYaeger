@@ -19,6 +19,7 @@ public class Enemy extends DynamicSpriteEntity implements Collider, SceneBorderC
     public Enemy(String resource, Coordinate2D initialLocation) {
         super(resource, initialLocation, new Size(75));
         this.initialLocation = initialLocation;
+
         setAnchorLocation(new Coordinate2D(107.5, 37.5));
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
         setMotion(movementSpeed, Direction.DOWN);
