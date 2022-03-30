@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Archer extends Tower {
     private double price = 100.0;
-    private double rangeRadius = 150.0;
+    private double rangeRadius = 1500.0;
     private double cooldown = 500.0;
     private double damage = 30;
     private int maxHealth = 0;

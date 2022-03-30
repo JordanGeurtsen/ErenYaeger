@@ -22,19 +22,19 @@ public class Enemy extends DynamicSpriteEntity implements Collided, Collider {
         super(resource, initialLocation, new Size(75));
         this.initialLocation = initialLocation;
 
-        setAnchorLocation(new Coordinate2D(107.5, 37.5));
-        setAnchorPoint(AnchorPoint.CENTER_CENTER);
-        setMotion(movementSpeed, Direction.DOWN);
-        while(walkedDistance < 3000.0) {
-            walkedDistance += movementSpeed;
-            System.out.println(walkedDistance);
-            if (walkedDistance == 107.5) {
-                setDirection(Direction.RIGHT);
-            }
+//        setAnchorLocation(new Coordinate2D(107.5, 37.5));
+//        setAnchorPoint(AnchorPoint.CENTER_CENTER);
+//        setMotion(movementSpeed, Direction.DOWN);
+//        while(walkedDistance < 3000.0) {
+//            walkedDistance += movementSpeed;
+//            System.out.println(walkedDistance);
+//            if (walkedDistance == 107.5) {
+//                setDirection(Direction.RIGHT);
+//            }
 //            if (walkedDistance == 782.5){
 //                setDirection(Direction.DOWN);
 //            }
-        }
+//        }
     }
 
     @Override
