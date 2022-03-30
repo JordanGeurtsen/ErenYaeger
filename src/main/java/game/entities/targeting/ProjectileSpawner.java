@@ -23,22 +23,28 @@ public class ProjectileSpawner extends EntitySpawner {
     @Override
     protected void spawnEntities() {
         Enemy target;
-        if (enemyList.size() >= 1) {
+        ArrayList<Enemy> everyTargetInRange = new ArrayList<>();
+        if (enemyList.size() > 0) {
+            for (Enemy e: enemyList) {
+                e.resetMovementSpeed();
+            }
             if (towers.size() > 0) {
                 for (Tower t : towers) {
                     if (t.isInRange(t.getTowerRange(), enemyList)) {
                         target = t.getTarget(t.getTowerRange(), enemyList);
+                        everyTargetInRange = t.getEveryTarget(t.getTowerRange(), enemyList);
                         int shootAngle = (int) t.angleTo(target);
                         if (t instanceof Archer) {
-                            Arrow arrow = new Arrow(t.getInitialLocation(), shootAngle, gameScreen, enemyList);
+                            Arrow arrow = new Arrow(t.getInitialLocation(), shootAngle, gameScreen, t, enemyList);
                             arrow.setAnchorPoint(AnchorPoint.CENTER_CENTER);
                             spawn(arrow);
                         } else if (t instanceof Hitman) {
-                            Arrow arrow = new Arrow(t.getInitialLocation(), shootAngle, gameScreen, enemyList);
+                            Arrow arrow = new Arrow(t.getInitialLocation(), shootAngle, gameScreen, t, enemyList);
                             arrow.setAnchorPoint(AnchorPoint.CENTER_CENTER);
                             spawn(arrow);
                         } else if (t instanceof Freezer) {
-                        ((Freezer) t).freezeEnemies(enemyList);
+                            Ice ice = new Ice(t.getInitialLocation(), gameScreen, t, enemyList);
+                            spawn(ice);
                         }
                     } else {
                         System.out.println("No enemies in range");

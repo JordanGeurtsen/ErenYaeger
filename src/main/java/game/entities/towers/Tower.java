@@ -13,7 +13,7 @@ public abstract class Tower extends SpriteEntity {
     protected GameScreen gameScreen;
     private Coordinate2D initialLocation;
     private Enemy target;
-    private int maxHealth = 0;
+    private double maxHealth = 0;
     private boolean inRange;
     double closestDistance;
 
@@ -38,14 +38,16 @@ public abstract class Tower extends SpriteEntity {
     public Enemy getTarget(double rangeRadius, ArrayList<Enemy> enemyList) {
         maxHealth = 0;
         closestDistance = rangeRadius;
-        for (Enemy e : enemyList) {
-            if (isInRange(getTowerRange(), enemyList)) {
-                if (e.getHealth() > maxHealth && distanceTo(e) < closestDistance) {
-                    maxHealth = e.getHealth();
-                    closestDistance = distanceTo(e);
-                    target = e;
-                    if(e.getHealth() <= 0){
-                        closestDistance = rangeRadius;
+        if (enemyList.size() >= 1){
+            for (Enemy e : enemyList) {
+                if (isInRange(getTowerRange(), enemyList)) {
+                    if (e.getHealth() > maxHealth && distanceTo(e) < closestDistance) {
+                        maxHealth = e.getHealth();
+                        closestDistance = distanceTo(e);
+                        target = e;
+                        if (e.getHealth() <= 0) {
+                            closestDistance = rangeRadius;
+                        }
                     }
                 }
             }
@@ -61,4 +63,13 @@ public abstract class Tower extends SpriteEntity {
 
     abstract public Coordinate2D getInitialLocation();
 
+    public ArrayList<Enemy> getEveryTarget(double towerRange, ArrayList<Enemy> enemyList) {
+        ArrayList<Enemy> targets = new ArrayList<>();
+        for (Enemy e: enemyList) {
+           if (distanceTo(e) >= towerRange){
+               targets.add(e);
+           }
+        }
+        return targets;
+    }
 }

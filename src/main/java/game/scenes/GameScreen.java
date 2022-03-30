@@ -66,13 +66,13 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         var freezerBuy = new buyButton(new Coordinate2D(1050, 425), "sprites/towers/freezer_logo.png");
         addEntity(freezerBuy);
 
-        var enemyTest1 = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(500, 500), this);
+        var enemyTest1 = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(500, 500));
         enemyList.add(enemyTest1);
 
-//        var enemyTest2 = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(800, 100), this);
+//        var enemyTest2 = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(800, 100));
 //        enemyList.add(enemyTest2);
 //
-//        var enemyTest3 = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(150, 450), this);
+//        var enemyTest3 = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(150, 450));
 //        enemyList.add(enemyTest3);
 
 //        var archer = new Archer("sprites/enemies/mama_coot.png", new Coordinate2D(717, 187), this);
@@ -98,10 +98,8 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     }
 
     public void checkAliveEnemies(ArrayList<Enemy> enemyList) {
-        for (Enemy e : enemyList) {
-            if (e.getHealth() == 0) {
-                e.remove();
+        if (enemyList.size() >= 1) {
+
             }
         }
     }
-}

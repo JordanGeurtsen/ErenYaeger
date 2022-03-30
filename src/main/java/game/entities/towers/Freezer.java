@@ -18,12 +18,14 @@ public class Freezer extends Tower{
         super(resource, initialLocation, gameScreen);
     }
 
-    public void freezeEnemies(ArrayList<Enemy> enemyList){
-        for (Enemy e : enemyList) {
-            if (isInRange(getTowerRange(), enemyList)) {
-               e.setMovementSpeed(1.0);
-            } else {
+    public void freezeEnemies(ArrayList<Enemy> everyEnemyInRange, ArrayList<Enemy> enemyList){
+        for (Enemy e: enemyList) {
+            if(distanceTo(e) > rangeRadius){
                 e.resetMovementSpeed();
+        }
+
+        for (Enemy t : everyEnemyInRange) {
+               t.setMovementSpeed(1.0);
             }
         }
     }
