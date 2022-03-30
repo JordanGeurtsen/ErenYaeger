@@ -3,6 +3,7 @@ package game.entities.targeting;
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.entities.EntitySpawner;
 import game.entities.enemies.Enemy;
+import game.entities.enemies.MovementSpeed;
 import game.entities.towers.*;
 import game.scenes.GameScreen;
 
@@ -26,7 +27,7 @@ public class ProjectileSpawner extends EntitySpawner {
         ArrayList<Enemy> everyTargetInRange = new ArrayList<>();
         if (enemyList.size() > 0) {
             for (Enemy e: enemyList) {
-                e.resetMovementSpeed();
+                e.setMovementSpeed(MovementSpeed.NORMAL);
             }
             if (towers.size() > 0) {
                 for (Tower t : towers) {

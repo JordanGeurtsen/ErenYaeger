@@ -1,6 +1,5 @@
 package game.entities.enemies;
 
-import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collider;
@@ -10,39 +9,30 @@ import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 
 
-public class Enemy extends DynamicSpriteEntity implements Collider, SceneBorderCrossingWatcher {
-    double health = 2;
-    double movementSpeed = 1.5;
-    double walkedDistance = 0.0;
-    Coordinate2D initialLocation;
+public abstract class Enemy extends DynamicSpriteEntity implements Collider, SceneBorderCrossingWatcher {
+    private Coordinate2D initialLocation;
+    private double speed;
 
     public Enemy(String resource, Coordinate2D initialLocation) {
         super(resource, initialLocation, new Size(75));
         this.initialLocation = initialLocation;
+        setMovementSpeed(MovementSpeed.NORMAL);
+        setMotion(speed, Direction.LEFT);
 
-        setAnchorLocation(new Coordinate2D(107.5, 37.5));
-        setAnchorPoint(AnchorPoint.CENTER_CENTER);
-        setMotion(movementSpeed, Direction.DOWN);
+//        setAnchorLocation(new Coordinate2D(107.5, 37.5));
+//        setAnchorPoint(AnchorPoint.CENTER_CENTER);
+//        setMotion(movementSpeed, Direction.DOWN);
     }
 
-    public double getHealth() {
-        return health;
-    }
+    public abstract int getHealth();
 
-    public void setHealth(double newHealth){
-        this.health += newHealth;
-    }
+    public abstract void setHealth(double newHealth);
 
-    public double getMovementSpeed() {
-        return movementSpeed;
-    }
+    public abstract double getMovementSpeed();
 
     public Coordinate2D getInitialLocation() {
         return initialLocation;
     }
-
-    public void setMovementSpeed(double movementSpeed) {this.movementSpeed = movementSpeed;}
-    public void resetMovementSpeed() {this.movementSpeed = 1.5;}
 
     @Override
     public void notifyBoundaryCrossing(SceneBorder border) {
@@ -50,4 +40,5 @@ public class Enemy extends DynamicSpriteEntity implements Collider, SceneBorderC
             case TOP, LEFT, RIGHT, BOTTOM -> remove();
         }
     }
+    public abstract void setMovementSpeed(MovementSpeed movementSpeed);
 }

@@ -3,6 +3,7 @@ package game.entities.towers;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import game.entities.enemies.Enemy;
+import game.entities.enemies.MovementSpeed;
 import game.scenes.GameScreen;
 import game.scenes.TitleScreen;
 
@@ -21,11 +22,11 @@ public class Freezer extends Tower{
     public void freezeEnemies(ArrayList<Enemy> everyEnemyInRange, ArrayList<Enemy> enemyList){
         for (Enemy e: enemyList) {
             if(distanceTo(e) > rangeRadius){
-                e.resetMovementSpeed();
+                e.setMovementSpeed(MovementSpeed.NORMAL);
         }
 
         for (Enemy t : everyEnemyInRange) {
-               t.setMovementSpeed(1.0);
+               t.setMovementSpeed(MovementSpeed.SLOW);
             }
         }
     }
@@ -48,8 +49,4 @@ public class Freezer extends Tower{
         return new Coordinate2D(0,0);
     }
 
-//    @Override
-//    public void shoot() {
-//
-//    }
 }

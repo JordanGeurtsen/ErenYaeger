@@ -9,6 +9,7 @@ import com.github.hanyaeger.api.scenes.TileMapContainer;
 import game.entities.buttons.compositebutton.buyButton;
 import game.entities.counter.Counter;
 import game.entities.enemies.Enemy;
+import game.entities.enemies.FastCoot;
 import game.entities.targeting.ProjectileSpawner;
 import game.entities.tilemap.LevelTileMap;
 import game.entities.towers.Archer;
@@ -62,7 +63,8 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         var freezerBuy = new buyButton(new Coordinate2D(1050, 425), "sprites/towers/freezer_logo.png");
         addEntity(freezerBuy);
 
-        var enemyTest1 = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(500, 500));
+//        var enemyTest1 = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(500, 500));
+        var enemyTest1 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(600, 400));
         enemyList.add(enemyTest1);
 
 //        var enemyTest2 = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(800, 100));
@@ -94,8 +96,10 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     }
 
     public void checkAliveEnemies(ArrayList<Enemy> enemyList) {
-        if (enemyList.size() >= 1) {
-
+        for (Enemy e : enemyList) {
+            if (e.getHealth() == 0) {
+                e.remove();
             }
         }
     }
+}

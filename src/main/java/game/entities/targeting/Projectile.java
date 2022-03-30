@@ -8,6 +8,7 @@ import com.github.hanyaeger.api.entities.SceneBorderCrossingWatcher;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 import game.entities.enemies.Enemy;
+import game.entities.enemies.MovementSpeed;
 import game.entities.towers.Archer;
 import game.entities.towers.Freezer;
 import game.entities.towers.Tower;
@@ -33,7 +34,7 @@ public class Projectile extends DynamicSpriteEntity implements Collided, SceneBo
                 if (shootingTower instanceof Archer) {
                     ((Enemy) collidingObject).setHealth(-shootingTower.getTowerDamage());
                 } else if (shootingTower instanceof Freezer) {
-                    ((Enemy) collidingObject).setMovementSpeed(1.0);
+                    ((Enemy) collidingObject).setMovementSpeed(MovementSpeed.SLOW);
                 }
                for (Enemy e : enemyList) {
                     if (e.getHealth() == 0) {
