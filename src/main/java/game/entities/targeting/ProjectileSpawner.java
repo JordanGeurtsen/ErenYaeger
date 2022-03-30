@@ -29,7 +29,6 @@ public class ProjectileSpawner extends EntitySpawner {
                     if (t.isInRange(t.getTowerRange(), enemyList)) {
                         target = t.getTarget(t.getTowerRange(), enemyList);
                         int shootAngle = (int) t.angleTo(target);
-                        System.out.println(target.getInitialLocation() + " " + target);
                         if (t instanceof Archer) {
                             Arrow arrow = new Arrow(t.getInitialLocation(), shootAngle, gameScreen, enemyList);
                             arrow.setAnchorPoint(AnchorPoint.CENTER_CENTER);

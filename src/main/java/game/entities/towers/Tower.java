@@ -40,16 +40,16 @@ public abstract class Tower extends SpriteEntity {
         closestDistance = rangeRadius;
         for (Enemy e : enemyList) {
             if (isInRange(getTowerRange(), enemyList)) {
-                    if (e.getHealth() > maxHealth && distanceTo(e) < closestDistance) {
-                        maxHealth = e.getHealth();
-                        closestDistance = distanceTo(e);
-                        target = e;
-                        if(e.getHealth() <= 0){
-                            closestDistance = rangeRadius;
-                        }
+                if (e.getHealth() > maxHealth && distanceTo(e) < closestDistance) {
+                    maxHealth = e.getHealth();
+                    closestDistance = distanceTo(e);
+                    target = e;
+                    if(e.getHealth() <= 0){
+                        closestDistance = rangeRadius;
                     }
                 }
             }
+        }
         return target;
     }
 

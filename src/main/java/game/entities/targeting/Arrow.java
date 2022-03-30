@@ -19,7 +19,6 @@ public class Arrow extends Targeting implements Collider, Collided, SceneBorderC
         this.gameScreen = gameScreen;
         this.enemyList = enemyList;
         int movementSpeed = 25;
-        System.out.println(initialLocation + " " + shootAngle + " ");
         setMotion(movementSpeed, shootAngle);
 
     }
