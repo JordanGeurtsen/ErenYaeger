@@ -1,23 +1,19 @@
 package game.scenes;
 
 
-import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.EntitySpawnerContainer;
 import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
 
-import game.RoundExecutor;
-import game.entities.buttons.QuitButton;
-import game.entities.buttons.SceneSwitchButton;
 import game.entities.buttons.compositebutton.buyButton;
 import game.entities.counter.Counter;
 import game.entities.enemies.Enemy;
-import game.entities.targeting.Arrow;
 import game.entities.targeting.ProjectileSpawner;
 import game.entities.tilemap.LevelTileMap;
 import game.entities.towers.Archer;
 import game.entities.towers.Freezer;
+import game.entities.towers.Hitman;
 import game.entities.towers.Tower;
 
 import game.BonkTheTowerTD;

@@ -7,8 +7,6 @@ import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.Direction;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
-import game.entities.targeting.Arrow;
-import game.entities.targeting.ProjectileSpawner;
 import game.scenes.GameScreen;
 
 

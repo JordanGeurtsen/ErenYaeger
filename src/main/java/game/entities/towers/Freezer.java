@@ -4,7 +4,6 @@ package game.entities.towers;
 import com.github.hanyaeger.api.Coordinate2D;
 import game.entities.enemies.Enemy;
 import game.scenes.GameScreen;
-import game.scenes.TitleScreen;
 
 import java.util.ArrayList;
 
@@ -46,8 +45,4 @@ public class Freezer extends Tower{
         return new Coordinate2D(0,0);
     }
 
-//    @Override
-//    public void shoot() {
-//
-//    }
 }
