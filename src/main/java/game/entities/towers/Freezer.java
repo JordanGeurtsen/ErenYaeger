@@ -21,7 +21,7 @@ public class Freezer extends Tower{
     public void freezeEnemies(ArrayList<Enemy> enemyList){
         for (Enemy e : enemyList) {
             if (isInRange(getTowerRange(), enemyList)) {
-               e.setMovementSpeed(1.0);
+               e.slowMovementSpeed();
             } else {
                 e.resetMovementSpeed();
             }

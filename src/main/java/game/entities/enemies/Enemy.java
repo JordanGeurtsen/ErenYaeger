@@ -44,7 +44,7 @@ public class Enemy extends DynamicSpriteEntity implements Collided, Collider {
         return initialLocation;
     }
 
-    public void setMovementSpeed(double movementSpeed) {this.movementSpeed = movementSpeed;}
+    public void slowMovementSpeed() {this.movementSpeed = 1.0;}
     public void resetMovementSpeed() {this.movementSpeed = 1.5;}
 
 }
