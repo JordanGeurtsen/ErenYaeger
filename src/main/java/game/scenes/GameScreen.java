@@ -10,6 +10,7 @@ import game.entities.buttons.compositebutton.buyButton;
 import game.entities.counter.Counter;
 import game.entities.enemies.Enemy;
 import game.entities.enemies.FastCoot;
+import game.entities.enemies.MovementSpeed;
 import game.entities.targeting.ProjectileSpawner;
 import game.entities.tilemap.LevelTileMap;
 import game.entities.towers.Archer;

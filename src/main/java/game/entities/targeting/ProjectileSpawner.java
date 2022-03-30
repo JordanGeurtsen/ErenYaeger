@@ -33,6 +33,7 @@ public class ProjectileSpawner extends EntitySpawner {
                 for (Tower t : towers) {
                     if (t.isInRange(t.getTowerRange(), enemyList)) {
                         target = t.getTarget(t.getTowerRange(), enemyList);
+                        System.out.println(target);
                         everyTargetInRange = t.getEveryTarget(t.getTowerRange(), enemyList);
                         int shootAngle = (int) t.angleTo(target);
                         if (t instanceof Archer) {
@@ -44,8 +45,15 @@ public class ProjectileSpawner extends EntitySpawner {
                             arrow.setAnchorPoint(AnchorPoint.CENTER_CENTER);
                             spawn(arrow);
                         } else if (t instanceof Freezer) {
-                            Ice ice = new Ice(t.getInitialLocation(), gameScreen, t, enemyList);
-                            spawn(ice);
+                            System.out.println("IN SWITCH FREEZER");
+                            System.out.println(target);
+                            target.setMovementSpeed(MovementSpeed.SLOW);
+//                            for(Enemy targets : everyTargetInRange) {
+//                                System.out.println("IN FREEZER LOOP");
+//                                targets.setMovementSpeed(MovementSpeed.SLOW);
+//                            }
+//                            Ice ice = new Ice(t.getInitialLocation(), gameScreen, t, enemyList);
+//                            spawn(ice);
                         }
                     } else {
                         System.out.println("No enemies in range");

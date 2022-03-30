@@ -5,15 +5,16 @@ import com.github.hanyaeger.api.entities.Direction;
 
 public class FastCoot extends Enemy{
     private int health = 2;
-    private double speed;
     private double walkedDistance = 0.0;
+    private double speed = 2.5;
     private Coordinate2D initialLocation;
 
     public FastCoot(String resource, Coordinate2D initialLocation) {
         super(resource, initialLocation);
         this.initialLocation = initialLocation;
-        setMovementSpeed(MovementSpeed.NORMAL);
-        setMotion(speed, Direction.LEFT);
+//        this.speed = speed;
+        setMotion(getMovementSpeed(), Direction.LEFT);
+
     }
 
     public int getHealth() {
@@ -30,10 +31,12 @@ public class FastCoot extends Enemy{
     public void setMovementSpeed(MovementSpeed movementSpeed) {
         switch (movementSpeed){
             case SLOW :
-                speed = 2.0;
+                setMotion(0.1, Direction.LEFT);
+                System.out.println("SLOOOWW");
                 break;
             case NORMAL:
-                speed = 2.5;
+                System.out.println("NOORRMAAAAL");
+                setMotion(2.1, Direction.LEFT);
         }
     }
 }

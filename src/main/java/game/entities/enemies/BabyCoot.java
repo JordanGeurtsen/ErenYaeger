@@ -12,8 +12,7 @@ public class BabyCoot extends Enemy{
     public BabyCoot(String resource, Coordinate2D initialLocation) {
         super(resource, initialLocation);
         this.initialLocation = initialLocation;
-        setMovementSpeed(MovementSpeed.NORMAL);
-        setMotion(speed, Direction.LEFT);
+        setMotion(getMovementSpeed(), Direction.LEFT);
     }
 
     public int getHealth() {
