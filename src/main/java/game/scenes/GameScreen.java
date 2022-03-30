@@ -17,6 +17,7 @@ import game.entities.targeting.Arrow;
 import game.entities.targeting.ProjectileSpawner;
 import game.entities.tilemap.LevelTileMap;
 import game.entities.towers.Archer;
+import game.entities.towers.Freezer;
 import game.entities.towers.Tower;
 
 import game.BonkTheTowerTD;
@@ -68,14 +69,17 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         var enemyTest1 = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(500, 500), this);
         enemyList.add(enemyTest1);
 
-        var enemyTest2 = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(800, 100), this);
-        enemyList.add(enemyTest2);
+//        var enemyTest2 = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(800, 100), this);
+//        enemyList.add(enemyTest2);
+//
+//        var enemyTest3 = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(150, 450), this);
+//        enemyList.add(enemyTest3);
 
-        var enemyTest3 = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(150, 450), this);
-        enemyList.add(enemyTest3);
+//        var archer = new Archer("sprites/enemies/mama_coot.png", new Coordinate2D(717, 187), this);
+//        towers.add(archer);
 
-        Archer archer = new Archer("sprites/enemies/mama_coot.png", new Coordinate2D(717, 187), this);
-        towers.add(archer);
+        var freezer = new Freezer("sprites/enemies/thick_coot.png", new Coordinate2D(187.5, 412.5), this);
+        towers.add(freezer);
 
         enemyList.forEach(this::addEntity);
         towers.forEach(this::addEntity);

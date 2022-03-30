@@ -38,9 +38,7 @@ public class ProjectileSpawner extends EntitySpawner {
                             arrow.setAnchorPoint(AnchorPoint.CENTER_CENTER);
                             spawn(arrow);
                         } else if (t instanceof Freezer) {
-                            Arrow arrow = new Arrow(t.getInitialLocation(), shootAngle, gameScreen, enemyList);
-                            arrow.setAnchorPoint(AnchorPoint.CENTER_CENTER);
-                            spawn(arrow);
+                        ((Freezer) t).freezeEnemies(enemyList);
                         }
                     } else {
                         System.out.println("No enemies in range");

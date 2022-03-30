@@ -22,21 +22,10 @@ public class Enemy extends DynamicSpriteEntity implements Collided, Collider {
         super(resource, initialLocation, new Size(75));
         this.initialLocation = initialLocation;
 
-//        setAnchorLocation(new Coordinate2D(107.5, 37.5));
-//        setAnchorPoint(AnchorPoint.CENTER_CENTER);
-//        setMotion(movementSpeed, Direction.DOWN);
-//        while(walkedDistance < 3000.0) {
-//            walkedDistance += movementSpeed;
-//            System.out.println(walkedDistance);
-//            if (walkedDistance == 107.5) {
-//                setDirection(Direction.RIGHT);
-//            }
-//            if (walkedDistance == 782.5){
-//                setDirection(Direction.DOWN);
-//            }
-//        }
+        setAnchorLocation(new Coordinate2D(107.5, 37.5));
+        setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        setMotion(movementSpeed, Direction.DOWN);
     }
-
 
     @Override
     public void onCollision(Collider collider) {
@@ -54,4 +43,8 @@ public class Enemy extends DynamicSpriteEntity implements Collided, Collider {
     public Coordinate2D getInitialLocation() {
         return initialLocation;
     }
+
+    public void setMovementSpeed(double movementSpeed) {this.movementSpeed = movementSpeed;}
+    public void resetMovementSpeed() {this.movementSpeed = 1.5;}
+
 }
