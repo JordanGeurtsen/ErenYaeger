@@ -77,11 +77,14 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
 //        var enemyTest3 = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(150, 450));
 //        enemyList.add(enemyTest3);
 
-        var archer = new Archer("sprites/enemies/mama_coot.png", new Coordinate2D(717, 187), this);
+        var archer = new Archer("sprites/tower/archer_tower.png", new Coordinate2D(717, 187), this);
         towers.add(archer);
 
-        var freezer = new Freezer("sprites/enemies/thick_coot.png", new Coordinate2D(187.5, 412.5), this);
+        var freezer = new Freezer("sprites/tower/freezer_tower.png", new Coordinate2D(187.5, 412.5), this);
         towers.add(freezer);
+
+        var hitman = new Hitman("sprites/tower/hitman_tower.png", new Coordinate2D(187.5, 412.5), this);
+        towers.add(hitman);
 
         enemyList.forEach(this::addEntity);
         towers.forEach(this::addEntity);
