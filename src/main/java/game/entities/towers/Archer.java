@@ -38,7 +38,6 @@ public class Archer extends Tower {
 
     @Override
     public void setupSpawner() {
-        arrowSpawner = new ArrowSpawner(500, getInitialLocation(),gameScreen);
-
+        arrowSpawner = new ArrowSpawner(500, getInitialLocation(), this, gameScreen);
     }
 }

@@ -17,24 +17,29 @@ public class ArrowSpawner extends ProjectileSpawner {
     private GameScreen gameScreen;
     private int shootAngle;
     private boolean needToShoot;
-    private Enemy target;
     private Coordinate2D coordinate2D;
+    private Tower shootingTower;
 
-    public ArrowSpawner(long intervalInMs, Coordinate2D coordinate2D, GameScreen gameScreen) {
+    public ArrowSpawner(long intervalInMs, Coordinate2D coordinate2D, Tower shootingTower, GameScreen gameScreen) {
         super(intervalInMs, coordinate2D, gameScreen);
-        this.enemyList = enemyList;
         this.gameScreen = gameScreen;
+        this.shootingTower = shootingTower;
         this.coordinate2D = coordinate2D;
     }
 
     @Override
     protected void spawnEntities() {
         if (needToShoot) {
-            spawn(new Arrow(coordinate2D, shootAngle, gameScreen, enemyList));
+            spawn(new Arrow(coordinate2D, shootAngle, gameScreen, shootingTower, enemyList));
             needToShoot = !needToShoot;
         }
     }
+
+    public void setShootAngle(int shootAngle) {
+        this.shootAngle = shootAngle;
+    }
+
     public void setNeedToShoot(boolean shootNeed) {
-        needToShoot = shootNeed;
+        this.needToShoot = shootNeed;
     }
     }

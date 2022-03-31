@@ -18,11 +18,13 @@ public class BulletSpawner extends ProjectileSpawner{
     private Enemy target;
     private Coordinate2D coordinate2D;
     private int shootAngle;
+    private Tower shootingTower;
 
-    public BulletSpawner (long intervalInMs, Coordinate2D coordinate2D, int shootAngle, GameScreen gameScreen) {
+    public BulletSpawner (long intervalInMs, Coordinate2D coordinate2D, int shootAngle, Tower shootingTower, GameScreen gameScreen) {
         super(intervalInMs, coordinate2D, gameScreen);
         this.coordinate2D = coordinate2D;
         this.gameScreen = gameScreen;
+        this.shootingTower = shootingTower;
         this.shootAngle = shootAngle;
     }
 
@@ -38,7 +40,7 @@ public class BulletSpawner extends ProjectileSpawner{
                         if (t.isInRange(t.getTowerRange(), enemyList)) {
                             target = t.getTarget(t.getTowerRange(), enemyList);
                             if (t instanceof Hitman) {
-                                Arrow arrow = new Arrow(t.getInitialLocation(), shootAngle, gameScreen, enemyList);
+                                Arrow arrow = new Arrow(t.getInitialLocation(), shootAngle, gameScreen, shootingTower, enemyList);
                                 arrow.setAnchorPoint(AnchorPoint.CENTER_CENTER);
                                 spawn(arrow);
                             }

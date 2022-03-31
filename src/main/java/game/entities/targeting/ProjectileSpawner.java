@@ -8,7 +8,6 @@ import game.scenes.GameScreen;
 import java.util.ArrayList;
 
 public abstract class ProjectileSpawner extends EntitySpawner {
-    private boolean needToSpawn = false;
     private GameScreen gameScreen;
 
     public ProjectileSpawner(long intervalInMs, Coordinate2D coordinate2D, GameScreen gameScreen) { // intervalInMs = speed

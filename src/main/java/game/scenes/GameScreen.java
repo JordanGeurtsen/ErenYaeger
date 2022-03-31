@@ -90,16 +90,18 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     @Override
     public void setupEntitySpawners() {
         for (Tower t : towers) {
-                Enemy target = t.getTarget(t.getTowerRange(), enemyList);
-                int shootAngle = (int) t.angleTo(target);
-                if (t instanceof Archer) {
-
-                } else if (t instanceof Hitman) {
-                    addEntitySpawner(new BulletSpawner(2000, t.getInitialLocation(), shootAngle, this));
-                } else if (t instanceof Freezer) {
-                    addEntitySpawner(new IceSpawner(50, t.getInitialLocation(), enemyList, this));
-                }
-            }
+            getSpawners();
+        }
+//                Enemy target =t.getTarget(t.getTowerRange(), enemyList);
+//                int shootAngle = (int) t.angleTo(target);
+//                if (t instanceof Archer) {
+//
+//                } else if (t instanceof Hitman) {
+//                    addEntitySpawner(new BulletSpawner(2000, t.getInitialLocation(), shootAngle, this));
+//                } else if (t instanceof Freezer) {
+//                    addEntitySpawner(new IceSpawner(50, t.getInitialLocation(), enemyList, this));
+//                }
+//            }
         }
 
     @Override
