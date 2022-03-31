@@ -20,37 +20,37 @@ import java.util.ArrayList;
 public class Projectile extends DynamicSpriteEntity implements Collided, SceneBorderCrossingWatcher {
     private GameScreen gameScreen;
     private ArrayList<Enemy> enemyList;
+    private Tower shootingTower;
 
-    public Projectile(String resource, Coordinate2D initialLocation, GameScreen gameScreen, ArrayList<Enemy> enemyList) {
-        super(resource, initialLocation, new Size(60 , 20));
+    public Projectile(String resource, Coordinate2D initialLocation, GameScreen gameScreen, Tower shootingTower, ArrayList<Enemy> enemyList) {
+        super(resource, initialLocation);
+        this.shootingTower = shootingTower;
         this.gameScreen = gameScreen;
         this.enemyList = enemyList;
     }
 
     @Override
     public void onCollision(Collider collidingObject) {
-//            if (collidingObject instanceof Enemy) {
-//                remove();
-//                if (shootingTower instanceof Archer) {
-//                    ((Enemy) collidingObject).setHealth(-shootingTower.getTowerDamage());
-//                    System.out.println(shootingTower.getTowerDamage());
-//                } else if (shootingTower instanceof Freezer) {
-//                    ((Enemy) collidingObject).setMovementSpeed(MovementSpeed.SLOW);
-//                } else if (shootingTower instanceof Hitman) {
-//                    ((Enemy) collidingObject).setHealth(-shootingTower.getTowerDamage());
-//                }
-//                gameScreen.checkAliveEnemies(enemyList);
-//
-//                if (((Enemy) collidingObject).getHealth() <= 0) {
-//                    ((Enemy) collidingObject).remove();
-//                }
-//            }
+            if (collidingObject instanceof Enemy) {
+                remove();
+                if (shootingTower instanceof Archer) {
+                    ((Enemy) collidingObject).setHealth(-shootingTower.getTowerDamage());
+                    System.out.println(shootingTower.getTowerDamage());
+                } else if (shootingTower instanceof Freezer) {
+                    ((Enemy) collidingObject).setMovementSpeed(MovementSpeed.SLOW);
+                } else if (shootingTower instanceof Hitman) {
+                    ((Enemy) collidingObject).setHealth(-shootingTower.getTowerDamage());
+                }
+                gameScreen.checkAliveEnemies(enemyList);
+
+                if (((Enemy) collidingObject).getHealth() <= 0) {
+                    ((Enemy) collidingObject).remove();
+                }
+            }
         }
 
     @Override
     public void notifyBoundaryCrossing(SceneBorder border) {
-        switch (border) {
-            case TOP, LEFT, RIGHT, BOTTOM -> remove();
-        }
+        remove();
     }
 }

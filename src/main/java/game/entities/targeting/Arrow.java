@@ -14,8 +14,8 @@ import java.util.ArrayList;
 
 public class Arrow extends Projectile implements Collided, SceneBorderCrossingWatcher {
 
-    public Arrow(Coordinate2D initialLocation, int shootAngle, GameScreen gameScreen, ArrayList<Enemy> enemyList) {
-        super("sprites/arrow.png", initialLocation, gameScreen, enemyList);
+    public Arrow(Coordinate2D initialLocation, int shootAngle, GameScreen gameScreen, Tower shootingTower, ArrayList<Enemy> enemyList) {
+        super("sprites/arrow.png", initialLocation, gameScreen, shootingTower, enemyList);
         int movementSpeed = 25;
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
         setRotate(shootAngle - 90);
