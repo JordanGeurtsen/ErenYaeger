@@ -93,7 +93,8 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     @Override
     public void setupEntitySpawners() {
         for (Tower t : towers) {
-            getSpawners();
+            t.setupSpawner();
+            addEntitySpawner(t.getSpawner());
         }
 //                Enemy target =t.getTarget(t.getTowerRange(), enemyList);
 //                int shootAngle = (int) t.angleTo(target);
@@ -112,7 +113,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         addTileMap(new LevelTileMap());
     }
 
-    public void checkAliveEnemies(ArrayList<Enemy> enemyList) {
+    public void checkAliveEnemies() {
         for (int i = enemyList.size() - 1; i > 0; i--) {
             if (enemyList.get(i).getHealth() <= 0) {
                 enemyList.remove(i);

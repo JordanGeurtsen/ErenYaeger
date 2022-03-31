@@ -57,4 +57,9 @@ public class BulletSpawner extends ProjectileSpawner{
             }
         }
     }
+
+    @Override
+    public void setShootAngle(int shootAngle) {
+
+    }
 }

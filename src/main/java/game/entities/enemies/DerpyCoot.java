@@ -14,7 +14,7 @@ public class DerpyCoot extends Enemy{
         public DerpyCoot(String resource, Coordinate2D initialLocation) {
                 super(resource, initialLocation);
                 this.initialLocation = initialLocation;
-                setMotion(getMovementSpeed(), direction);
+                setMotion(speed, direction);
         }
 
         public int getHealth() {

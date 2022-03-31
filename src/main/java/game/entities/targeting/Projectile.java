@@ -41,7 +41,7 @@ public class Projectile extends DynamicSpriteEntity implements Collided, SceneBo
                 } else if (shootingTower instanceof Hitman) {
                     ((Enemy) collidingObject).setHealth(-shootingTower.getTowerDamage());
                 }
-                gameScreen.checkAliveEnemies(enemyList);
+                gameScreen.checkAliveEnemies();
 
                 if (((Enemy) collidingObject).getHealth() <= 0) {
                     ((Enemy) collidingObject).remove();

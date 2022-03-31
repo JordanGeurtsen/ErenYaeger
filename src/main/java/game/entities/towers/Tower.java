@@ -3,13 +3,16 @@ package game.entities.towers;
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.UpdateExposer;
+import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.entities.impl.SpriteEntity;
 import game.entities.enemies.Enemy;
+import game.entities.targeting.ProjectileSpawner;
 import game.scenes.GameScreen;
 
 import java.util.ArrayList;
 
-public abstract class Tower extends SpriteEntity {
+public abstract class Tower extends DynamicSpriteEntity implements UpdateExposer {
     protected GameScreen gameScreen;
     private Coordinate2D initialLocation;
     private Enemy target;
@@ -26,10 +29,15 @@ public abstract class Tower extends SpriteEntity {
     }
 
     public boolean isInRange(double rangeRadius, ArrayList<Enemy> enemyList) {
-        inRange = false;
-        for (Enemy e : enemyList) {
-            if (distanceTo(e) < rangeRadius) {
-                inRange = true;
+        if (enemyList.size() > 0) {
+            for (Enemy e : enemyList) {
+                if (distanceTo(e) <= rangeRadius) {
+                    inRange = true;
+                    System.out.println(inRange);
+                } else {
+                    inRange = false;
+                    System.out.println(inRange);
+                }
             }
         }
         return inRange;
@@ -46,7 +54,7 @@ public abstract class Tower extends SpriteEntity {
     public Enemy getTarget(double rangeRadius, ArrayList<Enemy> enemyList) {
         maxHealth = 0;
         closestDistance = rangeRadius;
-        if (enemyList.size() >= 1){
+        if (enemyList.size() >= 1) {
             for (Enemy e : enemyList) {
                 if (isInRange(getTowerRange(), enemyList)) {
                     if (e.getHealth() > maxHealth && distanceTo(e) < closestDistance) {
@@ -61,11 +69,6 @@ public abstract class Tower extends SpriteEntity {
             }
         }
         return target;
-    }
-
-    public int getAngle(Coordinate2D initialLocation, Enemy enemy){
-        int angle = getAngle(initialLocation, enemy);
-        return angle;
     }
 
     public ArrayList<Enemy> getEveryTarget(ArrayList<Enemy> enemyList, Tower t) {
@@ -88,5 +91,7 @@ public abstract class Tower extends SpriteEntity {
 
     abstract public Coordinate2D getInitialLocation();
 
+    abstract public ProjectileSpawner getSpawner();
+
     abstract public void setupSpawner();
- }
+}

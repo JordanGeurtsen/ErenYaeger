@@ -20,4 +20,5 @@ public abstract class ProjectileSpawner extends EntitySpawner {
 
     }
 
+    abstract public void setShootAngle(int shootAngle);
 }

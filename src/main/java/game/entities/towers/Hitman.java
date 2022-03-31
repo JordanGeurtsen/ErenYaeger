@@ -1,6 +1,7 @@
 package game.entities.towers;
 
 import com.github.hanyaeger.api.Coordinate2D;
+import game.entities.targeting.ProjectileSpawner;
 import game.scenes.GameScreen;
 
 public class Hitman extends Tower {
@@ -35,8 +36,17 @@ public class Hitman extends Tower {
     }
 
     @Override
+    public ProjectileSpawner getSpawner() {
+        return null;
+    }
+
+    @Override
     public void setupSpawner() {
 
     }
 
+    @Override
+    public void explicitUpdate(long timestamp) {
+
+    }
 }
