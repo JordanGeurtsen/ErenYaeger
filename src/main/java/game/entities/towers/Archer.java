@@ -1,16 +1,15 @@
 package game.entities.towers;
 
 import com.github.hanyaeger.api.Coordinate2D;
+import game.entities.targeting.ArrowSpawner;
 import game.scenes.GameScreen;
 
 public class Archer extends Tower {
     private double price = 100.0;
-    private double rangeRadius = 1500.0;
-    private double cooldown = 500.0;
-    private double damage = 30;
-    private int maxHealth = 0;
-
+    private double rangeRadius = 9000.00;
+    private double damage = 10;
     private Coordinate2D initialLocation;
+    private ArrowSpawner arrowSpawner;
 
     public Archer(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
         super(resource, initialLocation, gameScreen);
@@ -37,4 +36,9 @@ public class Archer extends Tower {
         return initialLocation;
     }
 
+    @Override
+    public void setupSpawner() {
+        arrowSpawner = new ArrowSpawner(500, getInitialLocation(),gameScreen);
+
+    }
 }

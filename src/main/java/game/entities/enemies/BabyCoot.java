@@ -1,6 +1,7 @@
 package game.entities.enemies;
 
 import com.github.hanyaeger.api.Coordinate2D;
+import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.Direction;
 
 public class BabyCoot extends Enemy{
@@ -34,14 +35,11 @@ public class BabyCoot extends Enemy{
                 speed = 0.6;
                 direction = Direction.UP;
                 setMotion(speed, direction);
-                System.out.println("SLOOOWW");
                 break;
             case NORMAL:
                 speed = 1.0;
                 direction = Direction.LEFT;
-                System.out.println("NOORRMAAAAL");
                 setMotion(speed, direction);
         }
     }
-
 }

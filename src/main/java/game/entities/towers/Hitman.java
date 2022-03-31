@@ -4,11 +4,10 @@ import com.github.hanyaeger.api.Coordinate2D;
 import game.scenes.GameScreen;
 
 public class Hitman extends Tower {
-    private double price = 150.0;
-    private int rangeRadius = 10000;
-    private int cooldown = 5;
-    private int damage = 300;
     private Coordinate2D initialLocation;
+    private double price = 15.0;
+    private double rangeRadius = 1000.0;
+    private double damage = 10;
 
     public Hitman(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
         super(resource, initialLocation, gameScreen);
@@ -33,6 +32,11 @@ public class Hitman extends Tower {
     @Override
     public Coordinate2D getInitialLocation() {
         return initialLocation;
+    }
+
+    @Override
+    public void setupSpawner() {
+
     }
 
 }

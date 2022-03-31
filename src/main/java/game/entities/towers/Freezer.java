@@ -2,33 +2,17 @@ package game.entities.towers;
 
 
 import com.github.hanyaeger.api.Coordinate2D;
-import game.entities.enemies.Enemy;
-import game.entities.enemies.MovementSpeed;
 import game.scenes.GameScreen;
-import game.scenes.TitleScreen;
-
-import java.util.ArrayList;
 
 public class Freezer extends Tower{
     private double price = 200.0;
-    private int rangeRadius = 250;
-    private int cooldown = 3;
-    private int damage = 20;
+    private double rangeRadius = 150;
+    private double damage = 20;
+    private Coordinate2D initialLocation;
 
     public Freezer(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
         super(resource, initialLocation, gameScreen);
-    }
-
-    public void freezeEnemies(ArrayList<Enemy> everyEnemyInRange, ArrayList<Enemy> enemyList){
-        for (Enemy e: enemyList) {
-            if(distanceTo(e) > rangeRadius){
-                e.setMovementSpeed(MovementSpeed.NORMAL);
-        }
-
-        for (Enemy t : everyEnemyInRange) {
-               t.setMovementSpeed(MovementSpeed.SLOW);
-            }
-        }
+        this.initialLocation = initialLocation;
     }
 
     @Override
@@ -41,12 +25,15 @@ public class Freezer extends Tower{
 
     @Override
     public double getTowerPrice() {
-        return price;
-    }
+        return price;}
 
     @Override
     public Coordinate2D getInitialLocation() {
-        return new Coordinate2D(0,0);
+        return initialLocation;
     }
 
+    @Override
+    public void setupSpawner() {
+
+    }
 }

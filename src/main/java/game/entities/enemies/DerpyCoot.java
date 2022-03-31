@@ -5,7 +5,7 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.Direction;
 
 public class DerpyCoot extends Enemy{
-        private int health = 2;
+        private int health = 20;
         private double speed;
         private Direction direction = Direction.LEFT;
         private double walkedDistance = 0.0;
@@ -23,7 +23,9 @@ public class DerpyCoot extends Enemy{
 
         @Override
         public void setHealth(double newHealth) {
+                System.out.println(this.health);
                 this.health += newHealth;
+                System.out.println(this.health);
         }
 
         public double getMovementSpeed(){return speed;}
@@ -32,15 +34,13 @@ public class DerpyCoot extends Enemy{
         public void setMovementSpeed(MovementSpeed movementSpeed) {
                 switch (movementSpeed){
                         case SLOW :
-                                speed = 1.3;
+                                speed = 1.1;
                                 direction = Direction.UP;
                                 setMotion(speed, direction);
-                                System.out.println("SLOOOWW");
                                 break;
                         case NORMAL:
-                                speed = 2.0;
+                                speed = 1.8;
                                 direction = Direction.LEFT;
-                                System.out.println("NOORRMAAAAL");
                                 setMotion(speed, direction);
                 }
         }

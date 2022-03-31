@@ -3,8 +3,8 @@ package game.entities.enemies;
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
-import com.github.hanyaeger.api.entities.Direction;
 import com.github.hanyaeger.api.entities.SceneBorderCrossingWatcher;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.scenes.SceneBorder;
@@ -17,7 +17,6 @@ public abstract class Enemy extends DynamicSpriteEntity implements Collider, Sce
         super(resource, initialLocation, new Size(75));
         this.initialLocation = initialLocation;
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
-//        setMotion(speed, Direction.LEFT);
     }
 
     public abstract int getHealth();
@@ -36,5 +35,6 @@ public abstract class Enemy extends DynamicSpriteEntity implements Collider, Sce
             case TOP, LEFT, RIGHT, BOTTOM -> remove();
         }
     }
+
     public abstract void setMovementSpeed(MovementSpeed movementSpeed);
 }

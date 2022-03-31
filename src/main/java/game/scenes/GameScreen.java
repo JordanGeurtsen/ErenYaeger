@@ -8,9 +8,13 @@ import com.github.hanyaeger.api.scenes.TileMapContainer;
 
 import game.entities.buttons.compositebutton.buyButton;
 import game.entities.counter.Counter;
+import game.entities.enemies.DerpyCoot;
 import game.entities.enemies.Enemy;
 import game.entities.enemies.FastCoot;
 import game.entities.enemies.MovementSpeed;
+import game.entities.targeting.ArrowSpawner;
+import game.entities.targeting.BulletSpawner;
+import game.entities.targeting.IceSpawner;
 import game.entities.targeting.ProjectileSpawner;
 import game.entities.tilemap.LevelTileMap;
 import game.entities.towers.Archer;
@@ -64,18 +68,17 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         var freezerBuy = new buyButton(new Coordinate2D(1050, 425), "sprites/towers/freezer_logo.png");
         addEntity(freezerBuy);
 
-//        var enemyTest1 = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(500, 500));
         var enemyTest1 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(600, 400));
         enemyList.add(enemyTest1);
 
-//        var enemyTest2 = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(800, 100));
-//        enemyList.add(enemyTest2);
+        var enemyTest2 = new DerpyCoot("sprites/enemies/derpy_coot.png", new Coordinate2D(700, 350));
+        enemyList.add(enemyTest2);
 //
 //        var enemyTest3 = new Enemy("sprites/enemies/derpy_coot.png", new Coordinate2D(150, 450));
 //        enemyList.add(enemyTest3);
 
-//        var archer = new Archer("sprites/enemies/mama_coot.png", new Coordinate2D(717, 187), this);
-//        towers.add(archer);
+        var archer = new Archer("sprites/enemies/mama_coot.png", new Coordinate2D(717, 187), this);
+        towers.add(archer);
 
         var freezer = new Freezer("sprites/enemies/thick_coot.png", new Coordinate2D(187.5, 412.5), this);
         towers.add(freezer);
@@ -87,9 +90,17 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     @Override
     public void setupEntitySpawners() {
         for (Tower t : towers) {
-            addEntitySpawner(new ProjectileSpawner((long) 1000.00, towers, enemyList, this));
+                Enemy target = t.getTarget(t.getTowerRange(), enemyList);
+                int shootAngle = (int) t.angleTo(target);
+                if (t instanceof Archer) {
+
+                } else if (t instanceof Hitman) {
+                    addEntitySpawner(new BulletSpawner(2000, t.getInitialLocation(), shootAngle, this));
+                } else if (t instanceof Freezer) {
+                    addEntitySpawner(new IceSpawner(50, t.getInitialLocation(), enemyList, this));
+                }
+            }
         }
-    }
 
     @Override
     public void setupTileMaps() {
@@ -97,9 +108,11 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     }
 
     public void checkAliveEnemies(ArrayList<Enemy> enemyList) {
-        for (Enemy e : enemyList) {
-            if (e.getHealth() == 0) {
-                e.remove();
+        for (int i = enemyList.size() - 1; i > 0; i--) {
+            if (enemyList.get(i).getHealth() <= 0) {
+                enemyList.remove(i);
+                points += 5;
+                coins += 10;
             }
         }
     }

@@ -35,12 +35,10 @@ public class MamaCoot extends Enemy{
                 speed = 1.1;
                 direction = Direction.UP;
                 setMotion(speed, direction);
-                System.out.println("SLOOOWW");
                 break;
             case NORMAL:
                 speed = 1.6;
                 direction = Direction.LEFT;
-                System.out.println("NOORRMAAAAL");
                 setMotion(speed, direction);
         }
     }
