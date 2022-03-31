@@ -5,9 +5,9 @@ import game.scenes.GameScreen;
 
 public class Hitman extends Tower {
     private Coordinate2D initialLocation;
-    private double price = 15.0;
-    private double rangeRadius = 1000.0;
-    private double damage = 10;
+    private static double price = 15.0;
+    private static double rangeRadius = 1250;
+    private static double damage = 10;
 
     public Hitman(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
         super(resource, initialLocation, gameScreen);

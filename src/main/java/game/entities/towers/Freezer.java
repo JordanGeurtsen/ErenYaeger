@@ -5,9 +5,9 @@ import com.github.hanyaeger.api.Coordinate2D;
 import game.scenes.GameScreen;
 
 public class Freezer extends Tower{
-    private double price = 200.0;
-    private double rangeRadius = 150;
-    private double damage = 20;
+    private static double price = 200.0;
+    private static double rangeRadius = 150;
+    private static double damage = 20;
     private Coordinate2D initialLocation;
 
     public Freezer(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {

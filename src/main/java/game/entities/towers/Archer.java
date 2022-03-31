@@ -5,9 +5,9 @@ import game.entities.targeting.ArrowSpawner;
 import game.scenes.GameScreen;
 
 public class Archer extends Tower {
-    private double price = 100.0;
-    private double rangeRadius = 9000.00;
-    private double damage = 10;
+    private static double price = 100.0;
+    private static double rangeRadius = 9000.00;
+    private static double damage = 10;
     private Coordinate2D initialLocation;
     private ArrowSpawner arrowSpawner;
 

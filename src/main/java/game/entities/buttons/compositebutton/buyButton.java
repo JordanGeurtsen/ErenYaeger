@@ -7,10 +7,18 @@ import game.entities.buttons.compositebutton.CompositeButton;
 
 public class buyButton extends CompositeButton {
     private String resource;
+    private String towerName;
+    private String price;
+    private String damage;
+    private String range;
 
-    public buyButton(Coordinate2D initialLocation, String resource) {
+    public buyButton(Coordinate2D initialLocation, String resource, String towerName, int price, int damage, int range) {
         super(initialLocation, resource);
         this.resource = resource;
+        this.towerName = towerName;
+        this.price = "Price =          " + price;
+        this.damage = "Damage =     " + damage;
+        this.range = "Range =        " + range;
     }
 
     @Override
@@ -29,32 +37,35 @@ public class buyButton extends CompositeButton {
 
         var titleText = new TextEntity(
                 new Coordinate2D(90, 0),
-                "Archer Tower"
+               // "Archer Tower"
+                towerName
         );
         addEntity(titleText);
 
         var priceText = new TextEntity(
                 new Coordinate2D(90, 15),
-                "Price =        100 C"
+               // "Price =        100 C"
+               price
         );
 
         addEntity(priceText);
 
         var damageText = new TextEntity(
                 new Coordinate2D(90, 25),
-                "Damage =   30 HP"
+                //"Damage =   30 HP"
+                damage
         );
         addEntity(damageText);
 
         var rangeText = new TextEntity(
                 new Coordinate2D(90, 35),
-                "Range =       45 Px"
+                //"Range =       45 Px"
+                range
         );
         addEntity(rangeText);
     }
 
     @Override
     public void onButtonClick() {
-
     }
 }

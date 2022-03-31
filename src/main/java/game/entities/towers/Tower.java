@@ -80,11 +80,11 @@ public abstract class Tower extends SpriteEntity {
         return everyTarget;
     }
 
-    abstract public double getTowerDamage();
+    public abstract double getTowerDamage();
 
-    abstract public double getTowerRange();
+    public abstract double getTowerRange();
 
-    abstract public double getTowerPrice();
+    public abstract double getTowerPrice();
 
     abstract public Coordinate2D getInitialLocation();
 
