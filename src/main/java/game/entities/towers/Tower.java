@@ -5,7 +5,6 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.UpdateExposer;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
-import com.github.hanyaeger.api.entities.impl.SpriteEntity;
 import game.entities.enemies.Enemy;
 import game.entities.targeting.ProjectileSpawner;
 import game.scenes.GameScreen;
@@ -33,10 +32,10 @@ public abstract class Tower extends DynamicSpriteEntity implements UpdateExposer
             for (Enemy e : enemyList) {
                 if (distanceTo(e) <= rangeRadius) {
                     inRange = true;
-                    System.out.println(inRange);
+//                    System.out.println(inRange);
                 } else {
                     inRange = false;
-                    System.out.println(inRange);
+//                    System.out.println(inRange);
                 }
             }
         }

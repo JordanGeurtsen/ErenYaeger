@@ -67,5 +67,6 @@ public class buyButton extends CompositeButton {
 
     @Override
     public void onButtonClick() {
+        //defineMap(SelectPlaceTileMap)?
     }
 }

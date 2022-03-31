@@ -7,7 +7,7 @@ import game.scenes.GameScreen;
 
 public class Archer extends Tower {
     private double price = 100.0;
-    private double rangeRadius = 600.0;
+    private double rangeRadius = 400.0;
     private double damage = 10;
     private Coordinate2D initialLocation;
     private ArrowSpawner arrowSpawner;

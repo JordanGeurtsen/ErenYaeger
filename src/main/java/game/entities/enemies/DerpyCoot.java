@@ -3,6 +3,7 @@ package game.entities.enemies;
 import com.github.hanyaeger.api.Coordinate2D;
 
 import com.github.hanyaeger.api.entities.Direction;
+import game.scenes.GameScreen;
 
 public class DerpyCoot extends Enemy{
         private int health = 20;
@@ -11,8 +12,8 @@ public class DerpyCoot extends Enemy{
         private double walkedDistance = 0.0;
         private Coordinate2D initialLocation;
 
-        public DerpyCoot(String resource, Coordinate2D initialLocation) {
-                super(resource, initialLocation);
+        public DerpyCoot(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
+                super(resource, initialLocation, gameScreen);
                 this.initialLocation = initialLocation;
                 setMotion(speed, direction);
         }
@@ -23,9 +24,7 @@ public class DerpyCoot extends Enemy{
 
         @Override
         public void setHealth(double newHealth) {
-                System.out.println(this.health);
                 this.health += newHealth;
-                System.out.println(this.health);
         }
 
         public double getMovementSpeed(){return speed;}

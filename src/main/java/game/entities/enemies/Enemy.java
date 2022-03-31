@@ -8,14 +8,17 @@ import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.SceneBorderCrossingWatcher;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.scenes.SceneBorder;
+import game.scenes.GameScreen;
 
 
 public abstract class Enemy extends DynamicSpriteEntity implements Collider, SceneBorderCrossingWatcher {
     private Coordinate2D initialLocation;
+    GameScreen gameScreen;
 
-    public Enemy(String resource, Coordinate2D initialLocation) {
+    public Enemy(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
         super(resource, initialLocation, new Size(75));
         this.initialLocation = initialLocation;
+        this.gameScreen = gameScreen;
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
     }
 
@@ -32,7 +35,7 @@ public abstract class Enemy extends DynamicSpriteEntity implements Collider, Sce
     @Override
     public void notifyBoundaryCrossing(SceneBorder border) {
         switch (border) {
-            case TOP, LEFT, RIGHT, BOTTOM -> remove();
+            case TOP, LEFT, RIGHT, BOTTOM -> gameScreen.enemyPastBorder(true, this);
         }
     }
 

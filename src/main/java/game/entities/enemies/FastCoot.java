@@ -2,6 +2,7 @@ package game.entities.enemies;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.Direction;
+import game.scenes.GameScreen;
 
 public class FastCoot extends Enemy{
     private int health = 20;
@@ -10,8 +11,8 @@ public class FastCoot extends Enemy{
     private Direction direction = Direction.LEFT;
     private Coordinate2D initialLocation;
 
-    public FastCoot(String resource, Coordinate2D initialLocation) {
-        super(resource, initialLocation);
+    public FastCoot(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
+        super(resource, initialLocation, gameScreen);
         this.initialLocation = initialLocation;
         setMotion(getMovementSpeed(), direction);
 

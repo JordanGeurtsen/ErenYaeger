@@ -13,7 +13,6 @@ import game.scenes.GameScreen;
 import java.util.ArrayList;
 
 public class ArrowSpawner extends ProjectileSpawner {
-    private ArrayList<Enemy> enemyList;
     private GameScreen gameScreen;
     private int shootAngle;
     private boolean needToShoot;
@@ -29,9 +28,14 @@ public class ArrowSpawner extends ProjectileSpawner {
 
     @Override
     protected void spawnEntities() {
-        if (needToShoot) {
-            spawn(new Arrow(coordinate2D, shootAngle, gameScreen, shootingTower, enemyList));
-            needToShoot = !needToShoot;
+        if(gameScreen.enemyList.size() > 0) {
+            if (needToShoot) {
+                System.out.println(gameScreen.enemyList);
+                System.out.println(gameScreen.enemyList.size());
+                spawn(new Arrow(coordinate2D, shootAngle, gameScreen, shootingTower));
+                System.out.println(gameScreen.enemyList);
+                needToShoot = !needToShoot;
+            }
         }
     }
 

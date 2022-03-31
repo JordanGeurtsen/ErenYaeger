@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class BulletSpawner extends ProjectileSpawner{
     private ArrayList<Tower> towers;
-    private ArrayList<Enemy> enemyList;
+//    private ArrayList<Enemy> enemyList;
     private GameScreen gameScreen;
     private boolean needToSpawn = false;
     private Enemy target;
@@ -31,16 +31,16 @@ public class BulletSpawner extends ProjectileSpawner{
     @Override
     protected void spawnEntities() {
         if (needToSpawn) {
-            if (enemyList.size() > 0) {
-                for (Enemy e : enemyList) {
+            if (gameScreen.enemyList.size() > 0) {
+                for (Enemy e : gameScreen.enemyList) {
                     e.setMovementSpeed(MovementSpeed.NORMAL);
                 }
                 if (towers.size() > 0) {
                     for (Tower t : towers) {
-                        if (t.isInRange(t.getTowerRange(), enemyList)) {
-                            target = t.getTarget(t.getTowerRange(), enemyList);
+                        if (t.isInRange(t.getTowerRange(), gameScreen.enemyList)) {
+                            target = t.getTarget(t.getTowerRange(), gameScreen.enemyList);
                             if (t instanceof Hitman) {
-                                Arrow arrow = new Arrow(t.getInitialLocation(), shootAngle, gameScreen, shootingTower, enemyList);
+                                Arrow arrow = new Arrow(t.getInitialLocation(), shootAngle, gameScreen, shootingTower);
                                 arrow.setAnchorPoint(AnchorPoint.CENTER_CENTER);
                                 spawn(arrow);
                             }
@@ -51,7 +51,7 @@ public class BulletSpawner extends ProjectileSpawner{
             needToSpawn = false;
         } else if (!needToSpawn){
             for (Tower t: towers) {
-                if (t.isInRange(t.getTowerRange(), enemyList)) {
+                if (t.isInRange(t.getTowerRange(), gameScreen.enemyList)) {
                     needToSpawn = true;
                 }
             }

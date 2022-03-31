@@ -2,6 +2,7 @@ package game.entities.enemies;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.Direction;
+import game.scenes.GameScreen;
 
 public class MamaCoot extends Enemy{
     private int health = 2;
@@ -10,8 +11,8 @@ public class MamaCoot extends Enemy{
     private double walkedDistance = 0.0;
     private Coordinate2D initialLocation;
 
-    public MamaCoot(String resource, Coordinate2D initialLocation) {
-        super(resource, initialLocation);
+    public MamaCoot(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
+        super(resource, initialLocation, gameScreen);
         this.initialLocation = initialLocation;
         setMotion(getMovementSpeed(), direction);
     }
@@ -33,12 +34,12 @@ public class MamaCoot extends Enemy{
         switch (movementSpeed){
             case SLOW :
                 speed = 1.1;
-                direction = Direction.UP;
+                direction = Direction.DOWN;
                 setMotion(speed, direction);
                 break;
             case NORMAL:
                 speed = 1.6;
-                direction = Direction.LEFT;
+                direction = Direction.RIGHT;
                 setMotion(speed, direction);
         }
     }

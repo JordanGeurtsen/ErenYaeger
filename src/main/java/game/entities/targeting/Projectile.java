@@ -15,18 +15,15 @@ import game.entities.towers.Hitman;
 import game.entities.towers.Tower;
 import game.scenes.GameScreen;
 
-import java.util.ArrayList;
 
 public class Projectile extends DynamicSpriteEntity implements Collided, SceneBorderCrossingWatcher {
     private GameScreen gameScreen;
-    private ArrayList<Enemy> enemyList;
     private Tower shootingTower;
 
-    public Projectile(String resource, Coordinate2D initialLocation, GameScreen gameScreen, Tower shootingTower, ArrayList<Enemy> enemyList) {
-        super(resource, initialLocation);
+    public Projectile(String resource, Coordinate2D initialLocation, GameScreen gameScreen, Tower shootingTower) {
+        super(resource, initialLocation, new Size(100,10));
         this.shootingTower = shootingTower;
         this.gameScreen = gameScreen;
-        this.enemyList = enemyList;
     }
 
     @Override
@@ -35,7 +32,6 @@ public class Projectile extends DynamicSpriteEntity implements Collided, SceneBo
                 remove();
                 if (shootingTower instanceof Archer) {
                     ((Enemy) collidingObject).setHealth(-shootingTower.getTowerDamage());
-                    System.out.println(shootingTower.getTowerDamage());
                 } else if (shootingTower instanceof Freezer) {
                     ((Enemy) collidingObject).setMovementSpeed(MovementSpeed.SLOW);
                 } else if (shootingTower instanceof Hitman) {
@@ -44,6 +40,7 @@ public class Projectile extends DynamicSpriteEntity implements Collided, SceneBo
                 gameScreen.checkAliveEnemies();
 
                 if (((Enemy) collidingObject).getHealth() <= 0) {
+                    gameScreen.enemyList.remove(((Enemy) collidingObject));
                     ((Enemy) collidingObject).remove();
                 }
             }

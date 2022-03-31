@@ -10,7 +10,7 @@ import game.scenes.GameScreen;
 import java.util.ArrayList;
 
 public class IceSpawner extends ProjectileSpawner {
-    private ArrayList<Tower> tower;
+//    private ArrayList<Tower> tower;
     private ArrayList<Enemy> enemyList;
     private ArrayList<Enemy> everyTargetInRange = new ArrayList<>();
     private GameScreen gameScreen;

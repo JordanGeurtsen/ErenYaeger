@@ -2,6 +2,7 @@ package game.entities.enemies;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.Direction;
+import game.scenes.GameScreen;
 
 public class ThickCoot extends Enemy {
     private int health = 2;
@@ -10,8 +11,8 @@ public class ThickCoot extends Enemy {
     private double walkedDistance = 0.0;
     private Coordinate2D initialLocation;
 
-    public ThickCoot(String resource, Coordinate2D initialLocation) {
-        super(resource, initialLocation);
+    public ThickCoot(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
+        super(resource, initialLocation, gameScreen);
         this.initialLocation = initialLocation;
         setMotion(getMovementSpeed(), direction);
     }
