@@ -41,7 +41,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     public void setupScene() {
         setBackgroundColor(Color.PAPAYAWHIP);
         setBackgroundAudioVolume(0.1);
-        //setBackgroundAudio("audio/relaxing_bg_music_2.mp3");
+//        setBackgroundAudio("audio/relaxing_bg_music_2.mp3");
 
     }
 
@@ -68,22 +68,25 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
                 "Freezer", 200, 0, 150);
         addEntity(freezerBuy);
 
-        var enemyTest1 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(1237, 400), this);
+        var enemyTest1 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(1237, 187), this);
         enemyList.add(enemyTest1);
 
-        var enemyTest2 = new DerpyCoot("sprites/enemies/derpy_coot.png", new Coordinate2D(1237, 350), this);
-        enemyList.add(enemyTest2);
-
-        var enemyTest3 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(1237, 450), this);
+        var enemyTest3 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(1237, 300), this);
         enemyList.add(enemyTest3);
+
+        var enemyTest2 = new DerpyCoot("sprites/enemies/derpy_coot.png", new Coordinate2D(1200, 350), this);
+        enemyList.add(enemyTest2);
+//
+        var enemyTest4 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(1200, 562.5), this);
+        enemyList.add(enemyTest4);
 //
 //        var enemyTest4 = new MamaCoot("sprites/enemies/mama_coot.png", new Coordinate2D(50, 50), this);
 //        enemyList.add(enemyTest4);
 
-        var archer = new Archer("sprites/towers/archer_tower.png", new Coordinate2D(413, 187), this);
+        var archer = new Archer("sprites/towers/archer_tower.png", new Coordinate2D(617.5, 187), this);
         towers.add(archer);
 
-        var archer2 = new Archer("sprites/towers/archer_tower.png", new Coordinate2D(617.5, 587.5), this);
+        var archer2 = new Archer("sprites/towers/archer_tower.png", new Coordinate2D(617.5, 562.5), this);
         towers.add(archer2);
 
 //        var freezer = new Freezer("sprites/towers/freezer_tower.png", new Coordinate2D(187.5, 412.5), this);

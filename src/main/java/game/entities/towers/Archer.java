@@ -4,16 +4,21 @@ import com.github.hanyaeger.api.Coordinate2D;
 import game.entities.enemies.Enemy;
 import game.entities.targeting.ArrowSpawner;
 import game.entities.targeting.ProjectileSpawner;
+import game.entities.targeting.Target;
 import game.scenes.GameScreen;
+
+import java.util.ArrayList;
 
 public class Archer extends Tower {
     private double price = 100.0;
-    private double rangeRadius = 300.0;
+    private double rangeRadius = 225;
     private double damage = 10;
     private Coordinate2D initialLocation;
     private ArrowSpawner spawner;
+//    private double shootAngle;
     private GameScreen gameScreen;
     private Enemy target;
+    private ArrayList<Enemy> enemiesInRange = new ArrayList<>();
 
     public Archer(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
         super(resource, initialLocation, gameScreen);
@@ -49,15 +54,18 @@ public class Archer extends Tower {
 
     @Override
     public void explicitUpdate(long timestamp) {
-            if (gameScreen.enemyList.size() > 0) {
-                for (Tower t : gameScreen.towers) {
-                    if (t.isInRange(t.getTowerRange(), gameScreen.enemyList)) {
-                        target = t.getTarget(getTowerRange(), gameScreen.enemyList);
-                        System.out.println(target);
-                        spawner.setShootAngle((int) angleTo(target));
-                        spawner.setNeedToShoot(true);
-//                        t.inRange = false;
+        if (gameScreen.enemyList.size() > 0) {
+            for (Tower t : gameScreen.towers) {
+                for (Enemy e : gameScreen.enemyList) {
+                    target = t.getTarget(gameScreen.enemyList);
+                    if (target != null) {
+//                        shootAngle = angleTo(target);
+//                        System.out.println(target.getInitialLocation() + " " + shootAngle);
+                        spawner.shoot(getShootAngle());
+                    } else {
+                        spawner.setNeedToShoot(false);
                     }
+                }
             }
         }
     }

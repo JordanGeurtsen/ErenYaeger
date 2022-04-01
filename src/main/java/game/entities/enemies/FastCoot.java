@@ -5,7 +5,7 @@ import com.github.hanyaeger.api.entities.Direction;
 import game.scenes.GameScreen;
 
 public class FastCoot extends Enemy{
-    private int health = 20;
+    private int health = 50;
     private double walkedDistance = 0.0;
     private double speed = 2.5;
     private Direction direction = Direction.LEFT;

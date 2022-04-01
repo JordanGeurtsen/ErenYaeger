@@ -3,14 +3,12 @@ package game.entities.targeting;
 import com.github.hanyaeger.api.Coordinate2D;
 import game.entities.enemies.Enemy;
 import game.entities.enemies.MovementSpeed;
-import game.entities.towers.Freezer;
 import game.entities.towers.Tower;
 import game.scenes.GameScreen;
 
 import java.util.ArrayList;
 
 public class IceSpawner extends ProjectileSpawner {
-//    private ArrayList<Tower> tower;
     private ArrayList<Enemy> enemyList;
     private ArrayList<Enemy> everyTargetInRange = new ArrayList<>();
     private GameScreen gameScreen;
@@ -35,7 +33,7 @@ public class IceSpawner extends ProjectileSpawner {
         if (needToSpawn) {
             if (enemyList.size() > 0) {
                             for(Enemy e : enemyList) {
-                                if (shootingTower.isMutipleInRange(shootingTower.getTowerRange(), e)) {
+                                if (shootingTower.isInRange(shootingTower.getTowerRange(), e)) {
                                     everyTargetInRange = shootingTower.getEveryTarget(enemyList, shootingTower);
                                 }
                             }
@@ -48,11 +46,6 @@ public class IceSpawner extends ProjectileSpawner {
             needToSpawn = !needToSpawn;
     }
 
-    @Override
-    public void setShootAngle(int shootAngle) {
-
-    }
-//
 //    @Override
 //    protected void spawnEntities() {
 //        if (needToShoot) {
@@ -61,9 +54,9 @@ public class IceSpawner extends ProjectileSpawner {
 //        }
 //    }
 //
-//    public void setShootAngle(int shootAngle) {
-//        this.shootAngle = shootAngle;
-//    }
+    public void setShootAngle(double shootAngle) {
+        this.shootAngle = shootAngle;
+    }
 //
 //    public void setNeedToShoot(boolean shootNeed) {
 //        this.needToShoot = shootNeed;

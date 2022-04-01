@@ -6,7 +6,6 @@ import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.UpdateExposer;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import game.entities.enemies.Enemy;
-import game.entities.targeting.ArrowSpawner;
 import game.entities.targeting.ProjectileSpawner;
 import game.scenes.GameScreen;
 
@@ -19,6 +18,7 @@ public abstract class Tower extends DynamicSpriteEntity implements UpdateExposer
     private double maxHealth = 0.0;
     private boolean inRange;
     public double closestDistance;
+    private double shootAngle;
     private ProjectileSpawner spawner;
 
     public Tower(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
@@ -28,22 +28,21 @@ public abstract class Tower extends DynamicSpriteEntity implements UpdateExposer
 
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
     }
+//
+//    public boolean isInRange(double rangeRadius, ArrayList<Enemy> enemyList) {
+//        if (enemyList.size() > 0) {
+//            for (Enemy e : enemyList) {
+//                if (distanceTo(e) <= rangeRadius) {
+//                    inRange = true;
+//                } else {
+//                    inRange = false;
+//                }
+//            }
+//        }
+//        return inRange;
+//    }
 
-    public boolean isInRange(double rangeRadius, ArrayList<Enemy> enemyList) {
-        if (enemyList.size() > 0) {
-            for (Enemy e : enemyList) {
-                if (distanceTo(e) <= rangeRadius) {
-                    inRange = true;
-                    System.out.println(e + "inrange fucker");
-                } else {
-                    inRange = false;
-                }
-            }
-        }
-        return inRange;
-    }
-
-    public boolean isMutipleInRange(double rangeRadius, Enemy e) {
+    public boolean isInRange(double rangeRadius, Enemy e) {
         inRange = false;
         if (distanceTo(e) < rangeRadius) {
             inRange = true;
@@ -51,18 +50,23 @@ public abstract class Tower extends DynamicSpriteEntity implements UpdateExposer
         return inRange;
     }
 
-    public Enemy getTarget(double rangeRadius, ArrayList<Enemy> enemyList) {
+    public Enemy getTarget(ArrayList<Enemy> enemyList) {
         maxHealth = 0;
-        closestDistance = rangeRadius;
-        if (enemyList.size() >= 1) {
-            for (Enemy e : enemyList) {
-                if (isInRange(getTowerRange(), enemyList)) {
-                    if (e.getHealth() > maxHealth && distanceTo(e) < closestDistance) {
-                        maxHealth = e.getHealth();
-                        closestDistance = distanceTo(e);
-                        target = e;
-                        if (e.getHealth() <= 0) {
-                            closestDistance = rangeRadius;
+        closestDistance = getTowerRange();
+        ArrayList<Enemy> enemiesInRange = new ArrayList<>();
+        for (Enemy e : enemyList) {
+            if (isInRange(getTowerRange(), e)) {
+                enemiesInRange.add(e);
+                if(enemiesInRange != null) {
+                    for (Enemy r : enemiesInRange) {
+                        if (r.getHealth() > maxHealth && distanceTo(r) < closestDistance) {
+                            maxHealth = r.getHealth();
+                            closestDistance = distanceTo(r);
+                            target = r;
+                            setShootAngle(angleTo(target));
+                            if (r.getHealth() <= 0 || distanceTo(r) > getTowerRange()) {
+                                closestDistance = getTowerRange();
+                            }
                         }
                     }
                 }
@@ -75,12 +79,20 @@ public abstract class Tower extends DynamicSpriteEntity implements UpdateExposer
         ArrayList<Enemy> everyTarget = new ArrayList<>();
         if (enemyList.size() >= 1){
             for (Enemy e : enemyList) {
-                if (isMutipleInRange(t.getTowerRange(), e)) {
+                if (isInRange(t.getTowerRange(), e)) {
                     everyTarget.add(e);
                 }
             }
         }
         return everyTarget;
+    }
+
+    public void setShootAngle(double shootAngle) {
+        this.shootAngle = shootAngle;
+    }
+
+    public double getShootAngle(){
+        return shootAngle;
     }
 
     public abstract double getTowerDamage();

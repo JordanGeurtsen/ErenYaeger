@@ -34,9 +34,7 @@ public abstract class Enemy extends DynamicSpriteEntity implements Collider, Sce
 
     @Override
     public void notifyBoundaryCrossing(SceneBorder border) {
-        switch (border) {
-            case TOP, LEFT, RIGHT, BOTTOM -> gameScreen.enemyPastBorder(true, this);
-        }
+        gameScreen.enemyPastBorder(true, this);
     }
 
     public abstract void setMovementSpeed(MovementSpeed movementSpeed);

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class ArrowSpawner extends ProjectileSpawner {
     private GameScreen gameScreen;
-    private int shootAngle;
+    private double shootAngle;
     private boolean needToShoot;
     private Coordinate2D coordinate2D;
     private Tower shootingTower;
@@ -28,23 +28,30 @@ public class ArrowSpawner extends ProjectileSpawner {
 
     @Override
     protected void spawnEntities() {
-        if(gameScreen.enemyList.size() > 0) {
-            if (needToShoot) {
-//                System.out.println(gameScreen.enemyList);
-//                System.out.println(gameScreen.enemyList.size());
-                spawn(new Arrow(coordinate2D, shootAngle, gameScreen, shootingTower));
-//                System.out.println(gameScreen.enemyList);
-                needToShoot = !needToShoot;
+        if (gameScreen.enemyList.size() > 0) {
+            for(Enemy e: gameScreen.enemyList) {
+                if (shootingTower.isInRange(shootingTower.getTowerRange(), e)) {
+                    if (needToShoot) {
+                        spawn(new Arrow(coordinate2D, shootAngle, gameScreen, shootingTower));
+                        needToShoot = !needToShoot;
+                    }
+                }
             }
         }
     }
 
-    public void setShootAngle(int shootAngle) {
-        this.shootAngle = shootAngle;
+    @Override
+    public void setShootAngle(double shootAngle) {
+            this.shootAngle = shootAngle;
     }
 
     public void setNeedToShoot(boolean shootNeed) {
         this.needToShoot = shootNeed;
     }
+
+    public void shoot(double shootAngle) {
+        setShootAngle(shootAngle);
+        setNeedToShoot(true);
     }
+}
 

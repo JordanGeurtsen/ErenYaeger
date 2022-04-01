@@ -17,7 +17,7 @@ public class BulletSpawner extends ProjectileSpawner{
     private boolean needToSpawn = false;
     private Enemy target;
     private Coordinate2D coordinate2D;
-    private int shootAngle;
+    private double shootAngle;
     private Tower shootingTower;
 
     public BulletSpawner (long intervalInMs, Coordinate2D coordinate2D, int shootAngle, Tower shootingTower, GameScreen gameScreen) {
@@ -37,29 +37,34 @@ public class BulletSpawner extends ProjectileSpawner{
                 }
                 if (towers.size() > 0) {
                     for (Tower t : towers) {
-                        if (t.isInRange(t.getTowerRange(), gameScreen.enemyList)) {
-                            target = t.getTarget(t.getTowerRange(), gameScreen.enemyList);
-                            if (t instanceof Hitman) {
-                                Arrow arrow = new Arrow(t.getInitialLocation(), shootAngle, gameScreen, shootingTower);
-                                arrow.setAnchorPoint(AnchorPoint.CENTER_CENTER);
-                                spawn(arrow);
+                        for (Enemy e : gameScreen.enemyList) {
+                            if (t.isInRange(t.getTowerRange(), e)) {
+//                                target = t.getTarget(t.getTowerRange(), e);
+//                                if (t instanceof Hitman) {
+//                                    Arrow arrow = new Arrow(t.getInitialLocation(), shootAngle, gameScreen, shootingTower);
+//                                    arrow.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+//                                    spawn(arrow);
+//                                }
                             }
                         }
                     }
                 }
-            }
-            needToSpawn = false;
-        } else if (!needToSpawn){
-            for (Tower t: towers) {
-                if (t.isInRange(t.getTowerRange(), gameScreen.enemyList)) {
-                    needToSpawn = true;
+                needToSpawn = false;
+            } else if (!needToSpawn) {
+                for (Tower t : towers) {
+                    for (Enemy e : gameScreen.enemyList) {
+                        if (t.isInRange(t.getTowerRange(), e)) {
+                            needToSpawn = true;
+                        }
+                    }
                 }
             }
         }
     }
 
     @Override
-    public void setShootAngle(int shootAngle) {
-
+    public void setShootAngle(double shootAngle) {
+        this.shootAngle = shootAngle;
+        System.out.println("set");
     }
 }
