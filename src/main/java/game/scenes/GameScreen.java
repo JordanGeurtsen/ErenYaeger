@@ -68,13 +68,13 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
                 "Freezer", 200, 0, 150);
         addEntity(freezerBuy);
 
-        var enemyTest1 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(600, 400), this);
+        var enemyTest1 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(1237, 400), this);
         enemyList.add(enemyTest1);
 
-        var enemyTest2 = new DerpyCoot("sprites/enemies/derpy_coot.png", new Coordinate2D(700, 350), this);
+        var enemyTest2 = new DerpyCoot("sprites/enemies/derpy_coot.png", new Coordinate2D(1237, 350), this);
         enemyList.add(enemyTest2);
 
-        var enemyTest3 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(600, 450), this);
+        var enemyTest3 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(1237, 450), this);
         enemyList.add(enemyTest3);
 //
 //        var enemyTest4 = new MamaCoot("sprites/enemies/mama_coot.png", new Coordinate2D(50, 50), this);
@@ -83,8 +83,11 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         var archer = new Archer("sprites/towers/archer_tower.png", new Coordinate2D(413, 187), this);
         towers.add(archer);
 
-        var freezer = new Freezer("sprites/towers/freezer_tower.png", new Coordinate2D(187.5, 412.5), this);
-        towers.add(freezer);
+        var archer2 = new Archer("sprites/towers/archer_tower.png", new Coordinate2D(617.5, 587.5), this);
+        towers.add(archer2);
+
+//        var freezer = new Freezer("sprites/towers/freezer_tower.png", new Coordinate2D(187.5, 412.5), this);
+//        towers.add(freezer);
 
 //
 //        var hitman = new Hitman("sprites/towers/hitman_tower.png", new Coordinate2D(187.5, 412.5), this);
@@ -97,36 +100,25 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     @Override
     public void setupEntitySpawners() {
         for (Tower t : towers) {
-            t.setupSpawner();
             addEntitySpawner(t.getSpawner());
         }
-//                Enemy target =t.getTarget(t.getTowerRange(), enemyList);
-//                int shootAngle = (int) t.angleTo(target);
-//                if (t instanceof Archer) {
-//
-//                } else if (t instanceof Hitman) {
-//                    addEntitySpawner(new BulletSpawner(2000, t.getInitialLocation(), shootAngle, this));
-//                } else if (t instanceof Freezer) {
-//                    addEntitySpawner(new IceSpawner(50, t.getInitialLocation(), enemyList, this));
-//                }
-//            }
-        }
+    }
 
     @Override
     public void setupTileMaps() {
         addTileMap(new LevelTileMap());
     }
-
-    public void checkAliveEnemies() {
-        for (int i = enemyList.size() - 1; i > 0; i--) {
-            if (enemyList.get(i).getHealth() <= 0) {
-                enemyList.remove(i);
-                enemyList.get(i).remove();
-                points += 5;
-                coins += 10;
-            }
-        }
-    }
+//
+//    public void checkAliveEnemies() {
+//        for (int i = enemyList.size() - 1; i > 0; i--) {
+//            if (enemyList.get(i).getHealth() <= 0) {
+//                enemyList.remove(i);
+//                enemyList.get(i).remove();
+//                points += 5;
+//                coins += 10;
+//            }
+//        }
+//    }
 
     public void enemyPastBorder(boolean pastBorder, Enemy e){
         if(pastBorder) {

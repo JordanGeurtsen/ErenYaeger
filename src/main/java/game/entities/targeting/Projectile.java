@@ -21,7 +21,7 @@ public class Projectile extends DynamicSpriteEntity implements Collided, SceneBo
     private Tower shootingTower;
 
     public Projectile(String resource, Coordinate2D initialLocation, GameScreen gameScreen, Tower shootingTower) {
-        super(resource, initialLocation, new Size(100,10));
+        super(resource, initialLocation, new Size(60));
         this.shootingTower = shootingTower;
         this.gameScreen = gameScreen;
     }
@@ -37,8 +37,6 @@ public class Projectile extends DynamicSpriteEntity implements Collided, SceneBo
                 } else if (shootingTower instanceof Hitman) {
                     ((Enemy) collidingObject).setHealth(-shootingTower.getTowerDamage());
                 }
-                gameScreen.checkAliveEnemies();
-
                 if (((Enemy) collidingObject).getHealth() <= 0) {
                     gameScreen.enemyList.remove(((Enemy) collidingObject));
                     ((Enemy) collidingObject).remove();

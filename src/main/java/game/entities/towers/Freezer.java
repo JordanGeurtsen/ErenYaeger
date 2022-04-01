@@ -12,7 +12,7 @@ public class Freezer extends Tower{
     private static double rangeRadius = 150;
     private static double damage = 20;
     private Coordinate2D initialLocation;
-    private IceSpawner iceSpawner;
+    private IceSpawner spawner;
     private GameScreen gameScreen;
 
     public Freezer(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
@@ -40,12 +40,8 @@ public class Freezer extends Tower{
 
     @Override
     public ProjectileSpawner getSpawner() {
-        return iceSpawner;
-    }
-
-    @Override
-    public void setupSpawner() {
-        iceSpawner = new IceSpawner(500, getInitialLocation(), gameScreen.enemyList, this, gameScreen);
+        spawner = new IceSpawner(500, getInitialLocation(), gameScreen.enemyList, this, gameScreen);
+        return spawner;
     }
 
     @Override

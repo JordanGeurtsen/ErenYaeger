@@ -3,14 +3,15 @@ package game.entities.towers;
 import com.github.hanyaeger.api.Coordinate2D;
 import game.entities.enemies.Enemy;
 import game.entities.targeting.ArrowSpawner;
+import game.entities.targeting.ProjectileSpawner;
 import game.scenes.GameScreen;
 
 public class Archer extends Tower {
     private double price = 100.0;
-    private double rangeRadius = 400.0;
+    private double rangeRadius = 300.0;
     private double damage = 10;
     private Coordinate2D initialLocation;
-    private ArrowSpawner arrowSpawner;
+    private ArrowSpawner spawner;
     private GameScreen gameScreen;
     private Enemy target;
 
@@ -18,6 +19,7 @@ public class Archer extends Tower {
         super(resource, initialLocation, gameScreen);
         this.initialLocation = initialLocation;
         this.gameScreen = gameScreen;
+        spawner = new ArrowSpawner(500, getInitialLocation(), this, gameScreen);
     }
 
     @Override
@@ -41,26 +43,21 @@ public class Archer extends Tower {
     }
 
     @Override
-    public void setupSpawner() {
-        arrowSpawner = new ArrowSpawner(500, getInitialLocation(), this, gameScreen);
-    }
-
-    @Override
-    public ArrowSpawner getSpawner(){
-        return arrowSpawner;
+    public ProjectileSpawner getSpawner() {
+        return spawner;
     }
 
     @Override
     public void explicitUpdate(long timestamp) {
-        if (timestamp % 1000 == 0) {
             if (gameScreen.enemyList.size() > 0) {
                 for (Tower t : gameScreen.towers) {
-                    if (t.isInRange(getTowerRange(), gameScreen.enemyList)) {
-                        target = getTarget(getTowerRange(), gameScreen.enemyList);
-                        arrowSpawner.setShootAngle((int) angleTo(target));
-                        arrowSpawner.setNeedToShoot(true);
+                    if (t.isInRange(t.getTowerRange(), gameScreen.enemyList)) {
+                        target = t.getTarget(getTowerRange(), gameScreen.enemyList);
+                        System.out.println(target);
+                        spawner.setShootAngle((int) angleTo(target));
+                        spawner.setNeedToShoot(true);
+//                        t.inRange = false;
                     }
-                }
             }
         }
     }

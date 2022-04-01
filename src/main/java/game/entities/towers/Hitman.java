@@ -9,6 +9,7 @@ public class Hitman extends Tower {
     private static double price = 15.0;
     private static double rangeRadius = 1250;
     private static double damage = 10;
+    private ProjectileSpawner spawner;
 
     public Hitman(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
         super(resource, initialLocation, gameScreen);
@@ -37,12 +38,7 @@ public class Hitman extends Tower {
 
     @Override
     public ProjectileSpawner getSpawner() {
-        return null;
-    }
-
-    @Override
-    public void setupSpawner() {
-
+        return spawner;
     }
 
     @Override

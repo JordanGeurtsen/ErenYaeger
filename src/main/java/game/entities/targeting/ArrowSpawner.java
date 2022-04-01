@@ -30,10 +30,10 @@ public class ArrowSpawner extends ProjectileSpawner {
     protected void spawnEntities() {
         if(gameScreen.enemyList.size() > 0) {
             if (needToShoot) {
-                System.out.println(gameScreen.enemyList);
-                System.out.println(gameScreen.enemyList.size());
+//                System.out.println(gameScreen.enemyList);
+//                System.out.println(gameScreen.enemyList.size());
                 spawn(new Arrow(coordinate2D, shootAngle, gameScreen, shootingTower));
-                System.out.println(gameScreen.enemyList);
+//                System.out.println(gameScreen.enemyList);
                 needToShoot = !needToShoot;
             }
         }

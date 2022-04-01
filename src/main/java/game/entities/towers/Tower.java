@@ -6,6 +6,7 @@ import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.UpdateExposer;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import game.entities.enemies.Enemy;
+import game.entities.targeting.ArrowSpawner;
 import game.entities.targeting.ProjectileSpawner;
 import game.scenes.GameScreen;
 
@@ -17,7 +18,8 @@ public abstract class Tower extends DynamicSpriteEntity implements UpdateExposer
     private Enemy target;
     private double maxHealth = 0.0;
     private boolean inRange;
-    double closestDistance;
+    public double closestDistance;
+    private ProjectileSpawner spawner;
 
     public Tower(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
         super(resource, initialLocation, new Size(75));
@@ -32,10 +34,9 @@ public abstract class Tower extends DynamicSpriteEntity implements UpdateExposer
             for (Enemy e : enemyList) {
                 if (distanceTo(e) <= rangeRadius) {
                     inRange = true;
-//                    System.out.println(inRange);
+                    System.out.println(e + "inrange fucker");
                 } else {
                     inRange = false;
-//                    System.out.println(inRange);
                 }
             }
         }
@@ -90,7 +91,6 @@ public abstract class Tower extends DynamicSpriteEntity implements UpdateExposer
 
     abstract public Coordinate2D getInitialLocation();
 
-    abstract public ProjectileSpawner getSpawner();
+    public abstract ProjectileSpawner getSpawner();
 
-    abstract public void setupSpawner();
 }
