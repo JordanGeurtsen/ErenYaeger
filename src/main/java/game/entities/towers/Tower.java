@@ -13,45 +13,24 @@ import java.util.ArrayList;
 
 public abstract class Tower extends DynamicSpriteEntity implements UpdateExposer {
     protected GameScreen gameScreen;
-    private Coordinate2D initialLocation;
     private Enemy target;
-    private double maxHealth = 0.0;
-    private boolean inRange;
     public double closestDistance;
     private double shootAngle;
-    private ProjectileSpawner spawner;
 
     public Tower(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
         super(resource, initialLocation, new Size(75));
         this.gameScreen = gameScreen;
-        this.initialLocation = initialLocation;
 
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
     }
-//
-//    public boolean isInRange(double rangeRadius, ArrayList<Enemy> enemyList) {
-//        if (enemyList.size() > 0) {
-//            for (Enemy e : enemyList) {
-//                if (distanceTo(e) <= rangeRadius) {
-//                    inRange = true;
-//                } else {
-//                    inRange = false;
-//                }
-//            }
-//        }
-//        return inRange;
-//    }
 
     public boolean isInRange(double rangeRadius, Enemy e) {
-        inRange = false;
-        if (distanceTo(e) < rangeRadius) {
-            inRange = true;
-        }
+        boolean inRange = distanceTo(e) < rangeRadius;
         return inRange;
     }
 
     public Enemy getTarget(ArrayList<Enemy> enemyList) {
-        maxHealth = 0;
+        double maxHealth = 0;
         closestDistance = getTowerRange();
         ArrayList<Enemy> enemiesInRange = new ArrayList<>();
         for (Enemy e : enemyList) {

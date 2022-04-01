@@ -4,7 +4,6 @@ import com.github.hanyaeger.api.Coordinate2D;
 import game.entities.enemies.Enemy;
 import game.entities.targeting.ArrowSpawner;
 import game.entities.targeting.ProjectileSpawner;
-import game.entities.targeting.Target;
 import game.scenes.GameScreen;
 
 import java.util.ArrayList;

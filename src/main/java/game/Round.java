@@ -4,6 +4,6 @@ public enum Round {
     ONE,
     TWO,
     THREE,
-    FOR,
+    FOUR,
     FIVE
 }
