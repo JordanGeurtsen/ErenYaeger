@@ -14,7 +14,6 @@ public class Archer extends Tower {
     private double damage = 10;
     private Coordinate2D initialLocation;
     private ArrowSpawner spawner;
-//    private double shootAngle;
     private GameScreen gameScreen;
     private Enemy target;
     private ArrayList<Enemy> enemiesInRange = new ArrayList<>();

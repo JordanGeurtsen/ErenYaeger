@@ -3,6 +3,7 @@ package game.scenes;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.EntitySpawnerContainer;
+import com.github.hanyaeger.api.UpdateExposer;
 import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
 import game.BonkTheTowerTD;
@@ -19,8 +20,9 @@ import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
-public class GameScreen extends DynamicScene implements TileMapContainer, EntitySpawnerContainer {
-
+public class GameScreen extends DynamicScene implements TileMapContainer, EntitySpawnerContainer, UpdateExposer {
+    private BonkTheTowerTD bonkTheTowerTD;
+    public LevelTileMap levelTileMap = new LevelTileMap();
     public ArrayList<Enemy> enemyList = new ArrayList<>();
     public ArrayList<Tower> towers = new ArrayList<>();
     public double coins = 100.0;
@@ -28,13 +30,14 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     public double lives = 20.0;
 
     public GameScreen(BonkTheTowerTD bonkTheTowerTD) {
+        this.bonkTheTowerTD = bonkTheTowerTD;
     }
 
     @Override
     public void setupScene() {
         setBackgroundColor(Color.PAPAYAWHIP);
         setBackgroundAudioVolume(0.1);
-//        setBackgroundAudio("audio/relaxing_bg_music_2.mp3");
+        //setBackgroundAudio("audio/relaxing_bg_music_2.mp3");
 
     }
 
@@ -50,15 +53,15 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         addEntity(liveCounter);
 
         var archerBuy = new buyButton(new Coordinate2D(1050, 175), "sprites/towers/archer_logo.png",
-                "Archer", 100, 5, 250);
+                "Archer", 100, 5, 250, this);
         addEntity(archerBuy);
 
         var hitmanBuy = new buyButton(new Coordinate2D(1050, 300), "sprites/towers/hitman_logo.png",
-                "Hitman", 250, 40, 1250);
+                "Hitman", 250, 40, 1250, this);
         addEntity(hitmanBuy);
 
         var freezerBuy = new buyButton(new Coordinate2D(1050, 425), "sprites/towers/freezer_logo.png",
-                "Freezer", 200, 0, 150);
+                "Freezer", 200, 0, 150, this);
         addEntity(freezerBuy);
 //
         var enemyTest1 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(1237, 187), this);
@@ -76,10 +79,10 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         var enemyTest5 = new MamaCoot("sprites/enemies/mama_coot.png", new Coordinate2D(50, 50), this);
         enemyList.add(enemyTest5);
 
-        var archer = new Archer("sprites/towers/archer_tower.png", new Coordinate2D(617.5, 187), this);
+        var archer = new Archer("sprites/towers/archer_tower.png", new Coordinate2D(640.5, 187), this);
         towers.add(archer);
 
-        var archer2 = new Archer("sprites/towers/archer_tower.png", new Coordinate2D(617.5, 562.5), this);
+        var archer2 = new Archer("sprites/towers/archer_tower.png", new Coordinate2D(565, 638), this);
         towers.add(archer2);
 
 //        var freezer = new Freezer("sprites/towers/freezer_tower.png", new Coordinate2D(187.5, 412.5), this);
@@ -88,8 +91,6 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
 //
 //        var hitman = new Hitman("sprites/towers/hitman_tower.png", new Coordinate2D(187.5, 412.5), this);
 //        towers.add(hitman);
-//        RoundExecutor.setEnemies(Round.ONE);
-//        enemyList = RoundExecutor.getEnemies();
 
         enemyList.forEach(this::addEntity);
         towers.forEach(this::addEntity);
@@ -104,14 +105,44 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
 
     @Override
     public void setupTileMaps() {
-        addTileMap(new LevelTileMap());
+        addTileMap(levelTileMap);
     }
 
-    public void enemyPastBorder(boolean pastBorder, Enemy e){
-        if(pastBorder) {
+    //    public void checkAliveEnemies() {
+//        for (int i = enemyList.size() - 1; i > 0; i--) {
+//            if (enemyList.get(i).getHealth() <= 0) {
+//                enemyList.remove(i);
+//                enemyList.get(i).remove();
+//                points += 5;
+//                coins += 10;
+//            }
+//        }
+//    }
+
+    public void enemyPastBorder(boolean pastBorder, Enemy e) {
+        if (pastBorder) {
             enemyList.remove(e);
             e.remove();
         }
     }
 
+    @Override
+    public void explicitUpdate(long l) {
+        if (!buyButton.tileMapChanged) {
+            if (buyButton.isTowerSelected) {
+                levelTileMap.setupSelectTileMap();
+                if (buyButton.currentTowerSelected == "Archer") {
+                    System.out.println("hi"); // zo doorgeven welke tower geplaast moet worden?
+                }
+
+            } else {
+                levelTileMap.setupNormalTileMap();
+            }
+            setupTileMaps();
+            initTileMaps();
+            buyButton.tileMapChanged = true;
+
+
+        }
+    }
 }

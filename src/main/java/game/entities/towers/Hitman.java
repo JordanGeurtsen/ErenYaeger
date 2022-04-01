@@ -1,6 +1,7 @@
 package game.entities.towers;
 
 import com.github.hanyaeger.api.Coordinate2D;
+import com.github.hanyaeger.api.Size;
 import game.entities.targeting.ProjectileSpawner;
 import game.scenes.GameScreen;
 
@@ -10,10 +11,12 @@ public class Hitman extends Tower {
     private static double rangeRadius = 1250;
     private static double damage = 10;
     private ProjectileSpawner spawner;
+    private GameScreen gameScreen;
 
     public Hitman(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
         super(resource, initialLocation, gameScreen);
         this.initialLocation = initialLocation;
+        this.gameScreen = gameScreen;
     }
 
     @Override

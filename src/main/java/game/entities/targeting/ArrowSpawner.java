@@ -1,12 +1,7 @@
 package game.entities.targeting;
 
-import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import game.entities.enemies.Enemy;
-import game.entities.enemies.MovementSpeed;
-import game.entities.towers.Archer;
-import game.entities.towers.Freezer;
-import game.entities.towers.Hitman;
 import game.entities.towers.Tower;
 import game.scenes.GameScreen;
 

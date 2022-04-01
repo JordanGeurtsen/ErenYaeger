@@ -7,7 +7,9 @@ import game.scenes.GameScreen;
 import game.scenes.TitleScreen;
 
 public class BonkTheTowerTD extends YaegerGame {
-    public static void main(String[] args) {launch(args);}
+    public static void main(String[] args) {
+        launch(args);
+    }
 
 
     @Override
@@ -19,7 +21,7 @@ public class BonkTheTowerTD extends YaegerGame {
     @Override
     public void setupScenes() {
         addScene(1, new TitleScreen(this));
-        addScene(2, new GameScreen(this));
+        addScene(2,new GameScreen(this));
         addScene(3, new FinalScreen(this));
     }
 }

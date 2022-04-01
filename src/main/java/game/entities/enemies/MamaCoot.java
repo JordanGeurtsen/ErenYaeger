@@ -24,7 +24,7 @@ public class MamaCoot extends Enemy{
 
     @Override
     public void setHealth(double newHealth) {
-
+        this.health += newHealth;
     }
 
     public double getMovementSpeed(){return speed;}

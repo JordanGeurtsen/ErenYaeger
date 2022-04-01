@@ -4,6 +4,8 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.impl.TextEntity;
 import game.entities.buttons.compositebutton.CompositeButton;
+import game.entities.tilemap.LevelTileMap;
+import game.scenes.GameScreen;
 
 public class buyButton extends CompositeButton {
     private String resource;
@@ -12,9 +14,17 @@ public class buyButton extends CompositeButton {
     private String damage;
     private String range;
 
-    public buyButton(Coordinate2D initialLocation, String resource, String towerName, int price, int damage, int range) {
+    private GameScreen gameScreen;
+
+    public static boolean isTowerSelected = false;
+    public static boolean tileMapChanged = false;
+
+    public static String currentTowerSelected = "";
+
+    public buyButton(Coordinate2D initialLocation, String resource, String towerName, int price, int damage, int range, GameScreen gameScreen) {
         super(initialLocation, resource);
         this.resource = resource;
+        this.gameScreen = gameScreen;
         this.towerName = towerName;
         this.price = "Price =          " + price;
         this.damage = "Damage =     " + damage;
@@ -67,6 +77,12 @@ public class buyButton extends CompositeButton {
 
     @Override
     public void onButtonClick() {
-        //defineMap(SelectPlaceTileMap)?
+        this.isTowerSelected = !this.isTowerSelected;
+        this.tileMapChanged = false;
+        this.currentTowerSelected = getBuyButtonTower();
+
     }
+
+    public String getBuyButtonTower(){return towerName;}
+
 }
