@@ -134,10 +134,11 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
                 if (buyButton.currentTowerSelected == "Archer") {
                     System.out.println("hi"); // zo doorgeven welke tower geplaast moet worden?
                 }
-
             } else {
                 levelTileMap.setupNormalTileMap();
+                buyButton.currentTowerSelected = "";
             }
+            System.out.println(buyButton.currentTowerSelected);
             setupTileMaps();
             initTileMaps();
             buyButton.tileMapChanged = true;

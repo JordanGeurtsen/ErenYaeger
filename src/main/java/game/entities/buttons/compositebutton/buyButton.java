@@ -77,12 +77,14 @@ public class buyButton extends CompositeButton {
 
     @Override
     public void onButtonClick() {
-        this.isTowerSelected = !this.isTowerSelected;
+        if(currentTowerSelected == getBuyButtonTower()){
+            this.isTowerSelected = false;
+        } else {
+            this.isTowerSelected = true;
+            this.currentTowerSelected = getBuyButtonTower();
+        }
         this.tileMapChanged = false;
-        this.currentTowerSelected = getBuyButtonTower();
-
     }
 
     public String getBuyButtonTower(){return towerName;}
-
 }
