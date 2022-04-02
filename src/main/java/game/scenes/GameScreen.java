@@ -6,6 +6,7 @@ import com.github.hanyaeger.api.EntitySpawnerContainer;
 import com.github.hanyaeger.api.UpdateExposer;
 import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
+import com.github.hanyaeger.api.userinput.MouseButtonReleasedListener;
 import game.BonkTheTowerTD;
 import game.entities.buttons.compositebutton.buyButton;
 import game.entities.counter.Counter;
@@ -15,12 +16,15 @@ import game.entities.enemies.FastCoot;
 import game.entities.enemies.MamaCoot;
 import game.entities.tilemap.LevelTileMap;
 import game.entities.towers.Archer;
+import game.entities.towers.Freezer;
+import game.entities.towers.Hitman;
 import game.entities.towers.Tower;
+import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
-public class GameScreen extends DynamicScene implements TileMapContainer, EntitySpawnerContainer, UpdateExposer {
+public class GameScreen extends DynamicScene implements TileMapContainer, EntitySpawnerContainer, UpdateExposer, MouseButtonReleasedListener {
     private BonkTheTowerTD bonkTheTowerTD;
     public LevelTileMap levelTileMap = new LevelTileMap();
     public ArrayList<Enemy> enemyList = new ArrayList<>();
@@ -28,6 +32,8 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     public double coins = 100.0;
     public double points = 0.0;
     public double lives = 20.0;
+    private int blockSize = 75;
+//    public static boolean placeTower = false;
 
     public GameScreen(BonkTheTowerTD bonkTheTowerTD) {
         this.bonkTheTowerTD = bonkTheTowerTD;
@@ -43,47 +49,48 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
 
     @Override
     public void setupEntities() {
-        var coinCounter = new Counter(new Coordinate2D(1055, 30), coins, "Coins");
-        addEntity(coinCounter);
+        if(buyButton.currentTowerSelected == "") {
+            var coinCounter = new Counter(new Coordinate2D(1055, 30), coins, "Coins");
+            addEntity(coinCounter);
 
-        var pointCounter = new Counter(new Coordinate2D(1055, 60), points, "Points");
-        addEntity(pointCounter);
+            var pointCounter = new Counter(new Coordinate2D(1055, 60), points, "Points");
+            addEntity(pointCounter);
 
-        var liveCounter = new Counter(new Coordinate2D(1055, 90), lives, "Lives");
-        addEntity(liveCounter);
+            var liveCounter = new Counter(new Coordinate2D(1055, 90), lives, "Lives");
+            addEntity(liveCounter);
 
-        var archerBuy = new buyButton(new Coordinate2D(1050, 175), "sprites/towers/archer_logo.png",
-                "Archer", 100, 5, 250, this);
-        addEntity(archerBuy);
+            var archerBuy = new buyButton(new Coordinate2D(1050, 175), "sprites/towers/archer_logo.png",
+                    "Archer", 100, 5, 250, this);
+            addEntity(archerBuy);
 
-        var hitmanBuy = new buyButton(new Coordinate2D(1050, 300), "sprites/towers/hitman_logo.png",
-                "Hitman", 250, 40, 1250, this);
-        addEntity(hitmanBuy);
+            var hitmanBuy = new buyButton(new Coordinate2D(1050, 300), "sprites/towers/hitman_logo.png",
+                    "Hitman", 250, 40, 1250, this);
+            addEntity(hitmanBuy);
 
-        var freezerBuy = new buyButton(new Coordinate2D(1050, 425), "sprites/towers/freezer_logo.png",
-                "Freezer", 200, 0, 150, this);
-        addEntity(freezerBuy);
+            var freezerBuy = new buyButton(new Coordinate2D(1050, 425), "sprites/towers/freezer_logo.png",
+                    "Freezer", 200, 0, 150, this);
+            addEntity(freezerBuy);
 //
-        var enemyTest1 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(1237, 187), this);
-        enemyList.add(enemyTest1);
+            var enemyTest1 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(1237, 187), this);
+            enemyList.add(enemyTest1);
 
-        var enemyTest3 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(1237, 300), this);
-        enemyList.add(enemyTest3);
+            var enemyTest3 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(1237, 300), this);
+            enemyList.add(enemyTest3);
 
-        var enemyTest2 = new DerpyCoot("sprites/enemies/derpy_coot.png", new Coordinate2D(1200, 350), this);
-        enemyList.add(enemyTest2);
+            var enemyTest2 = new DerpyCoot("sprites/enemies/derpy_coot.png", new Coordinate2D(1200, 350), this);
+            enemyList.add(enemyTest2);
 //
-        var enemyTest4 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(1200, 562.5), this);
-        enemyList.add(enemyTest4);
+            var enemyTest4 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(1200, 562.5), this);
+            enemyList.add(enemyTest4);
 
-        var enemyTest5 = new MamaCoot("sprites/enemies/mama_coot.png", new Coordinate2D(50, 50), this);
-        enemyList.add(enemyTest5);
+            var enemyTest5 = new MamaCoot("sprites/enemies/mama_coot.png", new Coordinate2D(50, 50), this);
+            enemyList.add(enemyTest5);
 
-        var archer = new Archer("sprites/towers/archer_tower.png", new Coordinate2D(640.5, 187), this);
-        towers.add(archer);
-
-        var archer2 = new Archer("sprites/towers/archer_tower.png", new Coordinate2D(565, 638), this);
-        towers.add(archer2);
+//            var archer = new Archer("sprites/towers/archer_tower.png", new Coordinate2D(640.5, 187), this);
+//            towers.add(archer);
+//
+//            var archer2 = new Archer("sprites/towers/archer_tower.png", new Coordinate2D(685, 638), this); // 565
+//            towers.add(archer2);
 
 //        var freezer = new Freezer("sprites/towers/freezer_tower.png", new Coordinate2D(187.5, 412.5), this);
 //        towers.add(freezer);
@@ -92,7 +99,8 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
 //        var hitman = new Hitman("sprites/towers/hitman_tower.png", new Coordinate2D(187.5, 412.5), this);
 //        towers.add(hitman);
 
-        enemyList.forEach(this::addEntity);
+            enemyList.forEach(this::addEntity);
+        }
         towers.forEach(this::addEntity);
     }
 
@@ -131,10 +139,8 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         if (!buyButton.tileMapChanged) {
             if (buyButton.isTowerSelected) {
                 levelTileMap.setupSelectTileMap();
-                if (buyButton.currentTowerSelected == "Archer") {
-                    System.out.println("hi"); // zo doorgeven welke tower geplaast moet worden?
-                }
             } else {
+                System.out.println("Changing back!");
                 levelTileMap.setupNormalTileMap();
                 buyButton.currentTowerSelected = "";
             }
@@ -142,8 +148,50 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
             setupTileMaps();
             initTileMaps();
             buyButton.tileMapChanged = true;
-
-
         }
     }
+
+    public void placeTower(Coordinate2D mouseCoordinates) {
+        if (buyButton.isTowerSelected) {
+            if (mouseCoordinates.getX() < 1050) { // 1050 is screen until shop.
+                int blockNrWidth = (int) Math.floor(mouseCoordinates.getX() / blockSize);
+                float xCoordinate = blockNrWidth * blockSize + (blockSize / 2);
+                int blockNrHeight = (int) Math.floor(mouseCoordinates.getY() / blockSize);
+                float yCoordinate = blockNrHeight * blockSize + (blockSize / 2);
+
+
+                if (levelTileMap.freeSpace(blockNrWidth, blockNrHeight)) {
+                    String towerSelectedName = buyButton.currentTowerSelected;
+                    if (towerSelectedName == "Archer") {
+                        Archer newTower = new Archer("sprites/towers/archer_tower.png", new Coordinate2D(xCoordinate, yCoordinate), this);
+                        towers.add(newTower);
+                    } else if (towerSelectedName == "Hitman") {
+                        Hitman newTower = new Hitman("sprites/towers/hitman_tower.png", new Coordinate2D(xCoordinate, yCoordinate), this);
+                        towers.add(newTower);
+                    } else if (towerSelectedName == "Freezer") {
+                        Freezer newTower = new Freezer("sprites/towers/freezer_tower.png", new Coordinate2D(xCoordinate, yCoordinate), this);
+                        towers.add(newTower);
+                    }
+                    setupEntities();
+                    setupEntitySpawners();
+
+                    levelTileMap.changeTile(blockNrWidth, blockNrHeight, towerSelectedName);
+                    levelTileMap.setupNormalTileMap();
+                    setupTileMaps();
+                    initTileMaps();
+
+                    buyButton.currentTowerSelected = "";
+                    buyButton.isTowerSelected = false;
+                    buyButton.tileMapChanged = true;
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onMouseButtonReleased(MouseButton mouseButton, Coordinate2D coordinate2D) {
+        placeTower(coordinate2D);
+    }
+
+
 }

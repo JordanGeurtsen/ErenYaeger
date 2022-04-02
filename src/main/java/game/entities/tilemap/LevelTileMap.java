@@ -3,10 +3,10 @@ package game.entities.tilemap;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.scenes.TileMap;
+import game.entities.tilemap.ground.TowerGround;
 import game.entities.tilemap.ground.SelectGround;
 import game.entities.tilemap.ground.Water;
 import game.entities.tilemap.ground.Grass;
-import game.entities.towers.Archer;
 import game.entities.towers.Freezer;
 import game.entities.towers.Hitman;
 
@@ -34,9 +34,9 @@ public class LevelTileMap extends TileMap {
     public void setupEntities() {
         addEntity(1, Grass.class, "sprites/grass.jpg");
         addEntity(2, Water.class, "sprites/water.jpg");
-        addEntity(3, Archer.class);
-        addEntity(4, Freezer.class);
-        addEntity(5, Hitman.class);
+        addEntity(3, TowerGround.class, "sprites/grass.jpg");
+//        addEntity(4, Freezer.class);
+//        addEntity(5, Hitman.class);
         addEntity(6, SelectGround.class, "sprites/grass_select.png");
     }
 
@@ -67,5 +67,27 @@ public class LevelTileMap extends TileMap {
             }
         }
         this.levelMap = map;
+    }
+
+    public void changeTile(int blockNrWidth, int blockNrHeight, String towerName){
+        int entityIdentifier = 3;
+//        if (towerName == "Archer") {
+//            entityIdentifier = 3;
+//        } else if (towerName == "Hitman") {
+//            entityIdentifier = 3;
+//        } else if (towerName == "Freezer") {
+//            entityIdentifier = 3;
+//        } else{
+//            entityIdentifier = 1;
+//        }
+        this.levelMap[blockNrHeight][blockNrWidth] = entityIdentifier;
+    }
+
+    public boolean freeSpace(int blockNrWidth, int blockNrHeight){
+        if(this.levelMap[blockNrHeight][blockNrWidth] == 6){
+            return true;
+        } else{
+            return false;
+        }
     }
 }

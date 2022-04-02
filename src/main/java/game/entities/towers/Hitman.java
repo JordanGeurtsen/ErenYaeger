@@ -2,6 +2,7 @@ package game.entities.towers;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
+import game.entities.targeting.ArrowSpawner;
 import game.entities.targeting.ProjectileSpawner;
 import game.scenes.GameScreen;
 
@@ -17,6 +18,9 @@ public class Hitman extends Tower {
         super(resource, initialLocation, gameScreen);
         this.initialLocation = initialLocation;
         this.gameScreen = gameScreen;
+        this.spawner = new ArrowSpawner(500, getInitialLocation(), this, gameScreen);
+        //hierboven aanpassen naar bullet, maar voor nu zo anders krijg je foutmeldingen
+
     }
 
     @Override
