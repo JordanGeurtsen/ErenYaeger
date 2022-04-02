@@ -32,8 +32,14 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     public double coins = 1000.0;
     public double points = 0.0;
     public double lives = 20.0;
-    private int blockSize = 75;
-    private int gameFieldSize = 1050;
+    private final int blockSize = 75;
+    private final int gameFieldSize = 1050;
+    private int blockNrWidth;
+    private int blockNrHeight;
+    private double xCoordinateTower;
+    private double yCoordinateTower;
+    private double currentCoins;
+    private Coordinate2D newTowerCoordinates;
 
     public GameScreen(BonkTheTowerTD bonkTheTowerTD) {
         this.bonkTheTowerTD = bonkTheTowerTD;
@@ -155,43 +161,60 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     public void placeTower(Coordinate2D mouseCoordinates) {
         if (buyButton.isTowerSelected) {
             if (mouseCoordinates.getX() < gameFieldSize) {
-                int blockNrWidth = (int) Math.floor(mouseCoordinates.getX() / blockSize);
-                float xCoordinate = blockNrWidth * blockSize + (blockSize / 2);
-                int blockNrHeight = (int) Math.floor(mouseCoordinates.getY() / blockSize);
-                float yCoordinate = blockNrHeight * blockSize + (blockSize / 2);
+                blockNrWidth = (int) Math.floor(mouseCoordinates.getX() / blockSize);
+                xCoordinateTower = blockNrWidth * blockSize + (blockSize / 2);
+                blockNrHeight = (int) Math.floor(mouseCoordinates.getY() / blockSize);
+                yCoordinateTower = blockNrHeight * blockSize + (blockSize / 2);
+                newTowerCoordinates = new Coordinate2D(xCoordinateTower, yCoordinateTower);
+                currentCoins = coins;
 
 
                 if (levelTileMap.freeSpace(blockNrWidth, blockNrHeight)) {
                     String towerSelectedName = buyButton.currentTowerSelected;
+                    double towerPrice;
                     if (towerSelectedName == "Archer") {
-                        Archer newTower = new Archer("sprites/towers/archer_tower.png", new Coordinate2D(xCoordinate, yCoordinate), this);
-                        towers.add(newTower);
-                        coins -= Archer.getTowerPrice();
-                        points += Archer.getTowerPrice();
+                        towerPrice = Archer.getTowerPrice();
+                        if(coins >= towerPrice){
+                            Archer newTower = new Archer("sprites/towers/archer_tower.png",newTowerCoordinates, this);
+                            towers.add(newTower);
+                        }
                     } else if (towerSelectedName == "Hitman") {
-                        Hitman newTower = new Hitman("sprites/towers/hitman_tower.png", new Coordinate2D(xCoordinate, yCoordinate), this);
-                        towers.add(newTower);
-                        coins -= Hitman.getTowerPrice();
-                        points -= Hitman.getTowerPrice();
+                        towerPrice = Hitman.getTowerPrice();
+                        if(coins >= towerPrice) {
+                            Hitman newTower = new Hitman("sprites/towers/hitman_tower.png", newTowerCoordinates, this);
+                            towers.add(newTower);
+                        }
                     } else if (towerSelectedName == "Freezer") {
-                        Freezer newTower = new Freezer("sprites/towers/freezer_tower.png", new Coordinate2D(xCoordinate, yCoordinate), this);
-                        towers.add(newTower);
-                        coins -= Freezer.getTowerPrice();
-                        points -= Freezer.getTowerPrice();
+                        towerPrice = Hitman.getTowerPrice();
+                        if(coins >= towerPrice) {
+                            Freezer newTower = new Freezer("sprites/towers/freezer_tower.png",newTowerCoordinates, this);
+                            towers.add(newTower);
+                        }
+                    } else {
+                        System.out.println("ERROR: towerSelectedName is wrong");
+                        towerPrice = 0;
                     }
-                    setupEntities();
-                    setupEntitySpawners();
+
+                    coins -= towerPrice;
+                    points += towerPrice;
+
+                    if(currentCoins > coins) {
+                        setupEntities();
+                        setupEntitySpawners();
 
 
-                    levelTileMap.changeTile(blockNrWidth, blockNrHeight, towerSelectedName);
-                    // explicit update is supposed to do this?? idk why it doesn't
-                    levelTileMap.setupNormalTileMap();
-                    setupTileMaps();
-                    initTileMaps();
+                        levelTileMap.changeTile(blockNrWidth, blockNrHeight, towerSelectedName);
+                        // explicit update is supposed to do this?? idk why it doesn't
+                        levelTileMap.setupNormalTileMap();
+                        setupTileMaps();
+                        initTileMaps();
 
-                    buyButton.currentTowerSelected = "";
-                    buyButton.isTowerSelected = false;
-                    buyButton.tileMapChanged = true;
+                        buyButton.currentTowerSelected = "";
+                        buyButton.isTowerSelected = false;
+                        buyButton.tileMapChanged = true;
+                    } else {
+                        System.out.println("You don't have enough money");
+                    }
                 }
             }
         }
