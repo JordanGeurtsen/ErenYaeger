@@ -1,7 +1,6 @@
 package game.entities.towers;
 
 import com.github.hanyaeger.api.Coordinate2D;
-import com.github.hanyaeger.api.Size;
 import game.entities.targeting.ArrowSpawner;
 import game.entities.targeting.ProjectileSpawner;
 import game.scenes.GameScreen;
@@ -33,8 +32,8 @@ public class Hitman extends Tower {
         return rangeRadius;
     }
 
-    @Override
-    public double getTowerPrice() {
+//    @Override
+    public static double getTowerPrice() {
         return price;
     }
 

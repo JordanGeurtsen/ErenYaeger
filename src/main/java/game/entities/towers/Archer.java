@@ -9,9 +9,9 @@ import game.scenes.GameScreen;
 import java.util.ArrayList;
 
 public class Archer extends Tower {
-    private double price = 100.0;
-    private double rangeRadius = 225;
-    private double damage = 10;
+    private static double price = 100.0;
+    private static double rangeRadius = 225;
+    private static double damage = 10;
     private Coordinate2D initialLocation;
     private ArrowSpawner spawner;
     private GameScreen gameScreen;
@@ -35,8 +35,8 @@ public class Archer extends Tower {
         return rangeRadius;
     }
 
-    @Override
-    public double getTowerPrice() {
+//    @Override
+    public static double getTowerPrice() {
         return price;
     }
 

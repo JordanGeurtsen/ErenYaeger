@@ -78,7 +78,7 @@ public abstract class Tower extends DynamicSpriteEntity implements UpdateExposer
 
     public abstract double getTowerRange();
 
-    public abstract double getTowerPrice();
+//    public abstract double getTowerPrice();
 
     abstract public Coordinate2D getInitialLocation();
 

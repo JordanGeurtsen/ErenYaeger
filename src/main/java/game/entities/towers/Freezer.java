@@ -2,8 +2,6 @@ package game.entities.towers;
 
 
 import com.github.hanyaeger.api.Coordinate2D;
-import com.github.hanyaeger.api.Size;
-import game.RoundExecutor;
 import game.entities.targeting.IceSpawner;
 import game.entities.targeting.ProjectileSpawner;
 import game.scenes.GameScreen;
@@ -30,8 +28,8 @@ public class Freezer extends Tower{
     @Override
     public double getTowerRange() {return rangeRadius; }
 
-    @Override
-    public double getTowerPrice() {
+//    @Override
+    public static double getTowerPrice() {
         return price;}
 
     @Override

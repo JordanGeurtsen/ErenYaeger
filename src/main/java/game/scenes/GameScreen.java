@@ -29,11 +29,11 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     public LevelTileMap levelTileMap = new LevelTileMap();
     public ArrayList<Enemy> enemyList = new ArrayList<>();
     public ArrayList<Tower> towers = new ArrayList<>();
-    public double coins = 100.0;
+    public double coins = 1000.0;
     public double points = 0.0;
     public double lives = 20.0;
     private int blockSize = 75;
-//    public static boolean placeTower = false;
+    private int gameFieldSize = 1050;
 
     public GameScreen(BonkTheTowerTD bonkTheTowerTD) {
         this.bonkTheTowerTD = bonkTheTowerTD;
@@ -139,6 +139,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         if (!buyButton.tileMapChanged) {
             if (buyButton.isTowerSelected) {
                 levelTileMap.setupSelectTileMap();
+                System.out.println("hi");
             } else {
                 System.out.println("Changing back!");
                 levelTileMap.setupNormalTileMap();
@@ -153,7 +154,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
 
     public void placeTower(Coordinate2D mouseCoordinates) {
         if (buyButton.isTowerSelected) {
-            if (mouseCoordinates.getX() < 1050) { // 1050 is screen until shop.
+            if (mouseCoordinates.getX() < gameFieldSize) {
                 int blockNrWidth = (int) Math.floor(mouseCoordinates.getX() / blockSize);
                 float xCoordinate = blockNrWidth * blockSize + (blockSize / 2);
                 int blockNrHeight = (int) Math.floor(mouseCoordinates.getY() / blockSize);
@@ -165,17 +166,25 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
                     if (towerSelectedName == "Archer") {
                         Archer newTower = new Archer("sprites/towers/archer_tower.png", new Coordinate2D(xCoordinate, yCoordinate), this);
                         towers.add(newTower);
+                        coins -= Archer.getTowerPrice();
+                        points += Archer.getTowerPrice();
                     } else if (towerSelectedName == "Hitman") {
                         Hitman newTower = new Hitman("sprites/towers/hitman_tower.png", new Coordinate2D(xCoordinate, yCoordinate), this);
                         towers.add(newTower);
+                        coins -= Hitman.getTowerPrice();
+                        points -= Hitman.getTowerPrice();
                     } else if (towerSelectedName == "Freezer") {
                         Freezer newTower = new Freezer("sprites/towers/freezer_tower.png", new Coordinate2D(xCoordinate, yCoordinate), this);
                         towers.add(newTower);
+                        coins -= Freezer.getTowerPrice();
+                        points -= Freezer.getTowerPrice();
                     }
                     setupEntities();
                     setupEntitySpawners();
 
+
                     levelTileMap.changeTile(blockNrWidth, blockNrHeight, towerSelectedName);
+                    // explicit update is supposed to do this?? idk why it doesn't
                     levelTileMap.setupNormalTileMap();
                     setupTileMaps();
                     initTileMaps();
