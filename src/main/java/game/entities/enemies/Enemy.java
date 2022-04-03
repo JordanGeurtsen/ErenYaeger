@@ -27,13 +27,16 @@ public abstract class Enemy extends DynamicSpriteEntity implements Collider, Sce
 
     public abstract double getMovementSpeed();
 
+    public abstract int getDamage();
+
     public Coordinate2D getInitialLocation() {
         return initialLocation;
     }
 
     @Override
     public void notifyBoundaryCrossing(SceneBorder border) {
-        gameScreen.enemyPastBorder(true, this);
+            gameScreen.enemyPastBorder(this, getDamage());
+
     }
 
     public abstract void setMovementSpeed(MovementSpeed movementSpeed);

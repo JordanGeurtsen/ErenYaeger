@@ -51,8 +51,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     public void setupScene() {
         setBackgroundColor(Color.PAPAYAWHIP);
         setBackgroundAudioVolume(0.1);
-        //setBackgroundAudio("audio/relaxing_bg_music_2.mp3");
-
+        setBackgroundAudio("audio/relaxing_bg_music_2.mp3");
     }
 
     @Override
@@ -114,11 +113,11 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         addTileMap(levelTileMap);
     }
 
-    public void enemyPastBorder(boolean pastBorder, Enemy e) {
-        if (pastBorder) {
+    public void enemyPastBorder(Enemy e, int damage) {
             enemyList.remove(e);
             e.remove();
-        }
+            lives -= damage;
+            liveCounter.setCounterText("Lives: ", lives);
     }
 
     @Override

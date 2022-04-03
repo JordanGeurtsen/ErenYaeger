@@ -6,6 +6,7 @@ import game.scenes.GameScreen;
 
 public class MamaCoot extends Enemy{
     private int health = 2;
+    private int damage = 3;
     private double speed = 1.6;
     private Direction direction = Direction.RIGHT;
     private double walkedDistance = 0.0;
@@ -28,6 +29,11 @@ public class MamaCoot extends Enemy{
     }
 
     public double getMovementSpeed(){return speed;}
+
+    @Override
+    public int getDamage() {
+        return damage;
+    }
 
     @Override
     public void setMovementSpeed(MovementSpeed movementSpeed) {

@@ -7,6 +7,7 @@ import game.scenes.GameScreen;
 
 public class DerpyCoot extends Enemy{
         private int health = 60;
+        private int damage = 5;
         private double speed = 1.8;
         private Direction direction = Direction.LEFT;
         private double walkedDistance = 0.0;
@@ -28,6 +29,11 @@ public class DerpyCoot extends Enemy{
         }
 
         public double getMovementSpeed(){return speed;}
+
+        @Override
+        public int getDamage() {
+                return damage;
+        }
 
         @Override
         public void setMovementSpeed(MovementSpeed movementSpeed) {
