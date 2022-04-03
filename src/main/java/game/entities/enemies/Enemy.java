@@ -7,13 +7,14 @@ import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.SceneBorderCrossingWatcher;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.scenes.SceneBorder;
+import game.PathStep;
 import game.scenes.GameScreen;
 
 
 public abstract class Enemy extends DynamicSpriteEntity implements Collider, SceneBorderCrossingWatcher {
     private Coordinate2D initialLocation;
     GameScreen gameScreen;
-    public int pathStep = 0;
+    public PathStep pathStep = PathStep.ZERO;
 
     public Enemy(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
         super(resource, initialLocation, new Size(75));
@@ -42,6 +43,6 @@ public abstract class Enemy extends DynamicSpriteEntity implements Collider, Sce
 
     public abstract void setMovementSpeed(MovementSpeed movementSpeed);
 
-    public int getPathStep(){return pathStep;}
-    public void setPathStep(int newPathStep){this.pathStep = newPathStep;}
+    public PathStep getPathStep(){return pathStep;}
+    public void setPathStep(PathStep newPathStep){this.pathStep = newPathStep;}
 }
