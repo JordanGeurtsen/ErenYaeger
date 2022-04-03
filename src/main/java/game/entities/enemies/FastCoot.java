@@ -9,7 +9,7 @@ public class FastCoot extends Enemy{
     private int damage = 2;
     private double walkedDistance = 0.0;
     private double speed = 2.5;
-    private Direction direction = Direction.LEFT;
+    private Direction direction = Direction.DOWN;
     private Coordinate2D initialLocation;
 
     public FastCoot(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
@@ -38,7 +38,7 @@ public class FastCoot extends Enemy{
         switch (movementSpeed){
             case SLOW :
                 speed = 1.3;
-                setMotion(speed, direction);
+               setMotion(speed, direction);
                 break;
             case NORMAL:
                 speed = 2.0;
