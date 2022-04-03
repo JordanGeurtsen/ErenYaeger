@@ -9,6 +9,7 @@ import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
 import com.github.hanyaeger.api.userinput.MouseButtonReleasedListener;
 import game.BonkTheTowerTD;
+import game.PathStep;
 import game.entities.buttons.compositebutton.buyButton;
 import game.entities.counter.Counter;
 import game.entities.enemies.*;
@@ -17,6 +18,7 @@ import game.entities.towers.Archer;
 import game.entities.towers.Freezer;
 import game.entities.towers.Hitman;
 import game.entities.towers.Tower;
+import javafx.scene.control.Spinner;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 
@@ -222,91 +224,88 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     }
 
     public double pathLimit(int tile){
-        return  (tile -1) * 75 + (75 / 2);
+        return  (tile - 1) * blockSize + (blockSize / 2);
     }
 
     public void enemiesPath(){
         for (Enemy e : enemyList) {
             Coordinate2D coordinates =  e.getAnchorLocation();
-            int pathStep = e.getPathStep();
-
-
+            PathStep pathStep = e.getPathStep();
 
             switch(pathStep) {
-                case 0:
+                case ZERO:
                     if (coordinates.getY() >  pathLimit(2)) {
                         e.setDirection(Direction.RIGHT);
-                        e.setPathStep(pathStep + 1);
+                        e.setPathStep(PathStep.ONE);
                     }
                     break;
-                case 1:
+                case ONE:
                     if(coordinates.getX() > pathLimit(11)) {
                         e.setDirection(Direction.DOWN);
-                        e.setPathStep(pathStep + 1);
+                        e.setPathStep(PathStep.TWO);
                     }
                     break;
-                case 2:
+                case TWO:
                     if(coordinates.getY() > pathLimit(5)) {
                         e.setDirection(Direction.LEFT);
-                        e.setPathStep(pathStep + 1);
+                        e.setPathStep(PathStep.THREE);
                     }
                     break;
-                case 3:
+                case THREE:
                     if(coordinates.getX() < pathLimit(7)) {
                         e.setDirection(Direction.UP);
-                        e.setPathStep(pathStep + 1);
+                        e.setPathStep(PathStep.FOUR);
                     }
                     break;
-                case 4:
+                case FOUR:
                     if(coordinates.getY() < pathLimit(4)) {
                         e.setDirection(Direction.LEFT);
-                        e.setPathStep(pathStep + 1);
+                        e.setPathStep(PathStep.FIVE);
                     }
                     break;
-                case 5:
+                case FIVE:
                     if(coordinates.getX() < pathLimit(4)) {
                         e.setDirection(Direction.DOWN);
-                        e.setPathStep(pathStep + 1);
+                        e.setPathStep(PathStep.SIX);
                     }
                     break;
-                case 6:
+                case SIX:
                     if(coordinates.getY() > pathLimit(5)) {
                         e.setDirection(Direction.LEFT);
-                        e.setPathStep(pathStep + 1);
+                        e.setPathStep(PathStep.SEVEN);
                     }
                     break;
-                case 7:
+                case SEVEN:
                     if(coordinates.getX() < pathLimit(2)) {
                         e.setDirection(Direction.DOWN);
-                        e.setPathStep(pathStep + 1);
+                        e.setPathStep(PathStep.EIGHT);
                     }
                     break;
-                case 8:
+                case EIGHT:
                     if(coordinates.getY() > pathLimit(8)) {
                         e.setDirection(Direction.RIGHT);
-                        e.setPathStep(pathStep + 1);
+                        e.setPathStep(PathStep.NINE);
                     }
                     break;
-                case 9:
+                case NINE:
                     if(coordinates.getX() > pathLimit(6)) {
                         e.setDirection(Direction.UP);
-                        e.setPathStep(pathStep + 1);
+                        e.setPathStep(PathStep.TEN);
                     }
                     break;
-                case 10:
+                case TEN:
                     if(coordinates.getY() < pathLimit(7)) {
                         e.setDirection(Direction.RIGHT);
-                        e.setPathStep(pathStep + 1);
+                        e.setPathStep(PathStep.ELEVEN);
                     }
                     break;
-                case 11:
+                case ELEVEN:
                     if(coordinates.getX() > pathLimit(13)) {
                         e.setDirection(Direction.DOWN);
-//                        e.setPathStep(pathStep + 1);
                     }
                     break;
                 default:
-                    e.setPathStep(0);
+                    e.setPathStep(PathStep.ZERO);
                     System.out.println("ERROR: pathStep is wrong");
                     break;
             }
