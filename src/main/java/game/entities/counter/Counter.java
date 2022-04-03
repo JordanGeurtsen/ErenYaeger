@@ -10,7 +10,7 @@ import javafx.scene.text.FontWeight;
 public class Counter extends DynamicTextEntity {
     double counterData;
     public Counter(Coordinate2D initialLocation, int counterData, String text) {
-        super(initialLocation, text + ": " + counterData);
+        super(initialLocation, text + "" + counterData);
         setFont(Font.font("Roboto", FontWeight.BOLD, 25));
         this.counterData = counterData;
     }

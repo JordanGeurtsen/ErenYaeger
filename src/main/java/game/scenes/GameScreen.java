@@ -24,6 +24,8 @@ import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
+import static game.scenes.FinalScreen.setFinalMessage;
+
 public class GameScreen extends DynamicScene implements TileMapContainer, EntitySpawnerContainer, UpdateExposer, MouseButtonReleasedListener {
     private BonkTheTowerTD bonkTheTowerTD;
     public LevelTileMap levelTileMap = new LevelTileMap();
@@ -32,9 +34,9 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     public Counter coinCounter;
     public Counter pointCounter;
     public Counter liveCounter;
-    public static int coins = 1000;
-    public static int points = 0;
-    public static int lives = 20;
+    public static int coins;
+    public static int points;
+    public static int lives;
     private final int blockSize = 75;
     private final int gameFieldSize = 1050;
     private int blockNrWidth;
@@ -58,13 +60,15 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     @Override
     public void setupEntities() {
         if(buyButton.currentTowerSelected == "") {
-            coinCounter = new Counter(new Coordinate2D(1055, 30), coins, "Coins");
+            resetStartingVariables();
+
+            coinCounter = new Counter(new Coordinate2D(1055, 30), coins, "Coins: ");
             addEntity(coinCounter);
 
-            pointCounter = new Counter(new Coordinate2D(1055, 60), points, "Points");
+            pointCounter = new Counter(new Coordinate2D(1055, 60), points, "Points: ");
             addEntity(pointCounter);
 
-            liveCounter = new Counter(new Coordinate2D(1055, 90), lives, "Lives");
+            liveCounter = new Counter(new Coordinate2D(1055, 90), lives, "Lives: ");
             addEntity(liveCounter);
 
             var archerBuy = new buyButton(new Coordinate2D(1050, 175), "sprites/towers/archer_logo.png",
@@ -133,7 +137,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
             } else {
                 levelTileMap.setupNormalTileMap();
                 buyButton.currentTowerSelected = "";
-                coinCounter.setCounterColor(Color.BLACK);
+                setBackgroundColor(Color.PAPAYAWHIP);
             }
             setupTileMaps();
             initTileMaps();
@@ -142,8 +146,19 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         enemiesPath();
 
         if (lives <= 0){
-            bonkTheTowerTD.setActiveScene(Screenum.FINAL.getId());
+           gameOver();
         }
+    }
+
+    public void resetStartingVariables(){
+        points = 0;
+        lives = 20;
+        coins = 225;
+    }
+
+    public void gameOver(){
+        setFinalMessage("Game Over!!");
+        bonkTheTowerTD.setActiveScene(Screenum.FINAL.getId());
     }
 
     public boolean enoughMoney(String towerName) {
@@ -151,7 +166,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
             towerPrice = Archer.getTowerPrice();
         } else if (towerName == "Hitman"){
             towerPrice = Hitman.getTowerPrice();
-        } else { // if (towerName == "Freezer"){
+        } else { //if (towerName == "Freezer"){
             towerPrice = Freezer.getTowerPrice();
         }
         if(coins >= towerPrice) {
@@ -204,7 +219,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
                         buyButton.isTowerSelected = false;
                         buyButton.tileMapChanged = true;
                     } else {
-                        coinCounter.setCounterColor(Color.DARKRED);
+                        setBackgroundColor(Color.DARKRED);
                     }
                 }
             }
