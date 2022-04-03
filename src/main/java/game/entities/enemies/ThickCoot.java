@@ -8,7 +8,7 @@ public class ThickCoot extends Enemy {
     private int health = 2;
     private int damage = 4;
     private double speed;
-    private Direction direction = Direction.LEFT;
+    private Direction direction = Direction.DOWN;
     private double walkedDistance = 0.0;
     private Coordinate2D initialLocation;
 

@@ -4,12 +4,11 @@ package game.scenes;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.EntitySpawnerContainer;
 import com.github.hanyaeger.api.UpdateExposer;
+import com.github.hanyaeger.api.entities.Direction;
 import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
 import com.github.hanyaeger.api.userinput.MouseButtonReleasedListener;
 import game.BonkTheTowerTD;
-import game.Round;
-import game.RoundExecutor;
 import game.entities.buttons.compositebutton.buyButton;
 import game.entities.counter.Counter;
 import game.entities.enemies.*;
@@ -78,20 +77,33 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
                     "Freezer", 200, 0, 150, this);
             addEntity(freezerBuy);
 
-            var enemyTest1 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(1237, 187), this);
+            var enemyTest1 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(112, 0), this);
             enemyList.add(enemyTest1);
 
-            var enemyTest3 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(1237, 300), this);
+            var enemyTest3 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(112, -10), this);
             enemyList.add(enemyTest3);
 
-            var enemyTest2 = new DerpyCoot("sprites/enemies/derpy_coot.png", new Coordinate2D(1200, 350), this);
+            var enemyTest2 = new DerpyCoot("sprites/enemies/derpy_coot.png", new Coordinate2D(112, -20), this);
             enemyList.add(enemyTest2);
 
-            var enemyTest4 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(1200, 562.5), this);
+            var enemyTest4 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(112, -15), this);
             enemyList.add(enemyTest4);
 
-            var enemyTest5 = new MamaCoot("sprites/enemies/mama_coot.png", new Coordinate2D(50, 50), this);
+            var enemyTest5 = new MamaCoot("sprites/enemies/mama_coot.png", new Coordinate2D(112, 10), this);
             enemyList.add(enemyTest5);
+
+//            var archer = new Archer("sprites/towers/archer_tower.png", new Coordinate2D(640.5, 187), this);
+//            towers.add(archer);
+//
+//            var archer2 = new Archer("sprites/towers/archer_tower.png", new Coordinate2D(685, 638), this); // 565
+//            towers.add(archer2);
+
+//        var freezer = new Freezer("sprites/towers/freezer_tower.png", new Coordinate2D(187.5, 412.5), this);
+//        towers.add(freezer);
+
+//
+//        var hitman = new Hitman("sprites/towers/hitman_tower.png", new Coordinate2D(187.5, 412.5), this);
+//        towers.add(hitman);
 
             enemyList.forEach(this::addEntity);
         }
@@ -103,9 +115,6 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         for (Tower t : towers) {
             addEntitySpawner(t.getProjectileSpawner());
         }
-//        for (Enemy e : enemyList) {
-//            addEntitySpawner(e.getEnemySpawner(Round.ONE));
-//        }
     }
 
     @Override
@@ -137,6 +146,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
             initTileMaps();
             buyButton.tileMapChanged = true;
         }
+        enemiesPath();
     }
 
     public boolean enoughMoney(String towerName) {
@@ -209,5 +219,97 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     @Override
     public void onMouseButtonReleased(MouseButton mouseButton, Coordinate2D coordinate2D) {
         placeTower(coordinate2D);
+    }
+
+    public double pathLimit(int tile){
+        return  (tile -1) * 75 + (75 / 2);
+    }
+
+    public void enemiesPath(){
+        for (Enemy e : enemyList) {
+            Coordinate2D coordinates =  e.getAnchorLocation();
+            int pathStep = e.getPathStep();
+
+
+
+            switch(pathStep) {
+                case 0:
+                    if (coordinates.getY() >  pathLimit(2)) {
+                        e.setDirection(Direction.RIGHT);
+                        e.setPathStep(pathStep + 1);
+                    }
+                    break;
+                case 1:
+                    if(coordinates.getX() > pathLimit(11)) {
+                        e.setDirection(Direction.DOWN);
+                        e.setPathStep(pathStep + 1);
+                    }
+                    break;
+                case 2:
+                    if(coordinates.getY() > pathLimit(5)) {
+                        e.setDirection(Direction.LEFT);
+                        e.setPathStep(pathStep + 1);
+                    }
+                    break;
+                case 3:
+                    if(coordinates.getX() < pathLimit(7)) {
+                        e.setDirection(Direction.UP);
+                        e.setPathStep(pathStep + 1);
+                    }
+                    break;
+                case 4:
+                    if(coordinates.getY() < pathLimit(4)) {
+                        e.setDirection(Direction.LEFT);
+                        e.setPathStep(pathStep + 1);
+                    }
+                    break;
+                case 5:
+                    if(coordinates.getX() < pathLimit(4)) {
+                        e.setDirection(Direction.DOWN);
+                        e.setPathStep(pathStep + 1);
+                    }
+                    break;
+                case 6:
+                    if(coordinates.getY() > pathLimit(5)) {
+                        e.setDirection(Direction.LEFT);
+                        e.setPathStep(pathStep + 1);
+                    }
+                    break;
+                case 7:
+                    if(coordinates.getX() < pathLimit(2)) {
+                        e.setDirection(Direction.DOWN);
+                        e.setPathStep(pathStep + 1);
+                    }
+                    break;
+                case 8:
+                    if(coordinates.getY() > pathLimit(8)) {
+                        e.setDirection(Direction.RIGHT);
+                        e.setPathStep(pathStep + 1);
+                    }
+                    break;
+                case 9:
+                    if(coordinates.getX() > pathLimit(6)) {
+                        e.setDirection(Direction.UP);
+                        e.setPathStep(pathStep + 1);
+                    }
+                    break;
+                case 10:
+                    if(coordinates.getY() < pathLimit(7)) {
+                        e.setDirection(Direction.RIGHT);
+                        e.setPathStep(pathStep + 1);
+                    }
+                    break;
+                case 11:
+                    if(coordinates.getX() > pathLimit(13)) {
+                        e.setDirection(Direction.DOWN);
+//                        e.setPathStep(pathStep + 1);
+                    }
+                    break;
+                default:
+                    e.setPathStep(0);
+                    System.out.println("ERROR: pathStep is wrong");
+                    break;
+            }
+        }
     }
 }
