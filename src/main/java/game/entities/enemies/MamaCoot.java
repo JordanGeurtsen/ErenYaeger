@@ -40,11 +40,11 @@ public class MamaCoot extends Enemy{
         switch (movementSpeed){
             case SLOW :
                 speed = 1.1;
-                setMotion(speed, direction);
+                setSpeed(speed);
                 break;
             case NORMAL:
                 speed = 1.6;
-                setMotion(speed, direction);
+                setSpeed(speed);
         }
     }
 }

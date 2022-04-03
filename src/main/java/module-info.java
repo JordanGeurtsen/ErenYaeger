@@ -5,7 +5,6 @@ module bonkTheTowerTD {
 
     opens audio;
     opens backgrounds;
-    opens backgrounds.maps;
     opens sprites;
     opens sprites.enemies;
     opens sprites.towers;

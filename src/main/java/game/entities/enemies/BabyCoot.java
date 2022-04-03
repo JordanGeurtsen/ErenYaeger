@@ -40,11 +40,11 @@ public class BabyCoot extends Enemy{
         switch (movementSpeed){
             case SLOW :
                 speed = 0.6;
-                setMotion(speed, direction);
+                setSpeed(speed);
                 break;
             case NORMAL:
                 speed = 1.0;
-                setMotion(speed, direction);
+                setSpeed(speed);
         }
     }
 }

@@ -38,11 +38,11 @@ public class FastCoot extends Enemy{
         switch (movementSpeed){
             case SLOW :
                 speed = 1.3;
-               setMotion(speed, direction);
+                setSpeed(speed);
                 break;
             case NORMAL:
                 speed = 2.0;
-                setMotion(speed, direction);
+                setSpeed(speed);
         }
     }
 }

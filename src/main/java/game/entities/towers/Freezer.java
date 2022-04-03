@@ -8,7 +8,7 @@ import game.scenes.GameScreen;
 
 public class Freezer extends Tower{
     private static int price = 200;
-    private static double rangeRadius = 150;
+    private static double rangeRadius = 117.5;
     private static double damage = 20;
     private Coordinate2D initialLocation;
     private IceSpawner spawner;
@@ -28,9 +28,9 @@ public class Freezer extends Tower{
     @Override
     public double getTowerRange() {return rangeRadius; }
 
-//    @Override
     public static int getTowerPrice() {
-        return price;}
+        return price;
+    }
 
     @Override
     public Coordinate2D getInitialLocation() {

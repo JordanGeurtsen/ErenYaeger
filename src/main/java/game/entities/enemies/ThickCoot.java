@@ -41,11 +41,11 @@ public class ThickCoot extends Enemy {
         switch (movementSpeed){
             case SLOW :
                 speed = 0.6;
-                setMotion(speed, direction);
+                setSpeed(speed);
                 break;
             case NORMAL:
                 speed = 1.2;
-                setMotion(speed, direction);
+                setSpeed(speed);
         }
     }
 }

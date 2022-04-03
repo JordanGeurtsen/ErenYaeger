@@ -10,6 +10,7 @@ import com.github.hanyaeger.api.scenes.TileMapContainer;
 import com.github.hanyaeger.api.userinput.MouseButtonReleasedListener;
 import game.BonkTheTowerTD;
 import game.PathStep;
+import game.Screenum;
 import game.entities.buttons.compositebutton.buyButton;
 import game.entities.counter.Counter;
 import game.entities.enemies.*;
@@ -18,7 +19,6 @@ import game.entities.towers.Archer;
 import game.entities.towers.Freezer;
 import game.entities.towers.Hitman;
 import game.entities.towers.Tower;
-import javafx.scene.control.Spinner;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 
@@ -88,24 +88,17 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
             var enemyTest2 = new DerpyCoot("sprites/enemies/derpy_coot.png", new Coordinate2D(112, -20), this);
             enemyList.add(enemyTest2);
 
+            var enemyTest9 = new DerpyCoot("sprites/enemies/derpy_coot.png", new Coordinate2D(112, -20), this);
+            enemyList.add(enemyTest9);
+
             var enemyTest4 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(112, -15), this);
             enemyList.add(enemyTest4);
 
+            var enemyTest8 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(112, -15), this);
+            enemyList.add(enemyTest8);
+
             var enemyTest5 = new MamaCoot("sprites/enemies/mama_coot.png", new Coordinate2D(112, 10), this);
             enemyList.add(enemyTest5);
-
-//            var archer = new Archer("sprites/towers/archer_tower.png", new Coordinate2D(640.5, 187), this);
-//            towers.add(archer);
-//
-//            var archer2 = new Archer("sprites/towers/archer_tower.png", new Coordinate2D(685, 638), this); // 565
-//            towers.add(archer2);
-
-//        var freezer = new Freezer("sprites/towers/freezer_tower.png", new Coordinate2D(187.5, 412.5), this);
-//        towers.add(freezer);
-
-//
-//        var hitman = new Hitman("sprites/towers/hitman_tower.png", new Coordinate2D(187.5, 412.5), this);
-//        towers.add(hitman);
 
             enemyList.forEach(this::addEntity);
         }
@@ -149,6 +142,10 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
             buyButton.tileMapChanged = true;
         }
         enemiesPath();
+
+        if (lives <= 0){
+            bonkTheTowerTD.setActiveScene(Screenum.FINAL.getId());
+        }
     }
 
     public boolean enoughMoney(String towerName) {
