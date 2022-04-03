@@ -15,7 +15,6 @@ public class FastCoot extends Enemy{
         super(resource, initialLocation, gameScreen);
         this.initialLocation = initialLocation;
         setMotion(getMovementSpeed(), direction);
-
     }
 
     public int getHealth() {

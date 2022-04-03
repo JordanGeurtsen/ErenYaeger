@@ -8,6 +8,8 @@ import game.entities.tilemap.ground.SelectGround;
 import game.entities.tilemap.ground.Water;
 import game.entities.tilemap.ground.Grass;
 
+import java.util.concurrent.CopyOnWriteArrayList;
+
 public class LevelTileMap extends TileMap {
     private int[][] levelMap = {
             {1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
@@ -21,7 +23,9 @@ public class LevelTileMap extends TileMap {
             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1}
     };
 
-
+    private int blockNrWidth;
+    private int blockNrHeight;
+    private final int blockSize = 75;
 
     public LevelTileMap (){
         super(new Coordinate2D(0,0), new Size(1050, 675));
@@ -65,7 +69,7 @@ public class LevelTileMap extends TileMap {
         this.levelMap = map;
     }
 
-    public void changeTile(int blockNrWidth, int blockNrHeight, String towerName){
+    public void changeTile(int blockNrWidth, int blockNrHeight){
         int entityIdentifier = 3;
         this.levelMap[blockNrHeight][blockNrWidth] = entityIdentifier;
     }
@@ -76,5 +80,11 @@ public class LevelTileMap extends TileMap {
         } else{
             return false;
         }
+    }
+
+    public int getTileID(Coordinate2D coordinate2D){
+        blockNrWidth = (int) Math.floor(coordinate2D.getX() / blockSize);
+        blockNrHeight = (int) Math.floor(coordinate2D.getY() / blockSize);
+        return this.levelMap[blockNrHeight][blockNrWidth];
     }
 }
