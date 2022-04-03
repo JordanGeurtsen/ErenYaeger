@@ -20,16 +20,20 @@ public class FinalScreen extends DynamicScene implements TileMapContainer {
 
     @Override
     public void setupScene() {
-        setBackgroundColor(Color.PAPAYAWHIP);
+        setBackgroundImage("backgrounds/base_background.jpg");
     }
 
     @Override
     public void setupEntities() {
-        Screenum newScene = Screenum.GAME;
-        var startButton = new SceneSwitchButton(
-                new Coordinate2D(getWidth() / 2, getHeight() / 1.8), this.bonkTheTowerTD, Screenum.GAME, "Play Again");
-        startButton.setAnchorPoint(AnchorPoint.CENTER_CENTER);
-        addEntity(startButton);
+        var menuButton = new SceneSwitchButton(
+                new Coordinate2D(getWidth() / 2, getHeight() / 2.0), this.bonkTheTowerTD, Screenum.TITLE, "Main menu");
+        menuButton.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        addEntity(menuButton);
+
+        var againButton = new SceneSwitchButton(
+                new Coordinate2D(getWidth() / 2, getHeight() / 1.7), this.bonkTheTowerTD, Screenum.GAME, "Play Again");
+        againButton.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        addEntity(againButton);
 
         var bonkTheTowerQuit = new QuitButton(
                 new Coordinate2D(getWidth() / 2, getHeight() / 1.5), this.bonkTheTowerTD);

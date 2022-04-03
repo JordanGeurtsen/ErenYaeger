@@ -102,6 +102,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
 
             enemyList.forEach(this::addEntity);
         }
+
         towers.forEach(this::addEntity);
     }
 
@@ -129,14 +130,11 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         if (!buyButton.tileMapChanged) {
             if (buyButton.isTowerSelected) {
                 levelTileMap.setupSelectTileMap();
-                System.out.println("hi");
             } else {
-                System.out.println("Changing back!");
                 levelTileMap.setupNormalTileMap();
                 buyButton.currentTowerSelected = "";
                 coinCounter.setCounterColor(Color.BLACK);
             }
-            System.out.println(buyButton.currentTowerSelected);
             setupTileMaps();
             initTileMaps();
             buyButton.tileMapChanged = true;
@@ -198,7 +196,6 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
 
 
                         levelTileMap.changeTile(blockNrWidth, blockNrHeight);
-                        // explicit update is supposed to do this?? idk why it doesn't
                         levelTileMap.setupNormalTileMap();
                         setupTileMaps();
                         initTileMaps();
@@ -208,7 +205,6 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
                         buyButton.tileMapChanged = true;
                     } else {
                         coinCounter.setCounterColor(Color.DARKRED);
-                        System.out.println("You don't have enough money");
                     }
                 }
             }
