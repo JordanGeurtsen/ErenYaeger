@@ -35,12 +35,10 @@ public class ThickCoot extends Enemy {
         switch (movementSpeed){
             case SLOW :
                 speed = 0.6;
-                direction = Direction.UP;
                 setMotion(speed, direction);
                 break;
             case NORMAL:
                 speed = 1.2;
-                direction = Direction.LEFT;
                 setMotion(speed, direction);
         }
     }

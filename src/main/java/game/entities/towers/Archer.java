@@ -9,7 +9,7 @@ import game.scenes.GameScreen;
 import java.util.ArrayList;
 
 public class Archer extends Tower {
-    private static double price = 100.0;
+    private static int price = 100;
     private static double rangeRadius = 225;
     private static double damage = 10;
     private Coordinate2D initialLocation;
@@ -36,7 +36,7 @@ public class Archer extends Tower {
     }
 
 //    @Override
-    public static double getTowerPrice() {
+    public static int getTowerPrice() {
         return price;
     }
 
@@ -46,7 +46,7 @@ public class Archer extends Tower {
     }
 
     @Override
-    public ProjectileSpawner getSpawner() {
+    public ProjectileSpawner getProjectileSpawner() {
         return spawner;
     }
 

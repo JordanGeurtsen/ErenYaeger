@@ -7,7 +7,7 @@ import game.entities.targeting.ProjectileSpawner;
 import game.scenes.GameScreen;
 
 public class Freezer extends Tower{
-    private static double price = 200.0;
+    private static int price = 200;
     private static double rangeRadius = 150;
     private static double damage = 20;
     private Coordinate2D initialLocation;
@@ -29,7 +29,7 @@ public class Freezer extends Tower{
     public double getTowerRange() {return rangeRadius; }
 
 //    @Override
-    public static double getTowerPrice() {
+    public static int getTowerPrice() {
         return price;}
 
     @Override
@@ -38,7 +38,7 @@ public class Freezer extends Tower{
     }
 
     @Override
-    public ProjectileSpawner getSpawner() {
+    public ProjectileSpawner getProjectileSpawner() {
         spawner = new IceSpawner(500, getInitialLocation(), gameScreen.enemyList, this, gameScreen);
         return spawner;
     }

@@ -1,29 +1,34 @@
 package game;
 
 import com.github.hanyaeger.api.Coordinate2D;
+import com.github.hanyaeger.api.entities.EntitySpawner;
 import game.entities.enemies.*;
 import game.scenes.GameScreen;
 
 import java.util.ArrayList;
 
-public class RoundExecutor {
+public class RoundExecutor extends EntitySpawner {
     private GameScreen gameScreen;
     private ArrayList<Enemy> newEnemies;
-    private Coordinate2D startCoordinates = new Coordinate2D(100,0);
+    private Coordinate2D startCoordinates = new Coordinate2D(87.5,1);
+    private EnemySpawner spawner;
 
-    public RoundExecutor(GameScreen gameScreen) {
+    public RoundExecutor(long intervalInMs, GameScreen gameScreen, Round round) {
+        super(intervalInMs);
         this.gameScreen = gameScreen;
+        spawner = new EnemySpawner(500, round, gameScreen);
     }
 
-    public ArrayList<Enemy> getEnemies(){
-        return newEnemies;
+    public EnemySpawner getEnemySpawner(Round round){
+        setEnemies(round);
+        return spawner;
     }
-
 
     public void setEnemies(Round round){
         newEnemies = new ArrayList<>();
         switch (round){
             case ONE:
+                newEnemies.clear();
                 for(int j = 0; j < 3; j++){
                 newEnemies.add(new DerpyCoot("sprites/enemies/derpy_coot.png", startCoordinates, gameScreen));
                 }
@@ -32,6 +37,7 @@ public class RoundExecutor {
                 }
                 break;
             case TWO:
+                newEnemies.clear();
                 for(int j = 0; j < 3; j++){
                     newEnemies.add(new DerpyCoot("sprites/enemies/derpy_coot.png", startCoordinates, gameScreen));
                 }
@@ -40,6 +46,7 @@ public class RoundExecutor {
                 }
                 break;
             case THREE:
+                newEnemies.clear();
                 newEnemies.add(new ThickCoot("sprites/enemies/thick_coot.png", startCoordinates, gameScreen));
                 for(int j = 0; j < 2; j++){
                     newEnemies.add(new FastCoot("sprites/enemies/fast_coot.png", startCoordinates, gameScreen));
@@ -49,6 +56,7 @@ public class RoundExecutor {
                 }
                 break;
             case FOUR:
+                newEnemies.clear();
                 for(int j = 0; j < 3; j++){
                     newEnemies.add(new ThickCoot("sprites/enemies/thick_coot.png", startCoordinates, gameScreen));
                 }
@@ -63,6 +71,7 @@ public class RoundExecutor {
                 }
                 break;
             case FIVE:
+                newEnemies.clear();
                 for(int j = 0; j < 4; j++){
                     newEnemies.add(new ThickCoot("sprites/enemies/thick_coot.png", startCoordinates, gameScreen));
                 }
@@ -83,5 +92,11 @@ public class RoundExecutor {
                 System.out.println("ERROR: problem with filling newEnemies. Check the round!");
                 break;
         }
+        gameScreen.enemyList = newEnemies;
+    }
+
+    @Override
+    protected void spawnEntities() {
+
     }
 }

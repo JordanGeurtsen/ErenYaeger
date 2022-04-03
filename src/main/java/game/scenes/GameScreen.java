@@ -8,12 +8,11 @@ import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
 import com.github.hanyaeger.api.userinput.MouseButtonReleasedListener;
 import game.BonkTheTowerTD;
+import game.Round;
+import game.RoundExecutor;
 import game.entities.buttons.compositebutton.buyButton;
 import game.entities.counter.Counter;
-import game.entities.enemies.DerpyCoot;
-import game.entities.enemies.Enemy;
-import game.entities.enemies.FastCoot;
-import game.entities.enemies.MamaCoot;
+import game.entities.enemies.*;
 import game.entities.tilemap.LevelTileMap;
 import game.entities.towers.Archer;
 import game.entities.towers.Freezer;
@@ -29,9 +28,12 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     public LevelTileMap levelTileMap = new LevelTileMap();
     public ArrayList<Enemy> enemyList = new ArrayList<>();
     public ArrayList<Tower> towers = new ArrayList<>();
-    public double coins = 1000.0;
-    public double points = 0.0;
-    public double lives = 20.0;
+    private Counter coinCounter;
+    private Counter pointCounter;
+    private Counter liveCounter;
+    public int coins = 1000;
+    public int points = 0;
+    public int lives = 20;
     private final int blockSize = 75;
     private final int gameFieldSize = 1050;
     private int blockNrWidth;
@@ -56,13 +58,13 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     @Override
     public void setupEntities() {
         if(buyButton.currentTowerSelected == "") {
-            var coinCounter = new Counter(new Coordinate2D(1055, 30), coins, "Coins");
+            coinCounter = new Counter(new Coordinate2D(1055, 30), coins, "Coins");
             addEntity(coinCounter);
 
-            var pointCounter = new Counter(new Coordinate2D(1055, 60), points, "Points");
+            pointCounter = new Counter(new Coordinate2D(1055, 60), points, "Points");
             addEntity(pointCounter);
 
-            var liveCounter = new Counter(new Coordinate2D(1055, 90), lives, "Lives");
+            liveCounter = new Counter(new Coordinate2D(1055, 90), lives, "Lives");
             addEntity(liveCounter);
 
             var archerBuy = new buyButton(new Coordinate2D(1050, 175), "sprites/towers/archer_logo.png",
@@ -76,7 +78,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
             var freezerBuy = new buyButton(new Coordinate2D(1050, 425), "sprites/towers/freezer_logo.png",
                     "Freezer", 200, 0, 150, this);
             addEntity(freezerBuy);
-//
+
             var enemyTest1 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(1237, 187), this);
             enemyList.add(enemyTest1);
 
@@ -85,25 +87,12 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
 
             var enemyTest2 = new DerpyCoot("sprites/enemies/derpy_coot.png", new Coordinate2D(1200, 350), this);
             enemyList.add(enemyTest2);
-//
+
             var enemyTest4 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(1200, 562.5), this);
             enemyList.add(enemyTest4);
 
             var enemyTest5 = new MamaCoot("sprites/enemies/mama_coot.png", new Coordinate2D(50, 50), this);
             enemyList.add(enemyTest5);
-
-//            var archer = new Archer("sprites/towers/archer_tower.png", new Coordinate2D(640.5, 187), this);
-//            towers.add(archer);
-//
-//            var archer2 = new Archer("sprites/towers/archer_tower.png", new Coordinate2D(685, 638), this); // 565
-//            towers.add(archer2);
-
-//        var freezer = new Freezer("sprites/towers/freezer_tower.png", new Coordinate2D(187.5, 412.5), this);
-//        towers.add(freezer);
-
-//
-//        var hitman = new Hitman("sprites/towers/hitman_tower.png", new Coordinate2D(187.5, 412.5), this);
-//        towers.add(hitman);
 
             enemyList.forEach(this::addEntity);
         }
@@ -113,25 +102,17 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     @Override
     public void setupEntitySpawners() {
         for (Tower t : towers) {
-            addEntitySpawner(t.getSpawner());
+            addEntitySpawner(t.getProjectileSpawner());
         }
+//        for (Enemy e : enemyList) {
+//            addEntitySpawner(e.getEnemySpawner(Round.ONE));
+//        }
     }
 
     @Override
     public void setupTileMaps() {
         addTileMap(levelTileMap);
     }
-
-    //    public void checkAliveEnemies() {
-//        for (int i = enemyList.size() - 1; i > 0; i--) {
-//            if (enemyList.get(i).getHealth() <= 0) {
-//                enemyList.remove(i);
-//                enemyList.get(i).remove();
-//                points += 5;
-//                coins += 10;
-//            }
-//        }
-//    }
 
     public void enemyPastBorder(boolean pastBorder, Enemy e) {
         if (pastBorder) {
@@ -150,6 +131,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
                 System.out.println("Changing back!");
                 levelTileMap.setupNormalTileMap();
                 buyButton.currentTowerSelected = "";
+                coinCounter.setCounterColor(Color.BLACK);
             }
             System.out.println(buyButton.currentTowerSelected);
             setupTileMaps();
@@ -200,8 +182,10 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
                             towerPrice = 0;
                         }
 
-                        coins -= towerPrice;
-                        points += towerPrice;
+                    coins -= towerPrice;
+                    coinCounter.setCounterText("Coins: ", coins);
+                    points += towerPrice;
+                    pointCounter. setCounterText("Points: ", points);
 
                         setupEntities();
                         setupEntitySpawners();
@@ -216,8 +200,8 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
                         buyButton.currentTowerSelected = "";
                         buyButton.isTowerSelected = false;
                         buyButton.tileMapChanged = true;
-                    }
-                    else {
+                    } else {
+                        coinCounter.setCounterColor(Color.DARKRED);
                         System.out.println("You don't have enough money");
                     }
                 }
@@ -229,7 +213,4 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     public void onMouseButtonReleased(MouseButton mouseButton, Coordinate2D coordinate2D) {
         placeTower(coordinate2D);
     }
-
-
-
 }

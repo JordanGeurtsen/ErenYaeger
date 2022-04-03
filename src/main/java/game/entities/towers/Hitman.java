@@ -7,7 +7,7 @@ import game.scenes.GameScreen;
 
 public class Hitman extends Tower {
     private Coordinate2D initialLocation;
-    private static double price = 250.0;
+    private static int price = 250;
     private static double rangeRadius = 1250;
     private static double damage = 10;
     private ProjectileSpawner spawner;
@@ -32,8 +32,7 @@ public class Hitman extends Tower {
         return rangeRadius;
     }
 
-//    @Override
-    public static double getTowerPrice() {
+    public static int getTowerPrice() {
         return price;
     }
 
@@ -43,7 +42,7 @@ public class Hitman extends Tower {
     }
 
     @Override
-    public ProjectileSpawner getSpawner() {
+    public ProjectileSpawner getProjectileSpawner() {
         return spawner;
     }
 

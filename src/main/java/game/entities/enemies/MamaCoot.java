@@ -6,8 +6,8 @@ import game.scenes.GameScreen;
 
 public class MamaCoot extends Enemy{
     private int health = 2;
-    private double speed;
-    private Direction direction = Direction.LEFT;
+    private double speed = 1.6;
+    private Direction direction = Direction.RIGHT;
     private double walkedDistance = 0.0;
     private Coordinate2D initialLocation;
 
@@ -34,12 +34,10 @@ public class MamaCoot extends Enemy{
         switch (movementSpeed){
             case SLOW :
                 speed = 1.1;
-                direction = Direction.DOWN;
                 setMotion(speed, direction);
                 break;
             case NORMAL:
                 speed = 1.6;
-                direction = Direction.RIGHT;
                 setMotion(speed, direction);
         }
     }

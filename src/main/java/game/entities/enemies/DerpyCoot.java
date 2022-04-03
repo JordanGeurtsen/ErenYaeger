@@ -34,12 +34,10 @@ public class DerpyCoot extends Enemy{
                 switch (movementSpeed){
                         case SLOW :
                                 speed = 1.1;
-                                direction = Direction.UP;
                                 setMotion(speed, direction);
                                 break;
                         case NORMAL:
                                 speed = 1.8;
-                                direction = Direction.LEFT;
                                 setMotion(speed, direction);
                 }
         }
