@@ -28,12 +28,12 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     public LevelTileMap levelTileMap = new LevelTileMap();
     public ArrayList<Enemy> enemyList = new ArrayList<>();
     public ArrayList<Tower> towers = new ArrayList<>();
-    private Counter coinCounter;
-    private Counter pointCounter;
-    private Counter liveCounter;
-    public int coins = 1000;
-    public int points = 0;
-    public int lives = 20;
+    public Counter coinCounter;
+    public Counter pointCounter;
+    public Counter liveCounter;
+    public static int coins = 1000;
+    public static int points = 0;
+    public static int lives = 20;
     private final int blockSize = 75;
     private final int gameFieldSize = 1050;
     private int blockNrWidth;
@@ -184,8 +184,6 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
 
                     coins -= towerPrice;
                     coinCounter.setCounterText("Coins: ", coins);
-                    points += towerPrice;
-                    pointCounter. setCounterText("Points: ", points);
 
                         setupEntities();
                         setupEntitySpawners();

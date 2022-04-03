@@ -15,6 +15,9 @@ import game.entities.towers.Hitman;
 import game.entities.towers.Tower;
 import game.scenes.GameScreen;
 
+import static game.scenes.GameScreen.coins;
+import static game.scenes.GameScreen.points;
+
 
 public class Projectile extends DynamicSpriteEntity implements Collided, SceneBorderCrossingWatcher {
     private GameScreen gameScreen;
@@ -39,6 +42,10 @@ public class Projectile extends DynamicSpriteEntity implements Collided, SceneBo
                 }
                 if (((Enemy) collidingObject).getHealth() <= 0) {
                     gameScreen.enemyList.remove(((Enemy) collidingObject));
+                    coins += 25;
+                    gameScreen.coinCounter.setCounterText("Coins: ", coins);
+                    points += 25;
+                    gameScreen.pointCounter.setCounterText("Points: ", points);
                     ((Enemy) collidingObject).remove();
                 }
             }
