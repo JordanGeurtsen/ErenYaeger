@@ -16,6 +16,6 @@ public class Arrow extends Projectile implements Collided, SceneBorderCrossingWa
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
         setRotate(shootAngle - 90);
         setMotion(movementSpeed, shootAngle);
-
+        System.out.println("shot");
     }
 }

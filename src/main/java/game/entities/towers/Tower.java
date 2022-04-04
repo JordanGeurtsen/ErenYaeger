@@ -29,22 +29,26 @@ public abstract class Tower extends DynamicSpriteEntity implements UpdateExposer
         return inRange;
     }
 
-    public Enemy getTarget(ArrayList<Enemy> enemyList) {
+    public Enemy getTarget(ArrayList<Enemy> spawnedEnemyList) {
         double maxHealth = 0;
         closestDistance = getTowerRange();
         ArrayList<Enemy> enemiesInRange = new ArrayList<>();
-        for (Enemy e : enemyList) {
+        for (Enemy e : spawnedEnemyList) {
             if (isInRange(getTowerRange(), e)) {
-                enemiesInRange.add(e);
-                if(enemiesInRange != null) {
-                    for (Enemy r : enemiesInRange) {
-                        if (r.getHealth() > maxHealth && distanceTo(r) < closestDistance) {
-                            maxHealth = r.getHealth();
-                            closestDistance = distanceTo(r);
-                            target = r;
-                            setShootAngle(angleTo(target));
-                            if (r.getHealth() <= 0 || distanceTo(r) > getTowerRange()) {
-                                closestDistance = getTowerRange();
+                if(e.getAnchorLocation() != new Coordinate2D(112.0, 0.0)) {
+                    enemiesInRange.add(e);
+                    if (enemiesInRange != null) {
+                        for (Enemy r : enemiesInRange) {
+                            if (!isInRange(getTowerRange(), r)) {
+                                enemiesInRange.remove(r);
+                            } else if (r.getHealth() > maxHealth && distanceTo(r) < closestDistance) {
+                                maxHealth = r.getHealth();
+                                closestDistance = distanceTo(r);
+                                target = r;
+                                setShootAngle(angleTo(target));
+                                if (r.getHealth() <= 0 || !isInRange(getTowerRange(), r)) {
+                                    closestDistance = getTowerRange();
+                                }
                             }
                         }
                     }
@@ -54,10 +58,10 @@ public abstract class Tower extends DynamicSpriteEntity implements UpdateExposer
         return target;
     }
 
-    public ArrayList<Enemy> getEveryTarget(ArrayList<Enemy> enemyList, Tower t) {
+    public ArrayList<Enemy> getEveryTarget(ArrayList<Enemy> spawnedEnemyList, Tower t) {
         ArrayList<Enemy> everyTarget = new ArrayList<>();
-        if (enemyList.size() >= 1){
-            for (Enemy e : enemyList) {
+        if (spawnedEnemyList.size() >= 1){
+            for (Enemy e : spawnedEnemyList) {
                 if (isInRange(t.getTowerRange(), e)) {
                     everyTarget.add(e);
                 }
@@ -77,8 +81,6 @@ public abstract class Tower extends DynamicSpriteEntity implements UpdateExposer
     public abstract double getTowerDamage();
 
     public abstract double getTowerRange();
-
-//    public abstract double getTowerPrice();
 
     abstract public Coordinate2D getInitialLocation();
 

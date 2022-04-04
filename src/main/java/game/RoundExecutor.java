@@ -14,13 +14,7 @@ public class RoundExecutor { //extends EntitySpawner {
 
     public RoundExecutor(GameScreen gameScreen, Round round) {
         this.gameScreen = gameScreen;
-//        spawner = new EnemySpawner(5, gameScreen);
     }
-
-//    public EnemySpawner getEnemySpawner(Round round){
-//        setEnemies(round);
-//        return spawner;
-//    }
 
     public void setEnemies(Round round){
         newEnemies = new ArrayList<>();

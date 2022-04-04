@@ -3,12 +3,19 @@ package game.entities.enemies;
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.SceneBorderCrossingWatcher;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 import game.PathStep;
+import game.entities.towers.Archer;
+import game.entities.towers.Freezer;
+import game.entities.towers.Hitman;
 import game.scenes.GameScreen;
+
+import static game.scenes.GameScreen.coins;
+import static game.scenes.GameScreen.points;
 
 
 public abstract class Enemy extends DynamicSpriteEntity implements Collider, SceneBorderCrossingWatcher {
@@ -44,5 +51,6 @@ public abstract class Enemy extends DynamicSpriteEntity implements Collider, Sce
     public abstract void setMovementSpeed(MovementSpeed movementSpeed);
 
     public PathStep getPathStep(){return pathStep;}
+
     public void setPathStep(PathStep newPathStep){this.pathStep = newPathStep;}
 }

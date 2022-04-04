@@ -31,6 +31,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     private BonkTheTowerTD bonkTheTowerTD;
     public LevelTileMap levelTileMap = new LevelTileMap();
     public ArrayList<Enemy> enemyList = new ArrayList<>();
+    public ArrayList<Enemy> spawnedEnemyList = new ArrayList<>();
     public ArrayList<Tower> towers = new ArrayList<>();
     public Counter coinCounter;
     public Counter pointCounter;
@@ -150,6 +151,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
             enemySpawnTimer = 0;
             if (enemyListNr > 0) {
                 addEntity(enemyList.get(enemyListNr));
+                spawnedEnemyList.add(enemyList.get(enemyListNr));
                 enemyListNr--;
             }
         } else {
@@ -180,7 +182,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     public void resetStartingVariables(){
         points = 0;
         lives = 20;
-        coins = 250;
+        coins = 100;
         currentRound = Round.ONE;
         towers.clear();
 //        enemyList.clear();
@@ -220,6 +222,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
 
                 if (levelTileMap.freeSpace(blockNrWidth, blockNrHeight)) {
                     if (enoughMoney(towerSelectedName)) {
+                        setBackgroundColor(Color.PAPAYAWHIP);
                         if (towerSelectedName == "Archer") {
                             Archer newTower = new Archer("sprites/towers/archer_tower.png", newTowerCoordinates, this);
                             towers.add(newTower);

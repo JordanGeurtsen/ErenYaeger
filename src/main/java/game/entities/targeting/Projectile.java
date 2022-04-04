@@ -31,25 +31,30 @@ public class Projectile extends DynamicSpriteEntity implements Collided, SceneBo
 
     @Override
     public void onCollision(Collider collidingObject) {
-            if (collidingObject instanceof Enemy) {
-                remove();
-                if (shootingTower instanceof Archer) {
-                    ((Enemy) collidingObject).setHealth(-shootingTower.getTowerDamage());
-                } else if (shootingTower instanceof Freezer) {
-                    ((Enemy) collidingObject).setMovementSpeed(MovementSpeed.SLOW);
-                } else if (shootingTower instanceof Hitman) {
-                    ((Enemy) collidingObject).setHealth(-shootingTower.getTowerDamage());
-                }
-                if (((Enemy) collidingObject).getHealth() <= 0) {
-                    gameScreen.enemyList.remove(((Enemy) collidingObject));
-                    coins += 25;
-                    gameScreen.coinCounter.setCounterText("Coins: ", coins);
-                    points += 25;
-                    gameScreen.pointCounter.setCounterText("Points: ", points);
-                    ((Enemy) collidingObject).remove();
-                }
+        if (collidingObject instanceof Enemy) {
+
+            if (shootingTower instanceof Archer) {
+                ((Enemy) collidingObject).setHealth(-shootingTower.getTowerDamage());
+            } else if (shootingTower instanceof Freezer) {
+                ((Enemy) collidingObject).setMovementSpeed(MovementSpeed.SLOW);
+            } else if (shootingTower instanceof Hitman) {
+                ((Enemy) collidingObject).setHealth(-shootingTower.getTowerDamage());
             }
+            if (((Enemy) collidingObject).getHealth() <= 0) {
+                gameScreen.spawnedEnemyList.remove((Enemy) collidingObject);
+                System.out.println("removed");
+                gameScreen.enemyList.remove((Enemy) collidingObject);
+                System.out.println("bla");
+                coins += 20;
+                gameScreen.coinCounter.setCounterText("Coins: ", coins);
+                points += 25;
+                gameScreen.pointCounter.setCounterText("Points: ", points);
+                ((Enemy) collidingObject).remove();
+                System.out.println("obrem");
+            }
+            remove();
         }
+    }
 
     @Override
     public void notifyBoundaryCrossing(SceneBorder border) {
