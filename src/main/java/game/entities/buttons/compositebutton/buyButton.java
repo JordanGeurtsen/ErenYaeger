@@ -47,14 +47,12 @@ public class buyButton extends CompositeButton {
 
         var titleText = new TextEntity(
                 new Coordinate2D(90, 0),
-               // "Archer Tower"
                 towerName
         );
         addEntity(titleText);
 
         var priceText = new TextEntity(
                 new Coordinate2D(90, 15),
-               // "Price =        100 C"
                price
         );
 
@@ -62,14 +60,12 @@ public class buyButton extends CompositeButton {
 
         var damageText = new TextEntity(
                 new Coordinate2D(90, 25),
-                //"Damage =   30 HP"
                 damage
         );
         addEntity(damageText);
 
         var rangeText = new TextEntity(
                 new Coordinate2D(90, 35),
-                //"Range =       45 Px"
                 range
         );
         addEntity(rangeText);

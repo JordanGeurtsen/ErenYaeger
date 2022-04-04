@@ -11,17 +11,16 @@ public class RoundExecutor { //extends EntitySpawner {
     private GameScreen gameScreen;
     private ArrayList<Enemy> newEnemies;
     private Coordinate2D startCoordinates = new Coordinate2D(112, 0);
-    public EnemySpawner spawner;
 
     public RoundExecutor(GameScreen gameScreen, Round round) {
         this.gameScreen = gameScreen;
-        spawner = new EnemySpawner(5, gameScreen);
+//        spawner = new EnemySpawner(5, gameScreen);
     }
 
-    public EnemySpawner getEnemySpawner(Round round){
-        setEnemies(round);
-        return spawner;
-    }
+//    public EnemySpawner getEnemySpawner(Round round){
+//        setEnemies(round);
+//        return spawner;
+//    }
 
     public void setEnemies(Round round){
         newEnemies = new ArrayList<>();

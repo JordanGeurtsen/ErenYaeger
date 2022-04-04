@@ -11,6 +11,7 @@ import game.BonkTheTowerTD;
 import game.PathStep;
 import game.Screenum;
 import game.*;
+import game.entities.buttons.compositebutton.NextRoundButton;
 import game.entities.buttons.compositebutton.buyButton;
 import game.entities.counter.Counter;
 import game.entities.enemies.*;
@@ -49,8 +50,8 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     private int enemyListNr = 8;
     private int enemySpawnTimer = 40;
     private int enemySpawnInterval = 100;
-    private Round currentRound = Round.ONE;
-    private boolean nextRound = false;
+    public Round currentRound = Round.ONE;
+    public boolean nextRound = true;
 
     public GameScreen(BonkTheTowerTD bonkTheTowerTD) {
         this.bonkTheTowerTD = bonkTheTowerTD;
@@ -89,41 +90,12 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
                     "Freezer", 200, 0, 150, this);
             addEntity(freezerBuy);
 
-//            var enemyTest1 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(112, 0), this);
-//            enemyList.add(enemyTest1);
-//
-//            var enemyTest3 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(112, -10), this);
-//            enemyList.add(enemyTest3);
-//
-//            var enemyTest2 = new DerpyCoot("sprites/enemies/derpy_coot.png", new Coordinate2D(112, -20), this);
-//            enemyList.add(enemyTest2);
-//
-//            var enemyTest9 = new DerpyCoot("sprites/enemies/derpy_coot.png", new Coordinate2D(112, -20), this);
-//            enemyList.add(enemyTest9);
-//
-//            var enemyTest4 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(112, -15), this);
-//            enemyList.add(enemyTest4);
-//
-//            var enemyTest8 = new FastCoot("sprites/enemies/fast_coot.png", new Coordinate2D(112, -15), this);
-//            enemyList.add(enemyTest8);
-//
-//            var enemyTest5 = new MamaCoot("sprites/enemies/mama_coot.png", new Coordinate2D(112, 10), this);
-//            enemyList.add(enemyTest5);
+            var nextRoundButton = new NextRoundButton(new Coordinate2D(1140, 600), this);
+            addEntity(nextRoundButton);
 
-
-            roundExecutor.setEnemies(currentRound);
-            enemyListNr = enemyList.size() -1;
             }
 
         towers.forEach(this::addEntity);
-
-        if(nextRound){
-            System.out.println("HI");
-            currentRound = Round.TWO;
-            roundExecutor.setEnemies(currentRound);
-            enemyListNr = enemyList.size() -1;
-            nextRound = false;
-        }
     }
 
     @Override
@@ -152,6 +124,12 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         changingTileMap();
         enemiesPath();
         spawnEnemies();
+
+        if(nextRound) {
+            roundExecutor.setEnemies(currentRound);
+            enemyListNr = enemyList.size() - 1;
+            nextRound = false;
+        }
     }
 
     public void spawnEnemies(){
@@ -160,8 +138,6 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
             if (enemyListNr > 0) {
                 addEntity(enemyList.get(enemyListNr));
                 enemyListNr--;
-            } else {
-                nextRound = true;
             }
         } else {
             enemySpawnTimer++;
