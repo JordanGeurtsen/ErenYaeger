@@ -16,13 +16,12 @@ public class Archer extends Tower {
     private ArrowSpawner spawner;
     private GameScreen gameScreen;
     private Enemy target;
-    private ArrayList<Enemy> enemiesInRange = new ArrayList<>();
 
     public Archer(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
         super(resource, initialLocation, gameScreen);
         this.initialLocation = initialLocation;
         this.gameScreen = gameScreen;
-        spawner = new ArrowSpawner(500, getInitialLocation(), this, gameScreen);
+        spawner = new ArrowSpawner(850, getInitialLocation(), this, gameScreen);
     }
 
     @Override

@@ -180,7 +180,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     public void resetStartingVariables(){
         points = 0;
         lives = 20;
-        coins = 100;
+        coins = 500;
         currentRound = Round.ONE;
         towers.clear();
 //        enemyList.clear();
