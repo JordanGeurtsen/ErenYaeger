@@ -58,18 +58,6 @@ public abstract class Tower extends DynamicSpriteEntity implements UpdateExposer
         return target;
     }
 
-    public ArrayList<Enemy> getEveryTarget(ArrayList<Enemy> spawnedEnemyList, Tower t) {
-        ArrayList<Enemy> everyTarget = new ArrayList<>();
-        if (spawnedEnemyList.size() >= 1){
-            for (Enemy e : spawnedEnemyList) {
-                if (isInRange(t.getTowerRange(), e)) {
-                    everyTarget.add(e);
-                }
-            }
-        }
-        return everyTarget;
-    }
-
     public void setShootAngle(double shootAngle) {
         this.shootAngle = shootAngle;
     }

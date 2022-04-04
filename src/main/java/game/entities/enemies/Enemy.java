@@ -8,6 +8,7 @@ import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.SceneBorderCrossingWatcher;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.scenes.SceneBorder;
+import game.EnemySpawner;
 import game.PathStep;
 import game.entities.towers.Archer;
 import game.entities.towers.Freezer;
@@ -20,7 +21,8 @@ import static game.scenes.GameScreen.points;
 
 public abstract class Enemy extends DynamicSpriteEntity implements Collider, SceneBorderCrossingWatcher {
     private Coordinate2D initialLocation;
-    GameScreen gameScreen;
+    private GameScreen gameScreen;
+    private EnemySpawner enemySpawner;
     public PathStep pathStep = PathStep.ZERO;
 
     public Enemy(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
@@ -28,6 +30,7 @@ public abstract class Enemy extends DynamicSpriteEntity implements Collider, Sce
         this.initialLocation = initialLocation;
         this.gameScreen = gameScreen;
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        enemySpawner = new EnemySpawner(800, gameScreen.enemyList);
     }
 
     public abstract int getHealth();
@@ -53,4 +56,8 @@ public abstract class Enemy extends DynamicSpriteEntity implements Collider, Sce
     public PathStep getPathStep(){return pathStep;}
 
     public void setPathStep(PathStep newPathStep){this.pathStep = newPathStep;}
+
+    public EnemySpawner getEnemySpawner() {
+        return enemySpawner;
+    }
 }

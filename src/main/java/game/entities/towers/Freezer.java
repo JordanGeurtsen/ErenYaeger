@@ -2,7 +2,8 @@ package game.entities.towers;
 
 
 import com.github.hanyaeger.api.Coordinate2D;
-import game.entities.targeting.IceSpawner;
+import game.entities.enemies.Enemy;
+import game.entities.enemies.MovementSpeed;
 import game.entities.targeting.ProjectileSpawner;
 import game.scenes.GameScreen;
 
@@ -11,7 +12,6 @@ public class Freezer extends Tower{
     private static double rangeRadius = 117.5;
     private static double damage = 20;
     private Coordinate2D initialLocation;
-    private IceSpawner spawner;
     private GameScreen gameScreen;
 
     public Freezer(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
@@ -39,12 +39,17 @@ public class Freezer extends Tower{
 
     @Override
     public ProjectileSpawner getProjectileSpawner() {
-        spawner = new IceSpawner(500, getInitialLocation(), gameScreen.enemyList, this, gameScreen);
-        return spawner;
+        return null;
     }
 
     @Override
     public void explicitUpdate(long timestamp) {
-
+        for (Enemy e: gameScreen.spawnedEnemyList) {
+            if(isInRange(getTowerRange(), e)){
+                e.setMovementSpeed(MovementSpeed.SLOW);
+            } else {
+                e.setMovementSpeed(MovementSpeed.NORMAL);
+            }
+        }
     }
 }

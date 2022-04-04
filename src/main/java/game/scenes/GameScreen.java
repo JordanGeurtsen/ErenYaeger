@@ -47,7 +47,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     private double yCoordinateTower;
     private int towerPrice;
     private Coordinate2D newTowerCoordinates;
-    private RoundExecutor roundExecutor = new RoundExecutor(this, Round.ONE);
+    private RoundExecutor roundExecutor = new RoundExecutor(this);
     private int enemyListNr = 8;
     private int enemySpawnTimer = 40;
     private int enemySpawnInterval = 100;
@@ -99,20 +99,18 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
             }
 
         towers.forEach(this::addEntity);
-
-        if(nextRound){
-            currentRound = Round.TWO;
-            roundExecutor.setEnemies(currentRound);
-            enemyListNr = enemyList.size() -1;
-            nextRound = false;
-        }
     }
 
     @Override
     public void setupEntitySpawners() {
         for (Tower t : towers) {
-            addEntitySpawner(t.getProjectileSpawner());
+            if (t instanceof Archer || t instanceof Hitman) {
+                addEntitySpawner(t.getProjectileSpawner());
+            }
         }
+//            for (Enemy e : enemyList) {
+//                addEntitySpawner(e.getEnemySpawner());
+//            }
     }
 
     @Override
