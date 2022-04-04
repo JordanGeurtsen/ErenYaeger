@@ -23,8 +23,8 @@ public class Projectile extends DynamicSpriteEntity implements Collided, SceneBo
     private GameScreen gameScreen;
     private Tower shootingTower;
 
-    public Projectile(String resource, Coordinate2D initialLocation, GameScreen gameScreen, Tower shootingTower) {
-        super(resource, initialLocation, new Size(60));
+    public Projectile(String resource, Coordinate2D initialLocation, GameScreen gameScreen, Tower shootingTower, Size size) {
+        super(resource, initialLocation, size);
         this.shootingTower = shootingTower;
         this.gameScreen = gameScreen;
     }
