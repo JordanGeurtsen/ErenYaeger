@@ -5,8 +5,6 @@ import game.entities.enemies.Enemy;
 import game.entities.towers.Tower;
 import game.scenes.GameScreen;
 
-import java.util.ArrayList;
-import java.util.Random;
 
 public class ArrowSpawner extends ProjectileSpawner {
     private GameScreen gameScreen;

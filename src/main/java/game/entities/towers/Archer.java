@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Archer extends Tower {
     private static int price = 100;
     private static double rangeRadius = 225;
-    private static double damage = 10;
+    private static double damage = 5;
     private Coordinate2D initialLocation;
     private ArrowSpawner spawner;
     private GameScreen gameScreen;
@@ -35,11 +35,6 @@ public class Archer extends Tower {
         return rangeRadius;
     }
 
-//    @Override
-    public static int getTowerPrice() {
-        return price;
-    }
-
     @Override
     public Coordinate2D getInitialLocation() {
         return initialLocation;
@@ -50,6 +45,11 @@ public class Archer extends Tower {
         return spawner;
     }
 
+    public static int getTowerPrice() {
+        return price;
+    }
+
+
     @Override
     public void explicitUpdate(long timestamp) {
         if (gameScreen.enemyList.size() > 0) {
@@ -59,7 +59,7 @@ public class Archer extends Tower {
                     if (target != null) {
                         spawner.shoot(getShootAngle());
                     } else {
-                        spawner.setNeedToShoot(false);
+                        spawner.setNeedToShoot(true);
                     }
             }
         }

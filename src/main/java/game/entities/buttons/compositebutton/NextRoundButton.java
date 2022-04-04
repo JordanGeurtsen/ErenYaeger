@@ -29,15 +29,18 @@ public class NextRoundButton extends TextButton {
 
     @Override
     public void onButtonClick() {
-        if(newRound.getId() < 4) {
-            newRound.setNextID();
-            System.out.println(newRound.getId());
-            gameScreen.currentRound = newRound.values()[newRound.getId()];
-            System.out.println(gameScreen.currentRound);
-            gameScreen.nextRound = true;
-        } else {
-            gameScreen.gameOver();
-            gameScreen.currentRound = newRound.ONE;
-        }
+        System.out.println(gameScreen.enemyList.size());
+//        if(gameScreen.nextRound) {
+            if (gameScreen.enemyList.size() -1 == 0) {
+                if (newRound.getId() < 4) {
+                    newRound.setNextID();
+                    gameScreen.currentRound = newRound.values()[newRound.getId()];
+                    gameScreen.nextRound = true;
+                    gameScreen.points += 100;
+                } else {
+                    gameScreen.gameOver();
+                }
+            }
+//        }
     }
 }

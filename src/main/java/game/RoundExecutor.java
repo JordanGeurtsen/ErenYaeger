@@ -70,7 +70,8 @@ public class RoundExecutor { //extends EntitySpawner {
                 break;
             case FIVE:
                 newEnemies.clear();
-                for(int j = 0; j < 4; j++){
+                newEnemies.add(new BabyCoot("sprites/enemies/baby_coot.png", startCoordinates, gameScreen));
+                for(int j = 0; j < 5; j++){
                     newEnemies.add(new ThickCoot("sprites/enemies/thick_coot.png", startCoordinates, gameScreen));
                 }
                 for(int j = 0; j < 5; j++){

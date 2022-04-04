@@ -11,7 +11,7 @@ import game.entities.tilemap.ground.Grass;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class LevelTileMap extends TileMap {
-    private int[][] levelMap = {
+    public int[][] levelMap = {
             {1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
             {1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1},
             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1},
@@ -37,7 +37,7 @@ public class LevelTileMap extends TileMap {
         addEntity(1, Grass.class, "sprites/grass.jpg");
         addEntity(2, Water.class, "sprites/water.jpg");
         addEntity(3, TowerGround.class, "sprites/grass.jpg");
-        addEntity(6, SelectGround.class, "sprites/grass_select.png");
+        addEntity(4, SelectGround.class, "sprites/grass_select.png");
     }
 
     @Override
@@ -50,7 +50,7 @@ public class LevelTileMap extends TileMap {
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[0].length; j++) {
                 if (map[i][j] == 1) {
-                    map[i][j] = 6;
+                    map[i][j] = 4;
                 }
             }
         }
@@ -61,7 +61,7 @@ public class LevelTileMap extends TileMap {
         int[][] map = this.levelMap;
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[0].length; j++) {
-                if (map[i][j] == 6) {
+                if (map[i][j] == 4) {
                     map[i][j] = 1;
                 }
             }
@@ -69,22 +69,31 @@ public class LevelTileMap extends TileMap {
         this.levelMap = map;
     }
 
-    public void changeTile(int blockNrWidth, int blockNrHeight){
-        int entityIdentifier = 3;
+    public void changeTile(int blockNrWidth, int blockNrHeight, int entityIdentifier){
         this.levelMap[blockNrHeight][blockNrWidth] = entityIdentifier;
     }
 
     public boolean freeSpace(int blockNrWidth, int blockNrHeight){
-        if(this.levelMap[blockNrHeight][blockNrWidth] == 6){
+        if(this.levelMap[blockNrHeight][blockNrWidth] == 4){
             return true;
         } else{
             return false;
         }
     }
 
-    public int getTileID(Coordinate2D coordinate2D){
-        blockNrWidth = (int) Math.floor(coordinate2D.getX() / blockSize);
-        blockNrHeight = (int) Math.floor(coordinate2D.getY() / blockSize);
-        return this.levelMap[blockNrHeight][blockNrWidth];
+//    public int getTileID(Coordinate2D coordinate2D){
+//        blockNrWidth = (int) Math.floor(coordinate2D.getX() / blockSize);
+//        blockNrHeight = (int) Math.floor(coordinate2D.getY() / blockSize);
+//        return this.levelMap[blockNrHeight][blockNrWidth];
+//    }
+
+    public void resetLevelMap(){
+        for(int i = 0; i < levelMap.length; i++){
+            for(int j = 0; j < levelMap[0].length; j++){
+                if(levelMap[i][j] == 3 || levelMap[i][j] == 4) {
+                    changeTile(i, j, 1);
+                }
+            }
+        }
     }
 }

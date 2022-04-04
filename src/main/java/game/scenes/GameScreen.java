@@ -139,6 +139,10 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
             enemyListNr = enemyList.size() - 1;
             nextRound = false;
         }
+
+        if(currentRound == Round.FIVE && enemyList.size() - 1 == 0){
+            gameOver();
+        }
     }
 
     public void spawnEnemies(){
@@ -176,7 +180,11 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     public void resetStartingVariables(){
         points = 0;
         lives = 20;
-        coins = 225;
+        coins = 250;
+        currentRound = Round.ONE;
+        towers.clear();
+//        enemyList.clear();
+        levelTileMap.resetLevelMap();
     }
 
     public void gameOver(){
@@ -233,7 +241,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
                         setupEntitySpawners();
 
 
-                        levelTileMap.changeTile(blockNrWidth, blockNrHeight);
+                        levelTileMap.changeTile(blockNrWidth, blockNrHeight , 3);
                         levelTileMap.setupNormalTileMap();
                         setupTileMaps();
                         initTileMaps();
