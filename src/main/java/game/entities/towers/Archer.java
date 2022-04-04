@@ -54,14 +54,13 @@ public class Archer extends Tower {
     public void explicitUpdate(long timestamp) {
         if (gameScreen.enemyList.size() > 0) {
             for (Tower t : gameScreen.towers) {
-                for (Enemy e : gameScreen.enemyList) {
                     target = t.getTarget(gameScreen.enemyList);
+                System.out.println(target + "" + target.getInitialLocation());
                     if (target != null) {
                         spawner.shoot(getShootAngle());
                     } else {
                         spawner.setNeedToShoot(false);
                     }
-                }
             }
         }
     }

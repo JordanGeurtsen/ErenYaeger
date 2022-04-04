@@ -51,7 +51,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     private int enemySpawnTimer = 40;
     private int enemySpawnInterval = 100;
     public Round currentRound = Round.ONE;
-    public boolean nextRound = true;
+    public boolean nextRound = false;
 
     public GameScreen(BonkTheTowerTD bonkTheTowerTD) {
         this.bonkTheTowerTD = bonkTheTowerTD;
@@ -60,8 +60,8 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     @Override
     public void setupScene() {
         setBackgroundColor(Color.PAPAYAWHIP);
-        setBackgroundAudioVolume(0.1);
-//        setBackgroundAudio("audio/relaxing_bg_music_2.mp3");
+        setBackgroundAudioVolume(0.3);
+        setBackgroundAudio("audio/relaxing_bg_music_2.mp3");
     }
 
     @Override
@@ -90,12 +90,21 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
                     "Freezer", 200, 0, 150, this);
             addEntity(freezerBuy);
 
+            roundExecutor.setEnemies(currentRound);
+            enemyListNr = enemyList.size() -1;
             var nextRoundButton = new NextRoundButton(new Coordinate2D(1140, 600), this);
             addEntity(nextRoundButton);
 
             }
 
         towers.forEach(this::addEntity);
+
+        if(nextRound){
+            currentRound = Round.TWO;
+            roundExecutor.setEnemies(currentRound);
+            enemyListNr = enemyList.size() -1;
+            nextRound = false;
+        }
     }
 
     @Override
@@ -180,7 +189,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
             towerPrice = Archer.getTowerPrice();
         } else if (towerName == "Hitman"){
             towerPrice = Hitman.getTowerPrice();
-        } else { //if (towerName == "Freezer"){
+        } else {
             towerPrice = Freezer.getTowerPrice();
         }
         if(coins >= towerPrice) {

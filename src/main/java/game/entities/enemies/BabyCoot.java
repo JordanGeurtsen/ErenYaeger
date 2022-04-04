@@ -6,8 +6,8 @@ import game.scenes.GameScreen;
 
 public class BabyCoot extends Enemy{
     private int health = 10;
-    private int damage = 1;
-    private double speed = 0.9;
+    private int damage = 19;
+    private double speed = 1.0;
     private Direction direction = Direction.DOWN;
     private double walkedDistance = 0.0;
     private Coordinate2D initialLocation;
@@ -42,7 +42,7 @@ public class BabyCoot extends Enemy{
                 setSpeed(speed);
                 break;
             case NORMAL:
-                speed = 0.9;
+                speed = 1.0;
                 setSpeed(speed);
         }
     }
