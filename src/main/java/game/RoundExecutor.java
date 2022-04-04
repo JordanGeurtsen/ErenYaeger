@@ -7,16 +7,15 @@ import game.scenes.GameScreen;
 
 import java.util.ArrayList;
 
-public class RoundExecutor extends EntitySpawner {
+public class RoundExecutor { //extends EntitySpawner {
     private GameScreen gameScreen;
     private ArrayList<Enemy> newEnemies;
-    private Coordinate2D startCoordinates = new Coordinate2D(87.5,1);
-    private EnemySpawner spawner;
+    private Coordinate2D startCoordinates = new Coordinate2D(112, 0);
+    public EnemySpawner spawner;
 
-    public RoundExecutor(long intervalInMs, GameScreen gameScreen, Round round) {
-        super(intervalInMs);
+    public RoundExecutor(GameScreen gameScreen, Round round) {
         this.gameScreen = gameScreen;
-        spawner = new EnemySpawner(500, round, gameScreen);
+        spawner = new EnemySpawner(5, gameScreen);
     }
 
     public EnemySpawner getEnemySpawner(Round round){
@@ -93,10 +92,5 @@ public class RoundExecutor extends EntitySpawner {
                 break;
         }
         gameScreen.enemyList = newEnemies;
-    }
-
-    @Override
-    protected void spawnEntities() {
-
     }
 }

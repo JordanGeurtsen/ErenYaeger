@@ -57,8 +57,6 @@ public class Archer extends Tower {
                 for (Enemy e : gameScreen.enemyList) {
                     target = t.getTarget(gameScreen.enemyList);
                     if (target != null) {
-//                        shootAngle = angleTo(target);
-//                        System.out.println(target.getInitialLocation() + " " + shootAngle);
                         spawner.shoot(getShootAngle());
                     } else {
                         spawner.setNeedToShoot(false);

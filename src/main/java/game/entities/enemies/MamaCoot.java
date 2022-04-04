@@ -5,7 +5,7 @@ import com.github.hanyaeger.api.entities.Direction;
 import game.scenes.GameScreen;
 
 public class MamaCoot extends Enemy{
-    private int health = 2;
+    private int health = 80;
     private int damage = 3;
     private double speed = 1.6;
     private Direction direction = Direction.DOWN;

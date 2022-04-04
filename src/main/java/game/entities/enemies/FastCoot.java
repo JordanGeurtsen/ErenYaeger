@@ -7,7 +7,6 @@ import game.scenes.GameScreen;
 public class FastCoot extends Enemy{
     private int health = 50;
     private int damage = 2;
-    private double walkedDistance = 0.0;
     private double speed = 2.5;
     private Direction direction = Direction.DOWN;
     private Coordinate2D initialLocation;
@@ -18,9 +17,7 @@ public class FastCoot extends Enemy{
         setMotion(getMovementSpeed(), direction);
     }
 
-    public int getHealth() {
-        return health;
-    }
+    public int getHealth() {return health;}
 
     @Override
     public void setHealth(double newHealth) {
