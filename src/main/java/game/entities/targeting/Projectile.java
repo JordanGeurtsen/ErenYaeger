@@ -34,12 +34,9 @@ public class Projectile extends DynamicSpriteEntity implements Collided, SceneBo
     @Override
     public void onCollision(Collider collidingObject) {
         if (collidingObject instanceof Enemy) {
-            if (shootingTower instanceof Archer) {
-                ((Enemy) collidingObject).setHealth(-shootingTower.getTowerDamage());
-            } else if (shootingTower instanceof Hitman) {
+            if (shootingTower instanceof Archer || shootingTower instanceof Hitman) {
                 ((Enemy) collidingObject).setHealth(-shootingTower.getTowerDamage());
             }
-
                 if (((Enemy) collidingObject).getHealth() <= 0) {
                     if (collidingObject instanceof MamaCoot){
                         ((MamaCoot) collidingObject).getBabyCootSpawner().remove();

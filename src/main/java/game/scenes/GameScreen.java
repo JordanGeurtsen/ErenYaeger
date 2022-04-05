@@ -65,7 +65,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         if(Objects.equals(BuyButton.currentTowerSelected, "")) {
             resetStartingVariables();
 
-            roundCounter = new Counter(new Coordinate2D(1055, 5),  currentRound.getId() , "Round: ");
+            roundCounter = new Counter(new Coordinate2D(1055, 5),  currentRound.getId(), "Round: ");
             addEntity(roundCounter);
 
             coinCounter = new Counter(new Coordinate2D(1055, 35), coins, "Coins: ");
@@ -134,7 +134,8 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     }
 
         if(nextRound) {
-            roundCounter.updateCounter("Round: ", currentRound.getId() - 1);
+            int roundAdvance = 1;
+            roundCounter.updateCounter("Round: ", roundAdvance);
             roundExecutor.setEnemies(currentRound);
             enemyListNr = enemyList.size() - 1;
             nextRound = false;
