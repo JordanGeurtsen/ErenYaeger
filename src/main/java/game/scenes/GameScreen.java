@@ -134,19 +134,24 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     public void explicitUpdate(long l) {
         changingTileMap();
         enemiesPath();
-        spawnEnemies();
+        spawnEnemy();
 
         if(nextRound) {
             roundExecutor.setEnemies(currentRound);
             enemyListNr = enemyList.size() - 1;
             nextRound = false;
         }
+
         if(currentRound == Round.FIVE && enemyList.size() - 1 == 0){
+            gameOver();
+        }
+
+        if (lives <= 0){
             gameOver();
         }
     }
 
-    public void spawnEnemies(){
+    public void spawnEnemy(){
         if(enemySpawnTimer > enemySpawnInterval) {
             enemySpawnTimer = 0;
             if (enemyListNr > 0) {
@@ -182,9 +187,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
             BuyButton.tileMapChanged = true;
         }
         enemiesPath();
-        if (lives <= 0){
-           gameOver();
-        }
+
     }
 
     public void resetStartingVariables(){
