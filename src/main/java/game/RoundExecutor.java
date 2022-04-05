@@ -1,7 +1,7 @@
 package game;
 
 import com.github.hanyaeger.api.Coordinate2D;
-import com.github.hanyaeger.api.entities.EntitySpawner;
+import com.github.hanyaeger.api.entities.Direction;
 import game.entities.enemies.*;
 import game.scenes.GameScreen;
 
@@ -21,16 +21,17 @@ public class RoundExecutor {
         switch (round) {
             case ONE:
                 newEnemies.clear();
-                for (int j = 0; j < 3; j++) {
+                for(int i = 0; i < 3; i++) {
                     newEnemies.add(new DerpyCoot("sprites/enemies/derpy_coot.png", startCoordinates, gameScreen));
                 }
                 for (int i = 0; i < 6; i++) {
                     newEnemies.add(new BabyCoot("sprites/enemies/baby_coot.png", startCoordinates, gameScreen));
                 }
+                newEnemies.add(new MamaCoot("sprites/enemies/mama_coot.png", startCoordinates, gameScreen));
                 break;
             case TWO:
                 newEnemies.clear();
-                for (int j = 0; j < 3; j++) {
+                for(int i = 0; i < 3; i++) {
                     newEnemies.add(new DerpyCoot("sprites/enemies/derpy_coot.png", startCoordinates, gameScreen));
                 }
                 for (int i = 0; i < 4; i++) {
@@ -40,7 +41,7 @@ public class RoundExecutor {
             case THREE:
                 newEnemies.clear();
                 newEnemies.add(new ThickCoot("sprites/enemies/thick_coot.png", startCoordinates, gameScreen));
-                for (int j = 0; j < 2; j++) {
+                for(int i = 0; i < 2; i++) {
                     newEnemies.add(new FastCoot("sprites/enemies/fast_coot.png", startCoordinates, gameScreen));
                 }
                 for (int i = 0; i < 6; i++) {
@@ -49,10 +50,10 @@ public class RoundExecutor {
                 break;
             case FOUR:
                 newEnemies.clear();
-                for (int j = 0; j < 3; j++) {
+                for(int i = 0; i < 3; i++) {
                     newEnemies.add(new ThickCoot("sprites/enemies/thick_coot.png", startCoordinates, gameScreen));
                 }
-                for (int j = 0; j < 3; j++) {
+                for(int i = 0; i < 3; i++) {
                     newEnemies.add(new FastCoot("sprites/enemies/fast_coot.png", startCoordinates, gameScreen));
                 }
                 for (int i = 0; i < 5; i++) {
@@ -64,14 +65,13 @@ public class RoundExecutor {
                 break;
             case FIVE:
                 newEnemies.clear();
-                newEnemies.add(new BabyCoot("sprites/enemies/baby_coot.png", startCoordinates, gameScreen));
-                for (int j = 0; j < 5; j++) {
+                for(int i = 0; i < 5; i++) {
                     newEnemies.add(new ThickCoot("sprites/enemies/thick_coot.png", startCoordinates, gameScreen));
                 }
-                for (int j = 0; j < 5; j++) {
+                for(int i = 0; i < 5; i++) {
                     newEnemies.add(new FastCoot("sprites/enemies/fast_coot.png", startCoordinates, gameScreen));
                 }
-                for (int j = 0; j < 5; j++) {
+                for(int i = 0; i < 5; i++) {
                     newEnemies.add(new DerpyCoot("sprites/enemies/derpy_coot.png", startCoordinates, gameScreen));
                 }
                 for (int i = 0; i < 7; i++) {

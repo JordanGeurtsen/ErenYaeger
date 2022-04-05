@@ -7,11 +7,7 @@ public enum Screenum {
 
     private int id;
 
-    Screenum(int id) {
-        this.id = id;
-    }
+    Screenum(int id) {this.id = id;}
 
-    public int getId() {
-        return id;
-    }
+    public int getId() {return id;}
 }

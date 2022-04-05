@@ -7,15 +7,16 @@ import game.scenes.GameScreen;
 import game.scenes.TitleScreen;
 
 public class BonkTheTowerTD extends YaegerGame {
+    private int screenWidth = 1238;
+    private int screenHeight = 675;
     public static void main(String[] args) {
         launch(args);
     }
 
-
     @Override
     public void setupGame() {
         setGameTitle("Bonk The Tower TD");
-        setSize(new Size(1238, 675));
+        setSize(new Size(screenWidth, screenHeight));
     }
 
     @Override

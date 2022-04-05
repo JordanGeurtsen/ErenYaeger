@@ -1,50 +1,45 @@
 package game.entities.enemies;
 
 import com.github.hanyaeger.api.Coordinate2D;
-
 import com.github.hanyaeger.api.entities.Direction;
 import game.scenes.GameScreen;
 
 public class DerpyCoot extends Enemy{
+        private double speed = 1.8;
         private int health = 60;
         private int damage = 5;
-        private double speed = 1.8;
-        private Direction direction = Direction.DOWN;
-        private double walkedDistance = 0.0;
         private Coordinate2D initialLocation;
 
         public DerpyCoot(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
                 super(resource, initialLocation, gameScreen);
                 this.initialLocation = initialLocation;
-                setMotion(speed, direction);
+                setSpeed(speed);
         }
 
-        public int getHealth() {
-                return health;
-        }
+        public double getMovementSpeed() {return speed;}
 
-        @Override
-        public void setHealth(double newHealth) {
-                this.health += newHealth;
-        }
-
-        public double getMovementSpeed(){return speed;}
+        public int getHealth() {return health;}
 
         @Override
-        public int getDamage() {
-                return damage;
-        }
+        public void setHealth(double newHealth) {this.health += newHealth;}
+
+        @Override
+        public int getDamage() {return damage;}
 
         @Override
         public void setMovementSpeed(MovementSpeed movementSpeed) {
-                switch (movementSpeed){
-                        case SLOW :
+                switch (movementSpeed) {
+                        case SLOW:
                                 speed = 1.1;
                                 setSpeed(speed);
                                 break;
                         case NORMAL:
                                 speed = 1.8;
                                 setSpeed(speed);
+                                break;
+                        default:
+                                System.out.println("ERROR: movementSpeed is incorrect");
+                                break;
                 }
         }
 }

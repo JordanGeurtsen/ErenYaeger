@@ -2,21 +2,14 @@ package game.entities.buttons.compositebutton;
 
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
-import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.CompositeEntity;
-import com.github.hanyaeger.api.entities.impl.DynamicRectangleEntity;
-import com.github.hanyaeger.api.entities.impl.RectangleEntity;
-import com.github.hanyaeger.api.entities.impl.TextEntity;
 import game.entities.buttons.Button;
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseButton;
 
 public abstract class CompositeButton extends CompositeEntity implements Button {
-    private String resource;
-
-    public CompositeButton(Coordinate2D initialLocation, String resource) {
+    public CompositeButton(Coordinate2D initialLocation) {
         super(initialLocation);
-        this.resource = resource;
         setAnchorPoint(AnchorPoint.TOP_LEFT);
     }
 
@@ -26,8 +19,6 @@ public abstract class CompositeButton extends CompositeEntity implements Button 
             onButtonClick();
         }
     }
-
-    public abstract void onButtonClick();
 
     @Override
     public void onMouseEntered() {
@@ -40,4 +31,6 @@ public abstract class CompositeButton extends CompositeEntity implements Button 
         setBrightness(0);
         setCursor(Cursor.DEFAULT);
     }
+
+    public abstract void onButtonClick();
 }

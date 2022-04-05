@@ -12,5 +12,6 @@ public enum PathStep {
     EIGHT,
     NINE,
     TEN,
-    ELEVEN
+    ELEVEN,
+    TWELVE
 }

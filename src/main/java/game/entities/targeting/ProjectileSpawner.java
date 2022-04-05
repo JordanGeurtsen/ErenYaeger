@@ -13,11 +13,5 @@ public abstract class ProjectileSpawner extends EntitySpawner {
         this.gameScreen = gameScreen;
     }
 
-    @Override
-    protected void spawnEntities() {
-
-    }
-
     public abstract void setShootAngle(double shootAngle);
-
 }

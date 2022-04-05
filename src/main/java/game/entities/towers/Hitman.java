@@ -7,46 +7,36 @@ import game.entities.targeting.ProjectileSpawner;
 import game.scenes.GameScreen;
 
 public class Hitman extends Tower {
-    private Coordinate2D initialLocation;
     private static int price = 250;
     private static double rangeRadius = 1250;
     private static double damage = 40;
-    private BulletSpawner spawner;
+    private int intervalInMS = 2500;
     private GameScreen gameScreen;
+    private Coordinate2D initialLocation;
+    private BulletSpawner spawner;
     private Enemy target;
 
     public Hitman(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
         super(resource, initialLocation, gameScreen);
         this.initialLocation = initialLocation;
         this.gameScreen = gameScreen;
-        this.spawner = new BulletSpawner(2500, getInitialLocation(), this, gameScreen);
+        this.spawner = new BulletSpawner(intervalInMS, getInitialLocation(), this, gameScreen);
 
     }
+
+    public static int getTowerPrice() {return price;}
 
     @Override
-    public double getTowerDamage() {
-        return damage;
-    }
+    public double getTowerDamage() {return damage;}
 
     @Override
-    public double getTowerRange() {
-        return rangeRadius;
-    }
+    public double getTowerRange() {return rangeRadius;}
 
     @Override
-    public Coordinate2D getInitialLocation() {
-        return initialLocation;
-    }
+    public Coordinate2D getInitialLocation() {return initialLocation;}
 
     @Override
-    public ProjectileSpawner getProjectileSpawner() {
-        return spawner;
-    }
-
-    public static int getTowerPrice() {
-        return price;
-    }
-
+    public ProjectileSpawner getProjectileSpawner() {return spawner;}
 
     @Override
     public void explicitUpdate(long timestamp) {

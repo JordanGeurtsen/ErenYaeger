@@ -1,13 +1,14 @@
-package game.entities.buttons.compositebutton;
+package game.entities.buttons;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.impl.TextEntity;
 import game.entities.buttons.compositebutton.CompositeButton;
-import game.entities.tilemap.LevelTileMap;
+import game.entities.buttons.compositebutton.Hitbox;
+import game.entities.buttons.compositebutton.Sprite;
 import game.scenes.GameScreen;
 
-public class buyButton extends CompositeButton {
+public class BuyButton extends CompositeButton {
     private String resource;
     private String towerName;
     private String price;
@@ -21,8 +22,8 @@ public class buyButton extends CompositeButton {
 
     public static String currentTowerSelected = "";
 
-    public buyButton(Coordinate2D initialLocation, String resource, String towerName, int price, int damage, int range, GameScreen gameScreen) {
-        super(initialLocation, resource);
+    public BuyButton(Coordinate2D initialLocation, String resource, String towerName, int price, int damage, int range, GameScreen gameScreen) {
+        super(initialLocation);
         this.resource = resource;
         this.gameScreen = gameScreen;
         this.towerName = towerName;
@@ -35,7 +36,7 @@ public class buyButton extends CompositeButton {
     protected void setupEntities() {
         var image = new Sprite(
                 new Coordinate2D(5, 0),
-                resource
+                resource, new Size(75)
         );
         addEntity(image);
 
@@ -53,7 +54,7 @@ public class buyButton extends CompositeButton {
 
         var priceText = new TextEntity(
                 new Coordinate2D(90, 15),
-               price
+                price
         );
 
         addEntity(priceText);

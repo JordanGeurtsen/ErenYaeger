@@ -11,8 +11,9 @@ import game.BonkTheTowerTD;
 import game.PathStep;
 import game.Screenum;
 import game.*;
-import game.entities.buttons.compositebutton.NextRoundButton;
-import game.entities.buttons.compositebutton.buyButton;
+import game.entities.buttons.NextRoundButton;
+import game.entities.buttons.BuyButton;
+import game.entities.buttons.compositebutton.PauseButton;
 import game.entities.counter.Counter;
 import game.entities.enemies.*;
 import game.entities.tilemap.LevelTileMap;
@@ -30,12 +31,15 @@ import static game.scenes.FinalScreen.setFinalMessage;
 public class GameScreen extends DynamicScene implements TileMapContainer, EntitySpawnerContainer, UpdateExposer, MouseButtonReleasedListener {
     private BonkTheTowerTD bonkTheTowerTD;
     public LevelTileMap levelTileMap = new LevelTileMap();
+    private RoundExecutor roundExecutor = new RoundExecutor(this);
     public ArrayList<Enemy> enemyList = new ArrayList<>();
     public ArrayList<Enemy> spawnedEnemyList = new ArrayList<>();
     public ArrayList<Tower> towers = new ArrayList<>();
+    public Round currentRound = Round.ZERO;
     public Counter coinCounter;
     public Counter pointCounter;
     public Counter liveCounter;
+    public Counter roundCounter;
     public static int coins;
     public static int points;
     public static int lives;
@@ -47,12 +51,11 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     private double yCoordinateTower;
     private int towerPrice;
     private Coordinate2D newTowerCoordinates;
-    private RoundExecutor roundExecutor = new RoundExecutor(this);
     private int enemyListNr = 8;
     private int enemySpawnTimer = 40;
     private int enemySpawnInterval = 100;
-    public Round currentRound = Round.ONE;
     public boolean nextRound = false;
+    public boolean screenPaused = false;
 
     public GameScreen(BonkTheTowerTD bonkTheTowerTD) {
         this.bonkTheTowerTD = bonkTheTowerTD;
@@ -67,8 +70,11 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
 
     @Override
     public void setupEntities() {
-        if(buyButton.currentTowerSelected == "") {
+        if(BuyButton.currentTowerSelected == "") {
             resetStartingVariables();
+
+            roundCounter = new Counter(new Coordinate2D(1055, 5),  currentRound.getId() , "Round: ");
+            addEntity(roundCounter);
 
             coinCounter = new Counter(new Coordinate2D(1055, 30), coins, "Coins: ");
             addEntity(coinCounter);
@@ -79,25 +85,27 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
             liveCounter = new Counter(new Coordinate2D(1055, 90), lives, "Lives: ");
             addEntity(liveCounter);
 
-            var archerBuy = new buyButton(new Coordinate2D(1050, 175), "sprites/towers/archer_logo.png",
+            var archerBuy = new BuyButton(new Coordinate2D(1050, 175), "sprites/towers/archer_logo.png",
                     "Archer", 100, 5, 250, this);
             addEntity(archerBuy);
 
-            var hitmanBuy = new buyButton(new Coordinate2D(1050, 300), "sprites/towers/hitman_logo.png",
+            var hitmanBuy = new BuyButton(new Coordinate2D(1050, 300), "sprites/towers/hitman_logo.png",
                     "Hitman", 250, 40, 1250, this);
             addEntity(hitmanBuy);
 
-            var freezerBuy = new buyButton(new Coordinate2D(1050, 425), "sprites/towers/freezer_logo.png",
+            var freezerBuy = new BuyButton(new Coordinate2D(1050, 425), "sprites/towers/freezer_logo.png",
                     "Freezer", 200, 0, 150, this);
             addEntity(freezerBuy);
 
+            var pauseGame = new PauseButton(new Coordinate2D(0, 0),"sprites/pause_button.png", this);
+            addEntity(pauseGame);
+
             roundExecutor.setEnemies(currentRound);
             enemyListNr = enemyList.size() -1;
+
             var nextRoundButton = new NextRoundButton(new Coordinate2D(1140, 600), this);
             addEntity(nextRoundButton);
-
             }
-
         towers.forEach(this::addEntity);
     }
 
@@ -108,24 +116,22 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
                 addEntitySpawner(t.getProjectileSpawner());
             }
         }
-//            for (Enemy e : enemyList) {
-//                addEntitySpawner(e.getEnemySpawner());
-//            }
+        for (Enemy e: enemyList) {
+            if (e instanceof MamaCoot) {
+               addEntitySpawner(((MamaCoot) e).getBabyCootSpawner());
+            }
+        }
     }
 
     @Override
-    public void setupTileMaps() {
-        addTileMap(levelTileMap);
-    }
+    public void setupTileMaps() {addTileMap(levelTileMap);}
 
     public void enemyPastBorder(Enemy e, int damage) {
-            enemyList.remove(e);
-            e.remove();
-            lives -= damage;
-            liveCounter.setCounterText("Lives: ", lives);
+        enemyList.remove(e);
+        e.remove();
+        lives -= damage;
+        liveCounter.setCounterText("Lives: ", lives);
     }
-
-
 
     @Override
     public void explicitUpdate(long l) {
@@ -138,7 +144,6 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
             enemyListNr = enemyList.size() - 1;
             nextRound = false;
         }
-
         if(currentRound == Round.FIVE && enemyList.size() - 1 == 0){
             gameOver();
         }
@@ -158,20 +163,18 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     }
 
     public void changingTileMap(){
-        if (!buyButton.tileMapChanged) {
-            if (buyButton.isTowerSelected) {
-                levelTileMap.setupSelectTileMap();
+        if (!BuyButton.tileMapChanged) {
+            if (BuyButton.isTowerSelected) {
+                levelTileMap.changeTileMap(1, 4);
             } else {
-                levelTileMap.setupNormalTileMap();
-                buyButton.currentTowerSelected = "";
+                levelTileMap.changeTileMap(4, 1);
+                BuyButton.currentTowerSelected = "";
                 setBackgroundColor(Color.PAPAYAWHIP);
             }
-            setupTileMaps();
             initTileMaps();
-            buyButton.tileMapChanged = true;
+            BuyButton.tileMapChanged = true;
         }
         enemiesPath();
-
         if (lives <= 0){
            gameOver();
         }
@@ -180,11 +183,11 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     public void resetStartingVariables(){
         points = 0;
         lives = 20;
-        coins = 500;
+        coins = 100;
         currentRound = Round.ONE;
         towers.clear();
-//        enemyList.clear();
-        levelTileMap.resetLevelMap();
+        levelTileMap.changeTileMap(3, 1);
+        levelTileMap.changeTileMap(4, 1);
     }
 
     public void gameOver(){
@@ -195,7 +198,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     public boolean enoughMoney(String towerName) {
         if (towerName == "Archer") {
             towerPrice = Archer.getTowerPrice();
-        } else if (towerName == "Hitman"){
+        } else if (towerName == "Hitman") {
             towerPrice = Hitman.getTowerPrice();
         } else {
             towerPrice = Freezer.getTowerPrice();
@@ -209,14 +212,14 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     }
 
     public void placeTower(Coordinate2D mouseCoordinates) {
-        if (buyButton.isTowerSelected) {
+        if (BuyButton.isTowerSelected) {
             if (mouseCoordinates.getX() < gameFieldSize) {
                 blockNrWidth = (int) Math.floor(mouseCoordinates.getX() / blockSize);
                 xCoordinateTower = blockNrWidth * blockSize + (blockSize / 2);
                 blockNrHeight = (int)Math.floor(mouseCoordinates.getY() / blockSize);
                 yCoordinateTower = blockNrHeight * blockSize + (blockSize / 2);
                 newTowerCoordinates = new Coordinate2D(xCoordinateTower, yCoordinateTower);
-                String towerSelectedName = buyButton.currentTowerSelected;
+                String towerSelectedName = BuyButton.currentTowerSelected;
 
                 if (levelTileMap.freeSpace(blockNrWidth, blockNrHeight)) {
                     if (enoughMoney(towerSelectedName)) {
@@ -235,21 +238,19 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
                             towerPrice = 0;
                         }
 
-                    coins -= towerPrice;
-                    coinCounter.setCounterText("Coins: ", coins);
+                        coins -= towerPrice;
+                        coinCounter.setCounterText("Coins: ", coins);
 
                         setupEntities();
                         setupEntitySpawners();
 
-
                         levelTileMap.changeTile(blockNrWidth, blockNrHeight , 3);
-                        levelTileMap.setupNormalTileMap();
-                        setupTileMaps();
+                        levelTileMap.changeTileMap(4, 1);
                         initTileMaps();
 
-                        buyButton.currentTowerSelected = "";
-                        buyButton.isTowerSelected = false;
-                        buyButton.tileMapChanged = true;
+                        BuyButton.currentTowerSelected = "";
+                        BuyButton.isTowerSelected = false;
+                        BuyButton.tileMapChanged = true;
                     } else {
                         setBackgroundColor(Color.DARKRED);
                     }
@@ -259,89 +260,94 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     }
 
     @Override
-    public void onMouseButtonReleased(MouseButton mouseButton, Coordinate2D coordinate2D) {
-        placeTower(coordinate2D);
-    }
+    public void onMouseButtonReleased(MouseButton mouseButton, Coordinate2D coordinate2D) {placeTower(coordinate2D);}
 
     public double pathLimit(int tile){
         return  (tile - 1) * blockSize + (blockSize / 2);
     }
 
-    public void enemiesPath(){
+    public void enemiesPath() {
         for (Enemy e : enemyList) {
             Coordinate2D coordinates =  e.getAnchorLocation();
             PathStep pathStep = e.getPathStep();
 
             switch(pathStep) {
                 case ZERO:
-                    if (coordinates.getY() >  pathLimit(2)) {
-                        e.setDirection(Direction.RIGHT);
+                    e.setDirection(Direction.DOWN);
+                    if (coordinates.getY() > pathLimit(2)) {
                         e.setPathStep(PathStep.ONE);
                     }
                     break;
                 case ONE:
+                    e.setDirection(Direction.RIGHT);
                     if(coordinates.getX() > pathLimit(11)) {
-                        e.setDirection(Direction.DOWN);
                         e.setPathStep(PathStep.TWO);
                     }
                     break;
                 case TWO:
+                    e.setDirection(Direction.DOWN);
                     if(coordinates.getY() > pathLimit(5)) {
-                        e.setDirection(Direction.LEFT);
                         e.setPathStep(PathStep.THREE);
                     }
                     break;
                 case THREE:
+                    e.setDirection(Direction.LEFT);
                     if(coordinates.getX() < pathLimit(7)) {
-                        e.setDirection(Direction.UP);
                         e.setPathStep(PathStep.FOUR);
                     }
                     break;
                 case FOUR:
+                    e.setDirection(Direction.UP);
                     if(coordinates.getY() < pathLimit(4)) {
-                        e.setDirection(Direction.LEFT);
                         e.setPathStep(PathStep.FIVE);
                     }
                     break;
                 case FIVE:
+                    e.setDirection(Direction.LEFT);
                     if(coordinates.getX() < pathLimit(4)) {
-                        e.setDirection(Direction.DOWN);
                         e.setPathStep(PathStep.SIX);
                     }
                     break;
                 case SIX:
+                    e.setDirection(Direction.DOWN);
                     if(coordinates.getY() > pathLimit(5)) {
-                        e.setDirection(Direction.LEFT);
                         e.setPathStep(PathStep.SEVEN);
                     }
                     break;
                 case SEVEN:
+                    e.setDirection(Direction.LEFT);
                     if(coordinates.getX() < pathLimit(2)) {
-                        e.setDirection(Direction.DOWN);
                         e.setPathStep(PathStep.EIGHT);
                     }
                     break;
                 case EIGHT:
+                    e.setDirection(Direction.DOWN);
                     if(coordinates.getY() > pathLimit(8)) {
-                        e.setDirection(Direction.RIGHT);
                         e.setPathStep(PathStep.NINE);
                     }
                     break;
                 case NINE:
+                    e.setDirection(Direction.RIGHT);
                     if(coordinates.getX() > pathLimit(6)) {
-                        e.setDirection(Direction.UP);
+
                         e.setPathStep(PathStep.TEN);
                     }
                     break;
                 case TEN:
+                    e.setDirection(Direction.UP);
                     if(coordinates.getY() < pathLimit(7)) {
-                        e.setDirection(Direction.RIGHT);
                         e.setPathStep(PathStep.ELEVEN);
                     }
                     break;
                 case ELEVEN:
+                    e.setDirection(Direction.RIGHT);
                     if(coordinates.getX() > pathLimit(13)) {
                         e.setDirection(Direction.DOWN);
+                    }
+                    break;
+                case TWELVE:
+                    if (coordinates.getY() > pathLimit(0)) {
+                        e.setPathStep(PathStep.ZERO);
                     }
                     break;
                 default:

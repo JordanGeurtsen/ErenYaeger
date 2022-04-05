@@ -1,13 +1,7 @@
-package game.entities.buttons.compositebutton;
+package game.entities.buttons;
 
-import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
-import com.github.hanyaeger.api.Size;
-import com.github.hanyaeger.api.entities.impl.TextEntity;
-import game.BonkTheTowerTD;
 import game.Round;
-import game.Screenum;
-import game.entities.buttons.TextButton;
 import game.scenes.GameScreen;
 import javafx.scene.paint.Color;
 

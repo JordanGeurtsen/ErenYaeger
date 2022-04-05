@@ -16,13 +16,27 @@ public abstract class Tower extends DynamicSpriteEntity implements UpdateExposer
     private Enemy target;
     public double closestDistance;
     private double shootAngle;
+    private double maxHealth;
+    private ArrayList<Enemy> enemiesInRange;
+    private  ArrayList<Enemy> everyTarget;
 
     public Tower(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
         super(resource, initialLocation, new Size(75));
         this.gameScreen = gameScreen;
-
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
     }
+
+    public abstract double getTowerDamage();
+
+    public abstract double getTowerRange();
+
+    abstract public Coordinate2D getInitialLocation();
+
+    public abstract ProjectileSpawner getProjectileSpawner();
+
+    public double getShootAngle(){return shootAngle;}
+
+    public void setShootAngle(double shootAngle) {this.shootAngle = shootAngle;}
 
     public boolean isInRange(double rangeRadius, Enemy e) {
         boolean inRange = distanceTo(e) < rangeRadius;
@@ -30,9 +44,9 @@ public abstract class Tower extends DynamicSpriteEntity implements UpdateExposer
     }
 
     public Enemy getTarget(ArrayList<Enemy> spawnedEnemyList) {
-        double maxHealth = 0;
+        maxHealth = 0;
         closestDistance = getTowerRange();
-        ArrayList<Enemy> enemiesInRange = new ArrayList<>();
+        enemiesInRange = new ArrayList<>();
         for (Enemy e : spawnedEnemyList) {
             if (isInRange(getTowerRange(), e)) {
                 if(e.getAnchorLocation() != new Coordinate2D(112.0, 0.0)) {
@@ -58,20 +72,20 @@ public abstract class Tower extends DynamicSpriteEntity implements UpdateExposer
         return target;
     }
 
-    public void setShootAngle(double shootAngle) {
-        this.shootAngle = shootAngle;
-    }
-
-    public double getShootAngle(){
-        return shootAngle;
-    }
-
-    public abstract double getTowerDamage();
-
-    public abstract double getTowerRange();
-
-    abstract public Coordinate2D getInitialLocation();
-
-    public abstract ProjectileSpawner getProjectileSpawner();
+//    public void setShootAngle(double shootAngle) {
+//        this.shootAngle = shootAngle;
+//    }
+//
+//    public double getShootAngle(){
+//        return shootAngle;
+//    }
+//
+//    public abstract double getTowerDamage();
+//
+//    public abstract double getTowerRange();
+//
+//    abstract public Coordinate2D getInitialLocation();
+//
+//    public abstract ProjectileSpawner getProjectileSpawner();
 
 }

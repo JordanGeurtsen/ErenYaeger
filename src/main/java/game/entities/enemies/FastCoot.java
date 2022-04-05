@@ -5,42 +5,40 @@ import com.github.hanyaeger.api.entities.Direction;
 import game.scenes.GameScreen;
 
 public class FastCoot extends Enemy{
+    private double speed = 2.5;
     private int health = 50;
     private int damage = 2;
-    private double speed = 2.5;
-    private Direction direction = Direction.DOWN;
-    private double walkedDistance = 0.0;
     private Coordinate2D initialLocation;
 
     public FastCoot(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
         super(resource, initialLocation, gameScreen);
         this.initialLocation = initialLocation;
-        setMotion(getMovementSpeed(), direction);
+        setSpeed(getMovementSpeed());
     }
-
-    public int getHealth() {return health;}
-
-    @Override
-    public void setHealth(double newHealth) {
-        health += newHealth;}
-
     public double getMovementSpeed(){return speed;}
 
+    public int getHealth(){return health;}
+
     @Override
-    public int getDamage() {
-        return damage;
-    }
+    public void setHealth(double newHealth) {health += newHealth;}
+
+    @Override
+    public int getDamage() {return damage;}
 
     @Override
     public void setMovementSpeed(MovementSpeed movementSpeed) {
-        switch (movementSpeed){
-            case SLOW :
+        switch (movementSpeed) {
+            case SLOW:
                 speed = 1.3;
                 setSpeed(speed);
                 break;
             case NORMAL:
                 speed = 2.0;
                 setSpeed(speed);
+                break;
+            default:
+                System.out.println("ERROR: movementSpeed is incorrect");
+                break;
         }
     }
 }

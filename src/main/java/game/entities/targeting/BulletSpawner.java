@@ -5,20 +5,18 @@ import game.entities.enemies.Enemy;
 import game.entities.towers.Tower;
 import game.scenes.GameScreen;
 
-
 public class BulletSpawner extends ProjectileSpawner{
     private GameScreen gameScreen;
     private Coordinate2D coordinate2D;
     private double shootAngle;
-    private Tower shootingTower;
     private boolean needToShoot;
+    private Tower shootingTower;
 
     public BulletSpawner (long intervalInMs, Coordinate2D coordinate2D, Tower shootingTower, GameScreen gameScreen){
         super(intervalInMs, coordinate2D, gameScreen);
         this.coordinate2D = coordinate2D;
         this.gameScreen = gameScreen;
         this.shootingTower = shootingTower;
-//        this.shootAngle = shootAngle;
     }
 
     @Override
@@ -36,13 +34,9 @@ public class BulletSpawner extends ProjectileSpawner{
     }
 
     @Override
-    public void setShootAngle(double shootAngle) {
-        this.shootAngle = shootAngle;
-    }
+    public void setShootAngle(double shootAngle) {this.shootAngle = shootAngle;}
 
-    public void setNeedToShoot(boolean shootNeed) {
-        this.needToShoot = shootNeed;
-    }
+    public void setNeedToShoot(boolean shootNeed) {this.needToShoot = shootNeed;}
 
     public void shoot(double shootAngle) {
         setShootAngle(shootAngle);

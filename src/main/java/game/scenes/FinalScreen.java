@@ -2,10 +2,7 @@ package game.scenes;
 
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
-import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.scenes.DynamicScene;
-import com.github.hanyaeger.api.scenes.StaticScene;
-import com.github.hanyaeger.api.scenes.TileMapContainer;
 import game.BonkTheTowerTD;
 import game.Screenum;
 import game.entities.buttons.QuitButton;
@@ -24,14 +21,10 @@ public class FinalScreen extends DynamicScene{
         this.bonkTheTowerTD = bonkTheTowerTD;
     }
 
-    public static void setFinalMessage(String finalMessage) {
-        FinalScreen.finalMessage = finalMessage;
-    }
+    public static void setFinalMessage(String finalMessage) {FinalScreen.finalMessage = finalMessage;}
 
     @Override
-    public void setupScene() {
-        setBackgroundImage("backgrounds/base_background.jpg");
-    }
+    public void setupScene() {setBackgroundImage("backgrounds/base_background.jpg");}
 
     @Override
     public void setupEntities() {

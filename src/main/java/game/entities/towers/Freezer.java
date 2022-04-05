@@ -11,8 +11,9 @@ public class Freezer extends Tower{
     private static int price = 200;
     private static double rangeRadius = 117.5;
     private static double damage = 20;
-    private Coordinate2D initialLocation;
+    private int intervalInMS = 500;
     private GameScreen gameScreen;
+    private Coordinate2D initialLocation;
 
     public Freezer(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
         super(resource, initialLocation, gameScreen);
@@ -20,22 +21,16 @@ public class Freezer extends Tower{
         this.gameScreen = gameScreen;
     }
 
-    @Override
-    public double getTowerDamage() {
-        return damage;
-    }
+    public static int getTowerPrice() {return price;}
 
     @Override
-    public double getTowerRange() {return rangeRadius; }
-
-    public static int getTowerPrice() {
-        return price;
-    }
+    public double getTowerDamage() {return damage;}
 
     @Override
-    public Coordinate2D getInitialLocation() {
-        return initialLocation;
-    }
+    public double getTowerRange() {return rangeRadius;}
+
+    @Override
+    public Coordinate2D getInitialLocation() {return initialLocation;}
 
     @Override
     public ProjectileSpawner getProjectileSpawner() {

@@ -18,7 +18,6 @@ import game.scenes.GameScreen;
 import static game.scenes.GameScreen.coins;
 import static game.scenes.GameScreen.points;
 
-
 public class Projectile extends DynamicSpriteEntity implements Collided, SceneBorderCrossingWatcher {
     private GameScreen gameScreen;
     private Tower shootingTower;
@@ -30,9 +29,11 @@ public class Projectile extends DynamicSpriteEntity implements Collided, SceneBo
     }
 
     @Override
+    public void notifyBoundaryCrossing(SceneBorder border) {remove();}
+
+    @Override
     public void onCollision(Collider collidingObject) {
         if (collidingObject instanceof Enemy) {
-
             if (shootingTower instanceof Archer) {
                 ((Enemy) collidingObject).setHealth(-shootingTower.getTowerDamage());
             } else if (shootingTower instanceof Freezer) {
@@ -51,10 +52,5 @@ public class Projectile extends DynamicSpriteEntity implements Collided, SceneBo
             }
             remove();
         }
-    }
-
-    @Override
-    public void notifyBoundaryCrossing(SceneBorder border) {
-        remove();
     }
 }

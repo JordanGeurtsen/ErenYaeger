@@ -10,7 +10,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public abstract class TextButton extends TextEntity implements Button {
-
     public TextButton(Coordinate2D initialLocation, String text) {
         super(initialLocation, text);
         setFill(Color.PAPAYAWHIP);
@@ -25,8 +24,6 @@ public abstract class TextButton extends TextEntity implements Button {
         }
     }
 
-    public abstract void onButtonClick();
-
     @Override
     public void onMouseEntered() {
         setBrightness(0.8);
@@ -38,4 +35,6 @@ public abstract class TextButton extends TextEntity implements Button {
         setBrightness(0);
         setCursor(Cursor.DEFAULT);
     }
+
+    public abstract void onButtonClick();
 }

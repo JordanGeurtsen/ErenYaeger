@@ -6,7 +6,7 @@ import com.github.hanyaeger.api.entities.impl.RectangleEntity;
 import javafx.scene.paint.Color;
 
 public class Hitbox extends RectangleEntity {
-    protected Hitbox(Coordinate2D initialLocation, Size size) {
+    public Hitbox(Coordinate2D initialLocation, Size size) {
         super(initialLocation, size);
         setFill(Color.TRANSPARENT);
     }
