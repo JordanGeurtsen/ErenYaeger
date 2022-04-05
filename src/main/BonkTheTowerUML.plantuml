@@ -13,15 +13,64 @@ abstract class YeagerGame #EE66B1 {
 }
 
 class GameScreen {
-+earnedPoints : int
-+coinBalance : int
+..Static..
++ {static} points : int
+..Private..
+- bonkTheTowerTD : BonkTheTowerTD
+- levelTileMap : LevelTileMap
+- roundDefiner : RoundDefiner
+- nextRoundButton : NextRoundButton
+- towerPrice : int
+- newTowerCoordinates : Coordinate2D
+- enemyListNr : int
+- enemySpawnTimer : int
+..Public..
++ enemyList : ArrayList<Enemy>
++ spawnedEnemyList : ArrayList<Enemy>
++ towers : ArrayList<Tower>
++ currentRound : RoundDefiner
++ coinCounter : Counter
++ pointCounter : Counter
++ liveCounter : Counter
++ roundCounter : Counter
++ coins : int
++ lives : int
++ blockSize : int
++ nextRound : boolean
+
+--
++ GameScreen(bonkTheTowerTD : BonkTheTowerTD)
++ spawnEnemy() : void
++ changeTileMap() : void
++ resetStartingVariables() : void
++ gameOver() : void
++ checkEnoughMoney(towerName : String) : boolean
++ addNewTower(towerSelectedName : String) : void
++ resetVariablesPlacingTower(blockNrWidth : int, blockNrHeight : int) : void
++ placeTower(mouseCoordinates : Coordinate2D) : void
 }
 
 GameScreen <-- LevelTileMap
 GameScreen <-- Counter
 
+EntitySpawnerContainer <|.. GameScreen
+UpdateExposer <|.. GameScreen
+MouseButtonReleasedListener <|.. GameScreen
+TileMapContainer <|.. GameScreen
+
+interface EntitySpawnerContainer #EE66B1 {
+}
+
+interface UpdateExposer #EE66B1 {
+}
+
+interface MouseButtonReleasedListener #EE66B1 {
+}
+
 class TitleScreen {
 - bonkTheTowerTD : BonkTheTowerTD
+
++ TitleScreen(bonkTheTowerTD : BonkTheTowerTD)
 }
 
 class TextEntity {
@@ -36,10 +85,13 @@ abstract class TileMap #EE66B1 {
 
 }
 
-TileMapContainer <|.. GameScreen
 
 class FinalScreen {
+- bonkTheTowerTD : BonkTheTowerTD
+- {static} finalMessage : String
 
++ Finalscreen(bonkTheTowerTD : BonkTheTowerTD)
++ {static} setFinalMessage(finalMessage : String) : void
 }
 
 abstract class DynamicScene #EE66B1 {
@@ -50,20 +102,66 @@ GameScreen ..|> DynamicScene
 TitleScreen ..|> DynamicScene
 FinalScreen ..|> DynamicScene
 
-class RoundExecutor {
+class RoundDefiner {
+- gameScreen : GameScreen
+- startCoordinates : Coordinate2D
+
++ RoundDefiner(gameScreen : GameScreen)
++ setEnemies(round : Round)
 
 }
 
-RoundExecutor --> Enemy
-RoundExecutor --> GameScreen
+GameScreen --> Enemy
+RoundDefiner --> GameScreen
 
 class LevelTileMap {
-+setEntities() : void
-+defineMap() : int[][]
++ levelMap : int[][]
+
++ LevelTileMap()
++ changeTile(blockNrWidth : int, blockNrHeight : int, entityIdentifier : int) : void
++ freeSpace(blockNrWidth : int, blockNrHeight : int) : boolean
++ changeTileMap(oldIdentifier : int, newIdentifier : int) : void
 }
 
+class TowerGround {
++ TowerGround(initialLocation : Coordinate2D, size : Size, resource : String)
+}
+
+class SelectGround{
++ SelectGround(initialLocation : Coordinate2D, size : Size, resource : String)
+}
+
+class Water {
++ Water(initialLocation : Coordinate2D, size : Size, resource : String)
+}
+
+class Grass {
++ Grass(initialLocation : Coordinate2D, size : Size, resource : String)
+}
+
+SpriteEntity <-- TowerGround
+SpriteEntity <-- SelectGround
+SpriteEntity <-- Water
+SpriteEntity <-- Grass
+
+LevelTileMap <-- Grass
+LevelTileMap <-- Water
+LevelTileMap <-- SelectGround
+LevelTileMap <-- TowerGround
 LevelTileMap ..|> TileMap
-LevelTileMap --> Button
+
+enum TileIdentifier {
+..Constants..
+GRASS (1)
+WATER (2)
+TOWERGROUND (3)
+SELECTGROUND (4)
+..Private..
+- id : int
+--
++ TileIdentifier(id : int)
++ getId() : int
+}
 
 abstract class Button {
 +...() : void
@@ -193,6 +291,7 @@ abstract class ProjectileSpawner {
 }
 
 class ArrowSpawner {
+
 }
 
 class BulletSpawner {
@@ -203,32 +302,61 @@ ProjectileSpawner <-- ArrowSpawner
 ProjectileSpawner <-- BulletSpawner
 
 class Projectile {
+- gameScreen : gameScreen
+- shootingTower : Tower
+
++ Projectile(resource : String, initialLocation : Coordinate2D, gameScreen : GameScreen, shootingTower : Tower, size : Size
 
 }
 
 interface Collider #EE66B1{
 }
 
-Projectile ..|>Collider
+interface SceneBorderCrossingWatcher #EE66B1 {
+}
 
+Projectile ..|> Collided
+Projectile ..|> SceneBorderCrossingWatcher
 
 class Arrow {
-
++ Arrow(initialLocation : Coordinate2D, shootAngle : double, gameScreen : GameScreen, shootingTower : Tower)
 }
 
 class Bullet {
++ Bullet(initialLocation : Coordinate2D, shootAngle : double, gameScreen : GameScreen, shootingTower : Tower)
+
 }
 
 Projectile <-- Arrow
 Projectile <-- Bullet
 
 abstract class Enemy {
--movementSpeed : int
--hitPoints : int
+..Public..
++ pathStep : PathStep
+..Protected..
+# gameScreen : GameScreen
+# mapProgress : double
+..Private..
+- initialLocation : Coordinate2D
 
-+drawEnemy() : void
-+getMovement() : void
-+startMovement() : void
+--
++ Enemy(resource : String, initialLocation : Coordinate2D, gameScreen : GameScreen)
++ getInitialLocation() : Coordinate2D
++ setPathStep(newPathStep PathStep) : void
++ getPathStep() : PathStep
++ enemyPastBorder(enemy : Enemy, damage : int) : void
++ updateWalkedDistance(distanceWalked : double) : void
++ setMapProgress(mapProgress : double) : void
++ getMapProgress() : double
++ pathLimit(tile : int) : double
++ enemyPath() : void
+
+..Abstract..
++ {abstract} setMovementSpeed(movementSpeed : MovementSpeed) : void
++ {abstract} getMovementSpeed() : double
++ {abstract} setHealth(newHealth double) : void
++ {abstract} getHealth() : int
++ {abstract} getDamage() : int
 }
 
 interface Collided #EE66B1{
@@ -238,23 +366,62 @@ interface Collided #EE66B1{
 Enemy ..|> Collided
 
 class BabyCoot {
-+drawEnemy() : void
+- speed : double
+- health : int
+
++ BabyCoot(resource : String, initialLocation : Coordinate2D, gameScreen : GameScreen)
 }
 
 class DerpyCoot {
-+drawEnemy() : void
+- speed : double
+- health : int
+
++ DerpyCoot(resource : String, initialLocation : Coordinate2D, gameScreen : GameScreen)
+
 }
 
 class MamaCoot {
-+drawEnemy() : void
+- speed : double
+- health : int
+- babyCootSpawner : BabyCootSpawner
+
++ MamaCoot(resource : String, initialLocation : Coordinate2D, gameScreen : GameScreen)
++ getBabyCootSpawner() : BabyCootSpawner
+}
+
+MamaCoot <-- BabyCootSpawner
+
+class BabyCootSpawner {
+- initialLocation : Coordinate2D
+- gameScreen : GameScreen
+- mamaCoot : Enemy
+- needToSpawn : boolean
+--
+..Public..
++ setNeedToSpawn(state : boolean) : void
+..Protected..
+# BabyCootSpawner(intervalInMs : long, initialLocation : Coordinate2D, gameScreen : GameScreen, mamaCoot : Enemy)
+
+}
+
+BabyCootSpawner ..|> EntitySpawner
+
+abstract class EntitySpawner #EE66B1 {
 }
 
 class FastCoot {
-+drawEnemy() : void
+- speed : double
+- health : int
+
++ FastCoot(resource : String, initialLocation : Coordinate2D, gameScreen : GameScreen)
+
 }
 
 class ThickCoot {
-+drawEnemy() : void
+- speed : double
+- health : int
+
++ ThickCoot(resource : String, initialLocation : Coordinate2D, gameScreen : GameScreen)
 }
 
 Enemy <|.. BabyCoot
@@ -262,5 +429,10 @@ Enemy <|.. DerpyCoot
 Enemy <|.. MamaCoot
 Enemy <|.. FastCoot
 Enemy <|.. ThickCoot
+
+enum MovementSpeed {
+SLOW
+NORMAL
+}
 
 @enduml
