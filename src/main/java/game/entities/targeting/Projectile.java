@@ -51,8 +51,8 @@ public class Projectile extends DynamicSpriteEntity implements Collided, SceneBo
                     }
                     gameScreen.spawnedEnemyList.remove((Enemy) collidingObject);
                     gameScreen.enemyList.remove((Enemy) collidingObject);
-                    gameScreen.coinCounter.setCounterText("Coins: ", coinReward);
-                    gameScreen.pointCounter.setCounterText("Points: ", pointReward);
+                    gameScreen.coinCounter.updateCounter("Coins: ", coinReward);
+                    gameScreen.pointCounter.updateCounter("Points: ", pointReward);
                     ((Enemy) collidingObject).remove();
                 }
                 remove();
