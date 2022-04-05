@@ -31,13 +31,15 @@ public abstract class Enemy extends DynamicSpriteEntity implements Collider, Sce
 
     public abstract double getMovementSpeed();
 
-    public abstract int getHealth();
-
     public abstract void setHealth(double newHealth);
+
+    public abstract int getHealth();
 
     public abstract int getDamage();
 
     public Coordinate2D getInitialLocation() {return initialLocation;}
+
+    public void setPathStep(PathStep newPathStep){this.pathStep = newPathStep;}
 
     public PathStep getPathStep() {return pathStep;}
 
@@ -57,23 +59,22 @@ public abstract class Enemy extends DynamicSpriteEntity implements Collider, Sce
         gameScreen.pointCounter.updateCounter("Points: ", -pointPenalty);
     }
 
-    public void setPathStep(PathStep newPathStep){this.pathStep = newPathStep;}
-
     public void updateWalkedDistance(double distanceWalked){
         this.mapProgress += distanceWalked;
-    }
-
-    public double getMapProgress(){
-        return this.mapProgress;
     }
 
     public void setMapProgress(double mapProgress){
         this.mapProgress = mapProgress;
     }
 
+    public double getMapProgress(){
+        return this.mapProgress;
+    }
+
     public double pathLimit(int tile){
         return  (tile - 1) * gameScreen.blockSize + (gameScreen.blockSize / 2.0);
     }
+
     public void enemyPath() {
         for (Enemy e : gameScreen.spawnedEnemyList) {
             Coordinate2D coordinates =  e.getAnchorLocation();
@@ -165,5 +166,4 @@ public abstract class Enemy extends DynamicSpriteEntity implements Collider, Sce
             }
         }
     }
-
 }

@@ -29,7 +29,7 @@ import static game.scenes.FinalScreen.setFinalMessage;
 public class GameScreen extends DynamicScene implements TileMapContainer, EntitySpawnerContainer, UpdateExposer, MouseButtonReleasedListener {
     private final BonkTheTowerTD bonkTheTowerTD;
     private final LevelTileMap levelTileMap = new LevelTileMap();
-    private final RoundExecutor roundExecutor = new RoundExecutor(this);
+    private final RoundDefiner roundDefiner = new RoundDefiner(this);
     public ArrayList<Enemy> enemyList = new ArrayList<>();
     public ArrayList<Enemy> spawnedEnemyList = new ArrayList<>();
     public ArrayList<Tower> towers = new ArrayList<>();
@@ -89,7 +89,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
                     "Freezer", 300, 0, 118);
             addEntity(freezerBuy);
 
-            roundExecutor.setEnemies(currentRound);
+            roundDefiner.setEnemies(currentRound);
             enemyListNr = enemyList.size() -1;
 
             nextRoundButton = new NextRoundButton(new Coordinate2D(1140, 600), this);
@@ -136,7 +136,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         if(nextRound) {
             int roundAdvance = 1;
             roundCounter.updateCounter("Round: ", roundAdvance);
-            roundExecutor.setEnemies(currentRound);
+            roundDefiner.setEnemies(currentRound);
             enemyListNr = enemyList.size() - 1;
             nextRound = false;
         }

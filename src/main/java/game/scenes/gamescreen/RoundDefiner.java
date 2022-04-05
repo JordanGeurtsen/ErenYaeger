@@ -3,14 +3,13 @@ package game.scenes.gamescreen;
 import com.github.hanyaeger.api.Coordinate2D;
 import game.Round;
 import game.entities.enemies.*;
-
 import java.util.ArrayList;
 
-public class RoundExecutor {
+public class RoundDefiner {
     private final GameScreen gameScreen;
     private final Coordinate2D startCoordinates = new Coordinate2D(112, 0);
 
-    public RoundExecutor(GameScreen gameScreen) {
+    public RoundDefiner(GameScreen gameScreen) {
         this.gameScreen = gameScreen;
     }
 
