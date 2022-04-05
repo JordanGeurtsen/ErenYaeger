@@ -18,7 +18,7 @@ public class TitleScreen extends DynamicScene implements TileMapContainer {
     @Override
     public void setupScene() {
         setBackgroundImage("backgrounds/bonk_the_tower_titlescreen.jpg");
-        setBackgroundAudioVolume(0.3);
+        setBackgroundAudioVolume(0.5);
         setBackgroundAudio("audio/relaxing_bg_music.mp3");
     }
 

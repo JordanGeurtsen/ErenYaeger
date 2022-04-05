@@ -20,11 +20,10 @@ public class FinalScreen extends DynamicScene{
         this.bonkTheTowerTD = bonkTheTowerTD;
     }
 
-    public static void setFinalMessage(String finalMessage) {FinalScreen.finalMessage = finalMessage;}
-
     @Override
     public void setupScene() {
         setBackgroundImage("backgrounds/base_background.jpg");
+        setBackgroundAudioVolume(0.3);
         setBackgroundAudio("audio/relaxing_bg_music_3.mp3");
     }
 
@@ -50,4 +49,7 @@ public class FinalScreen extends DynamicScene{
                 new Coordinate2D(getWidth() / 2, getHeight() / 1.5), this.bonkTheTowerTD);
         addEntity(bonkTheTowerQuit);
     }
+
+    public static void setFinalMessage(String finalMessage) {FinalScreen.finalMessage = finalMessage;}
+
 }
