@@ -8,11 +8,9 @@ public class DerpyCoot extends Enemy{
         private double speed = 1.3;
         private int health = 50;
         private int damage = 2;
-        private Coordinate2D initialLocation;
 
         public DerpyCoot(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
                 super(resource, initialLocation, gameScreen);
-                this.initialLocation = initialLocation;
                 setSpeed(speed);
         }
 
