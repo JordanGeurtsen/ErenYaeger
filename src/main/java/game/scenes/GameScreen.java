@@ -126,8 +126,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         enemyList.remove(e);
         spawnedEnemyList.remove(e);
         e.remove();
-        lives -= damage;
-        liveCounter.setCounterText("Lives: ", lives);
+        liveCounter.setCounterText("Lives: ", -damage);
     }
 
     @Override
@@ -264,8 +263,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
                         setBackgroundColor(Color.PAPAYAWHIP);
                         addNewTower(towerSelectedName);
 
-                        coins -= towerPrice;
-                        coinCounter.setCounterText("Coins: ", coins);
+                        coinCounter.setCounterText("Coins: ", -towerPrice);
 
                         setupEntities();
                         setupEntitySpawners();

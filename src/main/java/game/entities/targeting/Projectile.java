@@ -22,6 +22,8 @@ import static game.scenes.GameScreen.points;
 public class Projectile extends DynamicSpriteEntity implements Collided, SceneBorderCrossingWatcher {
     private GameScreen gameScreen;
     private Tower shootingTower;
+    private int coinReward = 20;
+    private int pointReward = 25;
 
     public Projectile(String resource, Coordinate2D initialLocation, GameScreen gameScreen, Tower shootingTower, Size size) {
         super(resource, initialLocation, size);
@@ -42,18 +44,15 @@ public class Projectile extends DynamicSpriteEntity implements Collided, SceneBo
             } else if (shootingTower instanceof Hitman) {
                 ((Enemy) collidingObject).setHealth(-shootingTower.getTowerDamage());
             }
-//
-//            for (Enemy e : gameScreen.enemyList) {
+
                 if (((Enemy) collidingObject).getHealth() <= 0) {
                     if (collidingObject instanceof MamaCoot){
                         ((Enemy)collidingObject).getBabyCootSpawner().setNeedToSpawn(false);
                     }
                     gameScreen.spawnedEnemyList.remove((Enemy) collidingObject);
                     gameScreen.enemyList.remove((Enemy) collidingObject);
-                    coins += 20;
-                    gameScreen.coinCounter.setCounterText("Coins: ", coins);
-                    points += 25;
-                    gameScreen.pointCounter.setCounterText("Points: ", points);
+                    gameScreen.coinCounter.setCounterText("Coins: ", coinReward);
+                    gameScreen.pointCounter.setCounterText("Points: ", pointReward);
                     ((Enemy) collidingObject).remove();
                 }
                 remove();

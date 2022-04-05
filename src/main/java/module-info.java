@@ -11,6 +11,5 @@ module bonkTheTowerTD {
     exports game.scenes;
     exports game.entities.buttons;
     exports game.entities.tilemap.ground;
-    exports game.entities.tilemap.shop;
     exports game.entities.buttons.compositebutton;
 }
