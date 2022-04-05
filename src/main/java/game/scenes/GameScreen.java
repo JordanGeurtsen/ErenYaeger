@@ -40,6 +40,10 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     public Counter pointCounter;
     public Counter liveCounter;
     public Counter roundCounter;
+    private BuyButton archerBuy;
+    private BuyButton hitmanBuy;
+    private BuyButton freezerBuy;
+    private NextRoundButton nextRoundButton;
     public static int coins;
     public static int points;
     public static int lives;
@@ -84,22 +88,22 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
             liveCounter = new Counter(new Coordinate2D(1055, 95), lives, "Lives: ");
             addEntity(liveCounter);
 
-            var archerBuy = new BuyButton(new Coordinate2D(1050, 175), "sprites/towers/archer_logo.png",
+            archerBuy = new BuyButton(new Coordinate2D(1050, 175), "sprites/towers/archer_logo.png",
                     "Archer", 200, 5, 225, this);
             addEntity(archerBuy);
 
-            var hitmanBuy = new BuyButton(new Coordinate2D(1050, 300), "sprites/towers/hitman_logo.png",
+            hitmanBuy = new BuyButton(new Coordinate2D(1050, 300), "sprites/towers/hitman_logo.png",
                     "Hitman", 500, 40, 1250, this);
             addEntity(hitmanBuy);
 
-            var freezerBuy = new BuyButton(new Coordinate2D(1050, 425), "sprites/towers/freezer_logo.png",
+            freezerBuy = new BuyButton(new Coordinate2D(1050, 425), "sprites/towers/freezer_logo.png",
                     "Freezer", 300, 0, 118, this);
             addEntity(freezerBuy);
 
             roundExecutor.setEnemies(currentRound);
             enemyListNr = enemyList.size() -1;
 
-            var nextRoundButton = new NextRoundButton(new Coordinate2D(1140, 600), this);
+            nextRoundButton = new NextRoundButton(new Coordinate2D(1140, 600), this);
             addEntity(nextRoundButton);
             }
         towers.forEach(this::addEntity);
@@ -134,6 +138,18 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         changingTileMap();
         enemiesPath();
         spawnEnemy();
+
+    if (spawnedEnemyList.size() > 0) {
+        for (Enemy e: spawnedEnemyList){
+            e.updateWalkedDistance(e.getMovementSpeed());
+        }
+    }
+
+    if (enemyList.size() - 1 == 0){
+        nextRoundButton.setFill(Color.GREEN);
+    } else {
+        nextRoundButton.setFill(Color.DARKRED);
+    }
 
         if(nextRound) {
             roundExecutor.setEnemies(currentRound);

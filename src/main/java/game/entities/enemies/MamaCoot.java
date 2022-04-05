@@ -19,6 +19,7 @@ public class MamaCoot extends Enemy {
     @Override
     public BabyCootSpawner getBabyCootSpawner() {return babyCootSpawner;}
 
+    @Override
     public double getMovementSpeed() {return speed;}
 
     public int getHealth() {return health;}

@@ -14,6 +14,7 @@ public class DerpyCoot extends Enemy{
                 setSpeed(speed);
         }
 
+        @Override
         public double getMovementSpeed() {return speed;}
 
         public int getHealth() {return health;}

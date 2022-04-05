@@ -47,7 +47,7 @@ public class Projectile extends DynamicSpriteEntity implements Collided, SceneBo
 
                 if (((Enemy) collidingObject).getHealth() <= 0) {
                     if (collidingObject instanceof MamaCoot){
-                        ((Enemy)collidingObject).getBabyCootSpawner().setNeedToSpawn(false);
+                        ((Enemy)collidingObject).getBabyCootSpawner().remove();
                     }
                     gameScreen.spawnedEnemyList.remove((Enemy) collidingObject);
                     gameScreen.enemyList.remove((Enemy) collidingObject);

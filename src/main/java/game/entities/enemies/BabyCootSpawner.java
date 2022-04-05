@@ -26,6 +26,7 @@ public class BabyCootSpawner extends EntitySpawner {
             initialLocation = mamaCoot.getAnchorLocation();
             BabyCoot newBabyCoot = new BabyCoot("sprites/enemies/baby_coot.png", initialLocation, gameScreen);
             newBabyCoot.setPathStep(mamaCoot.getPathStep());
+            newBabyCoot.setMapProgress(mamaCoot.getMapProgress());
             spawn(newBabyCoot);
             gameScreen.enemyList.add(newBabyCoot);
             gameScreen.spawnedEnemyList.add(newBabyCoot);

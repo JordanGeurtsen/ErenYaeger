@@ -8,14 +8,13 @@ import com.github.hanyaeger.api.entities.Direction;
 import com.github.hanyaeger.api.entities.SceneBorderCrossingWatcher;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.scenes.SceneBorder;
-import game.EnemySpawner;
 import game.PathStep;
 import game.scenes.GameScreen;
 
 public abstract class Enemy extends DynamicSpriteEntity implements Collider, SceneBorderCrossingWatcher {
     private Coordinate2D initialLocation;
     protected GameScreen gameScreen;
-    private double walkedDistance;
+    private double mapProgress;
     private BabyCootSpawner babyCootSpawner;
     public PathStep pathStep = PathStep.ZERO;
 
@@ -28,6 +27,8 @@ public abstract class Enemy extends DynamicSpriteEntity implements Collider, Sce
     }
 
     public abstract void setMovementSpeed(MovementSpeed movementSpeed);
+
+    public abstract double getMovementSpeed();
 
     public abstract int getHealth();
 
@@ -49,6 +50,14 @@ public abstract class Enemy extends DynamicSpriteEntity implements Collider, Sce
     public BabyCootSpawner getBabyCootSpawner() {return babyCootSpawner;}
 
     public void updateWalkedDistance(double distanceWalked){
-        walkedDistance += distanceWalked;
+        this.mapProgress += distanceWalked;
+    }
+
+    public double getMapProgress(){
+        return this.mapProgress;
+    }
+
+    public void setMapProgress(double mapProgress){
+        this.mapProgress = mapProgress;
     }
 }

@@ -14,11 +14,9 @@ import java.util.ArrayList;
 public abstract class Tower extends DynamicSpriteEntity implements UpdateExposer {
     protected GameScreen gameScreen;
     private Enemy target;
-    public double closestDistance;
+    private double furthestWalked;
     private double shootAngle;
-    private double maxHealth;
     private ArrayList<Enemy> enemiesInRange;
-    private  ArrayList<Enemy> everyTarget;
 
     public Tower(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
         super(resource, initialLocation, new Size(75));
@@ -44,8 +42,7 @@ public abstract class Tower extends DynamicSpriteEntity implements UpdateExposer
     }
 
     public Enemy getTarget(ArrayList<Enemy> spawnedEnemyList) {
-        maxHealth = 0;
-        closestDistance = getTowerRange();
+        furthestWalked = 0;
         enemiesInRange = new ArrayList<>();
         for (Enemy e : spawnedEnemyList) {
             if (isInRange(getTowerRange(), e)) {
@@ -55,13 +52,12 @@ public abstract class Tower extends DynamicSpriteEntity implements UpdateExposer
                         for (Enemy r : enemiesInRange) {
                             if (!isInRange(getTowerRange(), r)) {
                                 enemiesInRange.remove(r);
-                            } else if (r.getHealth() > maxHealth && distanceTo(r) < closestDistance) {
-                                maxHealth = r.getHealth();
-                                closestDistance = distanceTo(r);
+                            } else if (r.getMapProgress() > furthestWalked) {
+                                furthestWalked = r.getMapProgress();
                                 target = r;
                                 setShootAngle(angleTo(target));
                                 if (r.getHealth() <= 0 || !isInRange(getTowerRange(), r)) {
-                                    closestDistance = getTowerRange();
+                                    furthestWalked = 0;
                                 }
                             }
                         }
@@ -71,21 +67,4 @@ public abstract class Tower extends DynamicSpriteEntity implements UpdateExposer
         }
         return target;
     }
-
-//    public void setShootAngle(double shootAngle) {
-//        this.shootAngle = shootAngle;
-//    }
-//
-//    public double getShootAngle(){
-//        return shootAngle;
-//    }
-//
-//    public abstract double getTowerDamage();
-//
-//    public abstract double getTowerRange();
-//
-//    abstract public Coordinate2D getInitialLocation();
-//
-//    public abstract ProjectileSpawner getProjectileSpawner();
-
 }

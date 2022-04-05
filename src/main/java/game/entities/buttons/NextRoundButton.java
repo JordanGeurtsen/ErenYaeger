@@ -19,6 +19,7 @@ public class NextRoundButton extends TextButton {
     @Override
     public void onButtonClick() {
             if (gameScreen.enemyList.size() -1 == 0) {
+                setFill(Color.GREEN);
                 if (newRound.getId() < 4) {
                     newRound.setNextID();
                     gameScreen.currentRound = newRound.values()[newRound.getId()];
@@ -28,6 +29,5 @@ public class NextRoundButton extends TextButton {
                     gameScreen.gameOver();
                 }
             }
-//        }
     }
 }

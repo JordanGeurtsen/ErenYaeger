@@ -15,6 +15,8 @@ public class FastCoot extends Enemy{
         this.initialLocation = initialLocation;
         setSpeed(getMovementSpeed());
     }
+
+    @Override
     public double getMovementSpeed(){return speed;}
 
     public int getHealth(){return health;}

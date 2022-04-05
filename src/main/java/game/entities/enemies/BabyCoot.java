@@ -16,6 +16,7 @@ public class BabyCoot extends Enemy{
         setSpeed(getMovementSpeed());
     }
 
+    @Override
     public double getMovementSpeed() {return speed;}
 
     public int getHealth() {return health;}

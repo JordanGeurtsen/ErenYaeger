@@ -7,7 +7,7 @@ import game.entities.targeting.ProjectileSpawner;
 import game.scenes.GameScreen;
 
 public class Hitman extends Tower {
-    private static int price = 250;
+    private static int price = 500;
     private static double rangeRadius = 1250;
     private static double damage = 40;
     private int intervalInMS = 2500;

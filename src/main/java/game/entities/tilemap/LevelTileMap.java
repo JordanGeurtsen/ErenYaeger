@@ -7,6 +7,7 @@ import game.entities.tilemap.ground.TowerGround;
 import game.entities.tilemap.ground.SelectGround;
 import game.entities.tilemap.ground.Water;
 import game.entities.tilemap.ground.Grass;
+import static game.entities.tilemap.TileIdentifier.*;
 
 public class LevelTileMap extends TileMap {
     public int[][] levelMap = {
@@ -27,10 +28,10 @@ public class LevelTileMap extends TileMap {
 
     @Override
     public void setupEntities() {
-        addEntity(1, Grass.class, "sprites/grass.jpg");
-        addEntity(2, Water.class, "sprites/water.jpg");
-        addEntity(3, TowerGround.class, "sprites/grass.jpg");
-        addEntity(4, SelectGround.class, "sprites/grass_select.png");
+        addEntity(GRASS.getId(), Grass.class, "sprites/grass.jpg");
+        addEntity(WATER.getId(), Water.class, "sprites/water.jpg");
+        addEntity(TOWERGROUND.getId(), TowerGround.class, "sprites/grass.jpg");
+        addEntity(SELECTGROUND.getId(), SelectGround.class, "sprites/grass_select.png");
     }
 
     @Override
