@@ -2,13 +2,12 @@ package game.scenes;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.scenes.DynamicScene;
-import com.github.hanyaeger.api.scenes.TileMapContainer;
 import game.BonkTheTowerTD;
 import game.Screenum;
 import game.entities.buttons.QuitButton;
 import game.entities.buttons.SceneSwitchButton;
 
-public class TitleScreen extends DynamicScene implements TileMapContainer {
+public class TitleScreen extends DynamicScene{
     private final BonkTheTowerTD bonkTheTowerTD;
 
     public TitleScreen(BonkTheTowerTD bonkTheTowerTD) {
@@ -31,10 +30,5 @@ public class TitleScreen extends DynamicScene implements TileMapContainer {
         var bonkTheTowerQuit = new QuitButton(
                 new Coordinate2D(getWidth() / 2, getHeight() / 1.5), this.bonkTheTowerTD);
         addEntity(bonkTheTowerQuit);
-    }
-
-    @Override
-    public void setupTileMaps() {
-
     }
 }

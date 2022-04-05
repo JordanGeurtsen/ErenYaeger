@@ -3,9 +3,8 @@ class BonkTheTowerTD {
 
 }
 
-BonkTheTowerTD .up|> YeagerGame
+BonkTheTowerTD .|> YeagerGame
 BonkTheTowerTD <-- TitleScreen
-BonkTheTowerTD <-- MapSelector
 BonkTheTowerTD <-- GameScreen
 BonkTheTowerTD <-- FinalScreen
 
@@ -18,19 +17,14 @@ class GameScreen {
 +coinBalance : int
 }
 
-GameScreen <-- ShopTileMap
 GameScreen <-- LevelTileMap
 GameScreen <-- Counter
 
 class TitleScreen {
-
+- bonkTheTowerTD : BonkTheTowerTD
 }
 
 class TextEntity {
-
-}
-
-class MapSelector {
 
 }
 
@@ -42,12 +36,7 @@ abstract class TileMap #EE66B1 {
 
 }
 
-TileMapContainer <|.. TitleScreen
 TileMapContainer <|.. GameScreen
-TileMapContainer <|.. MapSelector
-TileMapContainer <|.. FinalScreen
-
-TileMap <|.. ShopTileMap
 
 class FinalScreen {
 
@@ -59,18 +48,17 @@ abstract class DynamicScene #EE66B1 {
 
 GameScreen ..|> DynamicScene
 TitleScreen ..|> DynamicScene
-MapSelector ..|> DynamicScene
 FinalScreen ..|> DynamicScene
 
 class RoundExecutor {
 
 }
 
-RoundExecutor -up-> Enemy
+RoundExecutor --> Enemy
 RoundExecutor --> GameScreen
 
 class LevelTileMap {
-+setupEntities() : void
++setEntities() : void
 +defineMap() : int[][]
 }
 
@@ -84,15 +72,15 @@ abstract class Button {
 
 }
 
-Button .left> MouseExitListener
-Button .left> MouseEnterListener
-Button .right> MouseButtonPressedListener
-Button .right|> TextEntity
+Button .|> MouseExitListener
+Button .|> MouseEnterListener
+Button .|> MouseButtonPressedListener
+Button .|> TextEntity
 
 Button <|.. QuitButton
 Button <|.. SceneSwitchButton
-Button <|.. BuyItem
-Button <|.. SellItem
+Button <|.. BuyButton
+Button <|.. NextRoundButton
 Button <|.. ChangeRoundState
 
 interface MouseButtonPressedListener #EE66B1 {
@@ -123,13 +111,13 @@ class ChangeRoundState {
 +onMouseExited() : void
 }
 
-class BuyItem {
+class BuyButton {
 +...() : void
 +onMouseEntered() : void
 +onMouseExited() : void
 }
 
-class SellItem {
+class NextRoundButton {
 +...() : void
 +onMouseEntered() : void
 +onMouseExited() : void
@@ -146,15 +134,6 @@ class Counter {
 }
 
 Counter .|> TextEntity
-
-class ShopTileMap {
-+setupEntities() : void
-+defineMap() : int[][]
-}
-
-ShopTileMap <|-- Tower
-ShopTileMap --> Button
-
 
 abstract class Tower {
 +getPrice() : void
@@ -194,13 +173,13 @@ class Freezer {
 +drawTower() : void
 }
 
-Tower <|.left. Archer
+Tower <|.. Archer
 Tower <|.. Hitman
 Tower <|.. Freezer
 
-Tower .up.|> SpriteEntity
+Tower ..|> SpriteEntity
 Enemy ..|> DynamicSpriteEntity
-Projectile .right|> DynamicSpriteEntity
+Projectile .|> DynamicSpriteEntity
 
 abstract class SpriteEntity #EE66B1 {
 
@@ -210,6 +189,19 @@ abstract class DynamicSpriteEntity #EE66B1 {
 
 }
 
+abstract class ProjectileSpawner {
+}
+
+class ArrowSpawner {
+}
+
+class BulletSpawner {
+}
+
+ProjectileSpawner --> Tower
+ProjectileSpawner <-- ArrowSpawner
+ProjectileSpawner <-- BulletSpawner
+
 class Projectile {
 
 }
@@ -217,20 +209,18 @@ class Projectile {
 interface Collider #EE66B1{
 }
 
-Projectile .up.|>Collider
-Projectile --> Tower
+Projectile ..|>Collider
+
 
 class Arrow {
 
 }
 
-class Ice {
-
+class Bullet {
 }
 
-Projectile <-up- Arrow
-Projectile <-up- Ice
-
+Projectile <-- Arrow
+Projectile <-- Bullet
 
 abstract class Enemy {
 -movementSpeed : int
@@ -245,7 +235,7 @@ interface Collided #EE66B1{
 
 }
 
-Enemy .up.|> Collided
+Enemy ..|> Collided
 
 class BabyCoot {
 +drawEnemy() : void
@@ -267,10 +257,10 @@ class ThickCoot {
 +drawEnemy() : void
 }
 
-Enemy <|.right. BabyCoot
-Enemy <|.left. DerpyCoot
-Enemy <|.up. MamaCoot
-Enemy <|.up. FastCoot
-Enemy <|.up. ThickCoot
+Enemy <|.. BabyCoot
+Enemy <|.. DerpyCoot
+Enemy <|.. MamaCoot
+Enemy <|.. FastCoot
+Enemy <|.. ThickCoot
 
 @enduml
