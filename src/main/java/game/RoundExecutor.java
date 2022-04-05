@@ -27,39 +27,50 @@ public class RoundExecutor {
                 for (int i = 0; i < 6; i++) {
                     newEnemies.add(new BabyCoot("sprites/enemies/baby_coot.png", startCoordinates, gameScreen));
                 }
-                newEnemies.add(new MamaCoot("sprites/enemies/mama_coot.png", startCoordinates, gameScreen));
                 break;
             case TWO:
                 newEnemies.clear();
                 for(int i = 0; i < 3; i++) {
                     newEnemies.add(new DerpyCoot("sprites/enemies/derpy_coot.png", startCoordinates, gameScreen));
                 }
-                for (int i = 0; i < 4; i++) {
+                for (int i = 0; i < 2; i++) {
                     newEnemies.add(new MamaCoot("sprites/enemies/mama_coot.png", startCoordinates, gameScreen));
+                }
+                for (int i = 0; i < 6; i++) {
+                    newEnemies.add(new BabyCoot("sprites/enemies/baby_coot.png", startCoordinates, gameScreen));
                 }
                 break;
             case THREE:
                 newEnemies.clear();
                 newEnemies.add(new ThickCoot("sprites/enemies/thick_coot.png", startCoordinates, gameScreen));
-                for(int i = 0; i < 2; i++) {
+                for(int i = 0; i < 3; i++) {
                     newEnemies.add(new FastCoot("sprites/enemies/fast_coot.png", startCoordinates, gameScreen));
                 }
                 for (int i = 0; i < 6; i++) {
                     newEnemies.add(new MamaCoot("sprites/enemies/mama_coot.png", startCoordinates, gameScreen));
                 }
+                for (int i = 0; i < 10; i++) {
+                    newEnemies.add(new BabyCoot("sprites/enemies/baby_coot.png", startCoordinates, gameScreen));
+                }
                 break;
             case FOUR:
                 newEnemies.clear();
                 for(int i = 0; i < 3; i++) {
+                    newEnemies.add(new FastCoot("sprites/enemies/fast_coot.png", startCoordinates, gameScreen));
+                }
+                for(int i = 0; i < 3; i++) {
                     newEnemies.add(new ThickCoot("sprites/enemies/thick_coot.png", startCoordinates, gameScreen));
+                }
+                for (int i = 0; i < 3; i++) {
+                    newEnemies.add(new MamaCoot("sprites/enemies/mama_coot.png", startCoordinates, gameScreen));
                 }
                 for(int i = 0; i < 3; i++) {
                     newEnemies.add(new FastCoot("sprites/enemies/fast_coot.png", startCoordinates, gameScreen));
                 }
-                for (int i = 0; i < 5; i++) {
+                for (int i = 0; i < 2; i++) {
                     newEnemies.add(new MamaCoot("sprites/enemies/mama_coot.png", startCoordinates, gameScreen));
                 }
-                for (int i = 0; i < 4; i++) {
+                for (int i = 0; i < 10; i++) {
                     newEnemies.add(new BabyCoot("sprites/enemies/baby_coot.png", startCoordinates, gameScreen));
                 }
                 break;
@@ -68,16 +79,22 @@ public class RoundExecutor {
                 for(int i = 0; i < 5; i++) {
                     newEnemies.add(new ThickCoot("sprites/enemies/thick_coot.png", startCoordinates, gameScreen));
                 }
+                for (int i = 0; i < 3; i++) {
+                    newEnemies.add(new MamaCoot("sprites/enemies/mama_coot.png", startCoordinates, gameScreen));
+                }
+                for (int i = 0; i < 8; i++) {
+                    newEnemies.add(new BabyCoot("sprites/enemies/baby_coot.png", startCoordinates, gameScreen));
+                }
                 for(int i = 0; i < 5; i++) {
                     newEnemies.add(new FastCoot("sprites/enemies/fast_coot.png", startCoordinates, gameScreen));
                 }
                 for(int i = 0; i < 5; i++) {
                     newEnemies.add(new DerpyCoot("sprites/enemies/derpy_coot.png", startCoordinates, gameScreen));
                 }
-                for (int i = 0; i < 7; i++) {
+                for (int i = 0; i < 4; i++) {
                     newEnemies.add(new MamaCoot("sprites/enemies/mama_coot.png", startCoordinates, gameScreen));
                 }
-                for (int i = 0; i < 4; i++) {
+                for (int i = 0; i < 7; i++) {
                     newEnemies.add(new BabyCoot("sprites/enemies/baby_coot.png", startCoordinates, gameScreen));
                 }
                 break;

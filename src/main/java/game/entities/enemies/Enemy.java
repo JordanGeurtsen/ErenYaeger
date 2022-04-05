@@ -15,7 +15,8 @@ import game.scenes.GameScreen;
 public abstract class Enemy extends DynamicSpriteEntity implements Collider, SceneBorderCrossingWatcher {
     private Coordinate2D initialLocation;
     protected GameScreen gameScreen;
-    private EnemySpawner enemySpawner;
+    private double walkedDistance;
+    private BabyCootSpawner babyCootSpawner;
     public PathStep pathStep = PathStep.ZERO;
 
     public Enemy(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
@@ -24,7 +25,6 @@ public abstract class Enemy extends DynamicSpriteEntity implements Collider, Sce
         this.gameScreen = gameScreen;
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
         setDirection(Direction.DOWN);
-        enemySpawner = new EnemySpawner(800, gameScreen.enemyList);
     }
 
     public abstract void setMovementSpeed(MovementSpeed movementSpeed);
@@ -45,4 +45,10 @@ public abstract class Enemy extends DynamicSpriteEntity implements Collider, Sce
     }
 
     public void setPathStep(PathStep newPathStep){this.pathStep = newPathStep;}
+
+    public BabyCootSpawner getBabyCootSpawner() {return babyCootSpawner;}
+
+    public void updateWalkedDistance(double distanceWalked){
+        walkedDistance += distanceWalked;
+    }
 }

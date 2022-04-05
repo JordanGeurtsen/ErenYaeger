@@ -7,9 +7,9 @@ import game.entities.targeting.ProjectileSpawner;
 import game.scenes.GameScreen;
 
 public class Archer extends Tower {
-    private static int price = 100;
+    private static int price = 200;
     private static double rangeRadius = 225;
-    private static double damage = 3;
+    private static double damage = 5;
     private GameScreen gameScreen;
     private Coordinate2D initialLocation;
     private ArrowSpawner spawner;

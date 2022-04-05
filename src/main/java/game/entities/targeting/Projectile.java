@@ -8,6 +8,7 @@ import com.github.hanyaeger.api.entities.SceneBorderCrossingWatcher;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 import game.entities.enemies.Enemy;
+import game.entities.enemies.MamaCoot;
 import game.entities.enemies.MovementSpeed;
 import game.entities.towers.Archer;
 import game.entities.towers.Freezer;
@@ -29,28 +30,34 @@ public class Projectile extends DynamicSpriteEntity implements Collided, SceneBo
     }
 
     @Override
-    public void notifyBoundaryCrossing(SceneBorder border) {remove();}
+    public void notifyBoundaryCrossing(SceneBorder border) {
+        remove();
+    }
 
     @Override
     public void onCollision(Collider collidingObject) {
         if (collidingObject instanceof Enemy) {
             if (shootingTower instanceof Archer) {
                 ((Enemy) collidingObject).setHealth(-shootingTower.getTowerDamage());
-            } else if (shootingTower instanceof Freezer) {
-                ((Enemy) collidingObject).setMovementSpeed(MovementSpeed.SLOW);
             } else if (shootingTower instanceof Hitman) {
                 ((Enemy) collidingObject).setHealth(-shootingTower.getTowerDamage());
             }
-            if (((Enemy) collidingObject).getHealth() <= 0) {
-                gameScreen.spawnedEnemyList.remove((Enemy) collidingObject);
-                gameScreen.enemyList.remove((Enemy) collidingObject);
-                coins += 20;
-                gameScreen.coinCounter.setCounterText("Coins: ", coins);
-                points += 25;
-                gameScreen.pointCounter.setCounterText("Points: ", points);
-                ((Enemy) collidingObject).remove();
+//
+//            for (Enemy e : gameScreen.enemyList) {
+                if (((Enemy) collidingObject).getHealth() <= 0) {
+                    if (collidingObject instanceof MamaCoot){
+                        ((Enemy)collidingObject).getBabyCootSpawner().setNeedToSpawn(false);
+                    }
+                    gameScreen.spawnedEnemyList.remove((Enemy) collidingObject);
+                    gameScreen.enemyList.remove((Enemy) collidingObject);
+                    coins += 20;
+                    gameScreen.coinCounter.setCounterText("Coins: ", coins);
+                    points += 25;
+                    gameScreen.pointCounter.setCounterText("Points: ", points);
+                    ((Enemy) collidingObject).remove();
+                }
+                remove();
             }
-            remove();
-        }
+//        }
     }
 }

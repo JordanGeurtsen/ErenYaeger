@@ -7,7 +7,7 @@ import game.scenes.GameScreen;
 public class BabyCoot extends Enemy{
     private double speed = 1.6;
     private int health = 10;
-    private int damage = 19;
+    private int damage = 1;
     private Coordinate2D initialLocation;
 
     public BabyCoot(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {

@@ -8,10 +8,9 @@ import game.entities.targeting.ProjectileSpawner;
 import game.scenes.GameScreen;
 
 public class Freezer extends Tower{
-    private static int price = 200;
+    private static int price = 300;
     private static double rangeRadius = 117.5;
     private static double damage = 20;
-    private int intervalInMS = 500;
     private GameScreen gameScreen;
     private Coordinate2D initialLocation;
 

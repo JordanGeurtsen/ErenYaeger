@@ -5,9 +5,9 @@ import com.github.hanyaeger.api.entities.Direction;
 import game.scenes.GameScreen;
 
 public class DerpyCoot extends Enemy{
-        private double speed = 1.8;
-        private int health = 60;
-        private int damage = 5;
+        private double speed = 1.3;
+        private int health = 50;
+        private int damage = 2;
         private Coordinate2D initialLocation;
 
         public DerpyCoot(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
@@ -30,11 +30,11 @@ public class DerpyCoot extends Enemy{
         public void setMovementSpeed(MovementSpeed movementSpeed) {
                 switch (movementSpeed) {
                         case SLOW:
-                                speed = 1.1;
+                                speed = 1.5;
                                 setSpeed(speed);
                                 break;
                         case NORMAL:
-                                speed = 1.8;
+                                speed = 1.3;
                                 setSpeed(speed);
                                 break;
                         default:

@@ -6,7 +6,7 @@ import game.scenes.GameScreen;
 
 public class FastCoot extends Enemy{
     private double speed = 2.5;
-    private int health = 50;
+    private int health = 40;
     private int damage = 2;
     private Coordinate2D initialLocation;
 
@@ -29,11 +29,11 @@ public class FastCoot extends Enemy{
     public void setMovementSpeed(MovementSpeed movementSpeed) {
         switch (movementSpeed) {
             case SLOW:
-                speed = 1.3;
+                speed = 1.4;
                 setSpeed(speed);
                 break;
             case NORMAL:
-                speed = 2.0;
+                speed = 2.5;
                 setSpeed(speed);
                 break;
             default:

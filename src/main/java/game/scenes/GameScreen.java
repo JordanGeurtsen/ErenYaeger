@@ -23,6 +23,7 @@ import game.entities.towers.Tower;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 
 import static game.scenes.FinalScreen.setFinalMessage;
@@ -74,25 +75,25 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
             roundCounter = new Counter(new Coordinate2D(1055, 5),  currentRound.getId() , "Round: ");
             addEntity(roundCounter);
 
-            coinCounter = new Counter(new Coordinate2D(1055, 30), coins, "Coins: ");
+            coinCounter = new Counter(new Coordinate2D(1055, 35), coins, "Coins: ");
             addEntity(coinCounter);
 
-            pointCounter = new Counter(new Coordinate2D(1055, 60), points, "Points: ");
+            pointCounter = new Counter(new Coordinate2D(1055, 65), points, "Points: ");
             addEntity(pointCounter);
 
-            liveCounter = new Counter(new Coordinate2D(1055, 90), lives, "Lives: ");
+            liveCounter = new Counter(new Coordinate2D(1055, 95), lives, "Lives: ");
             addEntity(liveCounter);
 
             var archerBuy = new BuyButton(new Coordinate2D(1050, 175), "sprites/towers/archer_logo.png",
-                    "Archer", 100, 5, 250, this);
+                    "Archer", 200, 5, 225, this);
             addEntity(archerBuy);
 
             var hitmanBuy = new BuyButton(new Coordinate2D(1050, 300), "sprites/towers/hitman_logo.png",
-                    "Hitman", 250, 40, 1250, this);
+                    "Hitman", 500, 40, 1250, this);
             addEntity(hitmanBuy);
 
             var freezerBuy = new BuyButton(new Coordinate2D(1050, 425), "sprites/towers/freezer_logo.png",
-                    "Freezer", 200, 0, 150, this);
+                    "Freezer", 300, 0, 118, this);
             addEntity(freezerBuy);
 
             roundExecutor.setEnemies(currentRound);
@@ -106,14 +107,14 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
 
     @Override
     public void setupEntitySpawners() {
+        for (Enemy e: enemyList) {
+            if (e instanceof MamaCoot) {
+                addEntitySpawner( e.getBabyCootSpawner());
+            }
+        }
         for (Tower t : towers) {
             if (t instanceof Archer || t instanceof Hitman) {
                 addEntitySpawner(t.getProjectileSpawner());
-            }
-        }
-        for (Enemy e: enemyList) {
-            if (e instanceof MamaCoot) {
-               addEntitySpawner(((MamaCoot) e).getBabyCootSpawner());
             }
         }
     }
@@ -123,6 +124,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
 
     public void enemyPastBorder(Enemy e, int damage) {
         enemyList.remove(e);
+        spawnedEnemyList.remove(e);
         e.remove();
         lives -= damage;
         liveCounter.setCounterText("Lives: ", lives);
@@ -155,6 +157,16 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         } else {
             enemySpawnTimer++;
         }
+        for (Enemy e: enemyList) {
+            if (e instanceof MamaCoot) {
+                e.getBabyCootSpawner().setNeedToSpawn(false);
+            }
+        }
+        for (Enemy e: spawnedEnemyList) {
+            if (e instanceof MamaCoot) {
+                e.getBabyCootSpawner().setNeedToSpawn(true);
+            }
+        }
     }
 
     public void changingTileMap(){
@@ -178,9 +190,11 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     public void resetStartingVariables(){
         points = 0;
         lives = 20;
-        coins = 100;
+        coins = 200;
         currentRound = Round.ONE;
         towers.clear();
+        enemyList.clear();
+        spawnedEnemyList.clear();
         levelTileMap.changeTileMap(3, 1);
         levelTileMap.changeTileMap(4, 1);
     }
@@ -255,14 +269,16 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     }
 
     @Override
-    public void onMouseButtonReleased(MouseButton mouseButton, Coordinate2D coordinate2D) {placeTower(coordinate2D);}
+    public void onMouseButtonReleased(MouseButton mouseButton, Coordinate2D coordinate2D) {
+        placeTower(coordinate2D);
+    }
 
     public double pathLimit(int tile){
         return  (tile - 1) * blockSize + (blockSize / 2);
     }
 
     public void enemiesPath() {
-        for (Enemy e : enemyList) {
+        for (Enemy e : spawnedEnemyList) {
             Coordinate2D coordinates =  e.getAnchorLocation();
             PathStep pathStep = e.getPathStep();
 

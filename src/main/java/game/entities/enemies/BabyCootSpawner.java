@@ -11,7 +11,7 @@ public class BabyCootSpawner extends EntitySpawner {
     private Coordinate2D initialLocation;
     private GameScreen gameScreen;
     private Enemy mamaCoot;
-    private PathStep pathStep;
+    private boolean needToSpawn = false;
 
     protected BabyCootSpawner(long intervalInMs, Coordinate2D initialLocation, GameScreen gameScreen, Enemy mamaCoot) {
         super(intervalInMs);
@@ -22,10 +22,17 @@ public class BabyCootSpawner extends EntitySpawner {
 
     @Override
     protected void spawnEntities() {
-        initialLocation = mamaCoot.getAnchorLocation();
-        BabyCoot newBabyCoot = new BabyCoot("sprites/enemies/baby_coot.png", initialLocation, gameScreen);
-        newBabyCoot.setPathStep(mamaCoot.getPathStep());
-        spawn(newBabyCoot);
-        gameScreen.enemyList.add(newBabyCoot);
+        if (needToSpawn) {
+            initialLocation = mamaCoot.getAnchorLocation();
+            BabyCoot newBabyCoot = new BabyCoot("sprites/enemies/baby_coot.png", initialLocation, gameScreen);
+            newBabyCoot.setPathStep(mamaCoot.getPathStep());
+            spawn(newBabyCoot);
+            gameScreen.enemyList.add(newBabyCoot);
+            gameScreen.spawnedEnemyList.add(newBabyCoot);
         }
+    }
+
+    public void setNeedToSpawn(boolean state){
+        this.needToSpawn = state;
+    }
 }

@@ -5,9 +5,9 @@ import com.github.hanyaeger.api.entities.Direction;
 import game.scenes.GameScreen;
 
 public class MamaCoot extends Enemy {
-    private double speed = 1.2;
+    private double speed = 0.9;
     private int health = 80;
-    private int damage = 3;
+    private int damage = 4;
     private BabyCootSpawner babyCootSpawner;
 
     public MamaCoot(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
@@ -16,6 +16,7 @@ public class MamaCoot extends Enemy {
         setSpeed(getMovementSpeed());
     }
 
+    @Override
     public BabyCootSpawner getBabyCootSpawner() {return babyCootSpawner;}
 
     public double getMovementSpeed() {return speed;}
@@ -32,11 +33,11 @@ public class MamaCoot extends Enemy {
     public void setMovementSpeed(MovementSpeed movementSpeed) {
         switch (movementSpeed) {
             case SLOW :
-                speed = 0.7;
+                speed = 0.6;
                 setSpeed(speed);
                 break;
             case NORMAL:
-                speed = 1.2;
+                speed = 0.9;
                 setSpeed(speed);
                 break;
             default:
