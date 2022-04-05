@@ -13,7 +13,6 @@ import game.Screenum;
 import game.*;
 import game.entities.buttons.NextRoundButton;
 import game.entities.buttons.BuyButton;
-import game.entities.buttons.compositebutton.PauseButton;
 import game.entities.counter.Counter;
 import game.entities.enemies.*;
 import game.entities.tilemap.LevelTileMap;
@@ -55,7 +54,6 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     private int enemySpawnTimer = 40;
     private int enemySpawnInterval = 100;
     public boolean nextRound = false;
-    public boolean screenPaused = false;
 
     public GameScreen(BonkTheTowerTD bonkTheTowerTD) {
         this.bonkTheTowerTD = bonkTheTowerTD;
@@ -96,9 +94,6 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
             var freezerBuy = new BuyButton(new Coordinate2D(1050, 425), "sprites/towers/freezer_logo.png",
                     "Freezer", 200, 0, 150, this);
             addEntity(freezerBuy);
-
-            var pauseGame = new PauseButton(new Coordinate2D(0, 0),"sprites/pause_button.png", this);
-            addEntity(pauseGame);
 
             roundExecutor.setEnemies(currentRound);
             enemyListNr = enemyList.size() -1;
