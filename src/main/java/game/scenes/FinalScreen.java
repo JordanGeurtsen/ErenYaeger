@@ -23,7 +23,10 @@ public class FinalScreen extends DynamicScene{
     public static void setFinalMessage(String finalMessage) {FinalScreen.finalMessage = finalMessage;}
 
     @Override
-    public void setupScene() {setBackgroundImage("backgrounds/base_background.jpg");}
+    public void setupScene() {
+        setBackgroundImage("backgrounds/base_background.jpg");
+        setBackgroundAudio("audio/relaxing_bg_music_3.mp3");
+    }
 
     @Override
     public void setupEntities() {
