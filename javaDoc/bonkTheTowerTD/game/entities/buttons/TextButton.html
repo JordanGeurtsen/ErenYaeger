@@ -205,6 +205,9 @@ implements <a href="Button.html" title="interface in game.entities.buttons">Butt
 <h3>TextButton</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">TextButton</span><wbr><span class="parameters">(com.github.hanyaeger.api.Coordinate2D&nbsp;initialLocation,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;text)</span></div>
+<dl>
+ <dd>This is a template for a textButton.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -221,6 +224,7 @@ implements <a href="Button.html" title="interface in game.entities.buttons">Butt
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onMouseButtonPressed</span><wbr><span class="parameters">(javafx.scene.input.MouseButton&nbsp;button,
  com.github.hanyaeger.api.Coordinate2D&nbsp;coordinate2D)</span></div>
 <dl class="notes">
+ <dd>This method is called when the player presses a mouse button. The method calls mouseClicked if the mouse button is the primary button.</dd>
 <dt>Specified by:</dt>
 <dd><code>onMouseButtonPressed</code>&nbsp;in interface&nbsp;<code>com.github.hanyaeger.api.userinput.MouseButtonPressedListener</code></dd>
 </dl>
@@ -231,6 +235,7 @@ implements <a href="Button.html" title="interface in game.entities.buttons">Butt
 <h3>onMouseEntered</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onMouseEntered</span>()</div>
 <dl class="notes">
+ <dd>This method is called when the mouse hovers over the button. The method brightens the button and changes the cursor to a hand.</dd>
 <dt>Specified by:</dt>
 <dd><code>onMouseEntered</code>&nbsp;in interface&nbsp;<code>com.github.hanyaeger.api.userinput.MouseEnterListener</code></dd>
 </dl>
@@ -241,6 +246,7 @@ implements <a href="Button.html" title="interface in game.entities.buttons">Butt
 <h3>onMouseExited</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onMouseExited</span>()</div>
 <dl class="notes">
+ <dd>This method is called when the mouse stops hovering the button. The method sets the brightness and cursor back to their original states.</dd>
 <dt>Specified by:</dt>
 <dd><code>onMouseExited</code>&nbsp;in interface&nbsp;<code>com.github.hanyaeger.api.userinput.MouseExitListener</code></dd>
 </dl>
@@ -250,6 +256,9 @@ implements <a href="Button.html" title="interface in game.entities.buttons">Butt
 <section class="detail" id="onButtonClick()">
 <h3>onButtonClick</h3>
 <div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onButtonClick</span>()</div>
+<dl class="notes">
+ <dd>This is an abstract method in which gets decided what to do when a button is clicked.</dd>
+</dl>
 </section>
 </li>
 </ul>

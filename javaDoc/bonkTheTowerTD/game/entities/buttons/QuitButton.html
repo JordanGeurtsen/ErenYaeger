@@ -195,6 +195,12 @@ loadScripts(document, 'script');</script>
 <h3>QuitButton</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">QuitButton</span><wbr><span class="parameters">(com.github.hanyaeger.api.Coordinate2D&nbsp;initialLocation,
  <a href="../../BonkTheTowerTD.html" title="class in game">BonkTheTowerTD</a>&nbsp;bonkTheTowerTD)</span></div>
+<dl class="notes">
+ <dd>This is a button to close the game.</dd>
+ <dt>Parameters:</dt>
+ <dd>Coordinate2D initialLocation: This is the coordinates of the button.</dd>
+ <dd>BonkTheTowerTD bonkTheTowerTD: This is the game that closes when the button is pressed.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -210,6 +216,7 @@ loadScripts(document, 'script');</script>
 <h3>onButtonClick</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onButtonClick</span>()</div>
 <dl class="notes">
+ <dd>This method is called when the player clicks on the button. The button closes the game by using the quit() method.</dd>
 <dt>Specified by:</dt>
 <dd><code><a href="TextButton.html#onButtonClick()">onButtonClick</a></code>&nbsp;in class&nbsp;<code><a href="TextButton.html" title="class in game.entities.buttons">TextButton</a></code></dd>
 </dl>

@@ -21,10 +21,10 @@ public class RoundExecutor {
         switch (round) {
             case ONE:
                 newEnemies.clear();
-                for(int i = 0; i < 3; i++) {
+                for(int enemyNr = 0; enemyNr < 3; enemyNr++) {
                     newEnemies.add(new DerpyCoot("sprites/enemies/derpy_coot.png", startCoordinates, gameScreen));
                 }
-                for (int i = 0; i < 6; i++) {
+                for (int enemyNr = 0; enemyNr < 6; enemyNr++) {
                     newEnemies.add(new BabyCoot("sprites/enemies/baby_coot.png", startCoordinates, gameScreen));
                 }
                 break;

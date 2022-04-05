@@ -186,7 +186,6 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
             BuyButton.tileMapChanged = true;
         }
         enemiesPath();
-
     }
 
     public void resetStartingVariables(){
@@ -214,7 +213,9 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         } else {
             towerPrice = Freezer.getTowerPrice();
         }
-        if(coins >= towerPrice) {
+        if(coins >= towerPrice ) {
+            System.out.println(towerPrice);
+            System.out.println(coins);
             return true;
         } else {
             return false;
