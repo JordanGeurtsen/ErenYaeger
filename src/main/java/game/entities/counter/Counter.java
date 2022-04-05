@@ -15,7 +15,7 @@ public class Counter extends DynamicTextEntity {
         setFont(Font.font("Roboto", FontWeight.BOLD, 25));
     }
 
-    public void setCounterText(String text, int counterData){
+    public void updateCounter(String text, int counterData){
         this.counterData += counterData;
         setText(text + this.counterData);
     }

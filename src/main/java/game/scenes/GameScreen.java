@@ -130,7 +130,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         enemyList.remove(e);
         spawnedEnemyList.remove(e);
         e.remove();
-        liveCounter.setCounterText("Lives: ", -damage);
+        liveCounter.updateCounter("Lives: ", -damage);
     }
 
     @Override
@@ -202,7 +202,6 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
             BuyButton.tileMapChanged = true;
         }
         enemiesPath();
-
     }
 
     public void resetStartingVariables(){
@@ -230,7 +229,9 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         } else {
             towerPrice = Freezer.getTowerPrice();
         }
-        if(coins >= towerPrice) {
+        if(coins >= towerPrice ) {
+            System.out.println(towerPrice);
+            System.out.println(coins);
             return true;
         } else {
             return false;
@@ -279,7 +280,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
                         setBackgroundColor(Color.PAPAYAWHIP);
                         addNewTower(towerSelectedName);
 
-                        coinCounter.setCounterText("Coins: ", -towerPrice);
+                        coinCounter.updateCounter("Coins: ", -towerPrice);
 
                         setupEntities();
                         setupEntitySpawners();

@@ -209,18 +209,27 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="isTowerSelected">
 <h3>isTowerSelected</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isTowerSelected</span></div>
+<dl class="notes">
+ <dd>This is a boolean that turns true when the player selects a tower to place.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="tileMapChanged">
 <h3>tileMapChanged</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">tileMapChanged</span></div>
+<dl class="notes">
+ <dd>This is a boolean that turns true when the tile map has changed after clicking on a tower in the shop.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="currentTowerSelected">
 <h3>currentTowerSelected</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">currentTowerSelected</span></div>
+<dl class="notes">
+ <dd>This String keeps the name of the tower the player selected. This is used to get static information from that tower type.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -241,6 +250,17 @@ loadScripts(document, 'script');</script>
  int&nbsp;damage,
  int&nbsp;range,
  <a href="../../../scenes/GameScreen.html" title="class in game.scenes">GameScreen</a>&nbsp;gameScreen)</span></div>
+ <dl class="notes">
+  <dd>This makes a button to buy a tower.</dd>
+  <dt>Parameters:</dt>
+  <dd>Coordinate2D initialLocation: this is the coordinates of the button.</dd>
+  <dd>String resource: this is the recourse for the sprite of the button.</dd>
+  <dd>String towerName: this is the name of the tower that the button represents.</dd>
+  <dd>int price: this is the price of the tower that the button represents.</dd>
+  <dd>int damage: this is the damage of the tower that the button represents.</dd>
+  <dd>int range: this is the range of the tower that the button represents.</dd>
+  <dd>GameScreen gameScreen: this is the screen where the button is visible.</dd>
+ </dl>
 </section>
 </li>
 </ul>
@@ -256,6 +276,7 @@ loadScripts(document, 'script');</script>
 <h3>setupEntities</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setupEntities</span>()</div>
 <dl class="notes">
+ <dd>This method sets up all the entities that are connected to the button. De sprite, hitbox, background and text sprite of the information of the tower.</dd>
 <dt>Specified by:</dt>
 <dd><code>setupEntities</code>&nbsp;in class&nbsp;<code>com.github.hanyaeger.api.entities.CompositeEntity</code></dd>
 </dl>
@@ -266,6 +287,7 @@ loadScripts(document, 'script');</script>
 <h3>onButtonClick</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onButtonClick</span>()</div>
 <dl class="notes">
+ <dd>This method gets called when the player has clicked with their mouse on the button.</dd>
 <dt>Specified by:</dt>
 <dd><code><a href="CompositeButton.html#onButtonClick()">onButtonClick</a></code>&nbsp;in class&nbsp;<code><a href="CompositeButton.html" title="class in game.entities.buttons.compositebutton">CompositeButton</a></code></dd>
 </dl>
@@ -275,6 +297,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getBuyButtonTower()">
 <h3>getBuyButtonTower</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getBuyButtonTower</span>()</div>
+<dl class="notes">
+ <dd>This method returns the tower that was selected</dd>
+ <dt>Returns:</dt>
+ <dd>String towerName: a string of the tower that was last selected.</dd>
+</dl>
 </section>
 </li>
 </ul>

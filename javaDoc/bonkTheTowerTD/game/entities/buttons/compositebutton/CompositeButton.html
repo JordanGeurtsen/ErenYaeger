@@ -192,6 +192,11 @@ implements <a href="../Button.html" title="interface in game.entities.buttons">B
 <section class="detail" id="&lt;init&gt;(com.github.hanyaeger.api.Coordinate2D)">
 <h3>CompositeButton</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">CompositeButton</span><wbr><span class="parameters">(com.github.hanyaeger.api.Coordinate2D&nbsp;initialLocation)</span></div>
+<dl class="notes">
+ <dd>This is a button that is visible as sprite. The anchorLocation is set in the center of the sprite.</dd>
+ <dt>Parameters:</dt>
+ <dd>Coordinate2D initialLocation: this is the coordinates where the button is placed.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -208,6 +213,7 @@ implements <a href="../Button.html" title="interface in game.entities.buttons">B
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onMouseButtonPressed</span><wbr><span class="parameters">(javafx.scene.input.MouseButton&nbsp;button,
  com.github.hanyaeger.api.Coordinate2D&nbsp;coordinate2D)</span></div>
 <dl class="notes">
+ <dd>This method gets called when the player pressed a mouse button on the composite button. If the pressed mouse button is primary, then the method onClicked() is called.</dd>
 <dt>Specified by:</dt>
 <dd><code>onMouseButtonPressed</code>&nbsp;in interface&nbsp;<code>com.github.hanyaeger.api.userinput.MouseButtonPressedListener</code></dd>
 </dl>
@@ -218,7 +224,8 @@ implements <a href="../Button.html" title="interface in game.entities.buttons">B
 <h3>onMouseEntered</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onMouseEntered</span>()</div>
 <dl class="notes">
-<dt>Specified by:</dt>
+ <dd>This method is called when the mouse hovers over the button. The method brightens the button and changes the cursor to a hand.</dd>
+ <dt>Specified by:</dt>
 <dd><code>onMouseEntered</code>&nbsp;in interface&nbsp;<code>com.github.hanyaeger.api.userinput.MouseEnterListener</code></dd>
 </dl>
 </section>
@@ -228,7 +235,8 @@ implements <a href="../Button.html" title="interface in game.entities.buttons">B
 <h3>onMouseExited</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onMouseExited</span>()</div>
 <dl class="notes">
-<dt>Specified by:</dt>
+ <dd>This method is called when the mouse stops hovering the button. The method sets the brightness and cursor back to their original states.</dd>
+ <dt>Specified by:</dt>
 <dd><code>onMouseExited</code>&nbsp;in interface&nbsp;<code>com.github.hanyaeger.api.userinput.MouseExitListener</code></dd>
 </dl>
 </section>
@@ -237,6 +245,9 @@ implements <a href="../Button.html" title="interface in game.entities.buttons">B
 <section class="detail" id="onButtonClick()">
 <h3>onButtonClick</h3>
 <div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onButtonClick</span>()</div>
+<dl class="notes">
+ <dd>This is an abstract method in which gets decided what to do when a button is clicked.</dd>
+</dl>
 </section>
 </li>
 </ul>

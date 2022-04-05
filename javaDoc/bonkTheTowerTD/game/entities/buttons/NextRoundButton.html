@@ -195,6 +195,9 @@ loadScripts(document, 'script');</script>
 <h3>NextRoundButton</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">NextRoundButton</span><wbr><span class="parameters">(com.github.hanyaeger.api.Coordinate2D&nbsp;initialLocation,
  <a href="../../scenes/GameScreen.html" title="class in game.scenes">GameScreen</a>&nbsp;gameScreen)</span></div>
+<dl class="notes">
+ <dd>This is a text button to start the next round of the game.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -210,6 +213,7 @@ loadScripts(document, 'script');</script>
 <h3>onButtonClick</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onButtonClick</span>()</div>
 <dl class="notes">
+ <dd>This method gets called when the player clicks on the button. In the method, if all enemies are gone, the currentRound will go to the next ID. If it was the last round, then the method gameOver() will be called.</dd>
 <dt>Specified by:</dt>
 <dd><code><a href="TextButton.html#onButtonClick()">onButtonClick</a></code>&nbsp;in class&nbsp;<code><a href="TextButton.html" title="class in game.entities.buttons">TextButton</a></code></dd>
 </dl>
