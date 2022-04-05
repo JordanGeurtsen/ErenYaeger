@@ -223,6 +223,32 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
 
     }
 
+    public void addNewTower(String towerSelectedName){
+        if (towerSelectedName == "Archer") {
+            Archer newTower = new Archer("sprites/towers/archer_tower.png", newTowerCoordinates, this);
+            towers.add(newTower);
+        } else if (towerSelectedName == "Hitman") {
+            Hitman newTower = new Hitman("sprites/towers/hitman_tower.png", newTowerCoordinates, this);
+            towers.add(newTower);
+        } else if (towerSelectedName == "Freezer") {
+            Freezer newTower = new Freezer("sprites/towers/freezer_tower.png", newTowerCoordinates, this);
+            towers.add(newTower);
+        } else {
+            System.out.println("ERROR: towerSelectedName is wrong");
+            towerPrice = 0;
+        }
+    }
+
+    public void resetVariablesPlacingTower(int blockNrWidth, int blockNrHeight){
+        levelTileMap.changeTile(blockNrWidth, blockNrHeight , 3);
+        levelTileMap.changeTileMap(4, 1);
+        initTileMaps();
+
+        BuyButton.currentTowerSelected = "";
+        BuyButton.isTowerSelected = false;
+        BuyButton.tileMapChanged = true;
+    }
+
     public void placeTower(Coordinate2D mouseCoordinates) {
         if (BuyButton.isTowerSelected) {
             if (mouseCoordinates.getX() < gameFieldSize) {
@@ -236,19 +262,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
                 if (levelTileMap.freeSpace(blockNrWidth, blockNrHeight)) {
                     if (enoughMoney(towerSelectedName)) {
                         setBackgroundColor(Color.PAPAYAWHIP);
-                        if (towerSelectedName == "Archer") {
-                            Archer newTower = new Archer("sprites/towers/archer_tower.png", newTowerCoordinates, this);
-                            towers.add(newTower);
-                        } else if (towerSelectedName == "Hitman") {
-                            Hitman newTower = new Hitman("sprites/towers/hitman_tower.png", newTowerCoordinates, this);
-                            towers.add(newTower);
-                        } else if (towerSelectedName == "Freezer") {
-                            Freezer newTower = new Freezer("sprites/towers/freezer_tower.png", newTowerCoordinates, this);
-                            towers.add(newTower);
-                        } else {
-                            System.out.println("ERROR: towerSelectedName is wrong");
-                            towerPrice = 0;
-                        }
+                        addNewTower(towerSelectedName);
 
                         coins -= towerPrice;
                         coinCounter.setCounterText("Coins: ", coins);
@@ -256,13 +270,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
                         setupEntities();
                         setupEntitySpawners();
 
-                        levelTileMap.changeTile(blockNrWidth, blockNrHeight , 3);
-                        levelTileMap.changeTileMap(4, 1);
-                        initTileMaps();
-
-                        BuyButton.currentTowerSelected = "";
-                        BuyButton.isTowerSelected = false;
-                        BuyButton.tileMapChanged = true;
+                        resetVariablesPlacingTower(blockNrWidth, blockNrHeight);
                     } else {
                         setBackgroundColor(Color.DARKRED);
                     }

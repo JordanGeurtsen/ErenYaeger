@@ -210,6 +210,9 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="levelMap">
 <h3>levelMap</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int[][]</span>&nbsp;<span class="element-name">levelMap</span></div>
+<dt class="notes">
+ <dd>This is an 2-dimensional Array with the tileMap voor the GameScreen. It excludes the shop.</dd>
+</dt>
 </section>
 </li>
 </ul>
@@ -224,6 +227,9 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;()">
 <h3>LevelTileMap</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">LevelTileMap</span>()</div>
+<dt class="notes">
+ <dd>This is the tile map used for the game field on the GameScreen.</dd>
+</dt>
 </section>
 </li>
 </ul>
@@ -239,6 +245,7 @@ loadScripts(document, 'script');</script>
 <h3>setupEntities</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setupEntities</span>()</div>
 <dl class="notes">
+ <dd>This method sets up all the entities in the tile map.</dd>
 <dt>Specified by:</dt>
 <dd><code>setupEntities</code>&nbsp;in class&nbsp;<code>com.github.hanyaeger.api.scenes.TileMap</code></dd>
 </dl>
@@ -249,8 +256,11 @@ loadScripts(document, 'script');</script>
 <h3>defineMap</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int[][]</span>&nbsp;<span class="element-name">defineMap</span>()</div>
 <dl class="notes">
+ <dd>This method returns the tile map.</dd>
 <dt>Specified by:</dt>
 <dd><code>defineMap</code>&nbsp;in class&nbsp;<code>com.github.hanyaeger.api.scenes.TileMap</code></dd>
+ <dt>Returns:</dt>
+ <dd>this.levelMap: the tile map.</dd>
 </dl>
 </section>
 </li>
@@ -260,6 +270,13 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">changeTile</span><wbr><span class="parameters">(int&nbsp;blockNrHeight,
  int&nbsp;blockNrWidth,
  int&nbsp;entityIdentifier)</span></div>
+<dl class="notes">
+ <dd>This method changes a tile in the tile map.</dd>
+ <dt>Parameters:</dt>
+ <dd>int blockNrWidth: the block number in width.</dd>
+ <dd>int blockNrHeight: the block number in height.</dd>
+<dd>int entityIdentifier: the identifier of the entity that the tile changes to.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -267,6 +284,14 @@ loadScripts(document, 'script');</script>
 <h3>freeSpace</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">freeSpace</span><wbr><span class="parameters">(int&nbsp;blockNrWidth,
  int&nbsp;blockNrHeight)</span></div>
+<dl class="notes">
+ <dd>This method checks if a given tile is available to place a tower on.</dd>
+ <dt>Parameters:</dt>
+ <dd>int blockNrWidth: the block number in width.</dd>
+ <dd>int blockNrHeight: the block number in height.</dd>
+ <dt>Returns:</dt>
+ <dd>boolean: true if the space is available</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -274,6 +299,12 @@ loadScripts(document, 'script');</script>
 <h3>changeTileMap</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">changeTileMap</span><wbr><span class="parameters">(int&nbsp;oldIdentifier,
  int&nbsp;newIdentifier)</span></div>
+<dl class="notes">
+ <dd>This method changes the tile map from the first identifier to the second one.</dd>
+ <dt>Parameters:</dt>
+ <dd>int oldIdentifier: the identifier that needs to be replaced.</dd>
+ <dd>int newIdentifier: the identifier that replaces the oldIdentifier.</dd>
+</dl>
 </section>
 </li>
 </ul>

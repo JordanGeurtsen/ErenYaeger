@@ -31,7 +31,6 @@ public class LevelTileMap extends TileMap {
         addEntity(2, Water.class, "sprites/water.jpg");
         addEntity(3, TowerGround.class, "sprites/grass.jpg");
         addEntity(4, SelectGround.class, "sprites/grass_select.png");
-//        addEntity(5, TowerGround.class, "sprites/pause_button.png");
     }
 
     @Override
@@ -61,33 +60,3 @@ public class LevelTileMap extends TileMap {
         }
     }
 }
-
-//    public void setupSelectTileMap() {
-//        for (int i = 0; i < levelMap.length; i++) {
-//            for (int j = 0; j < levelMap[0].length; j++) {
-//                if (levelMap[i][j] == 1) {
-//                    changeTile(i, j, 4);                }
-//            }
-//        }
-//    }
-//
-//    public void setupNormalTileMap(){
-//        for (int i = 0; i < levelMap.length; i++) {
-//            for (int j = 0; j < levelMap[0].length; j++) {
-//                if (levelMap[i][j] == 4) {
-//                   changeTile(i, j, 1);
-//                }
-//            }
-//        }
-//    }
-
-//    public void resetLevelMap(){
-//        for(int i = 0; i < levelMap.length; i++){
-//            for(int j = 0; j < levelMap[0].length; j++){
-//                if(levelMap[i][j] == 3 || levelMap[i][j] == 4) {
-//                    changeTile(i, j, 1);
-//                }
-//            }
-//        }
-//    }
-//}

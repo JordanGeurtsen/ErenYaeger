@@ -569,7 +569,9 @@ implements com.github.hanyaeger.api.scenes.TileMapContainer, com.github.hanyaege
 <h3>placeTower</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">placeTower</span><wbr><span class="parameters">(com.github.hanyaeger.api.Coordinate2D&nbsp;mouseCoordinates)</span></div>
 <dl class="notes">
- <dd>This method handles the entire action of placing a tower. It gets the coordinates </dd>
+ <dd>This method handles the entire action of placing a tower. It chooses which block the tower is going to be placed on. It calles the method enoughMoney() and freeSpace() to see if the tower can be placed. It then adds the tower to the ArrayList towers and add the entity. After that the variables get reset and te tile map is changed back.</dd>
+<dt>Parameters:</dt>
+ <dd>Coordinate2D mouseCoordinates: the coordinates of the mouse click are given to find the place where the tower is supposed to be placed.</dd>
 </dl>
 </section>
 </li>
