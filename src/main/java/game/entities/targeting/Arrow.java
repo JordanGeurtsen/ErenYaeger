@@ -9,12 +9,11 @@ import game.entities.towers.Tower;
 import game.scenes.gamescreen.GameScreen;
 
 public class Arrow extends Projectile implements Collided, SceneBorderCrossingWatcher {
-    private int movementSpeed = 25;
-
     public Arrow(Coordinate2D initialLocation, double shootAngle, GameScreen gameScreen, Tower shootingTower) {
         super("sprites/arrow.png", initialLocation, gameScreen, shootingTower, new Size(60));
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
         setRotate(shootAngle - 90);
+        int movementSpeed = 25;
         setMotion(movementSpeed, shootAngle);
     }
 }
