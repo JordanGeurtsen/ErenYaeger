@@ -216,6 +216,14 @@ implements com.github.hanyaeger.api.entities.Collided, com.github.hanyaeger.api.
  <a href="../../scenes/GameScreen.html" title="class in game.scenes">GameScreen</a>&nbsp;gameScreen,
  <a href="../towers/Tower.html" title="class in game.entities.towers">Tower</a>&nbsp;shootingTower,
  com.github.hanyaeger.api.Size&nbsp;size)</span></div>
+<dl class="notes">
+ <dd>This makes a projectile.</dd>
+ <dt>Parameters:</dt>
+ <dd>String resource: this is the sprite of the projectile.</dd>
+ <dd>Coordinate2D initialLocation: this is the coordinates of where the projectile spawns.</dd>
+ <dd>Tower shootingTower: this is the tower entity from where the projectile shoots.</dd>
+ <dd>Size size: this is the size of the projectile.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -231,6 +239,7 @@ implements com.github.hanyaeger.api.entities.Collided, com.github.hanyaeger.api.
 <h3>notifyBoundaryCrossing</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">notifyBoundaryCrossing</span><wbr><span class="parameters">(com.github.hanyaeger.api.scenes.SceneBorder&nbsp;border)</span></div>
 <dl class="notes">
+ <dd>This method removes the projectile when it crosses the border of the screen.</dd>
 <dt>Specified by:</dt>
 <dd><code>notifyBoundaryCrossing</code>&nbsp;in interface&nbsp;<code>com.github.hanyaeger.api.entities.SceneBorderCrossingWatcher</code></dd>
 </dl>
@@ -241,6 +250,7 @@ implements com.github.hanyaeger.api.entities.Collided, com.github.hanyaeger.api.
 <h3>onCollision</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onCollision</span><wbr><span class="parameters">(com.github.hanyaeger.api.entities.Collider&nbsp;collidingObject)</span></div>
 <dl class="notes">
+ <dd>This method will be called when a projectile collides with something. If it collides with an Enemy and the shootingTower is an Archer or Hitman, the enemy will lose health based on the damage of the shootingTower. If the enemy's health becomes lower than 0, the enemy is removed. The points and coins are also updated. If the colldingsobject is an Enemy, the projectile will be removed at the end of the method.</dd>
 <dt>Specified by:</dt>
 <dd><code>onCollision</code>&nbsp;in interface&nbsp;<code>com.github.hanyaeger.api.entities.Collided</code></dd>
 </dl>
