@@ -7,13 +7,12 @@ import game.entities.targeting.ProjectileSpawner;
 import game.scenes.GameScreen;
 
 public class Archer extends Tower {
-    private static int price = 200;
-    private static double rangeRadius = 225;
-    private static double damage = 5;
-    private GameScreen gameScreen;
-    private Coordinate2D initialLocation;
-    private ArrowSpawner spawner;
-    private Enemy target;
+    private static final int price = 200;
+    private static final double rangeRadius = 225;
+    private static final double damage = 5;
+    private final GameScreen gameScreen;
+    private final Coordinate2D initialLocation;
+    private final ArrowSpawner spawner;
 
     public Archer(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
         super(resource, initialLocation, gameScreen);
@@ -42,7 +41,7 @@ public class Archer extends Tower {
             for (Tower t : gameScreen.towers) {
                 for (Enemy e: gameScreen.spawnedEnemyList) {
                     if (isInRange(getTowerRange(), e)) {
-                        target = t.getTarget(gameScreen.spawnedEnemyList);
+                        Enemy target = t.getTarget(gameScreen.spawnedEnemyList);
                         if (target != null) {
                             spawner.shoot(getShootAngle());
                         } else {

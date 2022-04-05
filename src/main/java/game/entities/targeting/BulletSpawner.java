@@ -6,14 +6,14 @@ import game.entities.towers.Tower;
 import game.scenes.GameScreen;
 
 public class BulletSpawner extends ProjectileSpawner{
-    private GameScreen gameScreen;
-    private Coordinate2D coordinate2D;
+    private final GameScreen gameScreen;
+    private final Coordinate2D coordinate2D;
     private double shootAngle;
     private boolean needToShoot;
-    private Tower shootingTower;
+    private final Tower shootingTower;
 
     public BulletSpawner (long intervalInMs, Coordinate2D coordinate2D, Tower shootingTower, GameScreen gameScreen){
-        super(intervalInMs, coordinate2D, gameScreen);
+        super(intervalInMs);
         this.coordinate2D = coordinate2D;
         this.gameScreen = gameScreen;
         this.shootingTower = shootingTower;

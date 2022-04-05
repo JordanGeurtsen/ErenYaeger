@@ -44,11 +44,7 @@ public class LevelTileMap extends TileMap {
     }
 
     public boolean freeSpace(int blockNrWidth, int blockNrHeight) {
-        if (this.levelMap[blockNrHeight][blockNrWidth] == 4) {
-            return true;
-        } else {
-            return false;
-        }
+        return this.levelMap[blockNrHeight][blockNrWidth] == 4;
     }
 
     public void changeTileMap(int oldIdentifier, int newIdentifier) {

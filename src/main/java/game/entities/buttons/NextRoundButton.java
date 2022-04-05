@@ -6,8 +6,8 @@ import game.scenes.GameScreen;
 import javafx.scene.paint.Color;
 
 public class NextRoundButton extends TextButton {
-    private Round newRound;
-    private GameScreen gameScreen;
+    private final Round newRound;
+    private final GameScreen gameScreen;
 
     public NextRoundButton(Coordinate2D initialLocation, GameScreen gameScreen) {
             super(initialLocation, "Next round");
@@ -22,9 +22,9 @@ public class NextRoundButton extends TextButton {
                 setFill(Color.GREEN);
                 if (newRound.getId() < 4) {
                     newRound.setNextID();
-                    gameScreen.currentRound = newRound.values()[newRound.getId()];
+                    gameScreen.currentRound = Round.values()[newRound.getId()];
                     gameScreen.nextRound = true;
-                    gameScreen.points += 100;
+                    GameScreen.points += 100;
                 } else {
                     gameScreen.gameOver();
                 }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class EnemySpawner extends EntitySpawner {
     private Enemy enemyToSpawn;
-    private ArrayList<Enemy> newEnemies;
+    private final ArrayList<Enemy> newEnemies;
 
     public EnemySpawner(long intervalInMs, ArrayList<Enemy> newEnemies) {
         super(intervalInMs);

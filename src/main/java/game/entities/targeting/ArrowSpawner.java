@@ -6,14 +6,14 @@ import game.entities.towers.Tower;
 import game.scenes.GameScreen;
 
 public class ArrowSpawner extends ProjectileSpawner {
-    private GameScreen gameScreen;
-    private Coordinate2D coordinate2D;
+    private final GameScreen gameScreen;
+    private final Coordinate2D coordinate2D;
     private double shootAngle;
     private boolean needToShoot;
-    private Tower shootingTower;
+    private final Tower shootingTower;
 
     public ArrowSpawner(long intervalInMs, Coordinate2D coordinate2D, Tower shootingTower, GameScreen gameScreen) {
-        super(intervalInMs, coordinate2D, gameScreen);
+        super(intervalInMs);
         this.gameScreen = gameScreen;
         this.shootingTower = shootingTower;
         this.coordinate2D = coordinate2D;

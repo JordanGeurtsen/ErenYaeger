@@ -10,11 +10,10 @@ import game.entities.buttons.SceneSwitchButton;
 import game.entities.counter.Counter;
 import game.entities.titles.Title;
 import javafx.scene.paint.Color;
-
 import static game.scenes.GameScreen.points;
 
 public class FinalScreen extends DynamicScene{
-    private BonkTheTowerTD bonkTheTowerTD;
+    private final BonkTheTowerTD bonkTheTowerTD;
     private static String finalMessage;
 
     public FinalScreen(BonkTheTowerTD bonkTheTowerTD) {

@@ -5,7 +5,7 @@ public enum Screenum {
     GAME (2),
     FINAL (3);
 
-    private int id;
+    private final int id;
 
     Screenum(int id) {this.id = id;}
 

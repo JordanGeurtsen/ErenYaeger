@@ -3,12 +3,10 @@ package game.scenes;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.EntitySpawnerContainer;
 import com.github.hanyaeger.api.UpdateExposer;
-import com.github.hanyaeger.api.entities.Direction;
 import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
 import com.github.hanyaeger.api.userinput.MouseButtonReleasedListener;
 import game.BonkTheTowerTD;
-import game.PathStep;
 import game.Screenum;
 import game.*;
 import game.entities.buttons.NextRoundButton;
@@ -23,15 +21,15 @@ import game.entities.towers.Tower;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 
-import java.nio.channels.FileChannel;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static game.scenes.FinalScreen.setFinalMessage;
 
 public class GameScreen extends DynamicScene implements TileMapContainer, EntitySpawnerContainer, UpdateExposer, MouseButtonReleasedListener {
-    private BonkTheTowerTD bonkTheTowerTD;
-    public LevelTileMap levelTileMap = new LevelTileMap();
-    private RoundExecutor roundExecutor = new RoundExecutor(this);
+    private final BonkTheTowerTD bonkTheTowerTD;
+    private final LevelTileMap levelTileMap = new LevelTileMap();
+    private final RoundExecutor roundExecutor = new RoundExecutor(this);
     public ArrayList<Enemy> enemyList = new ArrayList<>();
     public ArrayList<Enemy> spawnedEnemyList = new ArrayList<>();
     public ArrayList<Tower> towers = new ArrayList<>();
@@ -40,24 +38,15 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     public Counter pointCounter;
     public Counter liveCounter;
     public Counter roundCounter;
-    private BuyButton archerBuy;
-    private BuyButton hitmanBuy;
-    private BuyButton freezerBuy;
     private NextRoundButton nextRoundButton;
-    public static int coins;
+    public int coins;
     public static int points;
-    public static int lives;
-    private final int blockSize = 75;
-    private final int gameFieldSize = 1050;
-    private int blockNrWidth;
-    private int blockNrHeight;
-    private double xCoordinateTower;
-    private double yCoordinateTower;
+    public int lives;
+    public final int blockSize = 75;
     private int towerPrice;
     private Coordinate2D newTowerCoordinates;
     private int enemyListNr = 8;
     private int enemySpawnTimer = 40;
-    private int enemySpawnInterval = 100;
     public boolean nextRound = false;
 
     public GameScreen(BonkTheTowerTD bonkTheTowerTD) {
@@ -73,7 +62,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
 
     @Override
     public void setupEntities() {
-        if(BuyButton.currentTowerSelected == "") {
+        if(Objects.equals(BuyButton.currentTowerSelected, "")) {
             resetStartingVariables();
 
             roundCounter = new Counter(new Coordinate2D(1055, 5),  currentRound.getId() , "Round: ");
@@ -88,16 +77,16 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
             liveCounter = new Counter(new Coordinate2D(1055, 95), lives, "Lives: ");
             addEntity(liveCounter);
 
-            archerBuy = new BuyButton(new Coordinate2D(1050, 175), "sprites/towers/archer_logo.png",
-                    "Archer", 200, 5, 225, this);
+            BuyButton archerBuy = new BuyButton(new Coordinate2D(1050, 175), "sprites/towers/archer_logo.png",
+                    "Archer", 200, 5, 225);
             addEntity(archerBuy);
 
-            hitmanBuy = new BuyButton(new Coordinate2D(1050, 300), "sprites/towers/hitman_logo.png",
-                    "Hitman", 500, 40, 1250, this);
+            BuyButton hitmanBuy = new BuyButton(new Coordinate2D(1050, 300), "sprites/towers/hitman_logo.png",
+                    "Hitman", 500, 40, 1250);
             addEntity(hitmanBuy);
 
-            freezerBuy = new BuyButton(new Coordinate2D(1050, 425), "sprites/towers/freezer_logo.png",
-                    "Freezer", 300, 0, 118, this);
+            BuyButton freezerBuy = new BuyButton(new Coordinate2D(1050, 425), "sprites/towers/freezer_logo.png",
+                    "Freezer", 300, 0, 118);
             addEntity(freezerBuy);
 
             roundExecutor.setEnemies(currentRound);
@@ -113,7 +102,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     public void setupEntitySpawners() {
         for (Enemy e: enemyList) {
             if (e instanceof MamaCoot) {
-                addEntitySpawner( e.getBabyCootSpawner());
+                addEntitySpawner(((MamaCoot) e).getBabyCootSpawner());
             }
         }
         for (Tower t : towers) {
@@ -126,21 +115,14 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     @Override
     public void setupTileMaps() {addTileMap(levelTileMap);}
 
-    public void enemyPastBorder(Enemy e, int damage) {
-        enemyList.remove(e);
-        spawnedEnemyList.remove(e);
-        e.remove();
-        liveCounter.updateCounter("Lives: ", -damage);
-    }
-
     @Override
     public void explicitUpdate(long l) {
-        changingTileMap();
-        enemiesPath();
+        changeTileMap();
         spawnEnemy();
 
     if (spawnedEnemyList.size() > 0) {
         for (Enemy e: spawnedEnemyList){
+            e.enemyPath();
             e.updateWalkedDistance(e.getMovementSpeed());
         }
     }
@@ -152,6 +134,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     }
 
         if(nextRound) {
+            roundCounter.updateCounter("Round: ", currentRound.getId() - 1);
             roundExecutor.setEnemies(currentRound);
             enemyListNr = enemyList.size() - 1;
             nextRound = false;
@@ -160,13 +143,13 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         if(currentRound == Round.FIVE && enemyList.size() - 1 == 0){
             gameOver();
         }
-
         if (lives <= 0){
             gameOver();
         }
     }
 
     public void spawnEnemy(){
+        int enemySpawnInterval = 100;
         if(enemySpawnTimer > enemySpawnInterval) {
             enemySpawnTimer = 0;
             if (enemyListNr > 0) {
@@ -179,17 +162,18 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         }
         for (Enemy e: enemyList) {
             if (e instanceof MamaCoot) {
-                e.getBabyCootSpawner().setNeedToSpawn(false);
+                ((MamaCoot) e).getBabyCootSpawner().setNeedToSpawn(false);
             }
         }
         for (Enemy e: spawnedEnemyList) {
             if (e instanceof MamaCoot) {
-                e.getBabyCootSpawner().setNeedToSpawn(true);
+                ((MamaCoot) e).getBabyCootSpawner().setNeedToSpawn(true);
+                setupEntitySpawners();
             }
         }
     }
 
-    public void changingTileMap(){
+    public void changeTileMap(){
         if (!BuyButton.tileMapChanged) {
             if (BuyButton.isTowerSelected) {
                 levelTileMap.changeTileMap(1, 4);
@@ -201,7 +185,6 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
             initTileMaps();
             BuyButton.tileMapChanged = true;
         }
-        enemiesPath();
     }
 
     public void resetStartingVariables(){
@@ -222,31 +205,24 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
     }
 
     public boolean enoughMoney(String towerName) {
-        if (towerName == "Archer") {
+        if (Objects.equals(towerName, "Archer")) {
             towerPrice = Archer.getTowerPrice();
-        } else if (towerName == "Hitman") {
+        } else if (Objects.equals(towerName, "Hitman")) {
             towerPrice = Hitman.getTowerPrice();
         } else {
             towerPrice = Freezer.getTowerPrice();
         }
-        if(coins >= towerPrice ) {
-            System.out.println(towerPrice);
-            System.out.println(coins);
-            return true;
-        } else {
-            return false;
-        }
-
+        return coins >= towerPrice;
     }
 
     public void addNewTower(String towerSelectedName){
-        if (towerSelectedName == "Archer") {
+        if (Objects.equals(towerSelectedName, "Archer")) {
             Archer newTower = new Archer("sprites/towers/archer_tower.png", newTowerCoordinates, this);
             towers.add(newTower);
-        } else if (towerSelectedName == "Hitman") {
+        } else if (Objects.equals(towerSelectedName, "Hitman")) {
             Hitman newTower = new Hitman("sprites/towers/hitman_tower.png", newTowerCoordinates, this);
             towers.add(newTower);
-        } else if (towerSelectedName == "Freezer") {
+        } else if (Objects.equals(towerSelectedName, "Freezer")) {
             Freezer newTower = new Freezer("sprites/towers/freezer_tower.png", newTowerCoordinates, this);
             towers.add(newTower);
         } else {
@@ -267,11 +243,12 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
 
     public void placeTower(Coordinate2D mouseCoordinates) {
         if (BuyButton.isTowerSelected) {
+            int gameFieldSize = 1050;
             if (mouseCoordinates.getX() < gameFieldSize) {
-                blockNrWidth = (int) Math.floor(mouseCoordinates.getX() / blockSize);
-                xCoordinateTower = blockNrWidth * blockSize + (blockSize / 2);
-                blockNrHeight = (int)Math.floor(mouseCoordinates.getY() / blockSize);
-                yCoordinateTower = blockNrHeight * blockSize + (blockSize / 2);
+                int blockNrWidth = (int) Math.floor(mouseCoordinates.getX() / blockSize);
+                double xCoordinateTower = blockNrWidth * blockSize + (blockSize / 2.0);
+                int blockNrHeight = (int) Math.floor(mouseCoordinates.getY() / blockSize);
+                double yCoordinateTower = blockNrHeight * blockSize + (blockSize / 2.0);
                 newTowerCoordinates = new Coordinate2D(xCoordinateTower, yCoordinateTower);
                 String towerSelectedName = BuyButton.currentTowerSelected;
 
@@ -279,7 +256,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
                     if (enoughMoney(towerSelectedName)) {
                         setBackgroundColor(Color.PAPAYAWHIP);
                         addNewTower(towerSelectedName);
-
+                        coins -= towerPrice;
                         coinCounter.updateCounter("Coins: ", -towerPrice);
 
                         setupEntities();
@@ -299,99 +276,4 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         placeTower(coordinate2D);
     }
 
-    public double pathLimit(int tile){
-        return  (tile - 1) * blockSize + (blockSize / 2);
-    }
-
-    public void enemiesPath() {
-        for (Enemy e : spawnedEnemyList) {
-            Coordinate2D coordinates =  e.getAnchorLocation();
-            PathStep pathStep = e.getPathStep();
-
-            switch(pathStep) {
-                case ZERO:
-                    e.setDirection(Direction.DOWN);
-                    if (coordinates.getY() > pathLimit(2)) {
-                        e.setPathStep(PathStep.ONE);
-                    }
-                    break;
-                case ONE:
-                    e.setDirection(Direction.RIGHT);
-                    if(coordinates.getX() > pathLimit(11)) {
-                        e.setPathStep(PathStep.TWO);
-                    }
-                    break;
-                case TWO:
-                    e.setDirection(Direction.DOWN);
-                    if(coordinates.getY() > pathLimit(5)) {
-                        e.setPathStep(PathStep.THREE);
-                    }
-                    break;
-                case THREE:
-                    e.setDirection(Direction.LEFT);
-                    if(coordinates.getX() < pathLimit(7)) {
-                        e.setPathStep(PathStep.FOUR);
-                    }
-                    break;
-                case FOUR:
-                    e.setDirection(Direction.UP);
-                    if(coordinates.getY() < pathLimit(4)) {
-                        e.setPathStep(PathStep.FIVE);
-                    }
-                    break;
-                case FIVE:
-                    e.setDirection(Direction.LEFT);
-                    if(coordinates.getX() < pathLimit(4)) {
-                        e.setPathStep(PathStep.SIX);
-                    }
-                    break;
-                case SIX:
-                    e.setDirection(Direction.DOWN);
-                    if(coordinates.getY() > pathLimit(5)) {
-                        e.setPathStep(PathStep.SEVEN);
-                    }
-                    break;
-                case SEVEN:
-                    e.setDirection(Direction.LEFT);
-                    if(coordinates.getX() < pathLimit(2)) {
-                        e.setPathStep(PathStep.EIGHT);
-                    }
-                    break;
-                case EIGHT:
-                    e.setDirection(Direction.DOWN);
-                    if(coordinates.getY() > pathLimit(8)) {
-                        e.setPathStep(PathStep.NINE);
-                    }
-                    break;
-                case NINE:
-                    e.setDirection(Direction.RIGHT);
-                    if(coordinates.getX() > pathLimit(6)) {
-
-                        e.setPathStep(PathStep.TEN);
-                    }
-                    break;
-                case TEN:
-                    e.setDirection(Direction.UP);
-                    if(coordinates.getY() < pathLimit(7)) {
-                        e.setPathStep(PathStep.ELEVEN);
-                    }
-                    break;
-                case ELEVEN:
-                    e.setDirection(Direction.RIGHT);
-                    if(coordinates.getX() > pathLimit(13)) {
-                        e.setDirection(Direction.DOWN);
-                    }
-                    break;
-                case TWELVE:
-                    if (coordinates.getY() > pathLimit(0)) {
-                        e.setPathStep(PathStep.ZERO);
-                    }
-                    break;
-                default:
-                    e.setPathStep(PathStep.ZERO);
-                    System.out.println("ERROR: pathStep is wrong");
-                    break;
-            }
-        }
-    }
 }

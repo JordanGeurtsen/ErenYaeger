@@ -7,19 +7,18 @@ import game.entities.targeting.ProjectileSpawner;
 import game.scenes.GameScreen;
 
 public class Hitman extends Tower {
-    private static int price = 500;
-    private static double rangeRadius = 1250;
-    private static double damage = 40;
-    private int intervalInMS = 2500;
-    private GameScreen gameScreen;
-    private Coordinate2D initialLocation;
-    private BulletSpawner spawner;
-    private Enemy target;
+    private static final int price = 500;
+    private static final double rangeRadius = 1250;
+    private static final double damage = 40;
+    private final GameScreen gameScreen;
+    private final Coordinate2D initialLocation;
+    private final BulletSpawner spawner;
 
     public Hitman(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
         super(resource, initialLocation, gameScreen);
         this.initialLocation = initialLocation;
         this.gameScreen = gameScreen;
+        int intervalInMS = 2500;
         this.spawner = new BulletSpawner(intervalInMS, getInitialLocation(), this, gameScreen);
 
     }
@@ -44,7 +43,7 @@ public class Hitman extends Tower {
             for (Tower t : gameScreen.towers) {
                 for (Enemy e : gameScreen.spawnedEnemyList) {
                     if (isInRange(getTowerRange(), e)) {
-                        target = t.getTarget(gameScreen.spawnedEnemyList);
+                        Enemy target = t.getTarget(gameScreen.spawnedEnemyList);
                         if (target != null) {
                             spawner.shoot(getShootAngle());
                         } else {

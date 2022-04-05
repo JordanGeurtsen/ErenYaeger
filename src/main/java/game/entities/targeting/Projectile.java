@@ -9,21 +9,16 @@ import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 import game.entities.enemies.Enemy;
 import game.entities.enemies.MamaCoot;
-import game.entities.enemies.MovementSpeed;
 import game.entities.towers.Archer;
-import game.entities.towers.Freezer;
 import game.entities.towers.Hitman;
 import game.entities.towers.Tower;
 import game.scenes.GameScreen;
 
-import static game.scenes.GameScreen.coins;
 import static game.scenes.GameScreen.points;
 
 public class Projectile extends DynamicSpriteEntity implements Collided, SceneBorderCrossingWatcher {
-    private GameScreen gameScreen;
-    private Tower shootingTower;
-    private int coinReward = 20;
-    private int pointReward = 25;
+    private final GameScreen gameScreen;
+    private final Tower shootingTower;
 
     public Projectile(String resource, Coordinate2D initialLocation, GameScreen gameScreen, Tower shootingTower, Size size) {
         super(resource, initialLocation, size);
@@ -47,11 +42,15 @@ public class Projectile extends DynamicSpriteEntity implements Collided, SceneBo
 
                 if (((Enemy) collidingObject).getHealth() <= 0) {
                     if (collidingObject instanceof MamaCoot){
-                        ((Enemy)collidingObject).getBabyCootSpawner().remove();
+                        ((MamaCoot) collidingObject).getBabyCootSpawner().remove();
                     }
                     gameScreen.spawnedEnemyList.remove((Enemy) collidingObject);
                     gameScreen.enemyList.remove((Enemy) collidingObject);
+                    int coinReward = 20;
+                    gameScreen.coins += coinReward;
                     gameScreen.coinCounter.updateCounter("Coins: ", coinReward);
+                    int pointReward = 25;
+                    points += pointReward;
                     gameScreen.pointCounter.updateCounter("Points: ", pointReward);
                     ((Enemy) collidingObject).remove();
                 }

@@ -6,7 +6,7 @@ public enum TileIdentifier {
     TOWERGROUND (3),
     SELECTGROUND (4);
 
-    private int id;
+    private final int id;
 
     TileIdentifier(int id) {
         this.id = id;

@@ -1,16 +1,13 @@
 package game.entities.enemies;
 
 import com.github.hanyaeger.api.Coordinate2D;
-import com.github.hanyaeger.api.entities.Direction;
 import com.github.hanyaeger.api.entities.EntitySpawner;
-import game.PathStep;
 import game.scenes.GameScreen;
-import javafx.animation.ParallelTransition;
 
 public class BabyCootSpawner extends EntitySpawner {
     private Coordinate2D initialLocation;
-    private GameScreen gameScreen;
-    private Enemy mamaCoot;
+    private final GameScreen gameScreen;
+    private final Enemy mamaCoot;
     private boolean needToSpawn = false;
 
     protected BabyCootSpawner(long intervalInMs, Coordinate2D initialLocation, GameScreen gameScreen, Enemy mamaCoot) {

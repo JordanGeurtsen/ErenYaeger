@@ -6,14 +6,12 @@ import game.BonkTheTowerTD;
 import game.Screenum;
 
 public class SceneSwitchButton extends TextButton {
-    private BonkTheTowerTD bonkTheTowerTD;
-    private Screenum newScene;
-    private int goToScene;
+    private final BonkTheTowerTD bonkTheTowerTD;
+    private final int goToScene;
 
     public SceneSwitchButton(Coordinate2D initialLocation, BonkTheTowerTD bonkTheTowerTD, Screenum newScene, String buttonText) {
         super(initialLocation, buttonText);
         this.bonkTheTowerTD = bonkTheTowerTD;
-        this.newScene = newScene;
         goToScene = newScene.getId();
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
     }

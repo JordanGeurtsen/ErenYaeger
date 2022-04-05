@@ -4,7 +4,7 @@ import com.github.hanyaeger.api.Coordinate2D;
 import game.BonkTheTowerTD;
 
 public class QuitButton extends TextButton {
-    private BonkTheTowerTD bonkTheTowerTD;
+    private final BonkTheTowerTD bonkTheTowerTD;
 
     public QuitButton(Coordinate2D initialLocation, BonkTheTowerTD bonkTheTowerTD) {
         super(initialLocation, "Quit Game");

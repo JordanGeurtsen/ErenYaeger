@@ -6,26 +6,23 @@ import com.github.hanyaeger.api.entities.impl.TextEntity;
 import game.entities.buttons.compositebutton.CompositeButton;
 import game.entities.buttons.compositebutton.Hitbox;
 import game.entities.buttons.compositebutton.Sprite;
-import game.scenes.GameScreen;
+
+import java.util.Objects;
 
 public class BuyButton extends CompositeButton {
-    private String resource;
-    private String towerName;
-    private String price;
-    private String damage;
-    private String range;
-
-    private GameScreen gameScreen;
+    private final String resource;
+    private final String towerName;
+    private final String price;
+    private final String damage;
+    private final String range;
 
     public static boolean isTowerSelected = false;
     public static boolean tileMapChanged = false;
-
     public static String currentTowerSelected = "";
 
-    public BuyButton(Coordinate2D initialLocation, String resource, String towerName, int price, int damage, int range, GameScreen gameScreen) {
+    public BuyButton(Coordinate2D initialLocation, String resource, String towerName, int price, int damage, int range) {
         super(initialLocation);
         this.resource = resource;
-        this.gameScreen = gameScreen;
         this.towerName = towerName;
         this.price = "Price =          " + price;
         this.damage = "Damage =     " + damage;
@@ -74,13 +71,13 @@ public class BuyButton extends CompositeButton {
 
     @Override
     public void onButtonClick() {
-        if(currentTowerSelected == getBuyButtonTower()){
-            this.isTowerSelected = false;
+        if(Objects.equals(currentTowerSelected, getBuyButtonTower())){
+            isTowerSelected = false;
         } else {
-            this.isTowerSelected = true;
-            this.currentTowerSelected = getBuyButtonTower();
+            isTowerSelected = true;
+            currentTowerSelected = getBuyButtonTower();
         }
-        this.tileMapChanged = false;
+        tileMapChanged = false;
     }
 
     public String getBuyButtonTower(){return towerName;}
