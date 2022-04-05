@@ -4,7 +4,7 @@ import com.github.hanyaeger.api.Coordinate2D;
 import game.entities.enemies.Enemy;
 import game.entities.targeting.ArrowSpawner;
 import game.entities.targeting.ProjectileSpawner;
-import game.scenes.GameScreen;
+import game.scenes.gamescreen.GameScreen;
 
 public class Archer extends Tower {
     private static final int price = 200;

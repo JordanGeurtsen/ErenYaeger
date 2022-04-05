@@ -3,7 +3,7 @@ package game;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.YaegerGame;
 import game.scenes.FinalScreen;
-import game.scenes.GameScreen;
+import game.scenes.gamescreen.GameScreen;
 import game.scenes.TitleScreen;
 
 public class BonkTheTowerTD extends YaegerGame {

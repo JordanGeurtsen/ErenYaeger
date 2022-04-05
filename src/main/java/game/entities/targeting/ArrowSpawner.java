@@ -3,7 +3,7 @@ package game.entities.targeting;
 import com.github.hanyaeger.api.Coordinate2D;
 import game.entities.enemies.Enemy;
 import game.entities.towers.Tower;
-import game.scenes.GameScreen;
+import game.scenes.gamescreen.GameScreen;
 
 public class ArrowSpawner extends ProjectileSpawner {
     private final GameScreen gameScreen;

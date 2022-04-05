@@ -12,9 +12,9 @@ import game.entities.enemies.MamaCoot;
 import game.entities.towers.Archer;
 import game.entities.towers.Hitman;
 import game.entities.towers.Tower;
-import game.scenes.GameScreen;
+import game.scenes.gamescreen.GameScreen;
 
-import static game.scenes.GameScreen.points;
+import static game.scenes.gamescreen.GameScreen.points;
 
 public class Projectile extends DynamicSpriteEntity implements Collided, SceneBorderCrossingWatcher {
     private final GameScreen gameScreen;

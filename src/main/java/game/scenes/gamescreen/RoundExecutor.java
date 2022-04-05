@@ -1,8 +1,8 @@
-package game;
+package game.scenes.gamescreen;
 
 import com.github.hanyaeger.api.Coordinate2D;
+import game.Round;
 import game.entities.enemies.*;
-import game.scenes.GameScreen;
 
 import java.util.ArrayList;
 

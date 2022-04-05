@@ -9,9 +9,9 @@ import com.github.hanyaeger.api.entities.SceneBorderCrossingWatcher;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 import game.PathStep;
-import game.scenes.GameScreen;
+import game.scenes.gamescreen.GameScreen;
 
-import static game.scenes.GameScreen.points;
+import static game.scenes.gamescreen.GameScreen.points;
 
 public abstract class Enemy extends DynamicSpriteEntity implements Collider, SceneBorderCrossingWatcher {
     private final Coordinate2D initialLocation;

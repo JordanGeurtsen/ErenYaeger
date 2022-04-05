@@ -7,7 +7,7 @@ import com.github.hanyaeger.api.UpdateExposer;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import game.entities.enemies.Enemy;
 import game.entities.targeting.ProjectileSpawner;
-import game.scenes.GameScreen;
+import game.scenes.gamescreen.GameScreen;
 
 import java.util.ArrayList;
 import java.util.Objects;

@@ -6,7 +6,7 @@ import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.SceneBorderCrossingWatcher;
 import game.entities.towers.Tower;
-import game.scenes.GameScreen;
+import game.scenes.gamescreen.GameScreen;
 
 public class Bullet extends Projectile implements Collided, SceneBorderCrossingWatcher {
 

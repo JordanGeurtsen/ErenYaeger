@@ -1,7 +1,7 @@
 package game.entities.enemies;
 
 import com.github.hanyaeger.api.Coordinate2D;
-import game.scenes.GameScreen;
+import game.scenes.gamescreen.GameScreen;
 
 public class DerpyCoot extends Enemy{
         private double speed = 1.3;

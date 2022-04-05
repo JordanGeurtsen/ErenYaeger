@@ -2,7 +2,7 @@ package game.entities.buttons;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import game.Round;
-import game.scenes.GameScreen;
+import game.scenes.gamescreen.GameScreen;
 import javafx.scene.paint.Color;
 
 public class NextRoundButton extends TextButton {

@@ -1,4 +1,4 @@
-package game.scenes;
+package game.scenes.gamescreen;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.EntitySpawnerContainer;

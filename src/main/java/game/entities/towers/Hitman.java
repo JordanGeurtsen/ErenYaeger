@@ -4,7 +4,7 @@ import com.github.hanyaeger.api.Coordinate2D;
 import game.entities.enemies.Enemy;
 import game.entities.targeting.BulletSpawner;
 import game.entities.targeting.ProjectileSpawner;
-import game.scenes.GameScreen;
+import game.scenes.gamescreen.GameScreen;
 
 public class Hitman extends Tower {
     private static final int price = 500;

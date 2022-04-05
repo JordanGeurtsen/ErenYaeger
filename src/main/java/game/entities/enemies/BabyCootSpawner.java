@@ -2,7 +2,7 @@ package game.entities.enemies;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.EntitySpawner;
-import game.scenes.GameScreen;
+import game.scenes.gamescreen.GameScreen;
 
 public class BabyCootSpawner extends EntitySpawner {
     private Coordinate2D initialLocation;
