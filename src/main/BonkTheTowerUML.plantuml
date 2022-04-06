@@ -1,4 +1,5 @@
 @startuml BTT_TD_Diagram
+skinparam groupInheritance 2
 class BonkTheTowerTD {
 
 }
@@ -63,12 +64,12 @@ class GameScreen {
 }
 
 GameScreen "1" --> "1" LevelTileMap
-GameScreen "1" --> "0..*" Counter : initialLocation, counterData, text
+GameScreen "1" -right-> "0..*" Counter : initialLocation, counterData, text
 
-EntitySpawnerContainer <|.. GameScreen
-UpdateExposer <|.. GameScreen
-MouseButtonReleasedListener <|.. GameScreen
-TileMapContainer <|.. GameScreen
+EntitySpawnerContainer ..|> GameScreen
+UpdateExposer ..|> GameScreen
+MouseButtonReleasedListener ..|> GameScreen
+TileMapContainer ..|> GameScreen
 
 interface EntitySpawnerContainer #EE66B1 {
 }
@@ -110,8 +111,8 @@ class Title {
 + Title(initialLocation : Coordinate2D, text : String)
 }
 
-Title"1" --> "1"FinalScreen
-Title ..|> TextEntity
+Title"1" -up-> "1"FinalScreen
+Title --|> TextEntity
 
 abstract class DynamicScene #EE66B1 {
 
@@ -146,8 +147,9 @@ FIVE(5)
 + setNextId() : void
 }
 
-GameScreen"1" <-- "0..*"Enemy
-RoundDefiner"1" --> "1"GameScreen
+GameScreen"1" --> "0..*"Enemy
+GameScreen"1" --> "0..*"Tower
+RoundDefiner"1" <-- "1"GameScreen
 
 class LevelTileMap {
 + levelMap : int[][]
@@ -179,11 +181,11 @@ SpriteEntity <|-- SelectGround
 SpriteEntity <|-- Water
 SpriteEntity <|-- Grass
 
-LevelTileMap"1" <-- "0..*"Grass
-LevelTileMap"1" <-- "0..*"Water
-LevelTileMap"1" <-- "0..*"SelectGround
-LevelTileMap"1" <-- "0..*"TowerGround
-LevelTileMap --|> TileMap
+LevelTileMap"1" -up-> "0..*"Grass
+LevelTileMap"1" -up-> "0..*"Water
+LevelTileMap"1" -up-> "0..*"SelectGround
+LevelTileMap"1" -up-> "0..*"TowerGround
+LevelTileMap -right-|> TileMap
 
 enum TileIdentifier {
 ..Constants..
@@ -201,11 +203,11 @@ SELECTGROUND (4)
 interface Button {
 }
 
-Button .|> MouseExitListener
-Button .|> MouseEnterListener
-Button .|> MouseButtonPressedListener
+Button .right.|> MouseExitListener
+Button .up|> MouseEnterListener
+Button .left.|> MouseButtonPressedListener
 
-Button <|.. TextButton
+Button ..|> TextButton
 TextButton <|-- QuitButton
 TextButton <|-- SceneSwitchButton
 TextButton <|-- NextRoundButton
@@ -216,7 +218,7 @@ abstract class TextButton {
 + onButtonClick() : void
 }
 
-TextButton ..|> TextEntity
+TextButton --|> TextEntity
 
 abstract class CompositeButton {
 + CompositeButton(initialLocation Coordinate2D)
@@ -224,8 +226,8 @@ abstract class CompositeButton {
 + {abstract} onButtonClick() : void
 }
 
-CompositeButton ..|> Button
-CompositeButton --|> CompositeEntity
+CompositeButton <|.right. Button
+CompositeButton -|> CompositeEntity
 
 abstract class CompositeEntity #EE66B1 {
 }
@@ -250,8 +252,8 @@ class BuyButton {
 
 GameScreen"1" --> "0..*"Button
 CompositeButton <|-- BuyButton
-BuyButton"1" <-- "0..*"HitBox
-BuyButton"1" <-- "0..*"Sprite
+BuyButton"1" <-- "0..*"HitBox : initialLocation, size
+BuyButton"1" <-- "0..*"Sprite : initialLocation, resource, size
 
 class HitBox {
 + HitBox(initialLocation : Coordinate2D, size : Size)
@@ -266,7 +268,7 @@ class Sprite {
 + Sprite(initialLocation : Coordinate2D, resource : String, size : Size)
 }
 
-SpriteEntity <|-- Sprite
+SpriteEntity <|-up- Sprite
 
 interface MouseButtonPressedListener #EE66B1 {
 
@@ -332,7 +334,7 @@ abstract class Tower {
 + {abstract} getProjectileSpawner() : ProjectileSpawner
 }
 
-Tower ..|> UpdateExposer
+Tower <|.. UpdateExposer
 
 class Archer {
 ..Static..
@@ -379,9 +381,9 @@ Freezer(resource : String, initialLocation : Coordinate2D, gameScreen : GameScre
 + {static} getTowerPrice() : int
 }
 
-Tower <|-- Archer
-Tower <|-- Hitman
-Tower <|-- Freezer
+Tower <|-up- Archer
+Tower <|-up- Hitman
+Tower <|-up- Freezer
 
 Tower --|> DynamicSpriteEntity
 Enemy --|> DynamicSpriteEntity
@@ -429,11 +431,11 @@ class BulletSpawner {
 }
 
 ProjectileSpawner"0..1" --> "1"Tower
-ProjectileSpawner <|-- ArrowSpawner
-ProjectileSpawner <|-- BulletSpawner
+ProjectileSpawner <|-up- ArrowSpawner
+ProjectileSpawner <|-up- BulletSpawner
 
-ArrowSpawner"1" --> "0..*"Projectile
-BulletSpawner"1" --> "0..*"Projectile
+ArrowSpawner"1" -up-> "0..*"Projectile : coordinate2D, shootAngle, gameScreen, shootingTower
+BulletSpawner"1" -up-> "0..*"Projectile : coordinate2D, shootAngle, gameScreen, shootingTower
 
 abstract class Projectile {
 - gameScreen : gameScreen
@@ -449,8 +451,8 @@ interface Collider #EE66B1{
 interface SceneBorderCrossingWatcher #EE66B1 {
 }
 
-Projectile ..|> Collided
-Projectile ..|> SceneBorderCrossingWatcher
+Projectile <|.right. Collided
+Projectile <|.. SceneBorderCrossingWatcher
 
 class Arrow {
 + Arrow(initialLocation : Coordinate2D, shootAngle : double, gameScreen : GameScreen, shootingTower : Tower)
@@ -461,8 +463,8 @@ class Bullet {
 
 }
 
-Projectile <|-- Arrow
-Projectile <|-- Bullet
+Projectile <|-up- Arrow
+Projectile <|-up- Bullet
 
 abstract class Enemy {
 ..Public..
@@ -513,8 +515,8 @@ interface Collided #EE66B1{
 
 }
 
-Enemy ..|> Collider
-Enemy ..|> SceneBorderCrossingWatcher
+Enemy <|.. Collider
+Enemy <|.. SceneBorderCrossingWatcher
 
 class BabyCoot {
 - speed : double
@@ -540,7 +542,7 @@ class MamaCoot {
 + getBabyCootSpawner() : BabyCootSpawner
 }
 
-MamaCoot"1" <-- "1"BabyCootSpawner
+MamaCoot"1" --> "1"BabyCootSpawner : spawnInterval, initialLocation, gameScreen, mamaCoot
 
 class BabyCootSpawner {
 - initialLocation : Coordinate2D
