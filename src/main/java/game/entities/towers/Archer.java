@@ -18,7 +18,8 @@ public class Archer extends Tower {
         super(resource, initialLocation, gameScreen);
         this.initialLocation = initialLocation;
         this.gameScreen = gameScreen;
-        spawner = new ArrowSpawner(850, getInitialLocation(), this, gameScreen);
+        int intervalInMs = 850;
+        spawner = new ArrowSpawner(intervalInMs, getInitialLocation(), this, gameScreen);
     }
 
     public static int getTowerPrice() {return price;}
