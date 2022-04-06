@@ -6,11 +6,12 @@ import game.scenes.gamescreen.GameScreen;
 public class MamaCoot extends Enemy {
     private double speed = 0.9;
     private int health = 80;
+    private final int spawnInterval = 5000;
     private final BabyCootSpawner babyCootSpawner;
 
     public MamaCoot(String resource, Coordinate2D initialLocation, GameScreen gameScreen) {
         super(resource, initialLocation, gameScreen);
-        babyCootSpawner = new BabyCootSpawner(5000, getAnchorLocation(), gameScreen, this);
+        babyCootSpawner = new BabyCootSpawner(spawnInterval, getAnchorLocation(), gameScreen, this);
         setSpeed(getMovementSpeed());
     }
 
