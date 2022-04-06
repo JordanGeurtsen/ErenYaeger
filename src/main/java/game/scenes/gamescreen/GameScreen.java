@@ -142,6 +142,7 @@ public class GameScreen extends DynamicScene implements TileMapContainer, Entity
         }
 
         if(currentRound == Round.FIVE && enemyList.size() - 1 == 0){
+            setFinalMessage("You Won!!");
             gameOver();
         }
         if (lives <= 0){
