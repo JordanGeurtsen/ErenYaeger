@@ -14,6 +14,6 @@ public enum Round {
 
     public int getId() {return this.id;}
 
-    public void setNextID() {this.id += 1;}
+    public void setNextId() {this.id += 1;}
 }
 

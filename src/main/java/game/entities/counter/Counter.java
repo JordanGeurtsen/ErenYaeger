@@ -6,7 +6,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class Counter extends DynamicTextEntity {
-    int counterData;
+    private int counterData;
 
     public Counter(Coordinate2D initialLocation, int counterData, String text) {
         super(initialLocation, text + "" + counterData);

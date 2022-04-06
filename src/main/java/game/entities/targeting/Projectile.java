@@ -16,7 +16,7 @@ import game.scenes.gamescreen.GameScreen;
 
 import static game.scenes.gamescreen.GameScreen.points;
 
-public class Projectile extends DynamicSpriteEntity implements Collided, SceneBorderCrossingWatcher {
+public abstract class Projectile extends DynamicSpriteEntity implements Collided, SceneBorderCrossingWatcher {
     private final GameScreen gameScreen;
     private final Tower shootingTower;
 

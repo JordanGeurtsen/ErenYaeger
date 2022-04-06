@@ -27,7 +27,7 @@ public abstract class Tower extends DynamicSpriteEntity implements UpdateExposer
 
     public abstract double getTowerRange();
 
-    abstract public Coordinate2D getInitialLocation();
+    public abstract Coordinate2D getInitialLocation();
 
     public abstract ProjectileSpawner getProjectileSpawner();
 

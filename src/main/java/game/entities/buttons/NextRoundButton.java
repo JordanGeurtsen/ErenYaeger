@@ -21,7 +21,7 @@ public class NextRoundButton extends TextButton {
             if (gameScreen.enemyList.size() -1 == 0) {
                 setFill(Color.GREEN);
                 if (newRound.getId() < 4) {
-                    newRound.setNextID();
+                    newRound.setNextId();
                     gameScreen.currentRound = Round.values()[newRound.getId()];
                     gameScreen.nextRound = true;
                     GameScreen.points += 100;
