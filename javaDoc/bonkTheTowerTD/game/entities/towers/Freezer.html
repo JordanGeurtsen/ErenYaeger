@@ -224,6 +224,13 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Freezer</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;resource,
  com.github.hanyaeger.api.Coordinate2D&nbsp;initialLocation,
  <a href="../../scenes/GameScreen.html" title="class in game.scenes">GameScreen</a>&nbsp;gameScreen)</span></div>
+ <dl class="notes">
+  <dd>This makes a freezer tower.</dd>
+  <dt>Parameters:</dt>
+  <dd>String resource: this is the resource of the image of the freezer tower.</dd>
+  <dd>Coordinate2D initialLocation: this is the coordinates where the freezer tower will be placed.</dd>
+  <dd>GameScreen gameScreen: this is the scene where the freezer tower is placed.</dd>
+ </dl>
 </section>
 </li>
 </ul>
@@ -238,6 +245,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getTowerPrice()">
 <h3>getTowerPrice</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getTowerPrice</span>()</div>
+ <dl class="notes">
+  <dd>This method returns the price of the freezer tower.</dd>
+  <dt>Returns:</dt>
+  <dd>int price: this is the price of the freezer tower.</dd>
+ </dl>
 </section>
 </li>
 <li>
@@ -245,6 +257,9 @@ loadScripts(document, 'script');</script>
 <h3>getTowerDamage</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getTowerDamage</span>()</div>
 <dl class="notes">
+ <dd>This method returns the damage that the freezer tower does.</dd>
+ <dt>Returns:</dt>
+ <dd>double damage: this is the damage that the freezer tower does.</dd>
 <dt>Specified by:</dt>
 <dd><code><a href="Tower.html#getTowerDamage()">getTowerDamage</a></code>&nbsp;in class&nbsp;<code><a href="Tower.html" title="class in game.entities.towers">Tower</a></code></dd>
 </dl>
@@ -254,7 +269,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getTowerRange()">
 <h3>getTowerRange</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getTowerRange</span>()</div>
-<dl class="notes">
+ <dl class="notes">
+  <dd>This method returns the range of the freezer tower.</dd>
+  <dt>Returns:</dt>
+  <dd>double rangeRadius: this is the range that the freezer tower has.</dd>
 <dt>Specified by:</dt>
 <dd><code><a href="Tower.html#getTowerRange()">getTowerRange</a></code>&nbsp;in class&nbsp;<code><a href="Tower.html" title="class in game.entities.towers">Tower</a></code></dd>
 </dl>
@@ -264,7 +282,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getInitialLocation()">
 <h3>getInitialLocation</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.github.hanyaeger.api.Coordinate2D</span>&nbsp;<span class="element-name">getInitialLocation</span>()</div>
-<dl class="notes">
+ <dl class="notes">
+  <dd>This method returns the initialLocation of the freezer tower.</dd>
+  <dt>Returns:</dt>
+  <dd>Coordinate2D initialLocation: this is the initialLocation of the freezer tower.</dd>
 <dt>Specified by:</dt>
 <dd><code><a href="Tower.html#getInitialLocation()">getInitialLocation</a></code>&nbsp;in class&nbsp;<code><a href="Tower.html" title="class in game.entities.towers">Tower</a></code></dd>
 </dl>
@@ -274,7 +295,8 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getProjectileSpawner()">
 <h3>getProjectileSpawner</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../targeting/ProjectileSpawner.html" title="class in game.entities.targeting">ProjectileSpawner</a></span>&nbsp;<span class="element-name">getProjectileSpawner</span>()</div>
-<dl class="notes">
+ <dl class="notes">
+  <dd>This method returns a projectileSpawner, the freezer doesn't have one and returns null</dd>
 <dt>Specified by:</dt>
 <dd><code><a href="Tower.html#getProjectileSpawner()">getProjectileSpawner</a></code>&nbsp;in class&nbsp;<code><a href="Tower.html" title="class in game.entities.towers">Tower</a></code></dd>
 </dl>
@@ -284,6 +306,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="explicitUpdate(long)">
 <h3>explicitUpdate</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">explicitUpdate</span><wbr><span class="parameters">(long&nbsp;l)</span></div>
+ <dl class="notes">
+  <dd>This method is always running while a freezer tower exists. The method checks if there are any enemies in the tower range. If there is, then the movementSpeed of the enemy will be changed.</dd>
+  <dt>Parameters:</dt>
+  <dd>long timeStamp: this is how fast this method should repeat. It is not used.</dd>
+ </dl>
 </section>
 </li>
 </ul>

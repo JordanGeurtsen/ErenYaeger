@@ -146,6 +146,14 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="element-name">BabyCootSpawner</span><wbr><span class="parameters">(long&nbsp;intervalInMs,
  com.github.hanyaeger.api.Coordinate2D&nbsp;initialLocation,
  <a href="../../scenes/GameScreen.html" title="class in game.scenes">GameScreen</a>&nbsp;gameScreen)</span></div>
+<dl class="notes">
+ <dd>This is a babyCootSpawner.</dd>
+ <dt>Parameters:</dt>
+ <dd>long intervalInMs: this is the amount of milliseconds it has to wait to spawn another babyCoot</dd>
+ <dd>Coordinate2D initialLocation: this is the coordinates on which the babyCoot spawns.</dd>
+ <dd>GameScreen gameScreen: this is the scene in which the babyCoot spawns.</dd>
+ <dd>Enemy mamaCoot: this is the mamaCoot that spawned the babyCoot.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -161,11 +169,25 @@ loadScripts(document, 'script');</script>
 <h3>spawnEntities</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">spawnEntities</span>()</div>
 <dl class="notes">
+ <dd>This method spawns a babyCoot if needToSpawn is true.</dd>
 <dt>Specified by:</dt>
 <dd><code>spawnEntities</code>&nbsp;in class&nbsp;<code>com.github.hanyaeger.api.entities.EntitySpawner</code></dd>
 </dl>
 </section>
 </li>
+ <li>
+  <section class="detail" id="setNeedToSpawn()">
+   <h3>setNeedToSpawn</h3>
+   <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setNeedToSpawn</span>()</div>
+   <dl class="notes">
+    <dd>This method sets needToSpawn on the given state.</dd>
+    <dt>Parameters:</dt>
+    <dd>boolean state: this is the state needToSpawn has to change to.</dd>
+    <dt>Specified by:</dt>
+    <dd><code><a href="BabyCootSpawner.html#setNeedToSpawn(game.entities.enemies.needToSpawn)">setNeedToSpawn</a></code>&nbsp;in class&nbsp;<code><a href="BabyCootSpawner.html" title="class in game.entities.enemies">BabyCoot</a></code></dd>
+   </dl>
+  </section>
+ </li>
 </ul>
 </section>
 </li>

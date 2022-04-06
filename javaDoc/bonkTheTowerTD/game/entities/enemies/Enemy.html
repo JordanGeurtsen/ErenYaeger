@@ -262,6 +262,13 @@ implements com.github.hanyaeger.api.entities.Collider, com.github.hanyaeger.api.
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Enemy</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;resource,
  com.github.hanyaeger.api.Coordinate2D&nbsp;initialLocation,
  <a href="../../scenes/GameScreen.html" title="class in game.scenes">GameScreen</a>&nbsp;gameScreen)</span></div>
+<dl class="notes">
+ <dd>This makes an enemy.</dd>
+ <dt>Parameters:</dt>
+ <dd>String resource: this is the resource of the image of the enemy.</dd>
+ <dd>Coordinate2D initialLocation: this is the coordinates where the enemy will be placed.</dd>
+ <dd>GameScreen gameScreen: this is the scene where the enemy is placed.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -276,48 +283,78 @@ implements com.github.hanyaeger.api.entities.Collider, com.github.hanyaeger.api.
 <section class="detail" id="getMovementSpeed()">
 <h3>getMovementSpeed</h3>
 <div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getMovementSpeed</span>()</div>
+ <dl class="notes">
+  <dd>This method returns the movementSpeed.</dd>
+ </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="setMovementSpeed(game.entities.enemies.MovementSpeed)">
 <h3>setMovementSpeed</h3>
 <div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setMovementSpeed</span><wbr><span class="parameters">(<a href="MovementSpeed.html" title="enum class in game.entities.enemies">MovementSpeed</a>&nbsp;movementSpeed)</span></div>
+<dl class="notes">
+ <dd>This method sets the movementSpeed.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getHealth()">
 <h3>getHealth</h3>
 <div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getHealth</span>()</div>
+ <dl class="notes">
+ <dd>This method returns the health from an enemy.</dd>
+ </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="setHealth(double)">
 <h3>setHealth</h3>
 <div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setHealth</span><wbr><span class="parameters">(double&nbsp;newHealth)</span></div>
+ <dl class="notes">
+  <dd>This method sets the health of an enemy.</dd>
+ </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getDamage()">
 <h3>getDamage</h3>
 <div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getDamage</span>()</div>
+ <dl class="notes">
+  <dd>This method returns the damage of an enemy.</dd>
+ </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getInitialLocation()">
 <h3>getInitialLocation</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">com.github.hanyaeger.api.Coordinate2D</span>&nbsp;<span class="element-name">getInitialLocation</span>()</div>
+ <dl class="notes">
+  <dd>This method returns the initialLocation of an enemy.</dd>
+ <dt>Returns:</dt>
+ <dd>Coordinate2D initialLocation: this is the location of where the enemy first spawned.</dd>
+ </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getPathStep()">
 <h3>getPathStep</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../PathStep.html" title="enum class in game">PathStep</a></span>&nbsp;<span class="element-name">getPathStep</span>()</div>
+ <dl class="notes">
+ <dd>This method returns the pathStep of an enemy.</dd>
+ <dt>Returns:</dt>
+ <dd>PathStep pathStep: this is the number of turns an enemy has taken.</dd>
+ </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="setPathStep(game.PathStep)">
 <h3>setPathStep</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setPathStep</span><wbr><span class="parameters">(<a href="../../PathStep.html" title="enum class in game">PathStep</a>&nbsp;newPathStep)</span></div>
+ <dl class="notes">
+  <dd>This method sets the pathStep of an enemy.</dd>
+  <dt>Parameter:</dt>
+  <dd>PathStep newPathStep: this is what the number of turns an enemy has taken need to turn into.</dd>
+ </dl>
 </section>
 </li>
 <li>
@@ -325,7 +362,8 @@ implements com.github.hanyaeger.api.entities.Collider, com.github.hanyaeger.api.
 <h3>notifyBoundaryCrossing</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">notifyBoundaryCrossing</span><wbr><span class="parameters">(com.github.hanyaeger.api.scenes.SceneBorder&nbsp;border)</span></div>
 <dl class="notes">
-<dt>Specified by:</dt>
+ <dd>This method calls the enemyPastBorder method when an enemy gets over the borders of the screen.</dd>
+ <dt>Specified by:</dt>
 <dd><code>notifyBoundaryCrossing</code>&nbsp;in interface&nbsp;<code>com.github.hanyaeger.api.entities.SceneBorderCrossingWatcher</code></dd>
 </dl>
 </section>

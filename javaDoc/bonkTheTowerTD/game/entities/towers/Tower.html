@@ -264,6 +264,13 @@ implements com.github.hanyaeger.api.UpdateExposer</span></div>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Tower</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;resource,
  com.github.hanyaeger.api.Coordinate2D&nbsp;initialLocation,
  <a href="../../scenes/GameScreen.html" title="class in game.scenes">GameScreen</a>&nbsp;gameScreen)</span></div>
+<dl class="notes">
+ <dd>This makes a tower entity.</dd>
+ <dt>Parameters:</dt>
+ <dd>String resource: this is the String with the resource of the image of the tower.</dd>
+ <dd>Coordinate2D initialLocation: this is the coordinates where the tower will be placed.</dd>
+ <dd>GameScreen gameScreen: this is the scene where the tower is visible.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -278,6 +285,9 @@ implements com.github.hanyaeger.api.UpdateExposer</span></div>
 <section class="detail" id="getTowerDamage()">
 <h3>getTowerDamage</h3>
 <div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getTowerDamage</span>()</div>
+<dl class="notes">
+ <dd>This method returns the damage that the tower does.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -290,24 +300,40 @@ implements com.github.hanyaeger.api.UpdateExposer</span></div>
 <section class="detail" id="getInitialLocation()">
 <h3>getInitialLocation</h3>
 <div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">com.github.hanyaeger.api.Coordinate2D</span>&nbsp;<span class="element-name">getInitialLocation</span>()</div>
+ <dl class="notes">
+  <dd>This method returns the range that the tower has.</dd>
+ </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getProjectileSpawner()">
 <h3>getProjectileSpawner</h3>
 <div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type"><a href="../targeting/ProjectileSpawner.html" title="class in game.entities.targeting">ProjectileSpawner</a></span>&nbsp;<span class="element-name">getProjectileSpawner</span>()</div>
+ <dl class="notes">
+  <dd>This method returns the projectileSpawner that the tower has.</dd>
+ </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getShootAngle()">
 <h3>getShootAngle</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getShootAngle</span>()</div>
+ <dl class="notes">
+  <dd>This method returns the shootAngle.</dd>
+  <dt>Returns:</dt>
+  <dd>double shootAngle: this is the angle in degrees from the tower towards a target.</dd>
+ </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="setShootAngle(double)">
 <h3>setShootAngle</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setShootAngle</span><wbr><span class="parameters">(double&nbsp;shootAngle)</span></div>
+ <dl class="notes">
+  <dd>This method sets the shootAngle.</dd>
+  <dt>Parameters:</dt>
+  <dd>double shootAngle: this is the angle in degrees from the tower towards a target.</dd>
+ </dl>
 </section>
 </li>
 <li>
@@ -315,19 +341,25 @@ implements com.github.hanyaeger.api.UpdateExposer</span></div>
 <h3>isInRange</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isInRange</span><wbr><span class="parameters">(double&nbsp;rangeRadius,
  <a href="../enemies/Enemy.html" title="class in game.entities.enemies">Enemy</a>&nbsp;e)</span></div>
+<dl class="notes">
+ <dd>This method returns true if the distance to an enemy is smaller that the range of the tower.</dd>
+ <dt>Parameters:</dt>
+ <dd>double rangeRadius: this is the range of the tower.</dd>
+ <dd>Enemy e: this is the enemy of which the distance towards the tower gets checked.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getTarget(java.util.ArrayList)">
 <h3>getTarget</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../enemies/Enemy.html" title="class in game.entities.enemies">Enemy</a></span>&nbsp;<span class="element-name">getTarget</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="../enemies/Enemy.html" title="class in game.entities.enemies">Enemy</a>&gt;&nbsp;spawnedEnemyList)</span></div>
-</section>
-</li>
-<li>
-<section class="detail" id="getEveryTarget(java.util.ArrayList,game.entities.towers.Tower)">
-<h3>getEveryTarget</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="../enemies/Enemy.html" title="class in game.entities.enemies">Enemy</a>&gt;</span>&nbsp;<span class="element-name">getEveryTarget</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="../enemies/Enemy.html" title="class in game.entities.enemies">Enemy</a>&gt;&nbsp;spawnedEnemyList,
- <a href="Tower.html" title="class in game.entities.towers">Tower</a>&nbsp;t)</span></div>
+<dl class="notes">
+ <dd>This method gets a target to shoot at that is within the towers range and is the closest towards the end of the map. It sets the shootAngle to this target and then returns the target.</dd>
+<dt>Parameters:</dt>
+ <dd>ArrayList spawnedEnemyList: this is an ArrayList with enemies that are currently on the map.</dd>
+ <dt>Returns:</dt>
+ <dd>Enemy target: this is the target that is within the range of the tower and the closest towards the end.</dd>
+</dl>
 </section>
 </li>
 </ul>

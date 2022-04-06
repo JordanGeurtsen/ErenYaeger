@@ -159,7 +159,11 @@ loadScripts(document, 'script');</script>
  <a href="../../scenes/GameScreen.html" title="class in game.scenes">GameScreen</a>&nbsp;gameScreen)</span></div>
 <dl class="notes">
  <dd>This spawns a bullet every certain amount of milliseconds.</dd>
-</dl>
+ <dt>Parameters:</dt>
+ <dd>long intervalInMs: this is the amount of milliseconds it has to wait to spawn another bullet.</dd>
+ <dd>Coordinate2D coordinate2D: this is the coordinates on which the bullet spawns.</dd>
+ <dd>Tower shootingTower: this is the Tower entity from which the bullet shoots.</dd>
+ <dd>GameScreen gameScreen: this is the scene in which the bullet is visible.</dd></dl>
 </section>
 </li>
 </ul>
@@ -175,7 +179,8 @@ loadScripts(document, 'script');</script>
 <h3>spawnEntities</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">spawnEntities</span>()</div>
 <dl class="notes">
-<dt>Specified by:</dt>
+ <dd>This method spawns a bullet if there's an enemy within the range.</dd>
+ <dt>Specified by:</dt>
 <dd><code>spawnEntities</code>&nbsp;in class&nbsp;<code>com.github.hanyaeger.api.entities.EntitySpawner</code></dd>
 </dl>
 </section>
@@ -184,7 +189,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="setShootAngle(double)">
 <h3>setShootAngle</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setShootAngle</span><wbr><span class="parameters">(double&nbsp;shootAngle)</span></div>
-<dl class="notes">
+ <dl class="notes">
+  <dd>This method sets the angle in degrees to the enemy that the bullet is shooting.</dd>
+  <dt>Parameters:</dt>
+  <dd>double shootAngle: this is the shootAngle in degrees that replaces the old shootAngle.</dd>
 <dt>Specified by:</dt>
 <dd><code><a href="ProjectileSpawner.html#setShootAngle(double)">setShootAngle</a></code>&nbsp;in class&nbsp;<code><a href="ProjectileSpawner.html" title="class in game.entities.targeting">ProjectileSpawner</a></code></dd>
 </dl>
@@ -194,12 +202,22 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="setNeedToShoot(boolean)">
 <h3>setNeedToShoot</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setNeedToShoot</span><wbr><span class="parameters">(boolean&nbsp;shootNeed)</span></div>
+ <dl class="notes">
+  <dd>This method changes the boolean needToShoot.</dd>
+  <dt>Parameters:</dt>
+  <dd>boolean shootNeed: the boolean needToShoot changes into this parameter.</dd>
+ </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="shoot(double)">
 <h3>shoot</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">shoot</span><wbr><span class="parameters">(double&nbsp;shootAngle)</span></div>
+ <dl class="notes">
+  <dd>This method makes it possible for a bullet to shoot and do so in the right direction.</dd>
+  <dt>Parameters:</dt>
+  <dd>double shootAngle: this is the shootAngle that needs to be set.</dd>
+ </dl>
 </section>
 </li>
 </ul>

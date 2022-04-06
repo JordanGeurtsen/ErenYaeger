@@ -224,6 +224,13 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">MamaCoot</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;resource,
  com.github.hanyaeger.api.Coordinate2D&nbsp;initialLocation,
  <a href="../../scenes/GameScreen.html" title="class in game.scenes">GameScreen</a>&nbsp;gameScreen)</span></div>
+ <dl class="notes">
+  <dd>This makes a babyCoot enemy.</dd>
+  <dt>Parameters:</dt>
+  <dd>String resource: this is the resource of the image of the enemy.</dd>
+  <dd>Coordinate2D initialLocation: this is the coordinates where the enemy will be placed.</dd>
+  <dd>GameScreen gameScreen: this is the scene where the enemy is placed.</dd>
+ </dl>
 </section>
 </li>
 </ul>
@@ -238,6 +245,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getBabyCootSpawner()">
 <h3>getBabyCootSpawner</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="BabyCootSpawner.html" title="class in game.entities.enemies">BabyCootSpawner</a></span>&nbsp;<span class="element-name">getBabyCootSpawner</span>()</div>
+<dl class="notes">
+ <dd>This method returns the babyCootSpawner</dd>
+ <dt>Returns:</dt>
+ <dd>BabyCootSpawner babyCootSpawner: this is a babyCootSpawner that activates when a mamaCoot is on the map.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -245,6 +257,9 @@ loadScripts(document, 'script');</script>
 <h3>getMovementSpeed</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getMovementSpeed</span>()</div>
 <dl class="notes">
+ <dd>This method returns the movementSpeed.</dd>
+ <dt>Returns:</dt>
+ <dd>MovementSpeed movementSpeed: this is the movementSpeed of a mamaCoot.</dd>
 <dt>Specified by:</dt>
 <dd><code><a href="Enemy.html#getMovementSpeed()">getMovementSpeed</a></code>&nbsp;in class&nbsp;<code><a href="Enemy.html" title="class in game.entities.enemies">Enemy</a></code></dd>
 </dl>
@@ -255,6 +270,9 @@ loadScripts(document, 'script');</script>
 <h3>getHealth</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getHealth</span>()</div>
 <dl class="notes">
+ <dd>This method returns the health.</dd>
+ <dt>Returns:</dt>
+ <dd>int health: this is the health of a mamaCoot.</dd>
 <dt>Specified by:</dt>
 <dd><code><a href="Enemy.html#getHealth()">getHealth</a></code>&nbsp;in class&nbsp;<code><a href="Enemy.html" title="class in game.entities.enemies">Enemy</a></code></dd>
 </dl>
@@ -265,6 +283,9 @@ loadScripts(document, 'script');</script>
 <h3>setHealth</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setHealth</span><wbr><span class="parameters">(double&nbsp;newHealth)</span></div>
 <dl class="notes">
+ <dd>This method sets the health of a mamaCoot.</dd>
+ <dt>Parameters:</dt>
+ <dd>int newHealth: this is the health that will be set as the new health of a mamaCoot.</dd>
 <dt>Specified by:</dt>
 <dd><code><a href="Enemy.html#setHealth(double)">setHealth</a></code>&nbsp;in class&nbsp;<code><a href="Enemy.html" title="class in game.entities.enemies">Enemy</a></code></dd>
 </dl>
@@ -275,6 +296,9 @@ loadScripts(document, 'script');</script>
 <h3>getDamage</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getDamage</span>()</div>
 <dl class="notes">
+ <dd>This method returns the damage of a mamaCoot.</dd>
+ <dt>Returns:</dt>
+ <dd>int damage: this is the damage of a mamaCoot.</dd>
 <dt>Specified by:</dt>
 <dd><code><a href="Enemy.html#getDamage()">getDamage</a></code>&nbsp;in class&nbsp;<code><a href="Enemy.html" title="class in game.entities.enemies">Enemy</a></code></dd>
 </dl>
@@ -285,6 +309,9 @@ loadScripts(document, 'script');</script>
 <h3>setMovementSpeed</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setMovementSpeed</span><wbr><span class="parameters">(<a href="MovementSpeed.html" title="enum class in game.entities.enemies">MovementSpeed</a>&nbsp;movementSpeed)</span></div>
 <dl class="notes">
+ <dd>This method sets the movementSpeed.</dd>
+ <dt>Parameters:</dt>
+ <dd>MovementSpeed movementSpeed: this is the new movementSpeed of a mamaCoot.</dd>
 <dt>Specified by:</dt>
 <dd><code><a href="Enemy.html#setMovementSpeed(game.entities.enemies.MovementSpeed)">setMovementSpeed</a></code>&nbsp;in class&nbsp;<code><a href="Enemy.html" title="class in game.entities.enemies">Enemy</a></code></dd>
 </dl>

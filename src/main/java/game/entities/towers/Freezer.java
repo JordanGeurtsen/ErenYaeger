@@ -1,6 +1,5 @@
 package game.entities.towers;
 
-
 import com.github.hanyaeger.api.Coordinate2D;
 import game.entities.enemies.Enemy;
 import game.entities.enemies.MovementSpeed;

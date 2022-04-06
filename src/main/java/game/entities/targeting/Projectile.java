@@ -53,6 +53,5 @@ public abstract class Projectile extends DynamicSpriteEntity implements Collided
                 }
                 remove();
             }
-//        }
     }
 }
