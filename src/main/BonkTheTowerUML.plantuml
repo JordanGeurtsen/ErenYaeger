@@ -202,9 +202,9 @@ SELECTGROUND (4)
 interface Button {
 }
 
-Button -right-|> MouseExitListener
-Button -up|> MouseEnterListener
-Button -left-|> MouseButtonPressedListener
+Button .right.|> MouseExitListener
+Button .up|> MouseEnterListener
+Button .left.|> MouseButtonPressedListener
 
 Button <|.. TextButton
 TextButton <|-- QuitButton
@@ -225,8 +225,8 @@ abstract class CompositeButton {
 + {abstract} onButtonClick() : void
 }
 
-CompositeButton <|.right. Button
-CompositeButton -|> CompositeEntity
+CompositeButton <|.up. Button
+CompositeButton -right-|> CompositeEntity
 
 abstract class CompositeEntity #EE66B1 {
 }
@@ -258,7 +258,7 @@ class HitBox {
 + HitBox(initialLocation : Coordinate2D, size : Size)
 }
 
-HitBox --|> RectangleEntity
+HitBox -right-|> RectangleEntity
 
 abstract class RectangleEntity #EE66B1 {
 }
@@ -312,7 +312,7 @@ class Counter {
 + updateCounter(text : String, counterData : int) : void
 }
 
-Counter .|> DynamicTextEntity
+Counter -|> DynamicTextEntity
 
 abstract class Tower {
 ..Protected..
@@ -429,7 +429,7 @@ class BulletSpawner {
 + shoot(shootAngle : double) : void
 }
 
-ProjectileSpawner"0..1" --> "1"Tower : intervalInMs, initialLocation, shootingTower, gameScreen
+ProjectileSpawner"0..1" -left-> "1"Tower : intervalInMs, initialLocation, shootingTower, gameScreen
 ProjectileSpawner <|-up- ArrowSpawner
 ProjectileSpawner <|-up- BulletSpawner
 
@@ -450,8 +450,8 @@ interface Collider #EE66B1{
 interface SceneBorderCrossingWatcher #EE66B1 {
 }
 
-Projectile <-right- Collided
-Projectile <-- SceneBorderCrossingWatcher
+Projectile .right.|> Collided
+Projectile ..|> SceneBorderCrossingWatcher
 
 class Arrow {
 + Arrow(initialLocation : Coordinate2D, shootAngle : double, gameScreen : GameScreen, shootingTower : Tower)
@@ -577,10 +577,10 @@ class ThickCoot {
 }
 
 Enemy <|-- BabyCoot
-Enemy <|-- DerpyCoot
+Enemy <|-up- DerpyCoot
 Enemy <|-- MamaCoot
-Enemy <|-- FastCoot
-Enemy <|-- ThickCoot
+Enemy <|-up- FastCoot
+Enemy <|-right- ThickCoot
 
 enum MovementSpeed {
 SLOW
