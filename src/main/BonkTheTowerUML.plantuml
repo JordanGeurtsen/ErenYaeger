@@ -63,11 +63,11 @@ class GameScreen {
 }
 
 GameScreen "1" --> "1" LevelTileMap
-GameScreen "1" -right-> "0..*" Counter : initialLocation, counterData, text
+GameScreen "1" -up-> "0..*" Counter : initialLocation, counterData, text
 
 EntitySpawnerContainer <|.. GameScreen
 UpdateExposer <|.. GameScreen
-MouseButtonReleasedListener <|.. GameScreen
+MouseButtonReleasedListener <|.left. GameScreen
 TileMapContainer <|.. GameScreen
 
 interface EntitySpawnerContainer #EE66B1 {
@@ -208,7 +208,7 @@ Button .left.|> MouseButtonPressedListener
 
 Button <|.. TextButton
 TextButton <|-- QuitButton
-TextButton <|-- SceneSwitchButton
+TextButton <|-left- SceneSwitchButton
 TextButton <|-- NextRoundButton
 
 abstract class TextButton {
@@ -217,7 +217,7 @@ abstract class TextButton {
 + onButtonClick() : void
 }
 
-TextButton --|> TextEntity
+TextButton -up-|> TextEntity
 
 abstract class CompositeButton {
 + CompositeButton(initialLocation Coordinate2D)
@@ -312,7 +312,7 @@ class Counter {
 + updateCounter(text : String, counterData : int) : void
 }
 
-Counter -|> DynamicTextEntity
+Counter -up-|> DynamicTextEntity
 
 abstract class Tower {
 ..Protected..
@@ -451,7 +451,7 @@ interface SceneBorderCrossingWatcher #EE66B1 {
 }
 
 Projectile .right.|> Collided
-Projectile ..|> SceneBorderCrossingWatcher
+Projectile .left.|> SceneBorderCrossingWatcher
 
 class Arrow {
 + Arrow(initialLocation : Coordinate2D, shootAngle : double, gameScreen : GameScreen, shootingTower : Tower)
@@ -515,7 +515,7 @@ interface Collided #EE66B1{
 }
 
 Enemy ..|> Collider
-Enemy ..|> SceneBorderCrossingWatcher
+Enemy .right.|> SceneBorderCrossingWatcher
 
 class BabyCoot {
 - speed : double
